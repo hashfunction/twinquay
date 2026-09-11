@@ -122,7 +122,11 @@ function Get-VerifiedDefenderModuleEvidence([string]$Path, [string]$PlatformRoot
     }
     if ($commonNames.Count -ne 1 -or $organizations.Count -ne 1 -or
         $commonNames[0] -cnotin @('Microsoft Windows Publisher','Microsoft Corporation') -or
-        $organizations[0] -cne 'Microsoft Corporation') { throw 'Defender signature does not identify the required Microsoft signer.' }
+        $organizations[0] -cne 'Microsoft Corporation') {
+        throw ('Defender signature does not identify the required Microsoft signer. Parsed certificate: ' +
+            (@{common_names=@($commonNames);organizations=@($organizations);subject=$certificate.Subject;
+                issuer=$certificate.Issuer;thumbprint=$certificate.Thumbprint;status=[string]$signature.Status} | ConvertTo-Json -Compress))
+    }
     Assert-NoReparsePath $path
     if ((Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant() -cne $hash) { throw 'Defender module changed during signature verification.' }
     return [ordered]@{ sha256=$hash; signature_status=[string]$signature.Status;
