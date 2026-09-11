@@ -20,10 +20,29 @@ function Select-TwinQuayWorkflowControl([object[]]$Items,[int]$ProcessId,[string
     return $matches[0]
 }
 
+function Get-TwinQuayExceptionChain($Exception) {
+    $chain=[Collections.Generic.List[object]]::new()
+    $depth=0
+    while ($Exception -and $depth -lt 16) {
+        $chain.Add([ordered]@{
+            depth=$depth
+            type=$Exception.GetType().FullName
+            message=$Exception.Message
+            hresult=$Exception.HResult
+            hresult_hex=('0x{0:X8}' -f ([long]$Exception.HResult -band 0xffffffffL))
+            has_inner=[bool]$Exception.InnerException
+        })
+        $Exception=$Exception.InnerException
+        $depth++
+    }
+    return @($chain)
+}
+
 function Invoke-TwinQuayWorkflowCore([Collections.IDictionary]$Operations) {
     $completed=[Collections.Generic.List[string]]::new()
     $errors=[Collections.Generic.List[string]]::new()
     $primary=$null
+    $primaryExceptionChain=@()
     foreach ($name in @('Prepare','Scan','Review','Quarantine','Conflict','Restore','Finish','ReleaseCollision')) {
         if (-not $Operations.Contains($name) -or $Operations[$name] -isnot [scriptblock]) { throw "Missing workflow operation: $name" }
     }
@@ -32,12 +51,15 @@ function Invoke-TwinQuayWorkflowCore([Collections.IDictionary]$Operations) {
             & $Operations[$name] | Out-Host
             $completed.Add($name)
         }
-    } catch { $primary=$_.Exception.Message }
+    } catch {
+        $primary=$_.Exception.Message
+        $primaryExceptionChain=@(Get-TwinQuayExceptionChain $_.Exception)
+    }
     finally {
         try { & $Operations.ReleaseCollision | Out-Host } catch { $errors.Add($_.Exception.Message) }
     }
     return [ordered]@{ passed=(-not $primary -and $errors.Count -eq 0); completed_stages=@($completed);
-        primary_error=$primary; cleanup_errors=@($errors) }
+        primary_error=$primary; primary_exception_chain=@($primaryExceptionChain); cleanup_errors=@($errors) }
 }
 
 function New-TwinQuayCollision([string]$Path,[byte[]]$Bytes) {
@@ -122,20 +144,66 @@ function Get-TwinQuayWorkflowElements($Root) {
     return @($items)
 }
 
+function Test-TwinQuayTransientUiaError($Exception) {
+    while ($Exception) {
+        # UIA_E_ELEMENTNOTAVAILABLE: the provider element was virtualized or
+        # destroyed between enumeration and access. PowerShell wraps this COM
+        # error in MethodInvocationException for AutomationElement.FindAll.
+        if ($Exception.HResult -eq -2147220991) { return $true }
+        $Exception=$Exception.InnerException
+    }
+    return $false
+}
+
 function Wait-TwinQuayWorkflowWindow($State,[string]$Title,[int]$Seconds=30) {
     $deadline=[DateTime]::UtcNow.AddSeconds($Seconds)
+    $matches=@()
+    $lastTransient=$null
     do {
-        $windows=@(Get-TwinQuayWorkflowWindows $State)
-        $errors=@($windows | Where-Object { $_.Current.Name -cmatch '^(Error|Traceback|Cannot read receipt|Plan was not saved|Application Error)' })
-        if ($errors.Count) { throw ('Owned application error window: ' + $errors[0].Current.Name) }
-        $matches=@($windows | Where-Object { $_.Current.Name -ceq $Title })
-        # Scan progress can temporarily share the main window's title. Never
-        # pick either ambiguous HWND; await a unique observed match instead.
-        if ($matches.Count -eq 1) { return $matches[0] }
+        try {
+            $windows=@(Get-TwinQuayWorkflowWindows $State)
+            $errors=@($windows | Where-Object { $_.Current.Name -cmatch '^(Error|Traceback|Cannot read receipt|Plan was not saved|Application Error)' })
+            if ($errors.Count) { throw ('Owned application error window: ' + $errors[0].Current.Name) }
+            $matches=@($windows | Where-Object { $_.Current.Name -ceq $Title })
+            # Scan progress can temporarily share the main window's title. Never
+            # pick either ambiguous HWND; await a unique observed match instead.
+            if ($matches.Count -eq 1) { return $matches[0] }
+        } catch {
+            if (-not (Test-TwinQuayTransientUiaError $_.Exception)) { throw }
+            $lastTransient=$_.Exception.Message
+            $matches=@()
+        }
         Start-Sleep -Milliseconds 150
     } while ([DateTime]::UtcNow -lt $deadline)
     if ($matches.Count -gt 1) { throw "Ambiguous owned workflow window at deadline: $Title" }
+    if ($lastTransient) { throw "Timed out awaiting exact owned workflow window after UIA_E_ELEMENTNOTAVAILABLE: $Title; $lastTransient" }
     throw "Timed out awaiting exact owned workflow window: $Title"
+}
+
+function Wait-TwinQuayWorkflowScanResult($State,[int]$Seconds=45) {
+    $deadline=[DateTime]::UtcNow.AddSeconds($Seconds)
+    $lastTransient=$null
+    do {
+        try {
+            # Reacquire the owned top-level element on every poll. Qt replaces
+            # its scan-progress UIA subtree when the result table is rendered.
+            $main=Wait-TwinQuayWorkflowWindow $State 'TwinQuay'
+            $items=@(Get-TwinQuayWorkflowElements $main)
+            $matches=@($items | Where-Object {
+                $_.name -ceq 'keep-original.bin' -and $_.process_id -eq $State.process.Id -and -not $_.offscreen
+            })
+            if ($matches.Count -gt 1) { throw 'Ambiguous original row in scan results.' }
+            if ($matches.Count -eq 1) {
+                return [pscustomobject]@{window=$main;reference=$matches[0].element}
+            }
+        } catch {
+            if (-not (Test-TwinQuayTransientUiaError $_.Exception)) { throw }
+            $lastTransient=$_.Exception.Message
+        }
+        Start-Sleep -Milliseconds 200
+    } while ([DateTime]::UtcNow -lt $deadline)
+    if ($lastTransient) { throw "Actual scan result remained unavailable after UIA_E_ELEMENTNOTAVAILABLE: $lastTransient" }
+    throw 'Actual generated original/duplicate scan result was not rendered.'
 }
 
 function Find-TwinQuayWorkflowControl($State,$Root,[string]$Name,[string[]]$Types=@('ControlType.Button')) {
@@ -328,17 +396,9 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
         $main=Wait-TwinQuayWorkflowWindow $State 'TwinQuay'
         Save-TwinQuayWorkflowSurface $State $context '01-scan-folder' $main
         Press-TwinQuayWorkflowButton $State $main 'Scan'
-        $deadline=[DateTime]::UtcNow.AddSeconds(45)
-        $reference=$null
-        do {
-            $main=Wait-TwinQuayWorkflowWindow $State 'TwinQuay'
-            $items=@(Get-TwinQuayWorkflowElements $main)
-            $matches=@($items | Where-Object {$_.name -ceq 'keep-original.bin' -and $_.process_id -eq $State.process.Id -and -not $_.offscreen})
-            if ($matches.Count -gt 1) { throw 'Ambiguous original row in scan results.' }
-            if ($matches.Count -eq 1) { $reference=$matches[0].element; break }
-            Start-Sleep -Milliseconds 200
-        } while ([DateTime]::UtcNow -lt $deadline)
-        if (-not $reference) { throw 'Actual generated original/duplicate scan result was not rendered.' }
+        $scan=Wait-TwinQuayWorkflowScanResult $State
+        $main=$scan.window
+        $reference=$scan.reference
         $reference.GetCurrentPattern([Windows.Automation.SelectionItemPattern]::Pattern).Select()
         Send-TwinQuayWorkflowKeys $State $main '^{SPACE}'
         Send-TwinQuayWorkflowKeys $State $main '^a'

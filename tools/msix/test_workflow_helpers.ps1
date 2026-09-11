@@ -4,6 +4,15 @@ Set-StrictMode -Version Latest
 . (Join-Path $PSScriptRoot 'qualify-msix-install.ps1') -LibraryOnly
 . (Join-Path $PSScriptRoot 'qualify-workflow.ps1')
 function Assert($Value,[string]$Message) { if (-not $Value) { throw $Message } }
+Add-Type @'
+using System;
+using System.Runtime.InteropServices;
+public static class TwinQuayTransientUiaFixture {
+    public static void FindAll(int hresult) {
+        throw new COMException("Unrecognized error.", hresult);
+    }
+}
+'@
 $literal='C:\fixture +{x}(y)[z]^%~\keep.bin'
 Assert ((ConvertTo-TwinQuaySendKeysLiteral $literal) -ceq 'C:\fixture {+}{{}x{}}{(}y{)}{[}z{]}{^}{%}{~}\keep.bin') 'Literal path keyboard escaping changed.'
 $one=[pscustomobject]@{name='Scan';control_type='ControlType.Button';enabled=$true;offscreen=$false;process_id=42}
@@ -21,6 +30,8 @@ $script:mainWindow=[pscustomobject]@{Current=[pscustomobject]@{Name='TwinQuay'}}
 $script:progressWindow=[pscustomobject]@{Current=[pscustomobject]@{Name='TwinQuay'}}
 function Get-TwinQuayWorkflowWindows($State) {
     $script:polls++
+    if($script:windowMode -eq 'transient-uia' -and $script:polls -eq 1){[TwinQuayTransientUiaFixture]::FindAll(-2147220991)}
+    if($script:windowMode -eq 'other-uia'){[TwinQuayTransientUiaFixture]::FindAll(-2147220988)}
     if($script:windowMode -eq 'error'){return [pscustomobject]@{Current=[pscustomobject]@{Name='Error loading input'}}}
     if($script:windowMode -eq 'absent'){return @()}
     if($script:windowMode -eq 'persistent' -or $script:polls -eq 1){return @($script:mainWindow,$script:progressWindow)}
@@ -29,6 +40,12 @@ function Get-TwinQuayWorkflowWindows($State) {
 try {
     $found=Wait-TwinQuayWorkflowWindow @{} 'TwinQuay' 2
     Assert ($script:polls -eq 2 -and [object]::ReferenceEquals($found,$script:mainWindow)) 'Transient scan window was selected or rejected instead of awaited.'
+    $script:windowMode='transient-uia';$script:polls=0
+    $found=Wait-TwinQuayWorkflowWindow @{} 'TwinQuay' 2
+    Assert ($script:polls -eq 2 -and [object]::ReferenceEquals($found,$script:mainWindow)) 'UIA_E_ELEMENTNOTAVAILABLE was not retried within the owned bounded wait.'
+    $script:windowMode='other-uia';$script:polls=0;$failure=$null
+    try{Wait-TwinQuayWorkflowWindow @{} 'TwinQuay' 2|Out-Null}catch{$failure=$_.Exception.Message}
+    Assert ($failure -match 'Unrecognized error' -and $script:polls -eq 1) 'A different UI Automation HRESULT was retried or concealed.'
     foreach($script:windowMode in @('persistent','absent','error')){
         $script:polls=0;$failure=$null
         try{Wait-TwinQuayWorkflowWindow @{} 'TwinQuay' 0|Out-Null}catch{$failure=$_.Exception.Message}
@@ -36,7 +53,27 @@ try {
         Assert ($failure -match $expected -and $script:polls -eq 1) "Window polling accepted or misreported $script:windowMode"
     }
 } finally {Set-Item Function:Get-TwinQuayWorkflowWindows $originalWindows}
-Write-Output 'PASS: actual bounded wait tolerates transient same-title scan progress, never chooses an ambiguous window and preserves persistent/error failure.'
+Write-Output 'PASS: bounded wait tolerates transient same-title scan progress and UIA_E_ELEMENTNOTAVAILABLE only, never chooses an ambiguous window and preserves other failures.'
+$originalWait=${function:Wait-TwinQuayWorkflowWindow}
+$originalElements=${function:Get-TwinQuayWorkflowElements}
+$script:scanPolls=0
+$script:scanWindow=[pscustomobject]@{Current=[pscustomobject]@{Name='TwinQuay'}}
+$script:scanElement=[pscustomobject]@{identity='exact rendered row'}
+function Wait-TwinQuayWorkflowWindow($State,[string]$Title,[int]$Seconds=30) { return $script:scanWindow }
+function Get-TwinQuayWorkflowElements($Root) {
+    $script:scanPolls++
+    if($script:scanPolls -eq 1){[TwinQuayTransientUiaFixture]::FindAll(-2147220991)}
+    return [pscustomobject]@{name='keep-original.bin';process_id=42;offscreen=$false;element=$script:scanElement}
+}
+try {
+    $scan=Wait-TwinQuayWorkflowScanResult @{process=[pscustomobject]@{Id=42}} 2
+    Assert ($script:scanPolls -eq 2 -and [object]::ReferenceEquals($scan.window,$script:scanWindow) -and
+        [object]::ReferenceEquals($scan.reference,$script:scanElement)) 'Transient scan-result tree was not reacquired exactly.'
+} finally {
+    Set-Item Function:Wait-TwinQuayWorkflowWindow $originalWait
+    Set-Item Function:Get-TwinQuayWorkflowElements $originalElements
+}
+Write-Output 'PASS: actual scan-result polling reacquires the owned window after UIA_E_ELEMENTNOTAVAILABLE.'
 foreach ($failureStage in @('', 'Scan', 'Review', 'Quarantine', 'Conflict', 'Restore')) {
     $calls=[Collections.Generic.List[string]]::new()
     $operations=[ordered]@{}
@@ -53,6 +90,23 @@ $operations.Restore={throw 'primary restore'}
 $operations.ReleaseCollision={throw 'separate cleanup'}
 $result=Invoke-TwinQuayWorkflowCore $operations
 Assert (-not $result.passed -and $result.primary_error -ceq 'primary restore' -and $result.cleanup_errors[0] -ceq 'separate cleanup') 'Primary/cleanup failures were not retained separately.'
+$diagnosticOperations=[ordered]@{}
+foreach ($name in @('Prepare','Scan','Review','Quarantine','Conflict','Restore','Finish','ReleaseCollision')) {
+    $operationName=$name
+    $diagnosticOperations[$name]={
+        if($operationName -ceq 'Scan'){[TwinQuayTransientUiaFixture]::FindAll(-2147220991)}
+    }.GetNewClosure()
+}
+$diagnostic=Invoke-TwinQuayWorkflowCore $diagnosticOperations
+Assert ($diagnostic.primary_error -ceq 'Exception calling "FindAll" with "1" argument(s): "Unrecognized error."') 'Primary failure text changed while recording diagnostics.'
+Assert ($diagnostic.primary_exception_chain.Count -eq 2) 'Wrapped primary exception chain was not retained exactly.'
+Assert ($diagnostic.primary_exception_chain[0].type -ceq 'System.Management.Automation.MethodInvocationException' -and
+    $diagnostic.primary_exception_chain[1].type -ceq 'System.Runtime.InteropServices.COMException') 'Primary exception types were not retained in order.'
+Assert ($diagnostic.primary_exception_chain[1].hresult -eq -2147220991 -and
+    $diagnostic.primary_exception_chain[1].hresult_hex -ceq '0x80040201') 'Primary inner HRESULT was not retained exactly.'
+$diagnosticJson=$diagnostic | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+Assert ($diagnosticJson.primary_exception_chain.Count -eq 2 -and
+    $diagnosticJson.primary_exception_chain[1].hresult_hex -ceq '0x80040201') 'Serialized workflow metadata lost the exception chain.'
 $temp=Join-Path ([IO.Path]::GetTempPath()) ('twin-workflow-handle-'+[guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $temp | Out-Null
 try {

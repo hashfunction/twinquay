@@ -208,3 +208,43 @@ persistent ambiguity, case/prefix mismatch and later error/observation failures.
 No product code or destructive workflow operation changed. Native qualification
 of this later observer is required. Secondary failure-only screenshot diagnostics
 from the old progress window remain recorded; they are not success evidence.
+
+### Destroyed scan UIA subtree in run 34643972099
+
+Run `34643972099` built and installed public source
+`c4e3e81d9cf1cfe4a2ae1e704ca99146f5285c7a`. The real folder chooser and Scan
+action completed far enough to render the exact two generated duplicate rows.
+The workflow then failed during Scan with `AutomationElement.FindAll` reporting
+`Unrecognized error.` The failure surface still records the owned PID 2420 main
+window, both exact result filenames, their source folder, sizes, and 100-percent
+match values. The process remained available for owned package cleanup. The
+retained workflow result SHA256 is
+`cd922748027556b14856e3cf6f8e26aa3172962165226b07881bcf7a2a008e5c`.
+
+The historical result retained only the message, not its exception type or
+HRESULT, so attributing that run to `UIA_E_ELEMENTNOTAVAILABLE` is an inference.
+An independent `FindAll` method adapter throwing the COM code `0x80040201`
+reproduces the exact PowerShell wrapper and message. Microsoft defines this code
+for an element that is virtualized or no longer exists, usually because it was
+destroyed, which is consistent with the observed progress-to-results transition.
+The runtime retry never matches that text: it traverses the actual exception
+chain and accepts only signed HRESULT `-2147220991`. Window and result polling
+retry only that code within their existing deadlines and reacquire the exact
+owned main window before traversing the result tree. A different UIA HRESULT,
+changed PID, ambiguous window/row, owned error window, missing row, or deadline
+still fails.
+
+RED: a real method-call adapter throwing the observed wrapped COM error stopped
+the bounded window wait, and a destroyed first scan-result tree stopped result
+selection. GREEN: both paths reacquire on the second poll; an adjacent UIA error
+code remains an immediate failure. Workflow failure metadata now retains a
+bounded ordered exception chain with each concrete type, message, signed HRESULT,
+hex HRESULT, and inner-exception presence while preserving the original
+`primary_error` and cleanup fields. The adapter verifies the outer PowerShell
+`MethodInvocationException` and inner COM `0x80040201` records. Local helper and
+complete Python/Qt/MSIX verification pass. A fresh Windows run must still
+complete scan, plan, quarantine, collision, restore, normal close, and exact
+package cleanup before the installed workflow is qualified.
+
+Primary API reference:
+- https://learn.microsoft.com/en-us/windows/win32/winauto/uiauto-error-codes
