@@ -121,7 +121,7 @@ function Get-VerifiedDefenderModuleEvidence([string]$Path, [string]$PlatformRoot
         }
     }
     if ($commonNames.Count -ne 1 -or $organizations.Count -ne 1 -or
-        $commonNames[0] -cnotin @('Microsoft Windows Publisher','Microsoft Corporation') -or
+        $commonNames[0] -cnotin @('Microsoft Windows Publisher','Microsoft Corporation','Microsoft Windows') -or
         $organizations[0] -cne 'Microsoft Corporation') {
         throw ('Defender signature does not identify the required Microsoft signer. Parsed certificate: ' +
             (@{common_names=@($commonNames);organizations=@($organizations);subject=$certificate.Subject;

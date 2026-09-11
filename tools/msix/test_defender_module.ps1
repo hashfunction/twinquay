@@ -27,6 +27,11 @@ function Assert-Rejected([scriptblock]$Operation) {
 try {
     $result=Get-VerifiedDefenderModuleEvidence -Path $file -PlatformRoot $platform
     if ($result.signature_status -cne 'Valid' -or $result.sha256 -cne (Get-FileHash $file -Algorithm SHA256).Hash.ToLowerInvariant()) { throw 'Expected exact module hash and signature evidence.' }
+    foreach ($name in @('Microsoft Corporation','Microsoft Windows')) {
+        $script:signatureSubject='CN='+$name+', O=Microsoft Corporation, C=US'
+        $result=Get-VerifiedDefenderModuleEvidence -Path $file -PlatformRoot $platform
+        if ($result.signer_common_name -cne $name) { throw 'Parsed Microsoft signer identity changed.' }
+    }
     foreach ($status in @('NotSigned','HashMismatch','UnknownError','NotTrusted')) {
         $script:signatureStatus=$status
         Assert-Rejected { Get-VerifiedDefenderModuleEvidence -Path $file -PlatformRoot $platform }
@@ -53,7 +58,7 @@ try {
     $linkType=if ($IsWindows) { 'Junction' } else { 'SymbolicLink' }
     New-Item -ItemType $linkType -Path $link -Target $version | Out-Null
     Assert-Rejected { Get-VerifiedDefenderModuleEvidence -Path (Join-Path $link 'MpOav.dll') -PlatformRoot $platform }
-    Write-Output 'PASS: one valid metadata fixture and 16 signature/path/mutation/link rejection cases. Actual Windows signatures remain a native-run check.'
+    Write-Output 'PASS: three valid metadata fixtures and 16 signature/path/mutation/link rejection cases. Actual Windows signatures remain a native-run check.'
 } finally {
     Remove-Item -LiteralPath $fixtureRoot -Recurse -Force
 }
