@@ -18,7 +18,7 @@ from core.cleanup_plan import CleanupCandidate, CleanupPlan, EvidenceKind
 from core.quarantine import execute_plan
 from workflow_files import prepare, verify_plan
 
-SCRIPT = (Path(__file__).parent / "qualify-workflow.ps1").read_text()
+SCRIPT = (Path(__file__).parent / "qualify-workflow.ps1").read_text(encoding="utf-8")
 
 
 @pytest.fixture
