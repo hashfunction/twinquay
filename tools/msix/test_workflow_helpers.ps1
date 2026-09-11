@@ -84,7 +84,15 @@ foreach ($failureStage in @('', 'Scan', 'Review', 'Quarantine', 'Conflict', 'Res
     $result=Invoke-TwinQuayWorkflowCore $operations
     Assert ($calls[$calls.Count-1] -ceq 'ReleaseCollision') 'Owned collision handle was not released.'
     Assert ($result.passed -eq (-not $failureStage)) 'Incomplete workflow passed or complete flow failed.'
-    if ($failureStage) { Assert ($result.primary_error -ceq "primary $failureStage") 'Primary operation error lost.' }
+    if ($failureStage) {
+        Assert ($result.primary_error -ceq "primary $failureStage") 'Primary operation error lost.'
+        Assert ($result.failed_stage -ceq $failureStage) 'The exact failing workflow stage was not retained.'
+        Assert ($result.primary_error_record.script_stack_trace -match [regex]::Escape('test_workflow_helpers.ps1')) 'Primary script stack was not retained.'
+        Assert ($result.primary_error_record.invocation.script_name -match [regex]::Escape('test_workflow_helpers.ps1')) 'Primary invocation source was not retained.'
+        Assert ($result.primary_error_record.invocation.script_line_number -gt 0 -and $result.primary_error_record.invocation.offset_in_line -gt 0) 'Primary invocation position was not retained.'
+    } else {
+        Assert ($null -eq $result.failed_stage -and $null -eq $result.primary_error_record) 'Successful workflow manufactured failure diagnostics.'
+    }
 }
 $operations.Restore={throw 'primary restore'}
 $operations.ReleaseCollision={throw 'separate cleanup'}
@@ -104,9 +112,23 @@ Assert ($diagnostic.primary_exception_chain[0].type -ceq 'System.Management.Auto
     $diagnostic.primary_exception_chain[1].type -ceq 'System.Runtime.InteropServices.COMException') 'Primary exception types were not retained in order.'
 Assert ($diagnostic.primary_exception_chain[1].hresult -eq -2147220991 -and
     $diagnostic.primary_exception_chain[1].hresult_hex -ceq '0x80040201') 'Primary inner HRESULT was not retained exactly.'
+Assert ($diagnostic.failed_stage -ceq 'Scan' -and $diagnostic.primary_error_record.fully_qualified_error_id) 'Primary stage/error-record identity was not retained.'
+Assert ($diagnostic.primary_error_record.script_stack_trace.Length -le 8192 -and
+    $diagnostic.primary_error_record.invocation.line.Length -le 4096 -and
+    $diagnostic.primary_error_record.invocation.position_message.Length -le 4096) 'Primary source diagnostics exceeded their evidence bounds.'
 $diagnosticJson=$diagnostic | ConvertTo-Json -Depth 10 | ConvertFrom-Json
 Assert ($diagnosticJson.primary_exception_chain.Count -eq 2 -and
-    $diagnosticJson.primary_exception_chain[1].hresult_hex -ceq '0x80040201') 'Serialized workflow metadata lost the exception chain.'
+    $diagnosticJson.primary_exception_chain[1].hresult_hex -ceq '0x80040201' -and
+    $diagnosticJson.failed_stage -ceq 'Scan' -and $diagnosticJson.primary_error_record.script_stack_trace) 'Serialized workflow metadata lost the exception source evidence.'
+$handleFailure=$null
+try { ConvertTo-TwinQuayWorkflowHandle $null 'input-root' | Out-Null } catch { $handleFailure=$_.Exception.Message }
+Assert ($handleFailure -ceq 'Native window handle is null at input-root (value type: null).') 'Null native-handle evidence did not identify its exact consumer site.'
+Assert ((ConvertTo-TwinQuayWorkflowHandle 42 'surface-root').ToInt64() -eq 42) 'Valid native handle did not retain its exact value.'
+$syntheticError=[Management.Automation.ErrorRecord]::new([InvalidOperationException]::new('synthetic'),
+    'SyntheticDiagnostic',[Management.Automation.ErrorCategory]::InvalidOperation,$null)
+$syntheticEvidence=Get-TwinQuayErrorRecordEvidence $syntheticError
+Assert ($syntheticEvidence.fully_qualified_error_id -ceq 'SyntheticDiagnostic' -and
+    $null -eq $syntheticEvidence.invocation.script_name -and $syntheticEvidence.invocation.script_line_number -eq 0) 'Missing invocation metadata displaced the retained primary error evidence.'
 $temp=Join-Path ([IO.Path]::GetTempPath()) ('twin-workflow-handle-'+[guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $temp | Out-Null
 try {

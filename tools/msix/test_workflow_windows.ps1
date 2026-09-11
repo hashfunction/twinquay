@@ -70,7 +70,7 @@ namespace Windows.Automation {
     $nullWindow.Current.NativeWindowHandle=$null
     $owner.Children.Add($nullWindow)
     $failure=$null;try{Wait-TwinQuayWorkflowWindow $state $modal.Current.Name 0|Out-Null}catch{$failure=$_.Exception.Message}
-    Assert ($failure -ceq 'Cannot convert null to type "System.IntPtr".') 'A null handle on an actual Window was not an immediate unknown observation failure.'
+    Assert ($failure -ceq 'Native window handle is null at window-enumeration (value type: null).') 'A null handle on an actual Window was not an immediate site-identified unknown observation failure.'
     $owner.Children.Remove($nullWindow)|Out-Null
     foreach($script:nativeMode in @('foreign-native-pid','child-hwnd','hidden-native-window')){
         $failure=$null;try{Wait-TwinQuayWorkflowWindow $state $modal.Current.Name 0|Out-Null}catch{$failure=$_.Exception.Message}

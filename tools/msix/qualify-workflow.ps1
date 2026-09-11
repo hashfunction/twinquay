@@ -38,28 +38,75 @@ function Get-TwinQuayExceptionChain($Exception) {
     return @($chain)
 }
 
+function ConvertTo-TwinQuayBoundedDiagnosticText($Value,[int]$Limit) {
+    if ($null -eq $Value) { return $null }
+    $text=[string]$Value
+    if ($text.Length -le $Limit) { return $text }
+    return $text.Substring(0,$Limit)
+}
+
+function Get-TwinQuayErrorRecordEvidence($ErrorRecord) {
+    $invocation=$ErrorRecord.InvocationInfo
+    $scriptName=$null;$scriptLineNumber=0;$offsetInLine=0;$invocationName=$null;$line=$null;$positionMessage=$null
+    if ($invocation) {
+        $scriptName=$invocation.ScriptName
+        $scriptLineNumber=$invocation.ScriptLineNumber
+        $offsetInLine=$invocation.OffsetInLine
+        $invocationName=$invocation.InvocationName
+        $line=$invocation.Line
+        $positionMessage=$invocation.PositionMessage
+    }
+    return [ordered]@{
+        fully_qualified_error_id=ConvertTo-TwinQuayBoundedDiagnosticText $ErrorRecord.FullyQualifiedErrorId 1024
+        category_info=ConvertTo-TwinQuayBoundedDiagnosticText $ErrorRecord.CategoryInfo 2048
+        script_stack_trace=ConvertTo-TwinQuayBoundedDiagnosticText $ErrorRecord.ScriptStackTrace 8192
+        invocation=[ordered]@{
+            script_name=ConvertTo-TwinQuayBoundedDiagnosticText $scriptName 4096
+            script_line_number=$scriptLineNumber
+            offset_in_line=$offsetInLine
+            invocation_name=ConvertTo-TwinQuayBoundedDiagnosticText $invocationName 1024
+            line=ConvertTo-TwinQuayBoundedDiagnosticText $line 4096
+            position_message=ConvertTo-TwinQuayBoundedDiagnosticText $positionMessage 4096
+        }
+    }
+}
+
+function ConvertTo-TwinQuayWorkflowHandle($Value,
+    [ValidateSet('window-enumeration','input-root','native-dialog','native-dialog-button','surface-root')][string]$Site) {
+    if ($null -eq $Value) { throw "Native window handle is null at $Site (value type: null)." }
+    $valueType=$Value.GetType().FullName
+    try { return [IntPtr]$Value }
+    catch { throw "Native window handle conversion failed at $Site (value type: $valueType): $($_.Exception.Message)" }
+}
+
 function Invoke-TwinQuayWorkflowCore([Collections.IDictionary]$Operations) {
     $completed=[Collections.Generic.List[string]]::new()
     $errors=[Collections.Generic.List[string]]::new()
     $primary=$null
     $primaryExceptionChain=@()
+    $primaryErrorRecord=$null
+    $failedStage=$null
     foreach ($name in @('Prepare','Scan','Review','Quarantine','Conflict','Restore','Finish','ReleaseCollision')) {
         if (-not $Operations.Contains($name) -or $Operations[$name] -isnot [scriptblock]) { throw "Missing workflow operation: $name" }
     }
     try {
         foreach ($name in @('Prepare','Scan','Review','Quarantine','Conflict','Restore','Finish')) {
+            $failedStage=$name
             & $Operations[$name] | Out-Host
             $completed.Add($name)
+            $failedStage=$null
         }
     } catch {
         $primary=$_.Exception.Message
         $primaryExceptionChain=@(Get-TwinQuayExceptionChain $_.Exception)
+        $primaryErrorRecord=Get-TwinQuayErrorRecordEvidence $_
     }
     finally {
         try { & $Operations.ReleaseCollision | Out-Host } catch { $errors.Add($_.Exception.Message) }
     }
     return [ordered]@{ passed=(-not $primary -and $errors.Count -eq 0); completed_stages=@($completed);
-        primary_error=$primary; primary_exception_chain=@($primaryExceptionChain); cleanup_errors=@($errors) }
+        failed_stage=$failedStage; primary_error=$primary; primary_exception_chain=@($primaryExceptionChain);
+        primary_error_record=$primaryErrorRecord; cleanup_errors=@($errors) }
 }
 
 function New-TwinQuayCollision([string]$Path,[byte[]]$Bytes) {
@@ -108,7 +155,7 @@ function Get-TwinQuayWorkflowWindows($State) {
         foreach ($item in @(Get-TwinQuayWorkflowElements $root)) {
             $element=$item.element
             if ($item.control_type -cne 'ControlType.Window') { continue }
-            $handle=[IntPtr]$element.Current.NativeWindowHandle
+            $handle=ConvertTo-TwinQuayWorkflowHandle $element.Current.NativeWindowHandle 'window-enumeration'
             if ($item.process_id -ne $State.process.Id -or $item.offscreen -or $handle -eq [IntPtr]::Zero) { continue }
             $native=Get-TwinQuayWorkflowNativeWindow $handle
             if ($native.process_id -ne $State.process.Id -or $native.root -ne $handle -or -not $native.visible) { continue }
@@ -213,7 +260,7 @@ function Find-TwinQuayWorkflowControl($State,$Root,[string]$Name,[string[]]$Type
 
 function Send-TwinQuayWorkflowKeys($State,$Root,[string]$Keys,$Control=$null,[IntPtr]$ExpectedFocusHandle=[IntPtr]::Zero) {
     Assert-TwinQuayWorkflowProcess $State
-    $handle=[IntPtr]$Root.Current.NativeWindowHandle
+    $handle=ConvertTo-TwinQuayWorkflowHandle $Root.Current.NativeWindowHandle 'input-root'
     if ($Root.Current.ProcessId -ne $State.process.Id -or $handle -eq [IntPtr]::Zero) { throw 'Cannot focus an unowned workflow window.' }
     $native=Get-TwinQuayWorkflowNativeWindow $handle
     if ($native.process_id -ne $State.process.Id -or $native.root -ne $handle -or -not $native.visible) { throw 'Workflow HWND is not the exact owned visible top-level window.' }
@@ -255,8 +302,8 @@ function Press-TwinQuayNativeDialogButton($State,$Root,[string]$Name) {
     # This Windows common-dialog button is exposed as a UIA Pane on the native
     # runner. Require its real Button class, IDOK, caption and HWND ancestry.
     $button=Find-TwinQuayWorkflowControl $State $Root $Name @('ControlType.Button','ControlType.Pane')
-    $dialogHandle=[IntPtr]$Root.Current.NativeWindowHandle
-    $buttonHandle=[IntPtr]$button.Current.NativeWindowHandle
+    $dialogHandle=ConvertTo-TwinQuayWorkflowHandle $Root.Current.NativeWindowHandle 'native-dialog'
+    $buttonHandle=ConvertTo-TwinQuayWorkflowHandle $button.Current.NativeWindowHandle 'native-dialog-button'
     $dialog=Get-TwinQuayWorkflowNativeWindow $dialogHandle
     $nativeButton=Get-TwinQuayWorkflowNativeWindow $buttonHandle
     Assert-TwinQuayNativeDialogButton $dialog $nativeButton $State.process.Id $Root.Current.Name $Name
@@ -278,7 +325,7 @@ function Press-TwinQuayNativeDialogButton($State,$Root,[string]$Name) {
 function Save-TwinQuayWorkflowSurface($State,$Context,[string]$Name,$Root) {
     Assert-TwinQuayWorkflowProcess $State
     $items=@(Get-TwinQuayWorkflowElements $Root | Select-Object name,control_type,process_id,enabled,offscreen)
-    $native=Get-TwinQuayWorkflowNativeWindow ([IntPtr]$Root.Current.NativeWindowHandle)
+    $native=Get-TwinQuayWorkflowNativeWindow (ConvertTo-TwinQuayWorkflowHandle $Root.Current.NativeWindowHandle 'surface-root')
     $entry=[ordered]@{name=$Name;title=$Root.Current.Name;process_id=$Root.Current.ProcessId;controls=$items;
         native_window=[ordered]@{handle=$native.handle.ToInt64();root=$native.root.ToInt64();process_id=$native.process_id;title=$native.title;class_name=$native.class_name};
         screenshot_sha256=$null;screenshot_error=$null}
