@@ -22,6 +22,7 @@ from core.cleanup_plan import (
     CleanupPlan,
     EvidenceKind,
     files_equal,
+    file_signature,
     path_key,
     safe_path,
     signature,
@@ -151,7 +152,7 @@ def digest(path):
         if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):
             raise ValueError("Not a regular file")
         value = hashlib.file_digest(stream, "sha256").hexdigest()
-        if before != signature(os.fstat(stream.fileno())) or before != signature(path.lstat()):
+        if before != signature(os.fstat(stream.fileno())) or before != file_signature(path):
             raise ValueError("File changed during read")
         return before[0], value
 
@@ -173,7 +174,7 @@ def move_no_replace(source, destination):
 def copy_verified(source, destination, expected):
     safe_path(source)
     safe_path(destination.parent)
-    before = signature(source.lstat())
+    before = file_signature(source)
     with source.open("rb") as src, destination.open("xb") as dst:
         if signature(os.fstat(src.fileno())) != before:
             raise ValueError("Source replaced before copy")
@@ -183,7 +184,7 @@ def copy_verified(source, destination, expected):
         os.fsync(dst.fileno())
         if signature(os.fstat(src.fileno())) != before:
             raise ValueError("Source changed during copy")
-    if before != signature(source.lstat()) or digest(source) != expected or digest(destination) != expected:
+    if before != file_signature(source) or digest(source) != expected or digest(destination) != expected:
         raise ValueError("Copy verification failed; source retained")
     shutil.copystat(source, destination, follow_symlinks=False)
     _fsync_directory(destination.parent)
@@ -243,9 +244,7 @@ def remove_verified_source(candidate, expected):
                     raise ValueError("Source and reference differ; source retained")
                 if not left:
                     break
-            if before != signature(os.fstat(reference.fileno())) or before != signature(
-                candidate.reference_path.stat()
-            ):
+            if before != signature(os.fstat(reference.fileno())) or before != file_signature(candidate.reference_path):
                 raise ValueError("Reference changed during final byte comparison")
         disposition = kernel.SetFileInformationByHandle
         disposition.argtypes = [wintypes.HANDLE, ctypes.c_int, ctypes.c_void_p, wintypes.DWORD]

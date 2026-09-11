@@ -83,6 +83,21 @@ def signature(info):
     return (info.st_size, info.st_mtime_ns, info.st_ctime_ns, info.st_dev, info.st_ino)
 
 
+def file_signature(path):
+    """Use one metadata API for the named file and its open read handle.
+
+    CPython 3.12 on Windows exposes creation time in path stat's st_ctime,
+    but ChangeTime in fstat. Reading every identity from a descriptor preserves
+    the full change-time check across rename, copy and final deletion.
+    """
+    path = safe_path(path)
+    with path.open("rb") as stream:
+        info = os.fstat(stream.fileno())
+        if not stat.S_ISREG(info.st_mode):
+            raise ValueError("Not a regular file")
+        return signature(info)
+
+
 @dataclass(frozen=True)
 class CleanupCandidate:
     path: Path
@@ -101,8 +116,8 @@ class CleanupCandidate:
 
         def snapshot(p):
             try:
-                return signature(p.lstat())
-            except OSError:
+                return file_signature(p)
+            except (OSError, ValueError):
                 return (-1, -1, -1, -1, -1)
 
         left, right = snapshot(path), snapshot(reference_path)
@@ -168,7 +183,7 @@ def files_equal(left: Path, right: Path, chunk_size: int = 1024 * 1024) -> bool:
                 return False
             if not first:
                 after = (signature(os.fstat(a.fileno())), signature(os.fstat(b.fileno())))
-                return before == after == (signature(left.lstat()), signature(right.lstat()))
+                return before == after == (file_signature(left), file_signature(right))
 
 
 def validate_candidate(candidate, compare=True):
@@ -192,14 +207,15 @@ def validate_candidate(candidate, compare=True):
             candidate.reference_mtime_ns,
         ):
             return Eligibility("changed_since_plan")
-        if (candidate.candidate_identity and signature(a) != candidate.candidate_identity) or (
-            candidate.reference_identity and signature(b) != candidate.reference_identity
+        left_identity, right_identity = file_signature(left), file_signature(right)
+        if (candidate.candidate_identity and left_identity != candidate.candidate_identity) or (
+            candidate.reference_identity and right_identity != candidate.reference_identity
         ):
             return Eligibility("changed_since_plan")
         if compare and not files_equal(left, right):
             return Eligibility("not_equal")
         # Recheck metadata after the full read, including path replacement.
-        if signature(a) != signature(left.lstat()) or signature(b) != signature(right.lstat()):
+        if left_identity != file_signature(left) or right_identity != file_signature(right):
             return Eligibility("changed_since_plan")
         return Eligibility("eligible")
     except FileNotFoundError as exc:
