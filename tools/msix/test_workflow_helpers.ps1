@@ -120,6 +120,24 @@ $diagnosticJson=$diagnostic | ConvertTo-Json -Depth 10 | ConvertFrom-Json
 Assert ($diagnosticJson.primary_exception_chain.Count -eq 2 -and
     $diagnosticJson.primary_exception_chain[1].hresult_hex -ceq '0x80040201' -and
     $diagnosticJson.failed_stage -ceq 'Scan' -and $diagnosticJson.primary_error_record.script_stack_trace) 'Serialized workflow metadata lost the exception source evidence.'
+$geometry=Get-TwinQuayWorkflowSurfaceGeometry `
+    ([pscustomobject]@{Left=-1920;Top=40;Right=-800;Bottom=630;Width=1120;Height=590}) `
+    ([pscustomobject]@{Left=-1920;Top=0;Right=1920;Bottom=1080;Width=3840;Height=1080})
+Assert ($geometry.fully_visible -and
+    $geometry.uia_bounds.left -eq -1920 -and $geometry.uia_bounds.top -eq 40 -and
+    $geometry.uia_bounds.right -eq -800 -and $geometry.uia_bounds.bottom -eq 630 -and
+    $geometry.uia_bounds.width -eq 1120 -and $geometry.uia_bounds.height -eq 590 -and
+    $geometry.virtual_screen.left -eq -1920 -and $geometry.virtual_screen.top -eq 0 -and
+    $geometry.virtual_screen.right -eq 1920 -and $geometry.virtual_screen.bottom -eq 1080 -and
+    $geometry.virtual_screen.width -eq 3840 -and $geometry.virtual_screen.height -eq 1080) 'Exact valid surface/virtual-screen geometry was not retained.'
+$clipped=Get-TwinQuayWorkflowSurfaceGeometry `
+    ([pscustomobject]@{Left=900;Top=40;Right=2020;Bottom=630;Width=1120;Height=590}) `
+    ([pscustomobject]@{Left=0;Top=0;Right=1920;Bottom=1080;Width=1920;Height=1080})
+Assert (-not $clipped.fully_visible -and $clipped.uia_bounds.right -eq 2020 -and $clipped.virtual_screen.right -eq 1920) 'Partially offscreen surface passed or lost the decisive bounds.'
+$undersized=Get-TwinQuayWorkflowSurfaceGeometry `
+    ([pscustomobject]@{Left=10;Top=10;Right=159;Bottom=89;Width=149;Height=79}) `
+    ([pscustomobject]@{Left=0;Top=0;Right=1920;Bottom=1080;Width=1920;Height=1080})
+Assert (-not $undersized.fully_visible) 'Existing minimum usable-surface gate was weakened.'
 $handleFailure=$null
 try { ConvertTo-TwinQuayWorkflowHandle $null 'input-root' | Out-Null } catch { $handleFailure=$_.Exception.Message }
 Assert ($handleFailure -ceq 'Native window handle is null at input-root (value type: null).') 'Null native-handle evidence did not identify its exact consumer site.'

@@ -327,20 +327,36 @@ function Press-TwinQuayNativeDialogButton($State,$Root,[string]$Name) {
     Send-TwinQuayWorkflowKeys $State $Root ' ' $null $buttonHandle
 }
 
+function Get-TwinQuayWorkflowSurfaceGeometry($Bounds,$Screen) {
+    $uia=[ordered]@{
+        left=[double]$Bounds.Left;top=[double]$Bounds.Top;right=[double]$Bounds.Right;bottom=[double]$Bounds.Bottom
+        width=[double]$Bounds.Width;height=[double]$Bounds.Height
+    }
+    $virtual=[ordered]@{
+        left=[double]$Screen.Left;top=[double]$Screen.Top;right=[double]$Screen.Right;bottom=[double]$Screen.Bottom
+        width=[double]$Screen.Width;height=[double]$Screen.Height
+    }
+    $fullyVisible=-not ($uia.width -lt 150 -or $uia.height -lt 80 -or $uia.width -gt 4096 -or $uia.height -gt 2160 -or
+        $uia.left -lt $virtual.left -or $uia.top -lt $virtual.top -or $uia.right -gt $virtual.right -or $uia.bottom -gt $virtual.bottom)
+    return [pscustomobject][ordered]@{uia_bounds=$uia;virtual_screen=$virtual;fully_visible=[bool]$fullyVisible}
+}
+
 function Save-TwinQuayWorkflowSurface($State,$Context,[string]$Name,$Root) {
     Assert-TwinQuayWorkflowProcess $State
     $items=@(Get-TwinQuayWorkflowElements $Root | Select-Object name,control_type,process_id,enabled,offscreen)
     $native=Get-TwinQuayWorkflowNativeWindow (ConvertTo-TwinQuayWorkflowHandle $Root.Current.NativeWindowHandle 'surface-root')
     $entry=[ordered]@{name=$Name;title=$Root.Current.Name;process_id=$Root.Current.ProcessId;controls=$items;
         native_window=[ordered]@{handle=$native.handle.ToInt64();root=$native.root.ToInt64();process_id=$native.process_id;title=$native.title;class_name=$native.class_name};
-        screenshot_sha256=$null;screenshot_error=$null}
+        surface_geometry=$null;screenshot_sha256=$null;screenshot_error=$null}
     try {
         Send-TwinQuayWorkflowKeys $State $Root ''
         $bounds=$Root.Current.BoundingRectangle
         $screen=[Windows.Forms.SystemInformation]::VirtualScreen
-        if ($bounds.Width -lt 150 -or $bounds.Height -lt 80 -or $bounds.Width -gt 4096 -or $bounds.Height -gt 2160 -or
-            $bounds.Left -lt $screen.Left -or $bounds.Top -lt $screen.Top -or $bounds.Right -gt $screen.Right -or $bounds.Bottom -gt $screen.Bottom) {
-            throw 'Workflow screenshot bounds are not a fully visible owned window.'
+        $geometry=Get-TwinQuayWorkflowSurfaceGeometry $bounds $screen
+        $entry.surface_geometry=$geometry
+        if (-not $geometry.fully_visible) {
+            $observed=$geometry | ConvertTo-Json -Compress -Depth 4
+            throw "Workflow screenshot bounds are not a fully visible owned window. Observed geometry: $observed"
         }
         $imagePath=Join-Path $Context.output ($Name+'.png')
         $bitmap=[Drawing.Bitmap]::new([int]$bounds.Width,[int]$bounds.Height)
