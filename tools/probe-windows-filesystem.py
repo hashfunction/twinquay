@@ -49,6 +49,22 @@ with tempfile.TemporaryDirectory(prefix="twinquay-qualification-") as temporary:
         try:
             receipt = quarantine.execute_plan(CleanupPlan.create([candidate]), root / "quarantine")
             row["receipt_items"] = [vars(item) for item in receipt.items]
+            row["remaining_files"] = []
+            for staged in receipt.receipt_path.parent.glob("payload/**/*"):
+                if not staged.is_file():
+                    continue
+                snapshot = {"name": staged.name, "lstat": stat_values(staged.lstat())}
+                with staged.open("rb") as stream:
+                    snapshot["fstat_before"] = stat_values(os.fstat(stream.fileno()))
+                    stream.read()
+                    snapshot["fstat_after"] = stat_values(os.fstat(stream.fileno()))
+                    snapshot["path_while_open"] = stat_values(staged.lstat())
+                snapshot["path_after_close"] = stat_values(staged.lstat())
+                try:
+                    snapshot["digest"] = quarantine.digest(staged)
+                except Exception as error:
+                    snapshot["digest_error"] = repr(error)
+                row["remaining_files"].append(snapshot)
         except Exception as error:
             row["quarantine_error"] = repr(error)
         payload["cases"].append(row)
