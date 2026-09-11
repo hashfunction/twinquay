@@ -561,6 +561,9 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
             $remaining = @(Get-AppxPackage -Name $expectedIdentity.packageName -ErrorAction Stop)
             $state.residualPackageFullNames = @($remaining | ForEach-Object { [string]$_.PackageFullName })
             if ($remaining.Count) { throw ('Unowned or unresolved package registrations preserved: ' + ($state.residualPackageFullNames -join ', ')) }
+            if ($state.addCompleted -and -not $state.installedByUs) {
+                throw 'Registration cleanup remains uncertain: Add completed but exact ownership was never observed; registrations were preserved.'
+            }
         }
     }.GetNewClosure()
 

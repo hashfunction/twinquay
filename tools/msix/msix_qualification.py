@@ -722,6 +722,14 @@ def verify_record_inputs(package, record_path, release, artwork, source_commit, 
     actual = verify_msix(package, expected["payload"])
     if record.get("containerVerification") != actual:
         raise ValueError("Package record differs from independent container verification")
+    unpacked = record.get("unpackedVerification")
+    if (
+        not isinstance(unpacked, dict)
+        or set(unpacked) != {"verifiedPayloadFiles"}
+        or type(unpacked["verifiedPayloadFiles"]) is not int
+        or unpacked["verifiedPayloadFiles"] != len(expected["payload"])
+    ):
+        raise ValueError("Package record lacks exact source-bound SDK unpack evidence")
     return True
 
 

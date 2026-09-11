@@ -114,3 +114,14 @@ The coordinator reported Windows run `34607114421` successful before this repair
 that run does not qualify this modified source. A fresh exact-source native run
 and independent review remain required. No GUI, account, publish or push action
 was performed by this repair.
+
+## Inherited record and observation repairs
+
+Independent review reproduced two missing failure checks. Seven real package
+record variants (missing/empty/zero/string/float/bool/extra-field unpack evidence)
+were RED before requiring the exact integer unpack count from the source-bound
+payload. A real Add/cleanup closure with successful Add and no visible registration
+was RED before reporting unresolved cleanup uncertainty without claiming ownership
+or deleting any package. Both regressions now pass: 22 package tests and ten
+registration flows. The previous successful Windows run remains historical;
+this source revision needs a fresh qualification.

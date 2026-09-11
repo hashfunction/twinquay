@@ -22,6 +22,7 @@ function global:Add-AppxPackage {
         'ambiguous-add' { $fixture.registrations=@($fixture.owned,$fixture.foreign) }
         'wrong-architecture' { $fixture.registrations=@($fixture.foreign) }
         'observation-failed' { $fixture.registrations=@($fixture.owned); $fixture.observationFailure=$true }
+        'observation-empty' { $fixture.registrations=@() }
         default { $fixture.registrations=@($fixture.owned) }
     }
     'native Add-AppxPackage output'
@@ -55,7 +56,7 @@ function Invoke-TwinQuayQualificationCore([Collections.IDictionary]$Operations) 
     }
     return & $script:ActualCore $Operations
 }
-foreach ($scenario in @('failed-add-race','ambiguous-add','wrong-architecture','observation-failed','owned','owned-with-foreign','remove-failed','normal-owned','normal-with-foreign')) {
+foreach ($scenario in @('failed-add-race','ambiguous-add','wrong-architecture','observation-failed','observation-empty','owned','owned-with-foreign','remove-failed','normal-owned','normal-with-foreign')) {
     $temporary=Join-Path ([IO.Path]::GetTempPath()) ('twinquay-registration-test-'+[guid]::NewGuid().ToString('N'))
     New-Item -ItemType Directory $temporary | Out-Null
     try {
@@ -69,7 +70,11 @@ foreach ($scenario in @('failed-add-race','ambiguous-add','wrong-architecture','
         try { Invoke-TwinQuayInstallQualification unused unused unused $temporary | Out-Null } catch { $failure=$_.Exception.Message }
         $fixture=$global:RegistrationFixture
         $evidence=Get-Content (Join-Path $temporary 'installation-qualification.json') -Raw | ConvertFrom-Json
-        if ($scenario -in @('failed-add-race','ambiguous-add','wrong-architecture','observation-failed')) {
+        if ($scenario -eq 'observation-empty') {
+            if (-not $failure -or $evidence.installation_qualification_passed -or -not $evidence.primary_error) { throw 'Empty registration observation lost the primary failure' }
+            if ($fixture.removed.Count -or $evidence.registration_ownership_established -or -not $evidence.add_appx_completed) { throw 'Empty registration observation falsely claimed ownership or removed a package' }
+            if ($evidence.cleanup_errors.Count -ne 1 -or $evidence.cleanup_errors[0] -notmatch 'uncertain') { throw 'Successful Add with never-observed ownership hid cleanup uncertainty' }
+        } elseif ($scenario -in @('failed-add-race','ambiguous-add','wrong-architecture','observation-failed')) {
             if ($fixture.removed.Count -or -not $fixture.registrations.Count) { throw "${scenario}: unowned or ambiguous registration was removed" }
             if (-not $failure -or $evidence.installation_qualification_passed -or -not $evidence.primary_error) { throw "${scenario}: original failure was lost" }
             if ($evidence.cleanup_errors.Count -ne 1 -or $evidence.cleanup_errors[0] -notmatch 'preserved') { throw "${scenario}: residual registration not reported" }

@@ -289,6 +289,7 @@ class QualificationTests(unittest.TestCase):
                 archive.write(self.root / "stage" / relative, relative)
             archive.writestr("[Content_Types].xml", "<Types/>")
             archive.writestr("AppxBlockMap.xml", "<BlockMap/>")
+        record["unpackedVerification"] = msix.verify_unpacked(self.root / "stage", record["payload"])
         return path, record
 
     def test_exact_container_and_unpacked_payload_match(self):
@@ -469,6 +470,39 @@ class QualificationTests(unittest.TestCase):
                 changing_tool,
             )
         self.assertFalse(output.exists())
+
+    def test_install_preflight_requires_exact_typed_unpack_evidence(self):
+        package, record = self.package()
+        record["containerVerification"] = msix.verify_msix(package, record["payload"])
+        record_path = self.root / "package-record.json"
+        count = len(record["payload"])
+        for value in [
+            None,
+            {},
+            {"verifiedPayloadFiles": 0},
+            {"verifiedPayloadFiles": str(count)},
+            {"verifiedPayloadFiles": float(count)},
+            {"verifiedPayloadFiles": True},
+            {"verifiedPayloadFiles": count, "unexpected": True},
+        ]:
+            with self.subTest(value=value):
+                altered = copy.deepcopy(record)
+                if value is None:
+                    del altered["unpackedVerification"]
+                else:
+                    altered["unpackedVerification"] = value
+                record_path.write_text(json.dumps(altered))
+                with self.assertRaisesRegex(ValueError, "unpack"):
+                    msix.verify_record_inputs(
+                        package,
+                        record_path,
+                        self.release,
+                        self.artwork,
+                        self.commit,
+                        self.inventory,
+                        self.startup,
+                        self.source,
+                    )
 
 
 if __name__ == "__main__":
