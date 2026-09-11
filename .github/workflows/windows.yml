@@ -21,6 +21,10 @@ jobs:
       - name: Verify actual packaged main window
         shell: pwsh
         run: ./tools/test-packaged-startup.ps1
+      - name: Qualify temporary MSIX, broker activation and exact owned cleanup
+        timeout-minutes: 10
+        shell: pwsh
+        run: ./tools/msix/qualify-msix.ps1
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
@@ -31,3 +35,6 @@ jobs:
             build-evidence/*.json
             build-evidence/*.txt
             build-evidence/*.xml
+            build-evidence/msix-install/*.json
+            build-evidence/msix-install/*.txt
+            build-evidence/msix-install/*.png

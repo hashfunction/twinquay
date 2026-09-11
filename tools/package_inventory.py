@@ -1,27 +1,23 @@
-"""Record exact staged package bytes, including Qt DLLs/plugins, without certifying them."""
+"""Bind every PyInstaller stage byte and original notices/assets to this source.
 
-import hashlib
+This inventory is build provenance, not a dependency license-clearance claim.
+"""
+
 import json
 from pathlib import Path
+import subprocess
 import sys
 
-root = Path(sys.argv[1])
-if not (root / "TwinQuay.exe").is_file():
-    raise SystemExit("Missing TwinQuay.exe in staged package")
-files = []
-for path in sorted(root.rglob("*")):
-    if path.is_file():
-        with path.open("rb") as stream:
-            sha256 = hashlib.file_digest(stream, "sha256").hexdigest()
-        files.append(dict(path=str(path.relative_to(root)), size=path.stat().st_size, sha256=sha256))
-if not any(Path(item["path"]).name.lower() == "qwindows.dll" for item in files):
-    raise SystemExit("Required Qt Windows platform plugin is absent")
-names = {Path(item["path"]).name.lower() for item in files}
-if "qt6core.dll" not in names or any(name.startswith("qt5") and name.endswith(".dll") for name in names):
-    raise SystemExit("Package must contain Qt6Core and must not contain retired Qt5 DLLs")
-if not any(item["path"].replace("\\", "/").endswith("images/twinquay/logo-32.png") for item in files):
-    raise SystemExit("Original TwinQuay image assets are absent")
-dest = Path("build-evidence")
+from msix.msix_qualification import create_input_inventory
+
+source = Path(__file__).resolve().parents[1]
+commit = subprocess.run(
+    ["git", "-C", str(source), "rev-parse", "HEAD"], check=True, capture_output=True, text=True
+).stdout.strip()
+record = create_input_inventory(Path(sys.argv[1]), source, commit)
+dest = source / "build-evidence"
 dest.mkdir(exist_ok=True)
-(dest / "package-inventory.json").write_text(json.dumps(files, indent=2), encoding="utf-8")
-print(f"Inventoried {len(files)} staged files; interactive Windows launch and license review still required.")
+with (dest / "package-inventory.json").open("x", encoding="utf-8") as stream:
+    json.dump(record, stream, indent=2)
+    stream.write("\n")
+print(f'Inventoried {len(record["files"])} staged files; dependency-notice gates remain open.')
