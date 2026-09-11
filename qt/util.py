@@ -6,6 +6,7 @@
 # which should be included with this package. The terms are also available at
 # http://www.gnu.org/licenses/gpl-3.0.html
 
+from qt.resources import asset_path
 import sys
 import io
 import os.path as op
@@ -16,12 +17,11 @@ from core.util import executable_folder
 from hscommon.util import first
 from hscommon.plat import ISWINDOWS
 
-from PyQt5.QtCore import QStandardPaths, QSettings
-from PyQt5.QtGui import QPixmap, QIcon, QGuiApplication
-from PyQt5.QtWidgets import (
+from PyQt6.QtCore import QStandardPaths, QSettings
+from PyQt6.QtGui import QAction, QPixmap, QIcon, QGuiApplication
+from PyQt6.QtWidgets import (
     QSpacerItem,
     QSizePolicy,
-    QAction,
     QHBoxLayout,
 )
 
@@ -45,16 +45,16 @@ def move_to_screen_center(widget):
 
 def vertical_spacer(size=None):
     if size:
-        return QSpacerItem(1, size, QSizePolicy.Fixed, QSizePolicy.Fixed)
+        return QSpacerItem(1, size, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
     else:
-        return QSpacerItem(1, 1, QSizePolicy.Fixed, QSizePolicy.MinimumExpanding)
+        return QSpacerItem(1, 1, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.MinimumExpanding)
 
 
 def horizontal_spacer(size=None):
     if size:
-        return QSpacerItem(size, 1, QSizePolicy.Fixed, QSizePolicy.Fixed)
+        return QSpacerItem(size, 1, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
     else:
-        return QSpacerItem(1, 1, QSizePolicy.MinimumExpanding, QSizePolicy.Fixed)
+        return QSpacerItem(1, 1, QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
 
 
 def horizontal_wrap(widgets):
@@ -77,7 +77,7 @@ def create_actions(actions, target):
     for name, shortcut, icon, desc, func in actions:
         action = QAction(target)
         if icon:
-            action.setIcon(QIcon(QPixmap(":/" + icon)))
+            action.setIcon(QIcon(QPixmap(asset_path(icon))))
         if shortcut:
             action.setShortcut(shortcut)
         action.setText(desc)
@@ -105,11 +105,12 @@ def get_appdata(portable=False):
         return op.join(executable_folder(), "data", "TwinQuay")
     elif ISWINDOWS:
         return op.join(
-            os.environ.get("LOCALAPPDATA") or QStandardPaths.writableLocation(QStandardPaths.GenericDataLocation),
+            os.environ.get("LOCALAPPDATA")
+            or QStandardPaths.writableLocation(QStandardPaths.StandardLocation.GenericDataLocation),
             "TwinQuay",
         )
     else:
-        return QStandardPaths.standardLocations(QStandardPaths.AppDataLocation)[0]
+        return QStandardPaths.standardLocations(QStandardPaths.StandardLocation.AppDataLocation)[0]
 
 
 class SysWrapper(io.IOBase):
@@ -149,14 +150,14 @@ def create_qsettings():
     # Create a QSettings instance with the correct arguments.
     config_location = op.join(executable_folder(), "TwinQuay.ini")
     if op.isfile(config_location):
-        settings = QSettings(config_location, QSettings.IniFormat)
+        settings = QSettings(config_location, QSettings.Format.IniFormat)
         settings.setValue("Portable", True)
     elif ISWINDOWS:
         # On windows use an ini file in the AppDataLocation instead of registry if possible as it
         # makes it easier for a user to clear it out when there are issues.
         locations = [get_appdata()]
         if locations:
-            settings = QSettings(op.join(locations[0], "settings.ini"), QSettings.IniFormat)
+            settings = QSettings(op.join(locations[0], "settings.ini"), QSettings.Format.IniFormat)
         else:
             settings = QSettings()
         settings.setValue("Portable", False)

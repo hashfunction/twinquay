@@ -7,7 +7,9 @@ import shutil
 import sys
 
 root = Path("build/notices")
-root.mkdir(parents=True, exist_ok=True)
+if root.exists():
+    shutil.rmtree(root)  # Generated output: do not carry retired dependencies into a new package.
+root.mkdir(parents=True)
 shutil.copyfile("hscommon/LICENSE", root / "Hardcoded-Software-BSD-3-Clause.txt")
 python_notices = [
     Path(sys.base_prefix) / name for name in ("LICENSE.txt", "LICENSE", "Resources/English.lproj/License.rtf")

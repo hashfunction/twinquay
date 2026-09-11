@@ -43,6 +43,9 @@ INI; it excludes custom commands and application identity.
 
 ## Development and Windows handoff
 
+The current runtime is PyQt6 6.11.0 with Qt 6.11.2 and SIP 13.12.0; see
+[runtime qualification](docs/qt6-runtime-migration.md).
+
 Use a fresh checkout, Python 3.12 x64 and Visual Studio 2022 C++ Build Tools with
 Windows SDK. Run the following in PowerShell from the source directory:
 
@@ -51,7 +54,7 @@ Windows SDK. Run the following in PowerShell from the source directory:
 ```
 
 The script creates an isolated venv, installs the hash-locked Windows toolchain,
-builds three native extensions/resources/help, runs core and Qt tests, executes
+builds three native extensions, validates original assets and copies local help, runs core and Qt tests, executes
 an offscreen native/image smoke, and stages `dist/TwinQuay` with PyInstaller.
 `package.py --skip-nsis` produces the directory for root-owned MSIX work; NSIS
 is optional and parameterized. See [Windows qualification](docs/windows-build.md)

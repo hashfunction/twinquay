@@ -1,7 +1,7 @@
 # Windows Python 3.12 qualification handoff
 
 Target: Python 3.12 x64, Visual Studio 2022 C++ Build Tools, Windows SDK,
-PyQt5 5.15.11, PyInstaller 6.22.2, pytest 8.4.2. A fresh Windows runner must execute
+PyQt6 6.11.0, Qt 6.11.2, SIP 13.12.0, PyInstaller 6.22.2, pytest 8.4.2. A fresh Windows runner must execute
 `./tools/build-windows.ps1`; no Windows build was executed on the macOS authoring
 host. `docs/windows-build-workflow.yml` is an unpublished draft. Root owns CI
 publication, action-SHA pinning, Store/MSIX identity, signing and release records.
@@ -15,15 +15,18 @@ The prerequisite investigation reproduced:
 3. `hscommon.pygettext` imported removed `imp`; migrated source discovery to
    `importlib.machinery.PathFinder`, including Python 3 directory walking.
 4. PyInstaller resource paths depended on CWD/`__file__` existence; updated to
-   `_MEIPASS`, with a regression test. QRC generation invokes the venv module
-   directly instead of relying on an unrelated `pyrcc5` on PATH.
+   `_MEIPASS`, with a regression test. Original assets now load from explicit
+   source/package paths without a Qt5 resource generator.
 
-Local authoring evidence: Python 3.12.7, macOS ARM64 Clang, PyQt 5.15.11,
-Qt runtime 5.15.19 (`QT_VERSION_STR` binding compile version 5.15.14), PyInstaller
+Current local authoring evidence: Python 3.12.7, macOS ARM64 Clang, PyQt 6.11.0,
+Qt runtime 6.11.2 (`QT_VERSION_STR` binding compile version 6.11.0), PyInstaller
 6.22.2. All three C extensions compiled and imported locally. `build.py --clean`
-builds extensions, translations, QRC and TwinQuay's maintained local help. The
-upstream Sphinx documentation is preserved in source; build flags can still
-generate it. No Windows DLL/EXE/MSIX claim follows from this evidence.
+builds extensions, translations, validates original images and copies TwinQuay's
+maintained local help. The upstream Sphinx documentation remains in source.
+See [runtime migration and primary references](qt6-runtime-migration.md) and
+[Windows filesystem repair](windows-file-identity-repair.md). Real Windows runs
+compiled the previous Qt5 build but exposed quarantine failures; that evidence
+does not qualify this Qt6 migration or the filesystem repair.
 
 The Windows lock `tools/python-windows-lock.txt` was resolved with hashes using:
 
@@ -32,9 +35,8 @@ uv pip compile --python-version 3.12 --python-platform x86_64-pc-windows-msvc --
 ```
 
 This is a **resolved lock**, not an installed Windows inventory. It includes
-PyQt5-Qt5 5.15.2, the available public Windows wheel baseline. Root must review
-Qt 5 maintenance/security support and exact DLL/plugin licensing before release;
-upgrade/migration may be required. Official wheel availability proves package
+PyQt6-Qt6 6.11.2. Root must review the exact DLL/plugin licensing and current
+maintenance release before release. Official wheel availability proves package
 availability, not fitness or redistribution compliance.
 
 Windows commands (fresh checkout; script deliberately refuses an existing venv):
@@ -72,7 +74,7 @@ Native acceptance still required:
   signed package/certification, all managed by root.
 
 Primary compatibility references:
-[PyQt5 wheel and GPL metadata](https://pypi.org/project/PyQt5/),
+[PyQt6 wheel and GPL metadata](https://pypi.org/project/PyQt6/),
 [PyInstaller requirements](https://pyinstaller.org/en/stable/requirements.html),
 [setuptools history](https://setuptools.pypa.io/en/latest/history.html),
 [FindFirstStreamW](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-findfirststreamw),

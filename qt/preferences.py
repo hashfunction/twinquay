@@ -4,9 +4,11 @@
 # which should be included with this package. The terms are also available at
 # http://www.gnu.org/licenses/gpl-3.0.html
 
-from PyQt5.QtWidgets import QApplication, QDockWidget
-from PyQt5.QtCore import Qt, QRect, QObject, pyqtSignal
-from PyQt5.QtGui import QColor
+from enum import Enum
+
+from PyQt6.QtWidgets import QApplication, QDockWidget
+from PyQt6.QtCore import Qt, QRect, QObject, pyqtSignal
+from PyQt6.QtGui import QColor
 
 from hscommon import trans
 from hscommon.plat import ISLINUX
@@ -45,6 +47,8 @@ def _normalize_for_serialization(v):
     # QSettings doesn't consider set/tuple as "native" typs for serialization, so if we don't
     # change them into a list, we get a weird serialized QVariant value which isn't a very
     # "portable" value.
+    if isinstance(v, Enum):
+        return v.value
     if isinstance(v, (set, tuple)):
         v = list(v)
     if isinstance(v, list):
@@ -143,25 +147,25 @@ class PreferencesBase(QObject):
         if geometry and len(geometry) == 7:
             m, d, area, x, y, w, h = geometry
             if m:
-                widget.setWindowState(Qt.WindowMaximized)
+                widget.setWindowState(Qt.WindowState.WindowMaximized)
             else:
                 r = QRect(x, y, w, h)
                 widget.setGeometry(r)
                 if isinstance(widget, QDockWidget):
                     # Inform of the previous dock state and the area used
-                    return bool(d), area
+                    return bool(d), Qt.DockWidgetArea(area)
         return False, 0
 
 
 class Preferences(PreferencesBase):
     def import_scan_preferences(self, filename):
         """Explicit import of typed discovery preferences; keep identities/commands separate."""
-        from PyQt5.QtCore import QSettings
+        from PyQt6.QtCore import QSettings
         from pathlib import Path
 
         if not Path(filename).is_file():
             raise ValueError("Select an existing settings.ini file")
-        source = QSettings(str(filename), QSettings.IniFormat)
+        source = QSettings(str(filename), QSettings.Format.IniFormat)
         ranges = {
             "FilterHardness": (0, 100),
             "SmallFileThreshold": (0, 1000000000),
@@ -294,8 +298,8 @@ class Preferences(PreferencesBase):
         # By default use internal icons on platforms other than Linux for now
         self.details_dialog_override_theme_icons = False if not ISLINUX else True
         self.details_dialog_viewers_show_scrollbars = True
-        self.result_table_ref_foreground_color = QColor(Qt.blue)
-        self.result_table_ref_background_color = QColor(Qt.lightGray)
+        self.result_table_ref_foreground_color = QColor(Qt.GlobalColor.blue)
+        self.result_table_ref_background_color = QColor(Qt.GlobalColor.lightGray)
         self.result_table_delta_foreground_color = QColor(255, 142, 40)  # orange
         self.resultWindowIsMaximized = False
         self.resultWindowRect = None

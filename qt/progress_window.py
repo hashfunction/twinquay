@@ -4,8 +4,8 @@
 # which should be included with this package. The terms are also available at
 # http://www.gnu.org/licenses/gpl-3.0.html
 
-from PyQt5.QtCore import Qt, QTimer
-from PyQt5.QtWidgets import QProgressDialog
+from PyQt6.QtCore import Qt, QTimer
+from PyQt6.QtWidgets import QProgressDialog
 
 from hscommon.trans import tr
 
@@ -36,7 +36,7 @@ class ProgressWindow:
             self._window.setValue(last_progress)
 
     def show(self):
-        flags = Qt.CustomizeWindowHint | Qt.WindowTitleHint | Qt.WindowSystemMenuHint
+        flags = Qt.WindowType.CustomizeWindowHint | Qt.WindowType.WindowTitleHint | Qt.WindowType.WindowSystemMenuHint
         self._window = QProgressDialog("", tr("Cancel"), 0, 100, self.parent, flags)
         self._window.setModal(True)
         self._window.setAutoReset(False)

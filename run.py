@@ -5,18 +5,18 @@
 # which should be included with this package. The terms are also available at
 # http://www.gnu.org/licenses/gpl-3.0.html
 
+from qt.resources import asset_path
 import sys
 import os.path as op
 import gc
 
-from PyQt5.QtCore import QCoreApplication
-from PyQt5.QtGui import QIcon, QPixmap
-from PyQt5.QtWidgets import QApplication
+from PyQt6.QtCore import QCoreApplication
+from PyQt6.QtGui import QIcon, QPixmap
+from PyQt6.QtWidgets import QApplication
 
 from hscommon.trans import install_gettext_trans_under_qt
 from qt.error_report_dialog import install_excepthook
 from qt.util import setup_qt_logging, create_qsettings
-from qt import dg_rc  # noqa: F401
 from qt.platform import BASE_PATH
 from core import __version__, __appname__
 
@@ -33,7 +33,6 @@ dgapp = None
 
 
 def signal_handler(sig, frame):
-    global dgapp
     if dgapp is None:
         return
     if sig in (SIGINT, SIGTERM, SIGQUIT):
@@ -61,7 +60,7 @@ def main():
     # Let the Python interpreter runs every 500ms to handle signals.  This is
     # required because Python cannot handle signals while the Qt event loop is
     # running.
-    from PyQt5.QtCore import QTimer
+    from PyQt6.QtCore import QTimer
 
     timer = QTimer()
     timer.start(500)
@@ -70,7 +69,7 @@ def main():
     # has been installed
     from qt.app import DupeGuru
 
-    app.setWindowIcon(QIcon(QPixmap(f":/{DupeGuru.LOGO_NAME}")))
+    app.setWindowIcon(QIcon(QPixmap(asset_path(DupeGuru.LOGO_NAME))))
     global dgapp
     dgapp = DupeGuru()
     install_excepthook("https://twinquay.trieflow.com/support")

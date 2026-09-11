@@ -2,9 +2,9 @@
 
 from pathlib import Path
 import struct
-from PyQt5.QtCore import QByteArray, Qt
-from PyQt5.QtGui import QImage, QPainter
-from PyQt5.QtSvg import QSvgRenderer
+from PyQt6.QtCore import QByteArray, Qt
+from PyQt6.QtGui import QImage, QPainter
+from PyQt6.QtSvg import QSvgRenderer
 
 root = Path(__file__).resolve().parents[1] / "images" / "twinquay"
 root.mkdir(exist_ok=True)
@@ -12,8 +12,8 @@ logo = """<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewB
 (root / "logo.svg").write_text(logo)
 entries = []
 for size in (16, 32, 48, 128, 256):
-    image = QImage(size, size, QImage.Format_ARGB32)
-    image.fill(Qt.transparent)
+    image = QImage(size, size, QImage.Format.Format_ARGB32)
+    image.fill(Qt.GlobalColor.transparent)
     painter = QPainter(image)
     QSvgRenderer(QByteArray(logo.encode())).render(painter)
     painter.end()

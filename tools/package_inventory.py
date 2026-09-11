@@ -16,6 +16,11 @@ for path in sorted(root.rglob("*")):
         files.append(dict(path=str(path.relative_to(root)), size=path.stat().st_size, sha256=sha256))
 if not any(Path(item["path"]).name.lower() == "qwindows.dll" for item in files):
     raise SystemExit("Required Qt Windows platform plugin is absent")
+names = {Path(item["path"]).name.lower() for item in files}
+if "qt6core.dll" not in names or any(name.startswith("qt5") and name.endswith(".dll") for name in names):
+    raise SystemExit("Package must contain Qt6Core and must not contain retired Qt5 DLLs")
+if not any(item["path"].replace("\\", "/").endswith("images/twinquay/logo-32.png") for item in files):
+    raise SystemExit("Original TwinQuay image assets are absent")
 dest = Path("build-evidence")
 dest.mkdir(exist_ok=True)
 (dest / "package-inventory.json").write_text(json.dumps(files, indent=2), encoding="utf-8")

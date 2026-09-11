@@ -1,8 +1,8 @@
 # Copyright 2026 Trieflow LLC. GPL-3.0; see LICENSE.
 from pathlib import Path
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import (
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import (
     QAbstractItemView,
     QDialog,
     QDialogButtonBox,
@@ -29,7 +29,7 @@ class QuarantineDialog(QDialog):
         self.caption = QLabel(
             "Open a receipt.json from a quarantine folder. Restore checks payload bytes and never overwrites an occupied original path."
         )
-        self.caption.setTextFormat(Qt.PlainText)
+        self.caption.setTextFormat(Qt.TextFormat.PlainText)
         self.caption.setWordWrap(True)
         layout.addWidget(self.caption)
         open_button = QPushButton("Open receipt…")
@@ -37,12 +37,12 @@ class QuarantineDialog(QDialog):
         layout.addWidget(open_button)
         self.table = QTableWidget(0, 5)
         self.table.setHorizontalHeaderLabels(["Restore", "Original path", "Quarantined payload", "Status", "Detail"])
-        self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.table.setAlternatingRowColors(True)
-        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
         layout.addWidget(self.table)
-        buttons = QDialogButtonBox(QDialogButtonBox.Close)
-        self.restore = buttons.addButton("Restore selected", QDialogButtonBox.AcceptRole)
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
+        self.restore = buttons.addButton("Restore selected", QDialogButtonBox.ButtonRole.AcceptRole)
         self.restore.clicked.connect(self.restore_selected)
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)
@@ -69,8 +69,10 @@ class QuarantineDialog(QDialog):
         for row, item in enumerate(self.receipt.items):
             select = QTableWidgetItem()
             eligible = bool(item.sha256 and item.status != "restored")
-            select.setFlags(Qt.ItemIsUserCheckable | Qt.ItemIsEnabled if eligible else Qt.NoItemFlags)
-            select.setCheckState(Qt.Unchecked)
+            select.setFlags(
+                Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsEnabled if eligible else Qt.ItemFlag.NoItemFlags
+            )
+            select.setCheckState(Qt.CheckState.Unchecked)
             self.table.setItem(row, 0, select)
             for col, text in enumerate(
                 [item.original_path, str(payload_path(self.receipt, item)), item.status, item.detail], 1
@@ -84,7 +86,7 @@ class QuarantineDialog(QDialog):
         selected = [
             item.item_id
             for row, item in enumerate(self.receipt.items)
-            if self.table.item(row, 0).checkState() == Qt.Checked
+            if self.table.item(row, 0).checkState() == Qt.CheckState.Checked
         ]
         if self.app.model.restore_quarantine(self.receipt.receipt_path, selected):
             self.accept()

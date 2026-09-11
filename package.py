@@ -167,6 +167,7 @@ def package_windows(skip_nsis=False, nsis_path="makensis"):
                 "--clean",
                 "--noconfirm",
                 "--icon=images/twinquay/logo.ico",
+                "--add-data=images/twinquay;images/twinquay",
                 "--add-data=build/locale;locale",
                 "--add-data=build/help;help",
                 "--add-data=LICENSE;.",

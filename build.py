@@ -14,7 +14,6 @@ import subprocess
 from hscommon import sphinxgen
 from hscommon.build import (
     add_to_pythonpath,
-    fix_qt_resource_file,
 )
 from hscommon import loc
 
@@ -134,8 +133,11 @@ def build_normal():
     print("Building localizations")
     build_localizations()
     print("Building Qt stuff")
-    subprocess.run([sys.executable, "-m", "PyQt5.pyrcc_main", "qt/dg.qrc", "-o", "qt/dg_rc.py"], check=True)
-    fix_qt_resource_file(Path("qt", "dg_rc.py"))
+    from qt.resources import ASSETS, asset_path
+
+    for alias in ASSETS:
+        if not Path(asset_path(alias)).is_file():
+            raise FileNotFoundError(asset_path(alias))
     build_product_help()
 
 

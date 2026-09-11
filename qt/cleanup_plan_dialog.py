@@ -2,8 +2,8 @@
 import json
 from pathlib import Path
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import (
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import (
     QAbstractItemView,
     QDialog,
     QDialogButtonBox,
@@ -50,18 +50,18 @@ class CleanupPlanDialog(QDialog):
                 "Planned destination",
             ]
         )
-        self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.table.setAlternatingRowColors(True)
-        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
         for row, (candidate, eligibility) in enumerate(zip(plan.candidates, self.review.eligibility)):
             include = QTableWidgetItem()
             include.setFlags(
-                Qt.ItemIsUserCheckable | Qt.ItemIsSelectable | Qt.ItemIsEnabled
+                Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled
                 if eligibility.eligible
-                else Qt.NoItemFlags
+                else Qt.ItemFlag.NoItemFlags
             )
-            include.setCheckState(Qt.Checked if eligibility.eligible else Qt.Unchecked)
+            include.setCheckState(Qt.CheckState.Checked if eligibility.eligible else Qt.CheckState.Unchecked)
             self.table.setItem(row, 0, include)
             values = [
                 str(candidate.path),
@@ -90,14 +90,14 @@ class CleanupPlanDialog(QDialog):
             "Choose a folder to see the planned destination. A durable receipt is saved beside the quarantined files."
         )
         self.destination.setWordWrap(True)
-        self.destination.setTextFormat(Qt.PlainText)
+        self.destination.setTextFormat(Qt.TextFormat.PlainText)
         layout.addWidget(self.destination)
         self.summary = QLabel()
         layout.addWidget(self.summary)
-        buttons = QDialogButtonBox(QDialogButtonBox.Cancel)
-        export = buttons.addButton("Save plan…", QDialogButtonBox.ActionRole)
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Cancel)
+        export = buttons.addButton("Save plan…", QDialogButtonBox.ButtonRole.ActionRole)
         export.clicked.connect(self.save_plan)
-        self.execute = buttons.addButton("Verify and quarantine selected", QDialogButtonBox.AcceptRole)
+        self.execute = buttons.addButton("Verify and quarantine selected", QDialogButtonBox.ButtonRole.AcceptRole)
         self.execute.clicked.connect(self.execute_plan)
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)
@@ -105,7 +105,9 @@ class CleanupPlanDialog(QDialog):
         self.update_summary()
 
     def selected_plan(self):
-        indices = {row for row in range(self.table.rowCount()) if self.table.item(row, 0).checkState() == Qt.Checked}
+        indices = {
+            row for row in range(self.table.rowCount()) if self.table.item(row, 0).checkState() == Qt.CheckState.Checked
+        }
         return self.review.selected_plan(indices)
 
     def update_summary(self):

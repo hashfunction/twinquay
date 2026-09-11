@@ -24,12 +24,13 @@ TwinQuay support/update services. Review exact file-level licensing in release.
 
 Runtime components (exact resolved versions/hashes: tools/python-windows-lock.txt):
 - Python 3.12: Python Software Foundation License, including bundled notices.
-- PyQt5 5.15.11: GPLv3 (Riverbank Computing Limited); commercial licensing is
+- PyQt6 6.11.0: GPLv3 (Riverbank Computing Limited); commercial licensing is
   separate and is not assumed. TwinQuay uses the GPL distribution.
-- Qt 5.15.2 Windows wheel: Qt Company and contributors, LGPL/GPL/component
+- Qt 6.11.2 wheel: Qt Company and contributors, LGPL/GPL/component
   licenses. Exact packaged DLL/plugin/source/license inventory and fulfillment
   of corresponding-source/relinking obligations must be reviewed before release.
-- PyQt5-sip: Riverbank Computing Limited; wheel-provided license text retained.
+- PyQt6-sip 13.12.0: Riverbank Computing Limited; BSD-2-Clause, wheel-provided
+  license text retained.
 - Send2Trash: BSD; Virgil Dupras and contributors.
 - mutagen: GPLv2-or-later; upstream authors and contributors.
 - distro: Apache-2.0.
@@ -48,9 +49,9 @@ plugins and their bundled third-party libraries (image codecs, fonts, TLS, etc.)
 
 Artwork:
 images/twinquay/* and tools/create_brand_assets.py are original 2026 Trieflow LLC
-artwork/source, distributed under GPLv3 with this project. All active Qt resource
+artwork/source, distributed under GPLv3 with this project. All active Qt
 icons and the Windows executable icon use these originals. Historical upstream
 images/* are retained in corresponding source for provenance; they are excluded
-from TwinQuay's active Qt resource bundle and Windows package. No upstream logo
+from TwinQuay's active image asset set and Windows package. No upstream logo
 is presented as TwinQuay branding. Asset-specific upstream permissions remain
 an audit item for any future use outside the preserved source history.
