@@ -69,9 +69,16 @@ namespace Windows.Automation {
     $nullWindow=[Windows.Automation.AutomationElement]::new('Unknown window',8368,0)
     $nullWindow.Current.NativeWindowHandle=$null
     $owner.Children.Add($nullWindow)
-    $failure=$null;try{Wait-TwinQuayWorkflowWindow $state $modal.Current.Name 0|Out-Null}catch{$failure=$_.Exception.Message}
-    Assert ($failure -ceq 'Native window handle is null at window-enumeration (value type: null).') 'A null handle on an actual Window was not an immediate site-identified unknown observation failure.'
+    Assert (@(Get-TwinQuayWorkflowWindows $state).Count -eq 2) 'A null-HWND UIA Window became a native workflow window or blocked valid owned windows.'
+    $failure=$null;try{Wait-TwinQuayWorkflowWindow $state $nullWindow.Current.Name 0|Out-Null}catch{$failure=$_.Exception.Message}
+    Assert ($failure -match 'Timed out') 'A null-HWND UIA Window satisfied an exact workflow title.'
     $owner.Children.Remove($nullWindow)|Out-Null
+    $invalidWindow=[Windows.Automation.AutomationElement]::new('Invalid window',8368,0)
+    $invalidWindow.Current.NativeWindowHandle='not-a-handle'
+    $owner.Children.Add($invalidWindow)
+    $failure=$null;try{Get-TwinQuayWorkflowWindows $state|Out-Null}catch{$failure=$_.Exception.Message}
+    Assert ($failure -match '^Native window handle conversion failed at window-enumeration \(value type: System.String\):') 'An invalid non-null Window handle did not remain a fatal typed observation error.'
+    $owner.Children.Remove($invalidWindow)|Out-Null
     foreach($script:nativeMode in @('foreign-native-pid','child-hwnd','hidden-native-window')){
         $failure=$null;try{Wait-TwinQuayWorkflowWindow $state $modal.Current.Name 0|Out-Null}catch{$failure=$_.Exception.Message}
         Assert ($failure -match 'Timed out') "Native window boundary accepted $script:nativeMode"

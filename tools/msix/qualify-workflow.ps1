@@ -155,7 +155,12 @@ function Get-TwinQuayWorkflowWindows($State) {
         foreach ($item in @(Get-TwinQuayWorkflowElements $root)) {
             $element=$item.element
             if ($item.control_type -cne 'ControlType.Window') { continue }
-            $handle=ConvertTo-TwinQuayWorkflowHandle $element.Current.NativeWindowHandle 'window-enumeration'
+            $nativeHandle=$element.Current.NativeWindowHandle
+            # Qt can expose a transient UIA Window with no native HWND while the
+            # scan table replaces its progress subtree. It cannot satisfy native
+            # ownership, so treat it exactly like the existing zero-HWND case.
+            if ($null -eq $nativeHandle) { continue }
+            $handle=ConvertTo-TwinQuayWorkflowHandle $nativeHandle 'window-enumeration'
             if ($item.process_id -ne $State.process.Id -or $item.offscreen -or $handle -eq [IntPtr]::Zero) { continue }
             $native=Get-TwinQuayWorkflowNativeWindow $handle
             if ($native.process_id -ne $State.process.Id -or $native.root -ne $handle -or -not $native.visible) { continue }
