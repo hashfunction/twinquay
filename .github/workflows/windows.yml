@@ -18,6 +18,9 @@ jobs:
       - name: Native, tests, Qt startup, PyInstaller directory
         shell: pwsh
         run: ./tools/build-windows.ps1
+      - name: Verify actual packaged main window
+        shell: pwsh
+        run: ./tools/test-packaged-startup.ps1
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
