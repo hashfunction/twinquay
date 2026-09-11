@@ -389,8 +389,10 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
 
     $operations.PrepareSignedCopy = {
         $runnerTemp = if ($env:RUNNER_TEMP) { $env:RUNNER_TEMP } else { [IO.Path]::GetTempPath() }
-        $state.temporary = Join-Path $runnerTemp ('.twinquay-install-' + [guid]::NewGuid().ToString('N'))
-        New-Item -ItemType Directory -Path $state.temporary -ErrorAction Stop | Out-Null
+        $temporaryCandidate = Join-Path $runnerTemp ('.twinquay-install-' + [guid]::NewGuid().ToString('N'))
+        New-Item -ItemType Directory -Path $temporaryCandidate -ErrorAction Stop | Out-Null
+        # Cleanup ownership starts only after exclusive creation succeeds.
+        $state.temporary = $temporaryCandidate
         $state.signedCopy = Join-Path $state.temporary 'TwinQuay.Qualification.signed.msix'
         [IO.File]::Copy($state.package, $state.signedCopy, $false)
         $state.publicCertificate = Join-Path $state.temporary 'TwinQuay.Qualification.public.cer'

@@ -89,3 +89,28 @@ The new helper was absent in RED; GREEN covers one explicitly mocked valid-signa
 Independent review then reproduced a signer-name parsing defect: the displayed X500 subject can embed Microsoft CN/O strings inside a quoted OU. The original text regex accepted that fixture. The revised check reads actual `Certificate.SubjectName` DER through .NET `EnumerateRelativeDistinguishedNames`, rejects multi-valued RDNs, and requires exactly one CN (OID2.5.4.3) and one O (OID2.5.4.10) with exact Microsoft values. Quoted OU spoof and duplicate CN/O regressions are now rejected; one positive and 16 negative metadata/path cases pass. API reference: https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.x509certificates.x500distinguishedname.enumeraterelativedistinguishednames . Native Authenticode trust is still required and cannot be inferred from the local metadata fixtures.
 
 Run34605783622 at131a583 retained the actual platform certificate: Authenticode `Valid`, parsed CN `Microsoft Windows`, O `Microsoft Corporation`, issuer `Windows Production PCA 2023`, thumbprint `26629E2872A1E61E669CC62CF9CF2DAFF05473B3`. This is a third exact Microsoft CN used by the observed Defender module, and is now recognized alongside the existing exact names. Its real parsed identity fixture failed before this addition. All three positive identity fixtures and 16 rejection cases now pass. Path/module restrictions, parsed DER identity, valid chain requirement and stable digest checks remain in force. This run did not yet qualify installed module/UI/close behavior.
+
+## Temporary-directory ownership correction
+
+During DayQuay adaptation, an actual preparation/cleanup closure probe reproduced
+an ownership edge in baseline `1ee1e1849ad2aad030717b7ba56254197436ea4e`: the helper
+stored the future signing directory in cleanup state before `New-Item` succeeded.
+If creation failed because another owner occupied the candidate, cleanup could
+remove that unowned directory. The new `test_temporary_ownership.ps1` supplies a
+real colliding directory and preserved marker, runs the actual preparation and
+cleanup closures, and was RED with `Unowned colliding temporary directory was
+deleted` before the correction.
+
+Preparation now uses a local candidate and assigns `$state.temporary` only after
+exclusive directory creation succeeds. The same regression is GREEN and is part
+of the normal `qualify-msix.ps1` fixture list. This is the only behavior change;
+package identity, signing, module/UI/exit observation, native dependencies,
+registration ownership and public release gates are preserved.
+
+Validation: all 21 Python packaging tests, all seven PowerShell fixture suites,
+nine PowerShell script parses, embedded native C# compilation and diff checks
+pass. PowerShell 7.6.6/.NET 10.0.12 ran the actual closure/process tests locally.
+The coordinator reported Windows run `34607114421` successful before this repair;
+that run does not qualify this modified source. A fresh exact-source native run
+and independent review remain required. No GUI, account, publish or push action
+was performed by this repair.
