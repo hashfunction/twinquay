@@ -1,4 +1,5 @@
 """Record real filesystem evidence for qualification failures in temporary files."""
+
 import json
 import os
 from pathlib import Path
@@ -6,14 +7,23 @@ import sys
 import tempfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from core.cleanup_plan import CleanupCandidate, CleanupPlan, EvidenceKind, files_equal, signature, validate_candidate
-from core import quarantine
+from core.cleanup_plan import CleanupCandidate, CleanupPlan, EvidenceKind, files_equal, validate_candidate  # noqa: E402
+from core import quarantine  # noqa: E402
 
 
 def stat_values(info):
-    return {name: getattr(info, name, None) for name in (
-        "st_size", "st_mtime_ns", "st_ctime_ns", "st_birthtime_ns", "st_dev", "st_ino", "st_file_attributes"
-    )}
+    return {
+        name: getattr(info, name, None)
+        for name in (
+            "st_size",
+            "st_mtime_ns",
+            "st_ctime_ns",
+            "st_birthtime_ns",
+            "st_dev",
+            "st_ino",
+            "st_file_attributes",
+        )
+    }
 
 
 payload = {"python": sys.version, "cases": []}

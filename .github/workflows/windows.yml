@@ -25,5 +25,6 @@ jobs:
           retention-days: 14
           if-no-files-found: error
           path: |
-            build-evidence/
-            dist/TwinQuay/
+            build-evidence/*.json
+            build-evidence/*.txt
+            build-evidence/*.xml
