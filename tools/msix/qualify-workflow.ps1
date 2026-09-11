@@ -129,10 +129,12 @@ function Wait-TwinQuayWorkflowWindow($State,[string]$Title,[int]$Seconds=30) {
         $errors=@($windows | Where-Object { $_.Current.Name -cmatch '^(Error|Traceback|Cannot read receipt|Plan was not saved|Application Error)' })
         if ($errors.Count) { throw ('Owned application error window: ' + $errors[0].Current.Name) }
         $matches=@($windows | Where-Object { $_.Current.Name -ceq $Title })
-        if ($matches.Count -gt 1) { throw "Ambiguous owned workflow window: $Title" }
+        # Scan progress can temporarily share the main window's title. Never
+        # pick either ambiguous HWND; await a unique observed match instead.
         if ($matches.Count -eq 1) { return $matches[0] }
         Start-Sleep -Milliseconds 150
     } while ([DateTime]::UtcNow -lt $deadline)
+    if ($matches.Count -gt 1) { throw "Ambiguous owned workflow window at deadline: $Title" }
     throw "Timed out awaiting exact owned workflow window: $Title"
 }
 

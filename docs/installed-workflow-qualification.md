@@ -193,3 +193,18 @@ Primary API references:
 - https://learn.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-tree-overview
 - https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getancestor
 - https://learn.microsoft.com/en-us/windows/win32/dlgbox/wm-nextdlgctl
+
+### Transient scan progress in run34642776050
+
+The real Windows Qt/IFileDialog source fixture passed and the installed app
+selected the exact owned input folder. During Scan, native HWNDs393552 and262676
+had the same exact TwinQuay title and PID7412; the latter exposed a progress bar
+and Cancel. Immediate ambiguity rejection stopped the observer before results.
+The existing bounded wait now waits for one unique observed match; it never
+selects either ambiguous window. Persistent ambiguity still fails at the deadline,
+while owned error windows and observation failures remain immediate failures.
+The independent wait probe reproduced the prior failure and verified 2→0→1,
+persistent ambiguity, case/prefix mismatch and later error/observation failures.
+No product code or destructive workflow operation changed. Native qualification
+of this later observer is required. Secondary failure-only screenshot diagnostics
+from the old progress window remain recorded; they are not success evidence.

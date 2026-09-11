@@ -13,6 +13,30 @@ foreach ($bad in @(@($one,$one),@($one | Select-Object * -ExcludeProperty proces
     try { Select-TwinQuayWorkflowControl $bad 42 'Scan' @('ControlType.Button') | Out-Null } catch { $failure=$_.Exception.Message }
     Assert ([bool]$failure) 'Ambiguous/missing/foreign control passed.'
 }
+# Real window polling with observed-enumeration adapters: a scan progress
+# window temporarily shares the main title on Windows (run34642776050).
+$originalWindows=${function:Get-TwinQuayWorkflowWindows}
+$script:polls=0;$script:windowMode='transient'
+$script:mainWindow=[pscustomobject]@{Current=[pscustomobject]@{Name='TwinQuay'}}
+$script:progressWindow=[pscustomobject]@{Current=[pscustomobject]@{Name='TwinQuay'}}
+function Get-TwinQuayWorkflowWindows($State) {
+    $script:polls++
+    if($script:windowMode -eq 'error'){return [pscustomobject]@{Current=[pscustomobject]@{Name='Error loading input'}}}
+    if($script:windowMode -eq 'absent'){return @()}
+    if($script:windowMode -eq 'persistent' -or $script:polls -eq 1){return @($script:mainWindow,$script:progressWindow)}
+    return @($script:mainWindow)
+}
+try {
+    $found=Wait-TwinQuayWorkflowWindow @{} 'TwinQuay' 2
+    Assert ($script:polls -eq 2 -and [object]::ReferenceEquals($found,$script:mainWindow)) 'Transient scan window was selected or rejected instead of awaited.'
+    foreach($script:windowMode in @('persistent','absent','error')){
+        $script:polls=0;$failure=$null
+        try{Wait-TwinQuayWorkflowWindow @{} 'TwinQuay' 0|Out-Null}catch{$failure=$_.Exception.Message}
+        $expected=@{persistent='Ambiguous';absent='Timed out';error='Owned application error'}[$script:windowMode]
+        Assert ($failure -match $expected -and $script:polls -eq 1) "Window polling accepted or misreported $script:windowMode"
+    }
+} finally {Set-Item Function:Get-TwinQuayWorkflowWindows $originalWindows}
+Write-Output 'PASS: actual bounded wait tolerates transient same-title scan progress, never chooses an ambiguous window and preserves persistent/error failure.'
 foreach ($failureStage in @('', 'Scan', 'Review', 'Quarantine', 'Conflict', 'Restore')) {
     $calls=[Collections.Generic.List[string]]::new()
     $operations=[ordered]@{}
