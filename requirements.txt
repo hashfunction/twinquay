@@ -1,0 +1,12 @@
+distro==1.9.0
+mutagen==1.48.1
+polib==1.2.0
+PyQt5==5.15.11
+PyQt5-Qt5==5.15.2; sys_platform == 'win32'
+PyQt5-Qt5==5.15.19; sys_platform == 'darwin'
+PyQt5-sip==12.19.0
+pywin32==311; sys_platform == 'win32'
+semantic-version==2.10.0
+Send2Trash==2.1.0
+sphinx==9.1.0
+xxhash==3.8.1

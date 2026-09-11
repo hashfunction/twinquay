@@ -1,0 +1,51 @@
+{
+  "platform": "macOS ARM64 development host; no Windows build executed",
+  "upstreamCommit": "1f1dfa88dc5f6ffe13f4de514c884ab9c83bd7ce",
+  "checkedAt": "2026-09-11T07:14:59.490632+00:00",
+  "python": "3.12.7 (main, Oct  1 2024, 02:05:46) [Clang 16.0.0 (clang-1600.0.26.3)]",
+  "nativeExtensions": [
+    "core.pe._block",
+    "core.pe._cache",
+    "qt.pe._block_qt"
+  ],
+  "coreTests": {
+    "passed": 558,
+    "skipped": 1,
+    "skipReason": "Native extra-stream/extended-attribute test; this Python/macOS build lacks os.setxattr. Windows NTFS case is pending."
+  },
+  "qtOffscreenTests": {
+    "passed": 6
+  },
+  "windowsBuild": "not_run",
+  "windowsFsAcceptance": "not_run",
+  "logs": {
+    "core-tests.log": {
+      "localPath": "/Users/hashfunction/workspace/project_app_factory/microsoft-store/apps/twinquay/source/build-evidence/core-tests.log",
+      "sha256": "583cd77a586b618478c93222797d6ce64d21bf7f51ad926b1ab8e73dc0565bc2"
+    },
+    "qt-tests.log": {
+      "localPath": "/Users/hashfunction/workspace/project_app_factory/microsoft-store/apps/twinquay/source/build-evidence/qt-tests.log",
+      "sha256": "be681ce6ba62154fd224dfeff8cc5ced22e76a74750049c9223cabe44b5ff60c"
+    },
+    "local-build.log": {
+      "localPath": "/Users/hashfunction/workspace/project_app_factory/microsoft-store/apps/twinquay/source/build-evidence/local-build.log",
+      "sha256": "446a990063c18315b8367b68a9377d1ad1e5facc88322e011175d5073ff8a143"
+    },
+    "local-smoke.log": {
+      "localPath": "/Users/hashfunction/workspace/project_app_factory/microsoft-store/apps/twinquay/source/build-evidence/local-smoke.log",
+      "sha256": "ba99d655fa78f69162e62f74b636fa8e649a5eb1d3a3effb5abcdb11fab36778"
+    },
+    "core-tests.xml": {
+      "localPath": "/Users/hashfunction/workspace/project_app_factory/microsoft-store/apps/twinquay/source/build-evidence/core-tests.xml",
+      "sha256": "6029f444d2270d048bc3fa9c897c124ffc9c025a54a7627788ae0707b0818ed1"
+    },
+    "qt-tests.xml": {
+      "localPath": "/Users/hashfunction/workspace/project_app_factory/microsoft-store/apps/twinquay/source/build-evidence/qt-tests.xml",
+      "sha256": "094cfa74cbc56a39d25c41133cca10b2aa127bf7e5709bd1e5714f7a103c80f5"
+    },
+    "local-python-freeze.txt": {
+      "localPath": "/Users/hashfunction/workspace/project_app_factory/microsoft-store/apps/twinquay/source/build-evidence/local-python-freeze.txt",
+      "sha256": "cc82e83b64eab56936a4db89021b99bb89b950c20f3a3f49c478b3736807a4a9"
+    }
+  }
+}

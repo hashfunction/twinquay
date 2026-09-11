@@ -1,0 +1,24 @@
+# Draft only: root owns CI publication and immutable action pinning.
+name: TwinQuay Windows build qualification
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: 'x64'
+      - name: Native, tests, Qt startup, PyInstaller directory
+        shell: pwsh
+        run: ./tools/build-windows.ps1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: TwinQuay-windows-qualification
+          path: |
+            build-evidence/
+            dist/TwinQuay/

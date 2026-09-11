@@ -1,0 +1,13 @@
+<!DOCTYPE RCC><RCC version="1.0"><qresource>
+<file alias="logo_se">../images/twinquay/logo-32.png</file>
+<file alias="logo_se_big">../images/twinquay/logo-128.png</file>
+<file alias="plus">../images/twinquay/plus.svg</file>
+<file alias="minus">../images/twinquay/minus.svg</file>
+<file alias="search_clear_13">../images/twinquay/search_clear_13.svg</file>
+<file alias="exchange">../images/twinquay/exchange.svg</file>
+<file alias="zoom_in">../images/twinquay/zoom_in.svg</file>
+<file alias="zoom_out">../images/twinquay/zoom_out.svg</file>
+<file alias="zoom_original">../images/twinquay/zoom_original.svg</file>
+<file alias="zoom_best_fit">../images/twinquay/zoom_best_fit.svg</file>
+<file alias="error">../images/twinquay/error.svg</file>
+</qresource></RCC>

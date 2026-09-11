@@ -1,0 +1,29 @@
+name: TwinQuay Windows build qualification
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/twinquay]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-2025
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+          architecture: 'x64'
+      - name: Native, tests, Qt startup, PyInstaller directory
+        shell: pwsh
+        run: ./tools/build-windows.ps1
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: TwinQuay-windows-qualification
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            build-evidence/
+            dist/TwinQuay/

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "targets": {
+    "cleanup-review": {
+      "targetKind": "new-ui",
+      "projectId": "362d6fcf-c771-40d6-91d0-e0898955491e",
+      "activeDraftId": "7b8b54d7-28ff-4a01-bbc3-bb1429ae828c",
+      "contextFiles": [
+        "qt/cleanup_plan_dialog.py",
+        "qt/quarantine_dialog.py",
+        "core/gui/cleanup_plan.py",
+        ".superdesign/init/theme.md"
+      ],
+      "fingerprints": {
+        "qt/cleanup_plan_dialog.py": "204fb26e101da9fbec6d68cb8fbbc34bffd257eab9d36f784f9efa318bdc41e2",
+        "qt/quarantine_dialog.py": "b83300228d603099cc93ec504e7c475baf8d0e2b0948fcd40fa759b74046c3ad",
+        "core/gui/cleanup_plan.py": "14be83ac7f14dd83a88860842e97705ec538b8aaef634f91250460e085f080a9",
+        ".superdesign/init/theme.md": "25d2ac2ae57bf782f88e5b7f77aec9f722ea875dc11652e32484d6087e84d95c"
+      },
+      "drafts": {
+        "7b8b54d7-28ff-4a01-bbc3-bb1429ae828c": {
+          "title": "Cleanup review and recovery",
+          "visualDirection": "Native Qt review table; slate/teal explanatory canvas",
+          "currentVersion": 1
+        }
+      },
+      "updatedAt": "2026-09-11T07:08:17.791188+00:00"
+    }
+  }
+}

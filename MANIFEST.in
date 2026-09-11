@@ -1,0 +1,5 @@
+recursive-include core *.h
+recursive-include core *.m
+include run.py
+graft locale
+graft help

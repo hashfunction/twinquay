@@ -1,0 +1,56 @@
+TwinQuay 1.0.0 — Trieflow LLC
+https://twinquay.trieflow.com
+Support: https://twinquay.trieflow.com/support
+Privacy: https://twinquay.trieflow.com/privacy
+
+TwinQuay is a modified version of dupeGuru 4.3.1, upstream commit
+1f1dfa88dc5f6ffe13f4de514c884ab9c83bd7ce from
+https://github.com/arsenetar/dupeguru. Original code and documentation
+copyright Virgil Dupras, Hardcoded Software, Andrew Senetar, and contributors.
+Original file-level notices and the upstream history remain intact.
+
+TwinQuay modifications copyright 2026 Trieflow LLC. Distributed under GNU GPL
+version 3, including corresponding modified source and build scripts. See
+LICENSE. Recipients retain GPL rights to use, study, modify and redistribute.
+There is no warranty. Store purchase does not restrict these rights. Do not
+release binaries without supplying the corresponding source and license texts.
+
+Core and hscommon source headers identify GPLv3; hscommon/LICENSE contains the
+Hardcoded Software 2014 BSD-3-Clause text. Both are retained. The Qt native
+helper qt/pe/modules/block.c carries a Hardcoded Software 2014 BSD notice.
+The build collects the full BSD text from hscommon/LICENSE as well as GPLv3.
+Historical Hardcoded Software license URLs remain source attribution, not
+TwinQuay support/update services. Review exact file-level licensing in release.
+
+Runtime components (exact resolved versions/hashes: tools/python-windows-lock.txt):
+- Python 3.12: Python Software Foundation License, including bundled notices.
+- PyQt5 5.15.11: GPLv3 (Riverbank Computing Limited); commercial licensing is
+  separate and is not assumed. TwinQuay uses the GPL distribution.
+- Qt 5.15.2 Windows wheel: Qt Company and contributors, LGPL/GPL/component
+  licenses. Exact packaged DLL/plugin/source/license inventory and fulfillment
+  of corresponding-source/relinking obligations must be reviewed before release.
+- PyQt5-sip: Riverbank Computing Limited; wheel-provided license text retained.
+- Send2Trash: BSD; Virgil Dupras and contributors.
+- mutagen: GPLv2-or-later; upstream authors and contributors.
+- distro: Apache-2.0.
+- pywin32: PSF-compatible project license, exact wheel notices retained.
+- semantic-version: BSD; Raphaël Barrois.
+- xxhash Python bindings and bundled xxHash: BSD-2-Clause and upstream notices.
+- PyInstaller bootloader: GPLv2-or-later with the distribution exception; include
+  the exact tool and bootloader license, not just its Python package metadata.
+
+Build/documentation/test tooling and transitive versions are locked. The
+collect_notices.py build helper copies each installed distribution's included
+license/notice files and records metadata without claiming that metadata alone
+is a complete legal audit. Sphinx-generated help carries upstream documentation
+credits. The distributed package inventory must be reviewed, especially Qt
+plugins and their bundled third-party libraries (image codecs, fonts, TLS, etc.).
+
+Artwork:
+images/twinquay/* and tools/create_brand_assets.py are original 2026 Trieflow LLC
+artwork/source, distributed under GPLv3 with this project. All active Qt resource
+icons and the Windows executable icon use these originals. Historical upstream
+images/* are retained in corresponding source for provenance; they are excluded
+from TwinQuay's active Qt resource bundle and Windows package. No upstream logo
+is presented as TwinQuay branding. Asset-specific upstream permissions remain
+an audit item for any future use outside the preserved source history.
