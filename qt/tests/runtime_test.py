@@ -174,3 +174,92 @@ def test_contents_scan_publishes_review_rows_and_marking(application, tmp_path, 
     finally:
         for widget in application.topLevelWidgets():
             widget.close()
+
+
+def test_real_picture_details_zoom_pan_wheel_and_swap(application, tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    from PyQt6.QtCore import Qt, QSettings, QEvent, QPoint, QPointF
+    from PyQt6.QtGui import QImage, QColor, QPixmap, QMouseEvent, QWheelEvent
+    from qt import preferences
+    from qt.app import DupeGuru
+    from core.app import AppMode
+    from hscommon import desktop
+    import sys
+
+    errors = []
+    monkeypatch.setattr(sys, "excepthook", lambda *error: errors.append(error))
+    monkeypatch.setattr(desktop, "special_folder_path", lambda *args, **kw: str(tmp_path / "data"))
+    monkeypatch.setattr(
+        preferences, "create_qsettings", lambda: QSettings(str(tmp_path / "settings.ini"), QSettings.Format.IniFormat)
+    )
+    ctrl = DupeGuru()
+    try:
+        ctrl.model.app_mode = AppMode.PICTURE
+        ctrl.model._recreate_result_table()
+        detail = ctrl.details_dialog
+        paths = []
+        for name, color in [("ref", QColor(220, 30, 50)), ("dupe", QColor(30, 160, 70))]:
+            image = QImage(700, 600, QImage.Format.Format_RGB888)
+            image.fill(color)
+            path = tmp_path / (name + ".png")
+            assert image.save(str(path))
+            paths.append(SimpleNamespace(path=path, dimensions=(700, 600)))
+        viewer = detail.selectedImageViewer
+        other = detail.referenceImageViewer
+        vc = detail.vController
+        vc.updateView(paths[0], paths[1], object())
+        vc.zoomNormalSize()
+        vc.zoomIn()
+        assert viewer.current_scale == other.current_scale == 1.25
+        pressed = QMouseEvent(
+            QEvent.Type.MouseButtonPress,
+            QPointF(60, 60),
+            QPointF(60, 60),
+            Qt.MouseButton.MiddleButton,
+            Qt.MouseButton.MiddleButton,
+            Qt.KeyboardModifier.NoModifier,
+        )
+        moved = QMouseEvent(
+            QEvent.Type.MouseMove,
+            QPointF(40, 40),
+            QPointF(40, 40),
+            Qt.MouseButton.NoButton,
+            Qt.MouseButton.MiddleButton,
+            Qt.KeyboardModifier.NoModifier,
+        )
+        released = QMouseEvent(
+            QEvent.Type.MouseButtonRelease,
+            QPointF(40, 40),
+            QPointF(40, 40),
+            Qt.MouseButton.MiddleButton,
+            Qt.MouseButton.NoButton,
+            Qt.KeyboardModifier.NoModifier,
+        )
+        viewer.mousePressEvent(pressed)
+        viewer.mouseMoveEvent(moved)
+        viewer.mouseReleaseEvent(released)
+        assert not viewer._drag
+        assert viewer.horizontalScrollBar().value() == other.horizontalScrollBar().value()
+        wheel = QWheelEvent(
+            QPointF(50, 50),
+            QPointF(50, 50),
+            QPoint(),
+            QPoint(0, 120),
+            Qt.MouseButton.NoButton,
+            Qt.KeyboardModifier.NoModifier,
+            Qt.ScrollPhase.ScrollUpdate,
+            False,
+        )
+        viewer.wheelEvent(wheel)
+        assert viewer.current_scale == other.current_scale == 1.5625
+        first = viewer._pixmap.toImage().pixelColor(0, 0)
+        vc.swapImages()
+        assert other._pixmap.toImage().pixelColor(0, 0) == first
+        surface = QPixmap(detail.size())
+        detail.render(surface)
+        vc.zoomBestFit()
+        assert viewer.bestFit and other.bestFit
+        assert not errors, errors
+    finally:
+        for widget in application.topLevelWidgets():
+            widget.close()
