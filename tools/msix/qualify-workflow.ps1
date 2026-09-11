@@ -79,10 +79,35 @@ function Get-TwinQuayWorkflowWindows($State) {
     $condition=[Windows.Automation.PropertyCondition]::new([Windows.Automation.AutomationElement]::ProcessIdProperty,$State.process.Id)
     $all=[Windows.Automation.AutomationElement]::RootElement.FindAll([Windows.Automation.TreeScope]::Children,$condition)
     $result=[Collections.Generic.List[object]]::new()
-    foreach ($element in $all) {
-        if ($element.Current.ProcessId -eq $State.process.Id -and -not $element.Current.IsOffscreen) { $result.Add($element) }
+    $handles=[Collections.Generic.HashSet[long]]::new()
+    foreach ($root in $all) {
+        # A native owned IFileDialog is a descendant of its Qt owner in UIA,
+        # even though its HWND is a separate top-level window (GA_ROOT).
+        foreach ($item in @(Get-TwinQuayWorkflowElements $root)) {
+            $element=$item.element
+            $handle=[IntPtr]$element.Current.NativeWindowHandle
+            if ($item.process_id -ne $State.process.Id -or $item.offscreen -or
+                $item.control_type -cne 'ControlType.Window' -or $handle -eq [IntPtr]::Zero) { continue }
+            $native=Get-TwinQuayWorkflowNativeWindow $handle
+            if ($native.process_id -ne $State.process.Id -or $native.root -ne $handle -or -not $native.visible) { continue }
+            if ($handles.Add($handle.ToInt64())) { $result.Add($element) }
+        }
     }
     return @($result)
+}
+
+function Get-TwinQuayWorkflowNativeWindow([IntPtr]$Handle) {
+    $ownerId=[uint32]0
+    [void][TwinQuayQualification.NativePackageProbe]::GetWindowThreadProcessId($Handle,[ref]$ownerId)
+    $class=[Text.StringBuilder]::new(256);$title=[Text.StringBuilder]::new(4096)
+    [void][TwinQuayQualification.NativePackageProbe]::GetClassName($Handle,$class,$class.Capacity)
+    [void][TwinQuayQualification.NativePackageProbe]::GetWindowText($Handle,$title,$title.Capacity)
+    return [pscustomobject]@{handle=$Handle;process_id=$ownerId;
+        root=[TwinQuayQualification.NativePackageProbe]::GetAncestor($Handle,2);
+        visible=[TwinQuayQualification.NativePackageProbe]::IsWindowVisible($Handle);
+        enabled=[TwinQuayQualification.NativePackageProbe]::IsWindowEnabled($Handle);
+        class_name=$class.ToString();title=$title.ToString();
+        control_id=[TwinQuayQualification.NativePackageProbe]::GetDlgCtrlID($Handle)}
 }
 
 function Get-TwinQuayWorkflowElements($Root) {
@@ -116,10 +141,12 @@ function Find-TwinQuayWorkflowControl($State,$Root,[string]$Name,[string[]]$Type
     return (Select-TwinQuayWorkflowControl @(Get-TwinQuayWorkflowElements $Root) $State.process.Id $Name $Types).element
 }
 
-function Send-TwinQuayWorkflowKeys($State,$Root,[string]$Keys,$Control=$null) {
+function Send-TwinQuayWorkflowKeys($State,$Root,[string]$Keys,$Control=$null,[IntPtr]$ExpectedFocusHandle=[IntPtr]::Zero) {
     Assert-TwinQuayWorkflowProcess $State
     $handle=[IntPtr]$Root.Current.NativeWindowHandle
     if ($Root.Current.ProcessId -ne $State.process.Id -or $handle -eq [IntPtr]::Zero) { throw 'Cannot focus an unowned workflow window.' }
+    $native=Get-TwinQuayWorkflowNativeWindow $handle
+    if ($native.process_id -ne $State.process.Id -or $native.root -ne $handle -or -not $native.visible) { throw 'Workflow HWND is not the exact owned visible top-level window.' }
     [void][TwinQuayQualification.NativePackageProbe]::ShowWindow($handle,5)
     [void][TwinQuayQualification.NativePackageProbe]::SetForegroundWindow($handle)
     if ($Control) {
@@ -131,6 +158,9 @@ function Send-TwinQuayWorkflowKeys($State,$Root,[string]$Keys,$Control=$null) {
     $foregroundPid=[uint32]0
     [void][TwinQuayQualification.NativePackageProbe]::GetWindowThreadProcessId($foreground,[ref]$foregroundPid)
     if ($foreground -ne $handle -or $foregroundPid -ne $State.process.Id) { throw 'Refusing keyboard input: exact owned dialog is not foreground.' }
+    if ($ExpectedFocusHandle -ne [IntPtr]::Zero -and [TwinQuayQualification.NativePackageProbe]::GetFocusedWindow($handle) -ne $ExpectedFocusHandle) {
+        throw 'Refusing keyboard input: exact native control no longer has focus.'
+    }
     if ($Keys.Length) { [Windows.Forms.SendKeys]::SendWait($Keys) }
 }
 
@@ -139,10 +169,48 @@ function Press-TwinQuayWorkflowButton($State,$Root,[string]$Name) {
     Send-TwinQuayWorkflowKeys $State $Root ' ' $button
 }
 
+function Assert-TwinQuayNativeDialogButton($Dialog,$Button,[int]$ProcessId,[string]$Title,[string]$Name) {
+    $expectedName=if($Title -ceq 'Save selected cleanup plan'){'Save'}else{'Select Folder'}
+    if ($Title -cnotin @('Select a folder to add to the scanning list','Choose quarantine folder','Save selected cleanup plan') -or
+        $Name -cne $expectedName -or $Dialog.title -cne $Title -or $Dialog.class_name -cne '#32770' -or
+        $Dialog.process_id -ne $ProcessId -or $Dialog.handle -eq [IntPtr]::Zero -or $Dialog.root -ne $Dialog.handle -or
+        -not $Dialog.visible -or -not $Dialog.enabled -or $Button.process_id -ne $ProcessId -or
+        $Button.handle -eq [IntPtr]::Zero -or $Button.root -ne $Dialog.handle -or $Button.class_name -cne 'Button' -or
+        $Button.control_id -ne 1 -or $Button.title.Replace('&','') -cne $Name -or -not $Button.visible -or -not $Button.enabled) {
+        throw 'Native chooser action lacks the exact owned dialog and enabled IDOK Button identity.'
+    }
+}
+
+function Press-TwinQuayNativeDialogButton($State,$Root,[string]$Name) {
+    # This Windows common-dialog button is exposed as a UIA Pane on the native
+    # runner. Require its real Button class, IDOK, caption and HWND ancestry.
+    $button=Find-TwinQuayWorkflowControl $State $Root $Name @('ControlType.Button','ControlType.Pane')
+    $dialogHandle=[IntPtr]$Root.Current.NativeWindowHandle
+    $buttonHandle=[IntPtr]$button.Current.NativeWindowHandle
+    $dialog=Get-TwinQuayWorkflowNativeWindow $dialogHandle
+    $nativeButton=Get-TwinQuayWorkflowNativeWindow $buttonHandle
+    Assert-TwinQuayNativeDialogButton $dialog $nativeButton $State.process.Id $Root.Current.Name $Name
+    if (-not [TwinQuayQualification.NativePackageProbe]::IsChild($dialogHandle,$buttonHandle)) { throw 'Native chooser button is outside the exact dialog.' }
+    Send-TwinQuayWorkflowKeys $State $Root ''
+    # Use normal dialog focus management, then real keyboard input; no BM_CLICK,
+    # direct IFileDialog result injection or application action API.
+    if (-not [TwinQuayQualification.NativePackageProbe]::PostMessage($dialogHandle,0x28,$buttonHandle,[IntPtr]1)) { throw 'Native dialog focus request failed.' }
+    $deadline=[DateTime]::UtcNow.AddSeconds(2)
+    do {
+        if ([TwinQuayQualification.NativePackageProbe]::GetFocusedWindow($dialogHandle) -eq $buttonHandle) { break }
+        Start-Sleep -Milliseconds 50
+    } while ([DateTime]::UtcNow -lt $deadline)
+    if ([TwinQuayQualification.NativePackageProbe]::GetFocusedWindow($dialogHandle) -ne $buttonHandle) { throw 'Exact native chooser button did not receive keyboard focus.' }
+    Assert-TwinQuayNativeDialogButton (Get-TwinQuayWorkflowNativeWindow $dialogHandle) (Get-TwinQuayWorkflowNativeWindow $buttonHandle) $State.process.Id $Root.Current.Name $Name
+    Send-TwinQuayWorkflowKeys $State $Root ' ' $null $buttonHandle
+}
+
 function Save-TwinQuayWorkflowSurface($State,$Context,[string]$Name,$Root) {
     Assert-TwinQuayWorkflowProcess $State
     $items=@(Get-TwinQuayWorkflowElements $Root | Select-Object name,control_type,process_id,enabled,offscreen)
+    $native=Get-TwinQuayWorkflowNativeWindow ([IntPtr]$Root.Current.NativeWindowHandle)
     $entry=[ordered]@{name=$Name;title=$Root.Current.Name;process_id=$Root.Current.ProcessId;controls=$items;
+        native_window=[ordered]@{handle=$native.handle.ToInt64();root=$native.root.ToInt64();process_id=$native.process_id;title=$native.title;class_name=$native.class_name};
         screenshot_sha256=$null;screenshot_error=$null}
     try {
         Send-TwinQuayWorkflowKeys $State $Root ''
@@ -184,7 +252,7 @@ function Set-TwinQuayWorkflowFolder($State,[string]$Title,[string]$Folder) {
     Send-TwinQuayWorkflowKeys $State $dialog '%d'
     Send-TwinQuayWorkflowKeys $State $dialog ((ConvertTo-TwinQuaySendKeysLiteral $Folder)+'{ENTER}')
     Start-Sleep -Milliseconds 300
-    Press-TwinQuayWorkflowButton $State $dialog 'Select Folder'
+    Press-TwinQuayNativeDialogButton $State $dialog 'Select Folder'
 }
 
 function Wait-TwinQuayWorkflowCompletion($State,$Context,[string]$Status,[string]$Capture) {
@@ -282,7 +350,7 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
         $save=Wait-TwinQuayWorkflowWindow $State 'Save selected cleanup plan'
         Send-TwinQuayWorkflowKeys $State $save '%n^a'
         Send-TwinQuayWorkflowKeys $State $save ((ConvertTo-TwinQuaySendKeysLiteral $context.facts.prepare.plan_path))
-        Press-TwinQuayWorkflowButton $State $save 'Save'
+        Press-TwinQuayNativeDialogButton $State $save 'Save'
         $dialog=Wait-TwinQuayWorkflowWindow $State 'Review Cleanup Plan — TwinQuay'
         Invoke-TwinQuayFileOracle $context 'plan' | Out-Null
         Press-TwinQuayWorkflowButton $State $dialog 'Choose folder…'
@@ -339,7 +407,8 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
         try {
             $index=0
             foreach ($window in @(Get-TwinQuayWorkflowWindows $State)) {
-                Save-TwinQuayWorkflowSurface $State $context ('failure-window-'+$index) $window
+                try { Save-TwinQuayWorkflowSurface $State $context ('failure-window-'+$index) $window }
+                catch { $State.workflow.diagnostic_errors+= $_.Exception.Message }
                 $index++
                 if ($index -ge 8) { break }
             }

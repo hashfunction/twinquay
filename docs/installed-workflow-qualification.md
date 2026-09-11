@@ -141,3 +141,55 @@ removing only `.lock` rejects; subsequent real restore operations recreate their
 own lock normally. This changes only the external qualification oracle, with no
 change to product locking or restore behavior. Fresh Windows execution remains
 required after the source review.
+
+## Native modal window discovery repair
+
+Windows run `34640354182` (source `80ac39ba16f9e9fbd58c543882a937c84270fbb8`,
+public snapshot `c35d6ef0a48f59239f9ce76b97b937045f0ee881`) reached installed
+startup, then failed before scanning. Its retained `failure-window-0.json`
+contains the exact source title **Select a folder to add to the scanning list**
+as a visible owned Window below the TwinQuay UIA root. The helper searched only
+desktop children and timed out; failure capture then targeted the owner while
+its modal dialog was foreground. The title was not missing or renamed.
+
+Discovery now searches each owned UIA root's bounded subtree. Each returned
+Window must have a nonzero native HWND, the same observed native PID, visibility,
+and `GetAncestor(GA_ROOT)` equal to itself. Handleless Qt child widgets and foreign
+windows are excluded; repeated representations of one HWND are deduplicated.
+Two different HWNDs with the same exact expected title still fail as ambiguous.
+Keyboard input additionally rechecks native HWND ownership and still requires
+that exact HWND and PID in the foreground. No title prefix or blank-title
+fallback was introduced.
+
+The same native evidence exposes **Select Folder** as a UIA Pane. The three
+source-defined folder/save dialogs therefore use a narrow native-button path:
+unique exact UIA name, exact source dialog title and native `#32770` class,
+owned visible/enabled HWNDs, actual `Button` class, IDOK=1, exact caption and
+native child/root relationship. `WM_NEXTDLGCTL` requests focus; `GetGUIThreadInfo`
+must observe that exact button immediately before real Space input. A generic
+Pane, foreign/disabled control or changed focus cannot pass. The existing Qt
+button path is unchanged. Failure capture now records native window metadata
+and continues to later owned windows after an owner screenshot refusal, retaining
+every diagnostic failure without weakening foreground or image bounds.
+
+`test_workflow_windows.ps1` reproduces the original timeout locally by replaying
+the actual owner/modal topology through production traversal. The repair passes
+that replay, exact-title/foreign/handle/ambiguity cases and nine native-button
+identity negatives. Only unavailable Windows APIs are adapted on macOS.
+On Windows the same required test executes the actual
+`DirectoriesDialog.addFolderTriggered` and `CleanupPlanDialog.save_plan` methods
+in a separate real Qt/IFileDialog host, selects an owned metacharacter path,
+saves actual JSON and requires observed normal exit. The fixture uses no package
+identity and is not installed-app acceptance; the existing installed workflow
+must still run afterward with all package/module/source/cleanup gates intact.
+The fixture's JSON/stdout/stderr evidence uses the existing metadata-only globs.
+
+Local verification: 615 Python/core/Qt tests passed, one existing platform
+metadata skip; all nine PowerShell fixture programs passed; new Python compiled
+and Black check passed; changed PowerShell files parsed and real C# interop
+compiled. The real Windows native dialog/input branch remains pending execution.
+
+Primary API references:
+- https://learn.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-tree-overview
+- https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getancestor
+- https://learn.microsoft.com/en-us/windows/win32/dlgbox/wm-nextdlgctl

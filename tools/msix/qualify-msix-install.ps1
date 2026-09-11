@@ -184,6 +184,28 @@ namespace TwinQuayQualification {
         [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr window, int command);
         [DllImport("user32.dll")] public static extern IntPtr GetForegroundWindow();
         [DllImport("user32.dll")] public static extern uint GetWindowThreadProcessId(IntPtr window, out uint processId);
+        [DllImport("user32.dll")] public static extern IntPtr GetAncestor(IntPtr window, uint flags);
+        [DllImport("user32.dll")] public static extern bool IsWindowVisible(IntPtr window);
+        [DllImport("user32.dll")] public static extern bool IsWindowEnabled(IntPtr window);
+        [DllImport("user32.dll")] public static extern bool IsChild(IntPtr parent, IntPtr child);
+        [DllImport("user32.dll")] public static extern int GetDlgCtrlID(IntPtr window);
+        [DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern int GetClassName(IntPtr window, StringBuilder value, int size);
+        [DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern int GetWindowText(IntPtr window, StringBuilder value, int size);
+        [DllImport("user32.dll", SetLastError=true)] public static extern bool PostMessage(IntPtr window, uint message, IntPtr wParam, IntPtr lParam);
+        [StructLayout(LayoutKind.Sequential)] private struct GuiThreadInfo {
+            public uint size, flags;
+            public IntPtr active, focus, capture, menuOwner, moveSize, caret;
+            public int left, top, right, bottom;
+        }
+        [DllImport("user32.dll", SetLastError=true)] private static extern bool GetGUIThreadInfo(uint thread, ref GuiThreadInfo info);
+        public static IntPtr GetFocusedWindow(IntPtr window) {
+            uint process;
+            uint thread=GetWindowThreadProcessId(window, out process);
+            if(thread==0) throw new InvalidOperationException("No live native window thread.");
+            var info=new GuiThreadInfo { size=(uint)Marshal.SizeOf<GuiThreadInfo>() };
+            if(!GetGUIThreadInfo(thread, ref info)) throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
+            return info.focus;
+        }
         private const int ERROR_SUCCESS = 0;
         private const int ERROR_INSUFFICIENT_BUFFER = 122;
         [DllImport("kernel32.dll", CharSet=CharSet.Unicode)]
