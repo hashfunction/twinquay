@@ -412,7 +412,7 @@ function Invoke-TwinQuayWorkflowRestore($State,$Context,[string]$Capture) {
     # Qt 6.11.2 QAccessibleTableCell's toggle action selects the cell; it does
     # not edit CheckStateRole. Use real QTableWidget keyboard behavior and then
     # read the actual checkbox state through UIA (also covered with QTest).
-    Send-TwinQuayWorkflowKeys $State $dialog '^{HOME}{SPACE}' $tables[0].element
+    Send-TwinQuayWorkflowKeys $State $dialog '^{HOME} ' $tables[0].element
     if ($toggle.Current.ToggleState -ne [Windows.Automation.ToggleState]::On) { throw 'Actual receipt restore checkbox did not become checked.' }
     Save-TwinQuayWorkflowSurface $State $Context $Capture $dialog
     Press-TwinQuayWorkflowButton $State $dialog 'Restore selected'
@@ -452,7 +452,8 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
         $main=$scan.window
         $reference=$scan.reference
         $reference.GetCurrentPattern([Windows.Automation.SelectionItemPattern]::Pattern).Select()
-        Send-TwinQuayWorkflowKeys $State $main '^{SPACE}'
+        # Windows Forms SendKeys represents Space as a literal, not {SPACE}.
+        Send-TwinQuayWorkflowKeys $State $main '^ '
         Send-TwinQuayWorkflowKeys $State $main '^a'
         Save-TwinQuayWorkflowSurface $State $context '02-duplicate-results' $main
     }.GetNewClosure()

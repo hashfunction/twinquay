@@ -55,7 +55,7 @@ def test_actual_scanner_labels_and_result_action_shortcuts(controller):
     assert "'Contents'" in SCRIPT and "'Scan'" in SCRIPT
     assert "$combo.GetCurrentPattern([Windows.Automation.ValuePattern]::Pattern).Current.Value" in SCRIPT
     for action, shortcut, keys in (
-        (controller.resultWindow.actionMakeSelectedReference, "Ctrl+Space", "^{SPACE}"),
+        (controller.resultWindow.actionMakeSelectedReference, "Ctrl+Space", "^ "),
         (controller.resultWindow.actionMarkAll, "Ctrl+A", "^a"),
         (controller.resultWindow.actionDeleteMarked, "Ctrl+D", "^d"),
         (controller.actionQuarantineReceipts, "Ctrl+Shift+Q", "^+q"),
@@ -131,7 +131,7 @@ def test_actual_receipt_table_checkbox_and_restore_command(controller, tmp_path,
     QTest.keyClick(dialog.table, Qt.Key.Key_Home, Qt.KeyboardModifier.ControlModifier)
     QTest.keyClick(dialog.table, Qt.Key.Key_Space)
     assert dialog.table.item(0, 0).checkState() == Qt.CheckState.Checked
-    assert "'^{HOME}{SPACE}'" in SCRIPT
+    assert "'^{HOME} '" in SCRIPT
     assert "$toggle.Toggle()" not in SCRIPT
     dialog.restore_selected()
     assert selected == [(receipt.receipt_path, [receipt.items[0].item_id])]
