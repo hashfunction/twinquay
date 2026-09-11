@@ -3,7 +3,7 @@
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 . (Join-Path $PSScriptRoot 'qualify-msix-install.ps1') -LibraryOnly
-foreach ($scenario in @('missing','changed','changed-after-success','success','write-failure')) {
+foreach ($scenario in @('missing','changed','changed-after-success','success','no-workflow','write-failure')) {
     $probeRoot = Join-Path ([IO.Path]::GetTempPath()) ('twinquay-evidence-test-' + [guid]::NewGuid().ToString('N'))
     New-Item -ItemType Directory -Path $probeRoot | Out-Null
     try {
@@ -17,6 +17,10 @@ foreach ($scenario in @('missing','changed','changed-after-success','success','w
             if ($scenario -in @('changed','changed-after-success')) { [IO.File]::WriteAllText($captured.package, 'changed bytes') }
             if ($scenario -eq 'write-failure') { [IO.File]::WriteAllText((Join-Path $probeRoot 'installation-qualification.json'), 'preserve existing evidence') }
             if ($scenario -in @('success','changed-after-success')) {
+                $captured.workflow = [ordered]@{result=[ordered]@{passed=$true}}
+                $captured.modulesAfterWorkflow = @('fixture module')
+            }
+            if ($scenario -in @('success','changed-after-success','no-workflow')) {
                 return [pscustomobject]@{ installation_qualification_passed=$true; primary_error=$null; cleanup_errors=@() }
             }
             return [pscustomobject]@{ installation_qualification_passed=$false; primary_error='original activation failure'; cleanup_errors=@('original uninstall failure') }
@@ -33,10 +37,12 @@ foreach ($scenario in @('missing','changed','changed-after-success','success','w
         $evidence = Get-Content -LiteralPath $evidencePath -Raw | ConvertFrom-Json
         if ($scenario -eq 'success') {
             if ($failure -or -not $evidence.installation_qualification_passed -or -not $evidence.unsigned_package_unchanged -or $evidence.evidence_errors.Count) { throw 'Unchanged success control did not pass.' }
+        } elseif ($scenario -eq 'no-workflow') {
+            if (-not $failure -or $evidence.installation_qualification_passed -or $evidence.workflow_acceptance -or $evidence.cleanup_restore_workflow_tested -or $evidence.evidence_errors.Count -ne 1) { throw 'Absent installed workflow evidence passed.' }
         } else {
             if (-not $failure -or $evidence.installation_qualification_passed -or $evidence.unsigned_package_unchanged -or $evidence.evidence_errors.Count -ne 1) { throw "Changed/missing source must fail in $scenario" }
             if ($scenario -ne 'changed-after-success' -and ($evidence.primary_error -ne 'original activation failure' -or $evidence.cleanup_errors[0] -ne 'original uninstall failure')) { throw 'Original primary/cleanup failures were lost.' }
         }
     } finally { Remove-Item -LiteralPath $probeRoot -Recurse -Force }
 }
-Write-Output 'PASS: five real final-hash and exclusive-evidence reporting scenarios.'
+Write-Output 'PASS: six real final-hash and exclusive-evidence reporting scenarios.'

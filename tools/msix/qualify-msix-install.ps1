@@ -328,6 +328,41 @@ function Write-NewUtf8Json([string]$Path, [object]$Value) {
     }
 }
 
+function Get-TwinQuayInstalledModuleEvidence($State) {
+    $installRoot = Get-CanonicalPath $State.installed.InstallLocation
+    $windowsRoot = Get-CanonicalPath $env:SystemRoot
+    $modules = [Collections.Generic.List[object]]::new()
+    $requiredRuntime = @{}
+    foreach ($entry in $State.record.runtime.PSObject.Properties) { $requiredRuntime[[string]$entry.Value] = $false }
+    foreach ($module in @($State.process.Modules)) {
+        Assert-NoReparsePath $module.FileName
+        $path = Get-CanonicalPath $module.FileName
+        $platformSignature = $null
+        if (Test-PathInside $path $installRoot) {
+            $relative = $path.Substring($installRoot.Length).TrimStart('\','/').Replace('\','/')
+            $expected = Get-RecordPayloadEntry $State.record $relative
+            $hash = Assert-FileMatchesRecord $path $expected "Loaded module $relative"
+            if ($requiredRuntime.ContainsKey($relative)) { $requiredRuntime[$relative] = $true }
+            $origin = 'package'
+        } elseif (Test-PathInside $path $windowsRoot) {
+            $relative = $null
+            $hash = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
+            $origin = 'windows'
+        } else {
+            $defenderRoot = Join-Path ([Environment]::GetFolderPath('CommonApplicationData')) 'Microsoft/Windows Defender/Platform'
+            $platformSignature = Get-VerifiedDefenderModuleEvidence -Path $path -PlatformRoot $defenderRoot
+            $relative = $null
+            $hash = $platformSignature.sha256
+            $origin = 'microsoft_defender_signed_platform'
+        }
+        $modules.Add([ordered]@{ name=$module.ModuleName; path=$path; origin=$origin; relative_path=$relative; sha256=$hash; platform_signature=$platformSignature })
+    }
+    foreach ($relative in $requiredRuntime.Keys) { if (-not $requiredRuntime[$relative]) { throw "Activated process did not load required packaged Python/Qt6 runtime: $relative" } }
+    return @($modules)
+}
+
+. (Join-Path $PSScriptRoot 'qualify-workflow.ps1')
+
 function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$RecordPath, [string]$SignToolPath, [string]$OutputPath) {
     $state = [ordered]@{
         package = $null; record = $null; output = $null; temporary = $null; signedCopy = $null
@@ -335,7 +370,7 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         installed = $null; installedByUs = $false; process = $null; processOwned = $false; cleanupProcessExit = $null
         installAttempted = $false; brokerProcessId = 0; addCompleted = $false; ownedPackageFullName = $null; preflightPackageFullNames = @(); residualPackageFullNames = @(); processHandle = $null; processExit = $null
         unsignedPackageSha256 = $null; signedPackageSha256 = $null; signTool = $null
-        aumid = $null; processPackageFullName = $null; modules = @(); window = $null
+        aumid = $null; processPackageFullName = $null; modules = @(); modulesAfterWorkflow = @(); window = $null; workflow = $null
         executableSha256 = $null
         cleanClose = $false; uninstallVerified = $false
     }
@@ -483,44 +518,22 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         Start-Sleep -Seconds 3
         $state.process.Refresh()
         if ($state.process.HasExited -or $state.process.MainWindowHandle -eq 0 -or $state.process.MainWindowTitle -cne 'TwinQuay') { throw 'Activated TwinQuay did not survive the stable-window interval.' }
-        $installRoot = Get-CanonicalPath $state.installed.InstallLocation
-        $windowsRoot = Get-CanonicalPath $env:SystemRoot
-        $modules = [Collections.Generic.List[object]]::new()
-        $requiredRuntime = @{}
-        foreach ($entry in $state.record.runtime.PSObject.Properties) { $requiredRuntime[[string]$entry.Value] = $false }
-        foreach ($module in @($state.process.Modules)) {
-            Assert-NoReparsePath $module.FileName
-            $path = Get-CanonicalPath $module.FileName
-            $platformSignature = $null
-            if (Test-PathInside $path $installRoot) {
-                $relative = $path.Substring($installRoot.Length).TrimStart('\','/').Replace('\','/')
-                $expected = Get-RecordPayloadEntry $state.record $relative
-                $hash = Assert-FileMatchesRecord $path $expected "Loaded module $relative"
-                if ($requiredRuntime.ContainsKey($relative)) { $requiredRuntime[$relative] = $true }
-                $origin = 'package'
-            } elseif (Test-PathInside $path $windowsRoot) {
-                $relative = $null
-                $hash = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
-                $origin = 'windows'
-            } else {
-                $defenderRoot = Join-Path ([Environment]::GetFolderPath('CommonApplicationData')) 'Microsoft/Windows Defender/Platform'
-                $platformSignature = Get-VerifiedDefenderModuleEvidence -Path $path -PlatformRoot $defenderRoot
-                $relative = $null
-                $hash = $platformSignature.sha256
-                $origin = 'microsoft_defender_signed_platform'
-            }
-            $modules.Add([ordered]@{ name=$module.ModuleName; path=$path; origin=$origin; relative_path=$relative; sha256=$hash; platform_signature=$platformSignature })
-        }
-        foreach ($relative in $requiredRuntime.Keys) { if (-not $requiredRuntime[$relative]) { throw "Activated process did not load required packaged Python/Qt6 runtime: $relative" } }
-        $state.modules = @($modules)
+        $state.modules = @(Get-TwinQuayInstalledModuleEvidence $state)
         Write-NewUtf8Json (Join-Path $state.output 'loaded-modules.json') $state.modules
         $state.window = Get-WindowQualification $state.process $state.output
         $state.process.Refresh()
         if ($state.process.HasExited -or $state.process.MainWindowHandle -eq 0) { throw 'Activated TwinQuay did not survive the stable-window interval.' }
+        Invoke-TwinQuayInstalledWorkflow $state
+        Assert-TwinQuayWorkflowProcess $state
+        $state.modulesAfterWorkflow = @(Get-TwinQuayInstalledModuleEvidence $state)
+        Write-NewUtf8Json (Join-Path $state.output 'loaded-modules-after-workflow.json') $state.modulesAfterWorkflow
+        Invoke-CheckedNative (Join-Path $PSScriptRoot '../../.venv/Scripts/python.exe') @(
+            (Join-Path $PSScriptRoot 'verify_record.py'),'--record',$RecordPath,'--package',$state.package,
+            '--source-commit',$env:GITHUB_SHA,'--installed-root',$state.installed.InstallLocation)
     }.GetNewClosure()
 
     $operations.CloseCleanly = {
-        if (-not $state.process.CloseMainWindow()) { throw 'Activated TwinQuay refused a normal main-window close request.' }
+        Close-TwinQuayWorkflowWindow $state
         $state.processExit = Get-TwinQuayProcessExitEvidence $state.process 15000
         if (-not $state.processExit.normal_exit) { throw ('Activated TwinQuay normal-close observation failed: ' + ($state.processExit | ConvertTo-Json -Compress)) }
         $state.cleanClose = $true
@@ -607,7 +620,11 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
     } elseif ($result.installation_qualification_passed) {
         $evidenceErrors.Add('Successful core qualification did not retain the unsigned package identity.')
     }
-    $qualificationPassed = $result.installation_qualification_passed -and $unsignedUnchanged -and $evidenceErrors.Count -eq 0
+    $workflowPassed = $state.workflow -and $state.workflow.result.passed -and $state.modulesAfterWorkflow.Count -gt 0
+    if ($result.installation_qualification_passed -and -not $workflowPassed) {
+        $evidenceErrors.Add('Successful installation flow did not retain complete installed workflow and post-workflow module evidence.')
+    }
+    $qualificationPassed = $result.installation_qualification_passed -and $unsignedUnchanged -and $evidenceErrors.Count -eq 0 -and $workflowPassed
     $evidence = [ordered]@{
         schema_version = 1
         generated_at_utc = [DateTime]::UtcNow.ToString('o')
@@ -630,15 +647,17 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         executable_sha256 = $state.executableSha256
         loaded_module_count = @($state.modules).Count
         window = $state.window
+        workflow = $state.workflow
+        post_workflow_loaded_module_count = @($state.modulesAfterWorkflow).Count
         process_exit = $state.processExit
         cleanup_process_exit = $state.cleanupProcessExit
         process_identity_ownership_established = $state.processOwned
         clean_close_verified = $state.cleanClose
         uninstall_verified = $state.uninstallVerified
         installation_qualification_passed = $qualificationPassed
-        workflow_acceptance = $false
-        cleanup_restore_workflow_tested = $false
-        duplicate_scanning_tested = $false
+        workflow_acceptance = [bool]$qualificationPassed
+        cleanup_restore_workflow_tested = [bool]$workflowPassed
+        duplicate_scanning_tested = [bool]$workflowPassed
         upgrade_tested = $false
         wack_tested = $false
         store_identity_used = $false
@@ -655,7 +674,7 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
     if (-not $qualificationPassed) {
         throw "TwinQuay installation qualification failed. Primary: $($result.primary_error); cleanup: $($result.cleanup_errors -join '; '); evidence: $($evidenceErrors -join '; ')"
     }
-    Write-Output 'PASS: broker-activated exact package, verified owned modules/window/close, uninstalled, and cleaned certificate state.'
+    Write-Output 'PASS: broker-activated exact package, verified real scan/quarantine/conflict/restore workflow, owned modules/window/close, uninstall and certificate cleanup.'
 }
 
 if (-not $LibraryOnly) {

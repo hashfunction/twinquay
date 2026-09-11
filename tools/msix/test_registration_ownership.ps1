@@ -43,6 +43,9 @@ function Invoke-TwinQuayQualificationCore([Collections.IDictionary]$Operations) 
     [IO.File]::WriteAllText($state.package,'original unsigned bytes')
     $state.unsignedPackageSha256=(Get-FileHash $state.package -Algorithm SHA256).Hash.ToLowerInvariant()
     $state.signedCopy='owned-test-signed-copy.msix'
+    # This fixture isolates registration; provide explicitly synthetic workflow evidence.
+    $state.workflow=[ordered]@{result=[ordered]@{passed=$true}}
+    $state.modulesAfterWorkflow=@("synthetic registration fixture module")
     $state.record=[pscustomobject]@{sourceCommit=('a'*40);payload=[pscustomobject]@{}}
     # Native preflight is unavailable locally. Capture the empty preflight view;
     # actual Add/Get/Remove production closures run through the controlled adapter.

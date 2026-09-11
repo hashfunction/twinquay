@@ -21,7 +21,7 @@ jobs:
       - name: Verify actual packaged main window
         shell: pwsh
         run: ./tools/test-packaged-startup.ps1
-      - name: Qualify temporary MSIX, broker activation and exact owned cleanup
+      - name: Qualify installed scan, quarantine, restore and exact owned cleanup
         timeout-minutes: 10
         shell: pwsh
         run: ./tools/msix/qualify-msix.ps1
@@ -38,3 +38,5 @@ jobs:
             build-evidence/msix-install/*.json
             build-evidence/msix-install/*.txt
             build-evidence/msix-install/*.png
+            build-evidence/msix-install/workflow/*.json
+            build-evidence/msix-install/workflow/*.png
