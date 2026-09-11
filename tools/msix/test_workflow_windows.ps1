@@ -18,7 +18,7 @@ namespace Windows.Automation {
     public class Kind { public string ProgrammaticName="ControlType.Window"; }
     public class Info {
         public string Name; public int ProcessId; public bool IsOffscreen=false;
-        public bool IsEnabled=true; public int NativeWindowHandle; public Kind ControlType=new Kind();
+        public bool IsEnabled=true; public object NativeWindowHandle; public Kind ControlType=new Kind();
     }
     public class AutomationElement {
         public static AutomationElement RootElement; public static object ProcessIdProperty=new object();
@@ -54,13 +54,24 @@ namespace Windows.Automation {
     $modal=[Windows.Automation.AutomationElement]::new('Select a folder to add to the scanning list',8368,200)
     $owner.Children.Add($modal)
     $owner.Children.Add([Windows.Automation.AutomationElement]::new('',8368,0))
+    $virtualRow=[Windows.Automation.AutomationElement]::new('virtual result',8368,0)
+    $virtualRow.Current.ControlType.ProgrammaticName='ControlType.DataItem'
+    $virtualRow.Current.NativeWindowHandle=$null
+    $owner.Children.Add($virtualRow)
     $owner.Children.Add([Windows.Automation.AutomationElement]::new('Foreign error',9999,300))
     $desktop.Children.Add($owner)
     [Windows.Automation.AutomationElement]::RootElement=$desktop
     $state=@{process=[pscustomobject]@{Id=8368}}
     $found=Wait-TwinQuayWorkflowWindow $state 'Select a folder to add to the scanning list' 0
     Assert ([object]::ReferenceEquals($found,$modal)) 'Actual modal descendant was not selected.'
-    Assert (@(Get-TwinQuayWorkflowWindows $state).Count -eq 2) 'Foreign or handleless Qt child became an owned native window.'
+    $windows=@(Get-TwinQuayWorkflowWindows $state)
+    Assert ($windows.Count -eq 2) 'Foreign, handleless, or virtual result row became an owned native window.'
+    $nullWindow=[Windows.Automation.AutomationElement]::new('Unknown window',8368,0)
+    $nullWindow.Current.NativeWindowHandle=$null
+    $owner.Children.Add($nullWindow)
+    $failure=$null;try{Wait-TwinQuayWorkflowWindow $state $modal.Current.Name 0|Out-Null}catch{$failure=$_.Exception.Message}
+    Assert ($failure -ceq 'Cannot convert null to type "System.IntPtr".') 'A null handle on an actual Window was not an immediate unknown observation failure.'
+    $owner.Children.Remove($nullWindow)|Out-Null
     foreach($script:nativeMode in @('foreign-native-pid','child-hwnd','hidden-native-window')){
         $failure=$null;try{Wait-TwinQuayWorkflowWindow $state $modal.Current.Name 0|Out-Null}catch{$failure=$_.Exception.Message}
         Assert ($failure -match 'Timed out') "Native window boundary accepted $script:nativeMode"

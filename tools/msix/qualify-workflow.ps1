@@ -107,9 +107,9 @@ function Get-TwinQuayWorkflowWindows($State) {
         # even though its HWND is a separate top-level window (GA_ROOT).
         foreach ($item in @(Get-TwinQuayWorkflowElements $root)) {
             $element=$item.element
+            if ($item.control_type -cne 'ControlType.Window') { continue }
             $handle=[IntPtr]$element.Current.NativeWindowHandle
-            if ($item.process_id -ne $State.process.Id -or $item.offscreen -or
-                $item.control_type -cne 'ControlType.Window' -or $handle -eq [IntPtr]::Zero) { continue }
+            if ($item.process_id -ne $State.process.Id -or $item.offscreen -or $handle -eq [IntPtr]::Zero) { continue }
             $native=Get-TwinQuayWorkflowNativeWindow $handle
             if ($native.process_id -ne $State.process.Id -or $native.root -ne $handle -or -not $native.visible) { continue }
             if ($handles.Add($handle.ToInt64())) { $result.Add($element) }
