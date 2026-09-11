@@ -152,6 +152,7 @@ class DupeGuru(Broadcaster):
         self.directories = directories.Directories(self.exclude_list)
         self.results = results.Results(self)
         self.results_scan_type = None
+        self._pending_scan_result = None
         self.last_cleanup_receipt = None
         self.ignore_list = IgnoreList()
         # In addition to "app-level" options, this dictionary also holds options that will be
@@ -323,6 +324,14 @@ class DupeGuru(Broadcaster):
                 )
             return
         if jobid == JobType.SCAN:
+            if self._pending_scan_result is not None:
+                scan_type, groups, discarded_count = self._pending_scan_result
+                self._pending_scan_result = None
+                # Publish evidence and its results together on the UI thread.
+                self.results_scan_type = scan_type
+                self.results.groups = groups
+                self.discarded_file_count = discarded_count
+                self._recreate_result_table()
             self._results_changed()
             fs.filesdb.commit()
             if not self.results.groups:
@@ -887,12 +896,13 @@ class DupeGuru(Broadcaster):
                 setattr(scanner, k, v)
         if self.app_mode == AppMode.PICTURE:
             scanner.cache_path = self._get_picture_cache_path()
-        self.results_scan_type = scanner.scan_type
-        self.results.groups = []
-        self._recreate_result_table()
-        self._results_changed()
+        ignore_hardlink_matches = self.options["ignore_hardlink_matches"]
+        fileclasses = self.fileclasses
 
         def do(j):
+            # A refused request never runs this closure and cannot alter results.
+            # Keep the previous result/evidence pair until this scan succeeds.
+            self._pending_scan_result = None
             if profile_scan:
                 pr = cProfile.Profile()
                 pr.enable()
@@ -900,12 +910,12 @@ class DupeGuru(Broadcaster):
             if scanner.scan_type == ScanType.FOLDERS:
                 files = list(self.directories.get_folders(folderclass=se.fs.Folder, j=j))
             else:
-                files = list(self.directories.get_files(fileclasses=self.fileclasses, j=j))
-            if self.options["ignore_hardlink_matches"]:
+                files = list(self.directories.get_files(fileclasses=fileclasses, j=j))
+            if ignore_hardlink_matches:
                 files = self._remove_hardlink_dupes(files)
             logging.info("Scanning %d files" % len(files))
-            self.results.groups = scanner.get_dupe_groups(files, self.ignore_list, j)
-            self.discarded_file_count = scanner.discarded_file_count
+            groups = scanner.get_dupe_groups(files, self.ignore_list, j)
+            self._pending_scan_result = (scanner.scan_type, groups, scanner.discarded_file_count)
             if profile_scan:
                 pr.disable()
                 pr.dump_stats(op.join(self.appdata, f"{datetime.datetime.now():%Y-%m-%d_%H-%M-%S}.profile"))
