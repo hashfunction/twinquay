@@ -16,7 +16,8 @@ function Get-AuthenticodeSignature {
     param([string]$LiteralPath)
     if ($script:mutateDuringSignature) { [IO.File]::WriteAllText($LiteralPath,'changed during verification') }
     [pscustomobject]@{ Status=$script:signatureStatus; SignerCertificate=[pscustomobject]@{
-        Subject=$script:signatureSubject; Issuer='Fixture test authority'; Thumbprint=('A'*40) } }
+        Subject=$script:signatureSubject; SubjectName=[Security.Cryptography.X509Certificates.X500DistinguishedName]::new($script:signatureSubject);
+        Issuer='Fixture test authority'; Thumbprint=('A'*40) } }
 }
 function Assert-Rejected([scriptblock]$Operation) {
     $rejected=$false
@@ -31,7 +32,10 @@ try {
         Assert-Rejected { Get-VerifiedDefenderModuleEvidence -Path $file -PlatformRoot $platform }
     }
     $script:signatureStatus='Valid'
-    foreach ($subject in @('CN=Microsoft Windows Publisher, O=Someone Else, C=US','CN=Unrelated App, O=Microsoft Corporation, C=US','CN=Microsoft Windows Publisher, O=Microsoft Corporation Fake, C=US')) {
+    foreach ($subject in @('CN=Microsoft Windows Publisher, O=Someone Else, C=US','CN=Unrelated App, O=Microsoft Corporation, C=US','CN=Microsoft Windows Publisher, O=Microsoft Corporation Fake, C=US',
+        'CN=Independent Review Signer, O=Independent Review Org, OU="prefix, CN=Microsoft Windows Publisher, O=Microsoft Corporation, suffix", C=US',
+        'CN=Microsoft Windows Publisher, CN=Other, O=Microsoft Corporation, C=US',
+        'CN=Microsoft Windows Publisher, O=Microsoft Corporation, O=Other, C=US')) {
         $script:signatureSubject=$subject
         Assert-Rejected { Get-VerifiedDefenderModuleEvidence -Path $file -PlatformRoot $platform }
     }
@@ -49,7 +53,7 @@ try {
     $linkType=if ($IsWindows) { 'Junction' } else { 'SymbolicLink' }
     New-Item -ItemType $linkType -Path $link -Target $version | Out-Null
     Assert-Rejected { Get-VerifiedDefenderModuleEvidence -Path (Join-Path $link 'MpOav.dll') -PlatformRoot $platform }
-    Write-Output 'PASS: one valid metadata fixture and 13 signature/path/mutation/link rejection cases. Actual Windows signatures remain a native-run check.'
+    Write-Output 'PASS: one valid metadata fixture and 16 signature/path/mutation/link rejection cases. Actual Windows signatures remain a native-run check.'
 } finally {
     Remove-Item -LiteralPath $fixtureRoot -Recurse -Force
 }

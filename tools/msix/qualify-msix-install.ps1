@@ -108,15 +108,26 @@ function Get-VerifiedDefenderModuleEvidence([string]$Path, [string]$PlatformRoot
     $hash = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
     $signature = Get-AuthenticodeSignature -LiteralPath $path
     $certificate = $signature.SignerCertificate
-    if ([string]$signature.Status -cne 'Valid' -or -not $certificate -or
-        $certificate.Subject -cnotmatch '(?:^|,\s*)CN=Microsoft (?:Windows Publisher|Corporation)(?:,|$)' -or
-        $certificate.Subject -cnotmatch '(?:^|,\s*)O=Microsoft Corporation(?:,|$)') {
+    if ([string]$signature.Status -cne 'Valid' -or -not $certificate) {
         throw 'Defender module lacks a valid Microsoft Authenticode signature.'
     }
+    $commonNames = [Collections.Generic.List[string]]::new()
+    $organizations = [Collections.Generic.List[string]]::new()
+    foreach ($rdn in $certificate.SubjectName.EnumerateRelativeDistinguishedNames()) {
+        if ($rdn.HasMultipleElements) { throw 'Ambiguous multi-valued Defender signer RDN.' }
+        switch ($rdn.GetSingleElementType().Value) {
+            '2.5.4.3' { $commonNames.Add($rdn.GetSingleElementValue()) }
+            '2.5.4.10' { $organizations.Add($rdn.GetSingleElementValue()) }
+        }
+    }
+    if ($commonNames.Count -ne 1 -or $organizations.Count -ne 1 -or
+        $commonNames[0] -cnotin @('Microsoft Windows Publisher','Microsoft Corporation') -or
+        $organizations[0] -cne 'Microsoft Corporation') { throw 'Defender signature does not identify the required Microsoft signer.' }
     Assert-NoReparsePath $path
     if ((Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant() -cne $hash) { throw 'Defender module changed during signature verification.' }
     return [ordered]@{ sha256=$hash; signature_status=[string]$signature.Status;
-        signer_subject=$certificate.Subject; signer_issuer=$certificate.Issuer; signer_thumbprint=$certificate.Thumbprint }
+        signer_subject=$certificate.Subject; signer_issuer=$certificate.Issuer; signer_thumbprint=$certificate.Thumbprint;
+        signer_common_name=$commonNames[0]; signer_organization=$organizations[0] }
 }
 
 function Assert-FileMatchesRecord([string]$Path, [object]$Expected, [string]$Label) {
