@@ -59,6 +59,13 @@ class QualificationTests(unittest.TestCase):
             path = self.source / relative
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(files["_internal/" + relative])
+        source_bsd = Path(__file__).resolve().parents[2] / "hscommon/LICENSE"
+        (self.source / "hscommon").mkdir()
+        (self.source / "hscommon/LICENSE").write_bytes(source_bsd.read_bytes())
+        (self.release / "_internal/notices/Hardcoded-Software-BSD-3-Clause.txt").write_bytes(source_bsd.read_bytes())
+        (self.release / "_internal/notices/THIRD-PARTY-NOTICES.txt").write_bytes(
+            files["_internal/THIRD-PARTY-NOTICES.txt"]
+        )
         for name in ("logo-32.png", "logo-256.png", "logo.ico"):
             data = (self.artwork.parent / name).read_bytes()
             for base in (self.source, self.release / "_internal"):
@@ -175,6 +182,19 @@ class QualificationTests(unittest.TestCase):
         (self.release / "_internal/Qt5Core.dll").write_bytes(b"retired runtime")
         with self.assertRaises(ValueError):
             self.refresh_evidence()
+
+    def test_source_copied_notice_changes_rejected_before_receipts_can_be_refreshed(self):
+        for relative in (
+            "_internal/notices/Hardcoded-Software-BSD-3-Clause.txt",
+            "_internal/notices/THIRD-PARTY-NOTICES.txt",
+        ):
+            path = self.release / relative
+            original = path.read_bytes()
+            with self.subTest(relative=relative):
+                path.write_bytes(b"replaced third-party license text")
+                with self.assertRaisesRegex(ValueError, "Original source notice"):
+                    self.refresh_evidence()
+            path.write_bytes(original)
 
     def test_missing_runtime_dependency_notice_entry_cannot_be_hidden_by_new_inventory(self):
         notices = [entry for entry in self.notices if entry["name"] != "PyQt6-Qt6"]

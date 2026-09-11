@@ -203,7 +203,13 @@ def source_inputs(source_root):
         raise ValueError("Actual Qt application title differs from exact TwinQuay qualification title")
     result = {
         name: file_record(source_root / name)
-        for name in ("LICENSE", "THIRD-PARTY-NOTICES.txt", "tools/python-windows-lock.txt", "qt/app.py")
+        for name in (
+            "LICENSE",
+            "THIRD-PARTY-NOTICES.txt",
+            "hscommon/LICENSE",
+            "tools/python-windows-lock.txt",
+            "qt/app.py",
+        )
     }
     for name, record in inventory_tree(source_root / "images/twinquay").items():
         result["images/twinquay/" + name] = record
@@ -225,6 +231,12 @@ def create_input_inventory(release, source_root, source_commit):
         if name in ("LICENSE", "THIRD-PARTY-NOTICES.txt") or name.startswith("images/"):
             if files.get("_internal/" + name) != record:
                 raise ValueError(f"Original source notice/artwork changed or missing: {name}")
+    for staged, original in {
+        "_internal/notices/Hardcoded-Software-BSD-3-Clause.txt": "hscommon/LICENSE",
+        "_internal/notices/THIRD-PARTY-NOTICES.txt": "THIRD-PARTY-NOTICES.txt",
+    }.items():
+        if files.get(staged) != sources[original]:
+            raise ValueError(f"Original source notice changed or missing: {staged}")
     notices = _load_json(release / "_internal/notices/dependency-inventory.json", "dependency notices")
     if not isinstance(notices, list) or not notices:
         raise ValueError("Missing dependency notice inventory")

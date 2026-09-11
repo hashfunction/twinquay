@@ -10,7 +10,7 @@ function Invoke-Checked([string]$Program,[string[]]$Arguments) {
 $python=(Resolve-Path '.venv/Scripts/python.exe').Path
 $powerShell=(Get-Process -Id $PID).Path
 Invoke-Checked $python @('tools/msix/test_msix_qualification.py','-v')
-foreach ($fixture in @('test_qualify_msix_install.ps1','test_msix_evidence.ps1','test_registration_ownership.ps1','test_process_observation.ps1','test_window_evidence.ps1')) {
+foreach ($fixture in @('test_qualify_msix_install.ps1','test_msix_evidence.ps1','test_registration_ownership.ps1','test_process_observation.ps1','test_window_evidence.ps1','test_defender_module.ps1')) {
     Invoke-Checked $powerShell @('-NoLogo','-NoProfile','-File',(Join-Path $PSScriptRoot $fixture))
 }
 $sourceCommit=(git rev-parse HEAD).Trim()

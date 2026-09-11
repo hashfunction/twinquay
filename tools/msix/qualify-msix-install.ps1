@@ -94,6 +94,31 @@ function Get-RecordPayloadEntry([object]$Record, [string]$Relative) {
     return $property.Value
 }
 
+function Get-VerifiedDefenderModuleEvidence([string]$Path, [string]$PlatformRoot) {
+    # Windows run 34604065415 loaded Defender's signed AMSI module outside SystemRoot.
+    # Restrict this exception to the observed module in the documented platform layout.
+    $path = Get-CanonicalPath $Path
+    $platform = Get-CanonicalPath $PlatformRoot
+    if (-not (Test-PathInside $path $platform)) { throw 'Defender module is outside its platform root.' }
+    $relative = [IO.Path]::GetRelativePath($platform, $path).Replace('\','/')
+    if ($relative -cnotmatch '^\d+\.\d+\.\d+\.\d+-\d+/MpOav\.dll$') { throw 'Unexpected Defender module or platform path.' }
+    Assert-NoReparsePath $path
+    $item = Get-Item -LiteralPath $path -Force
+    if ($item.PSIsContainer -or $item.LinkType) { throw 'Defender module is not a regular non-link file.' }
+    $hash = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
+    $signature = Get-AuthenticodeSignature -LiteralPath $path
+    $certificate = $signature.SignerCertificate
+    if ([string]$signature.Status -cne 'Valid' -or -not $certificate -or
+        $certificate.Subject -cnotmatch '(?:^|,\s*)CN=Microsoft (?:Windows Publisher|Corporation)(?:,|$)' -or
+        $certificate.Subject -cnotmatch '(?:^|,\s*)O=Microsoft Corporation(?:,|$)') {
+        throw 'Defender module lacks a valid Microsoft Authenticode signature.'
+    }
+    Assert-NoReparsePath $path
+    if ((Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant() -cne $hash) { throw 'Defender module changed during signature verification.' }
+    return [ordered]@{ sha256=$hash; signature_status=[string]$signature.Status;
+        signer_subject=$certificate.Subject; signer_issuer=$certificate.Issuer; signer_thumbprint=$certificate.Thumbprint }
+}
+
 function Assert-FileMatchesRecord([string]$Path, [object]$Expected, [string]$Label) {
     Assert-NoReparsePath $Path
     $item = Get-Item -LiteralPath $Path -Force
@@ -449,6 +474,7 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         foreach ($module in @($state.process.Modules)) {
             Assert-NoReparsePath $module.FileName
             $path = Get-CanonicalPath $module.FileName
+            $platformSignature = $null
             if (Test-PathInside $path $installRoot) {
                 $relative = $path.Substring($installRoot.Length).TrimStart('\','/').Replace('\','/')
                 $expected = Get-RecordPayloadEntry $state.record $relative
@@ -460,9 +486,13 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
                 $hash = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
                 $origin = 'windows'
             } else {
-                throw "Activated package loaded a module outside its package and Windows: $path"
+                $defenderRoot = Join-Path ([Environment]::GetFolderPath('CommonApplicationData')) 'Microsoft/Windows Defender/Platform'
+                $platformSignature = Get-VerifiedDefenderModuleEvidence -Path $path -PlatformRoot $defenderRoot
+                $relative = $null
+                $hash = $platformSignature.sha256
+                $origin = 'microsoft_defender_signed_platform'
             }
-            $modules.Add([ordered]@{ name=$module.ModuleName; path=$path; origin=$origin; relative_path=$relative; sha256=$hash })
+            $modules.Add([ordered]@{ name=$module.ModuleName; path=$path; origin=$origin; relative_path=$relative; sha256=$hash; platform_signature=$platformSignature })
         }
         foreach ($relative in $requiredRuntime.Keys) { if (-not $requiredRuntime[$relative]) { throw "Activated process did not load required packaged Python/Qt6 runtime: $relative" } }
         $state.modules = @($modules)
