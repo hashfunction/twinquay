@@ -372,7 +372,11 @@ function Get-TwinQuayInstalledModuleEvidence($State) {
             $origin = 'windows'
         } else {
             $defenderRoot = Join-Path ([Environment]::GetFolderPath('CommonApplicationData')) 'Microsoft/Windows Defender/Platform'
-            $platformSignature = Get-VerifiedDefenderModuleEvidence -Path $path -PlatformRoot $defenderRoot
+            try {
+                $platformSignature = Get-VerifiedDefenderModuleEvidence -Path $path -PlatformRoot $defenderRoot
+            } catch {
+                throw "Loaded module '$path' failed the external-platform policy: $($_.Exception.Message)"
+            }
             $relative = $null
             $hash = $platformSignature.sha256
             $origin = 'microsoft_defender_signed_platform'
