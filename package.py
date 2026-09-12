@@ -161,20 +161,9 @@ def package_windows(skip_nsis=False, nsis_path="makensis"):
     try:
         PyInstaller.__main__.run(
             [
-                "--name=TwinQuay",
-                "--windowed",
-                "--onedir",
                 "--clean",
                 "--noconfirm",
-                "--icon=images/twinquay/logo.ico",
-                "--add-data=images/twinquay;images/twinquay",
-                "--add-data=build/locale;locale",
-                "--add-data=build/help;help",
-                "--add-data=LICENSE;.",
-                "--add-data=THIRD-PARTY-NOTICES.txt;.",
-                "--add-data=build/notices;notices",
-                "--version-file=win_version_info.txt",
-                ENTRY_SCRIPT,
+                "TwinQuay.spec",
             ]
         )
     finally:

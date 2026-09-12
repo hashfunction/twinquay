@@ -6,6 +6,8 @@ from pathlib import Path
 import shutil
 import sys
 
+from native_notices import stage_native_notices, source_notice_fallbacks
+
 root = Path("build/notices")
 if root.exists():
     shutil.rmtree(root)  # Generated output: do not carry retired dependencies into a new package.
@@ -20,7 +22,9 @@ for notice in python_notices:
         target = root / ("Python-" + notice.name)
         shutil.copyfile(notice, target)
         python_copied.append(target.name)
-records = [
+native_record = stage_native_notices(Path(__file__).resolve().parents[1], root)
+fallbacks = source_notice_fallbacks(Path(__file__).resolve().parents[1], native_record)
+records = [native_record,
     dict(
         name="Python",
         version=sys.version,
@@ -45,6 +49,8 @@ for distribution in sorted(distributions(), key=lambda d: d.metadata["Name"].low
             output = dest / f"{index}-{source.name}"
             shutil.copyfile(source, output)
             copied.append(str(output.relative_to(root)))
+    if not copied:
+        copied = fallbacks.get((name.lower().replace('_', '-'), distribution.version), [])
     records.append(
         dict(
             name=name,

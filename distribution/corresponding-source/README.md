@@ -6,6 +6,12 @@ All 79 archive inputs in `source-manifest.json` were actually downloaded and mea
 
 The preparation cache is `/private/tmp/twinquay-corresponding-source/downloads` on the audit host. It contains approximately 879 MB, including six compressed Qt module archives. Do not unpack QtWebEngine on a low-space host: its 580,351,104-byte archive contains Chromium/PDFium and is much larger unpacked. Upstream license references and inspection records remain under the adjacent `notices/` and `metadata/` directories.
 
+## Later build evidence
+
+Run **34675033643** retained all 114 native original paths, hashes, versions and signatures plus actual Analysis/PYZ/COLLECT TOCs. Both installed identity modes passed. The 44 formerly unresolved OS-library origins are now identified as incidental JDK PATH copies. See `WINDOWS-SYSTEM-LIBRARIES.md` and `windows-system-baseline.json` for the exact Windows 10 exclusion candidate, actual native import review and required new Windows run. The historical manifest/comparison below remains unchanged. Its source-acquisition and final-release limitations still apply.
+
+The later supplemental package notice set is documented in `NATIVE-NOTICES.md`: 206 exact source notice/declaration files now have validated package staging, and missing wheel notices can use only a same-version source fallback. Configured Qt PDF completeness and VC/MFC redistribution review remain open.
+
 ## Recheck or acquire
 
 From the TwinQuay source root, with Python 3.10 or later:

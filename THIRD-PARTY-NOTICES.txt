@@ -33,12 +33,31 @@ Runtime components (exact resolved versions/hashes: tools/python-windows-lock.tx
   license text retained.
 - Send2Trash: BSD; Virgil Dupras and contributors.
 - mutagen: GPLv2-or-later; upstream authors and contributors.
-- distro: Apache-2.0.
+- distro: Apache-2.0; packaging/build dependency, absent from the audited PYZ.
 - pywin32: PSF-compatible project license, exact wheel notices retained.
 - semantic-version: BSD; Raphaël Barrois.
 - xxhash Python bindings and bundled xxHash: BSD-2-Clause and upstream notices.
 - PyInstaller bootloader: GPLv2-or-later with the distribution exception; include
   the exact tool and bootloader license, not just its Python package metadata.
+
+Windows operating-system components:
+The Windows package requires Windows 10 build 19041 or later. Its reviewed
+freezer recipe uses the operating system's Universal CRT and 43 enumerated
+API-set contracts instead of redistributing incidental SDK/JDK copies.
+VC/MFC libraries remain separate redistributable inputs; their applicable
+Microsoft terms and original provenance still require release review.
+See distribution/corresponding-source/WINDOWS-SYSTEM-LIBRARIES.md in source.
+
+Supplemental notices:
+notices/source-notices contains the exact source license/copyright references
+for native components, including Qt, PDFium, Mesa/LLVM, bundled xxHash, Python
+externals and PyInstaller. NOTICE-INDEX.json records the original archive and
+member hashes. It also includes conservative optional/platform/build notices;
+these references do not mean every component is compiled into this package.
+Qt PDF configured attribution completeness and VC/MFC redistribution terms
+remain explicit review items. Python's Windows Microsoft conditions apply only
+to the Microsoft Distributable Code described in its PC/crtlicense.txt, not to
+Python or TwinQuay's GPL source. No Microsoft endorsement is claimed.
 
 Build/documentation/test tooling and transitive versions are locked. The
 collect_notices.py build helper copies each installed distribution's included

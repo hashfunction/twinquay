@@ -17,6 +17,8 @@ import sys
 import tempfile
 
 from msix.msix_qualification import file_record, inventory_tree
+from windows_system_libraries import (SYSTEM_LIBRARIES, MINIMUM_WINDOWS, filter_binaries, read_imports,
+                                      WindowsSystemResolver, verify_system_resolution)
 
 PINNED_PYINSTALLER = "6.22.2"
 NATIVE_SUFFIXES = {".exe", ".dll", ".pyd"}
@@ -133,11 +135,27 @@ def collect(work, stage, notices, inventory_path, pyinstaller_version, source_co
         native[staged_name] = dict(staged_path=staged_name, staged_absolute_path=str((stage / staged_name).absolute()),
                                    original_path=str(original), typecode=row["typecode"],
                                    original_sha256=original_record["sha256"], bytes=original_record["bytes"],
-                                   pe=pe_header(original))
+                                   pe=pe_header(original), imports=read_imports(original))
     expected = {name for name in actual if Path(name).suffix.lower() in NATIVE_SUFFIXES}
     if not expected or set(native) != expected:
         raise ValueError(f"COLLECT native paths differ from actual staged native inventory: {sorted(expected ^ set(native))}")
-    inputs = dict(package_inventory=file_record(inventory_path), dependency_inventory=file_record(notices), tocs=toc_records)
+    # Independently rederive the exact exclusions from the saved, unmodified Analysis.
+    exclusion_path = work / "windows-system-exclusions.json"
+    exclusions = json.loads(exclusion_path.read_text(encoding="utf-8"))
+    _, expected_exclusions = filter_binaries(analysis["binaries"], MINIMUM_WINDOWS)
+    if exclusions != expected_exclusions:
+        raise ValueError("System exclusion record differs from actual Analysis/original bytes")
+    if any(PureWindowsPath(name).name.lower() in SYSTEM_LIBRARIES for name in actual):
+        raise ValueError("Windows OS component remained in the distributable stage")
+    excluded_native = []
+    for row in exclusions["excluded"]:
+        original = Path(row["source"])
+        excluded_native.append(dict(name=row["name"], original_path=row["source"],
+                                    original_sha256=row["sha256"], bytes=row["bytes"],
+                                    pe=pe_header(original), imports=read_imports(original)))
+    outputs["windows-system-exclusions.json"] = exclusion_path.read_bytes()
+    inputs = dict(package_inventory=file_record(inventory_path), dependency_inventory=file_record(notices), tocs=toc_records,
+                  system_exclusions=file_record(exclusion_path))
     frozen = dict(schema_version=1, source_commit=source_commit, pyinstaller_version=pyinstaller_version,
                   inputs=inputs, analysis=analysis, pyz_modules=pyz_modules, collect_entries=collected,
                   scope="Actual saved freezer TOCs; build analysis includes modules that may not be in PYZ")
@@ -145,14 +163,17 @@ def collect(work, stage, notices, inventory_path, pyinstaller_version, source_co
     evidence = dict(schema_version=1, source_commit=source_commit, pyinstaller_version=pyinstaller_version,
                     inputs=inputs, native_files=[native[name] for name in sorted(native)],
                     scope="Byte-matched actual native collector origins; redistributability and corresponding source require audit",
+                    excluded_native_files=excluded_native,
                     license_clearance=False, corresponding_source_published=False)
     return evidence, outputs
 
 
 def metadata_request(evidence):
     files = {}
-    for row in evidence["native_files"]:
+    for row in evidence["native_files"] + evidence.get("excluded_native_files", []):
         for name in ("original_path", "staged_absolute_path"):
+            if name not in row:
+                continue
             path = row[name]
             key = path.casefold()
             if key in files and files[key]["sha256"] != row["original_sha256"]:
@@ -199,7 +220,20 @@ def main():
     evidence, outputs = collect(source / "build/TwinQuay", source / "dist/TwinQuay",
                                 source / "build/notices/dependency-inventory.json", source / "build-evidence/package-inventory.json",
                                 version("PyInstaller"), commit)
+    resolver = WindowsSystemResolver()
+    resolution = verify_system_resolution(evidence["native_files"], resolver)
+    evidence["windows_system_resolution"] = dict(minimum_windows=MINIMUM_WINDOWS,
+        observed_windows_version=list(sys.getwindowsversion()[:3]), system_directory=str(resolver.system_directory),
+        contracts=resolution, scope="Current Windows host only; no Windows 10 19041 execution claim")
+    evidence["build_policy_inputs"] = {name: file_record(source / name) for name in
+        ("package.py", "TwinQuay.spec", "tools/windows_system_libraries.py", "tools/collect_build_evidence.py",
+         "tools/msix/msix_qualification.py", "tools/python-windows-lock.txt")}
     request = metadata_request(evidence)
+    existing = {row["path"].casefold() for row in request["files"]}
+    for path in sorted({path for row in resolution for path in row["host_paths"]}):
+        if path.casefold() not in existing:
+            request["files"].append(dict(path=path, sha256=file_record(Path(path))["sha256"]))
+            existing.add(path.casefold())
     with tempfile.TemporaryDirectory(prefix="twinquay-native-metadata-") as temporary:
         request_path, output_path = Path(temporary) / "request.json", Path(temporary) / "response.json"
         request_path.write_bytes(json_bytes(request))

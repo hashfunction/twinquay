@@ -17,11 +17,19 @@ from msix.msix_qualification import file_record, inventory_tree
 
 
 def pe_bytes():
-    data = bytearray(256)
+    data = bytearray(1024)
     data[:2] = b"MZ"
     struct.pack_into("<I", data, 60, 128)
     data[128:132] = b"PE\0\0"
-    struct.pack_into("<HHI", data, 132, 0x8664, 3, 1234)
+    struct.pack_into("<HHI", data, 132, 0x8664, 1, 1234)
+    struct.pack_into("<H", data, 148, 240)  # PE32+ optional header
+    struct.pack_into("<H", data, 152, 0x20b)
+    struct.pack_into("<Q", data, 176, 0x140000000)
+    struct.pack_into("<II", data, 184, 4096, 512)
+    struct.pack_into("<II", data, 208, 8192, 512)
+    struct.pack_into("<I", data, 260, 16)
+    data[392:400] = b'.rdata\0\0'
+    struct.pack_into("<IIII", data, 400, 512, 4096, 512, 512)
     return bytes(data)
 
 
@@ -36,7 +44,7 @@ class CollectionTests(unittest.TestCase):
         (self.stage / "_internal/notices").mkdir(parents=True)
         self.original = self.root / "native-input.dll"
         self.original.write_bytes(pe_bytes())
-        (self.stage / "_internal/ucrtbase.dll").write_bytes(pe_bytes())
+        (self.stage / "_internal/vendor-runtime.dll").write_bytes(pe_bytes())
         (self.stage / "TwinQuay.exe").write_bytes(pe_bytes())
         self.notices = self.root / "build/notices/dependency-inventory.json"
         self.notices.parent.mkdir()
@@ -44,12 +52,15 @@ class CollectionTests(unittest.TestCase):
         (self.stage / "_internal/notices/dependency-inventory.json").write_bytes(self.notices.read_bytes())
         self.analysis = ([], [], [], [], {}, [], [], False, {}, 0, [], [], "3.12.10", [],
                          [("qt.app", str(self.root / "qt/app.py"), "PYMODULE")],
-                         [("ucrtbase.dll", str(self.original), "BINARY")], [], [], [], [])
+                         [("vendor-runtime.dll", str(self.original), "BINARY")], [], [], [], [])
         self.collected = [("TwinQuay.exe", str(self.original), "EXECUTABLE"),
-                          ("ucrtbase.dll", str(self.original), "BINARY")]
+                          ("vendor-runtime.dll", str(self.original), "BINARY")]
         self.write_tocs()
         self.inventory = self.root / "package-inventory.json"
         self.refresh_inventory()
+        from windows_system_libraries import filter_binaries, MINIMUM_WINDOWS
+        _, exclusions = filter_binaries(self.analysis[15], MINIMUM_WINDOWS)
+        (self.work / 'windows-system-exclusions.json').write_text(json.dumps(exclusions))
 
     def write_tocs(self):
         for name, value in {
@@ -82,7 +93,7 @@ class CollectionTests(unittest.TestCase):
         self.assertFalse(evidence["corresponding_source_published"])
 
     def test_missing_unknown_duplicate_and_unsafe_native_origins_fail(self):
-        for name in ("../ucrtbase.dll", "C:\\ucrtbase.dll", "a:stream.dll", "ucrtbase.dll."):
+        for name in ("../vendor-runtime.dll", "C:\\vendor-runtime.dll", "a:stream.dll", "vendor-runtime.dll."):
             with self.subTest(name=name):
                 self.collected[1] = (name, str(self.original), "BINARY")
                 self.write_tocs()
@@ -92,24 +103,24 @@ class CollectionTests(unittest.TestCase):
         self.write_tocs()
         with self.assertRaisesRegex(ValueError, "COLLECT native paths"):
             self.collect()
-        self.collected += [("ucrtbase.dll", str(self.original), "BINARY")] * 2
+        self.collected += [("vendor-runtime.dll", str(self.original), "BINARY")] * 2
         self.write_tocs()
         with self.assertRaisesRegex(ValueError, "Duplicate COLLECT"):
             self.collect()
         self.collected.pop()
-        self.collected[1] = ("ucrtbase.dll", str(self.original), "SYMLINK")
+        self.collected[1] = ("vendor-runtime.dll", str(self.original), "SYMLINK")
         self.write_tocs()
         with self.assertRaisesRegex(ValueError, "Unknown native COLLECT type"):
             self.collect()
 
     def test_stage_inventory_origin_bytes_and_dependency_inventory_must_match(self):
-        (self.stage / "_internal/ucrtbase.dll").write_bytes(pe_bytes() + b"transformed")
+        (self.stage / "_internal/vendor-runtime.dll").write_bytes(pe_bytes() + b"transformed")
         with self.assertRaisesRegex(ValueError, "stage inventory"):
             self.collect()
         self.refresh_inventory()
         with self.assertRaisesRegex(ValueError, "original/staged bytes"):
             self.collect()
-        (self.stage / "_internal/ucrtbase.dll").write_bytes(pe_bytes())
+        (self.stage / "_internal/vendor-runtime.dll").write_bytes(pe_bytes())
         self.refresh_inventory()
         self.notices.write_text("[]")
         with self.assertRaisesRegex(ValueError, "dependency inventory"):
@@ -130,7 +141,7 @@ class CollectionTests(unittest.TestCase):
 
     def test_missing_original_and_invalid_pe_fail(self):
         self.original.write_bytes(b"not PE")
-        for path in (self.stage / "TwinQuay.exe", self.stage / "_internal/ucrtbase.dll"):
+        for path in (self.stage / "TwinQuay.exe", self.stage / "_internal/vendor-runtime.dll"):
             path.write_bytes(b"not PE")
         self.refresh_inventory()
         with self.assertRaisesRegex(ValueError, "PE"):
@@ -138,6 +149,29 @@ class CollectionTests(unittest.TestCase):
         self.original.unlink()
         with self.assertRaises((ValueError, FileNotFoundError)):
             self.collect()
+
+    def test_exclusions_rederived_from_real_analysis_bytes_and_never_staged(self):
+        from windows_system_libraries import filter_binaries, MINIMUM_WINDOWS
+        dll = self.root/'ucrtbase.dll'; dll.write_bytes(pe_bytes())
+        analysis = list(self.analysis)
+        analysis[15] = list(analysis[15]) + [('ucrtbase.dll',str(dll),'BINARY')]
+        self.analysis = tuple(analysis); self.write_tocs()
+        exclusion_path = self.work/'windows-system-exclusions.json'
+        _, excluded = filter_binaries(self.analysis[15], MINIMUM_WINDOWS)
+        exclusion_path.write_text(json.dumps(excluded))
+        evidence, outputs = self.collect()
+        self.assertEqual(len(evidence['native_files']), 2)
+        self.assertEqual(evidence['excluded_native_files'][0]['original_path'], str(dll))
+        self.assertIn(str(dll), [r['path'] for r in metadata_request(evidence)['files']])
+        self.assertEqual(json.loads(outputs['frozen-build-tocs.json'])['analysis']['binaries'][-1][0], 'ucrtbase.dll')
+        excluded['excluded'] = []
+        exclusion_path.write_text(json.dumps(excluded))
+        with self.assertRaisesRegex(ValueError, 'exclusion record differs'): self.collect()
+        _, excluded = filter_binaries(self.analysis[15], MINIMUM_WINDOWS)
+        exclusion_path.write_text(json.dumps(excluded))
+        (self.stage/'_internal/ucrtbase.dll').write_bytes(dll.read_bytes())
+        self.collected.append(('ucrtbase.dll',str(dll),'BINARY')); self.write_tocs(); self.refresh_inventory()
+        with self.assertRaisesRegex(ValueError, 'OS component remained'): self.collect()
 
     def test_metadata_is_exact_complete_and_byte_bound(self):
         evidence, _ = self.collect()
