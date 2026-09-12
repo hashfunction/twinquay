@@ -1,0 +1,196 @@
+{
+  "name": "restored-receipt-observation",
+  "title": "Quarantine Receipts — DupliSift",
+  "process_id": 3620,
+  "controls": [
+    {
+      "name": "Quarantine Receipts — DupliSift",
+      "control_type": "ControlType.Window",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "Quarantine Receipts — DupliSift",
+      "control_type": "ControlType.TitleBar",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "System Menu Bar",
+      "control_type": "ControlType.MenuBar",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "System",
+      "control_type": "ControlType.MenuItem",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "Close",
+      "control_type": "ControlType.Button",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "C:\\Demo\\Cedar House Review\\Review Copies\\c50372f3-11ec-48a6-a949-290eff563826\\receipt.json\nSelect items to restore. Existing original files are always kept. A failed or interrupted item may require manual review of its payload folder.",
+      "control_type": "ControlType.Text",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "Open receipt…",
+      "control_type": "ControlType.Button",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Table",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Pane",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "Restore",
+      "control_type": "ControlType.Header",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "Original path",
+      "control_type": "ControlType.Header",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "Quarantined payload",
+      "control_type": "ControlType.Header",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "Status",
+      "control_type": "ControlType.Header",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "Detail",
+      "control_type": "ControlType.Header",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "1",
+      "control_type": "ControlType.Header",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.DataItem",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "C:\\Demo\\Cedar House Review\\Project Documents\\Cedar House Brief - emailed.txt",
+      "control_type": "ControlType.DataItem",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "C:\\Demo\\Cedar House Review\\Review Copies\\c50372f3-11ec-48a6-a949-290eff563826\\payload\\084f8eeb-4dfa-5820-998b-c5e8d7cebef6\\Cedar House Brief - emailed.txt",
+      "control_type": "ControlType.DataItem",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "restored",
+      "control_type": "ControlType.DataItem",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.DataItem",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "",
+      "control_type": "ControlType.Group",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "Close",
+      "control_type": "ControlType.Button",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    },
+    {
+      "name": "Restore selected",
+      "control_type": "ControlType.Button",
+      "process_id": 3620,
+      "enabled": true,
+      "offscreen": false
+    }
+  ],
+  "native_window": {
+    "handle": 590456,
+    "root": 590456,
+    "process_id": 3620,
+    "title": "Quarantine Receipts — DupliSift",
+    "class_name": "Qt6112QWindowIcon"
+  },
+  "surface_geometry": {
+    "uia_bounds": {
+      "left": 68.0,
+      "top": 97.0,
+      "right": 1852.0,
+      "bottom": 958.0,
+      "width": 1784.0,
+      "height": 861.0
+    },
+    "virtual_screen": {
+      "left": 0.0,
+      "top": 0.0,
+      "right": 1920.0,
+      "bottom": 1080.0,
+      "width": 1920.0,
+      "height": 1080.0
+    },
+    "fully_visible": true
+  },
+  "screenshot_sha256": "01b1eede870b6be2cdf3647b616cebea3647c32c2c27303fd621f9d1228f0b9e",
+  "screenshot_error": null
+}

@@ -20,11 +20,21 @@ Check ($failed -and $script:events.Count -eq 2) 'Original refusal was swallowed 
 $script:events.Clear();$script:surfaceFailure=$false
 Save-TwinQuayWorkflowSurface @{} @{} '06-conflict-disclosed' $root
 Check (($script:events -join '|') -ceq 'original:06-conflict-disclosed') 'Nonmarketing conflict proof was changed.'
-$base=@{process_id=42;rows=1;columns=5;path_pid=42;status_pid=42;checkbox_pid=42;original_path='C:\Demo\Cedar House Review\Project Documents\Cedar House Brief - emailed.txt';status='restored';checkbox_enabled=$false;path_offscreen=$false;status_offscreen=$false}
+# Real Windows observation: Qt's inactive restored checkbox is an enabled UIA
+# DataItem. Test the recorded provider value, not the model flag assumption.
+$observed=Get-Content -LiteralPath (Join-Path $PSScriptRoot 'fixtures/34685566093-restored-observation.json') -Raw|ConvertFrom-Json
+$cells=@($observed.controls|Where-Object control_type -CEQ 'ControlType.DataItem')
+Check ($cells.Count -eq 5) 'Native restored row fixture differs.'
+$nativeSnapshot=@{process_id=$observed.process_id;rows=1;columns=5;path_pid=$cells[1].process_id;status_pid=$cells[3].process_id;
+    checkbox_pid=$cells[0].process_id;original_path=$cells[1].name;status=$cells[3].name;checkbox_enabled=$cells[0].enabled;
+    path_offscreen=$cells[1].offscreen;status_offscreen=$cells[3].offscreen;table_type='ControlType.Table';
+    path_type=$cells[1].control_type;status_type=$cells[3].control_type;checkbox_type=$cells[0].control_type;observation_error=$null}
+Assert-DupliRestoredTable $nativeSnapshot $observed.process_id $cells[1].name
+$base=@{process_id=42;rows=1;columns=5;path_pid=42;status_pid=42;checkbox_pid=42;original_path='C:\Demo\Cedar House Review\Project Documents\Cedar House Brief - emailed.txt';status='restored';checkbox_enabled=$true;path_offscreen=$false;status_offscreen=$false;table_type='ControlType.Table';path_type='ControlType.DataItem';status_type='ControlType.DataItem';checkbox_type='ControlType.DataItem';observation_error=$null}
 Assert-DupliRestoredTable $base 42 $base.original_path
-foreach ($key in @('process_id','rows','columns','path_pid','status_pid','checkbox_pid','original_path','status','checkbox_enabled','path_offscreen','status_offscreen')) {
+foreach ($key in @('process_id','rows','columns','path_pid','status_pid','checkbox_pid','original_path','status','checkbox_enabled','path_offscreen','status_offscreen','table_type','path_type','status_type','checkbox_type','observation_error')) {
     $copy=@{};foreach($name in $base.Keys){$copy[$name]=$base[$name]}
-    $copy[$key]=if($key -in @('checkbox_enabled','path_offscreen','status_offscreen')){$true}elseif($key -in @('original_path','status')){'foreign'}else{99}
+    $copy[$key]=if($key -eq 'checkbox_enabled'){$false}elseif($key -in @('path_offscreen','status_offscreen')){$true}elseif($key -in @('original_path','status','table_type','path_type','status_type','checkbox_type','observation_error')){'foreign'}else{99}
     $failed=$false;try{Assert-DupliRestoredTable $copy 42 $base.original_path}catch{$failed=$true};Check $failed "Changed restored row accepted: $key"
 }
 # Call the actual original workflow entrypoint and Prepare closure. Suppress only

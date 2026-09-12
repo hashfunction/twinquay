@@ -25,7 +25,7 @@ jobs:
           python -m unittest discover -s tools/marketing -p 'test_*.py' -v
           if ($LASTEXITCODE -ne 0) { throw 'Capture Python boundary tests failed.' }
           $pwsh=(Get-Process -Id $PID).Path
-          foreach ($fixture in @('test_capture_helpers.ps1','test_display_modes.ps1')) {
+          foreach ($fixture in @('test_capture_helpers.ps1','test_display_modes.ps1','test_capture_receipt.ps1')) {
             & $pwsh -NoProfile -File (Join-Path 'tools/marketing' $fixture)
             if ($LASTEXITCODE -ne 0) { throw "Capture native helper fixture failed: $fixture" }
           }
