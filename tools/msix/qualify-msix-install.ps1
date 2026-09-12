@@ -184,7 +184,9 @@ function Get-VerifiedWindowsTextInputModuleEvidence([string]$Path) {
     foreach ($field in @('OriginalFilename','CompanyName','ProductName','FileDescription','FileVersion')) {
         if (([string]$version.$field).Length -gt 1024) { throw 'Windows text input module exceeds its metadata bound.' }
     }
-    if (-not [string]::Equals($version.OriginalFilename,'tiptsf.dll',[StringComparison]::OrdinalIgnoreCase) -or
+    # GetFileVersionInfo merges non-fixed strings from the matching MUI file.
+    # Native run 34671438215 returned TipTsf.dll.mui for this exact signed DLL.
+    if ($version.OriginalFilename -inotin @('tiptsf.dll','tiptsf.dll.mui') -or
         $version.CompanyName -cne 'Microsoft Corporation') {
         $details=[ordered]@{original_filename=$version.OriginalFilename;company_name=$version.CompanyName;
             file_version=$version.FileVersion;filesystem_link_type=$linkType} | ConvertTo-Json -Compress

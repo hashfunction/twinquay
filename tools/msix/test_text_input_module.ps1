@@ -58,7 +58,9 @@ try {
     $script:subject='CN=Microsoft Windows Publisher, O=Microsoft Corporation, C=US'
     $script:version.OriginalFilename='TIPTSF.DLL'
     Check ((Get-VerifiedWindowsTextInputModuleEvidence $script:expected).original_filename -ceq 'TIPTSF.DLL') 'Windows filename case rejected.'
-    foreach ($name in @('kernel32.dll','tiptsf.dll.fake','')) {
+    $script:version.OriginalFilename='TipTsf.dll.mui'
+    Check ((Get-VerifiedWindowsTextInputModuleEvidence $script:expected).original_filename -ceq 'TipTsf.dll.mui') 'Observed Windows localized version identity rejected.'
+    foreach ($name in @('kernel32.dll','kernel32.dll.mui','tiptsf.dll.fake','tiptsf.dll.mui.fake','')) {
         $script:version.OriginalFilename=$name
         Reject { Get-VerifiedWindowsTextInputModuleEvidence $script:expected } 'version identity'
     }
