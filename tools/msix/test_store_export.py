@@ -174,10 +174,20 @@ class PublicationTests(unittest.TestCase):
 
     def test_actual_git_archive_complete_tree_and_modes(self):
         commit=self.make_git();archive=self.root.parent/(self.root.name+'.tar.gz');self.addCleanup(archive.unlink)
-        subprocess.run(['git','-C',str(self.root),'archive','--format=tar.gz','--prefix=fixture/','-o',str(archive),commit],check=True)
+        subprocess.run(['git','-C',str(self.root),'-c','core.autocrlf=false','-c','core.eol=lf','archive','--format=tar.gz','--prefix=fixture/','-o',str(archive),commit],check=True)
         result=publication.verify_application_archive(archive,self.root,commit)
         self.assertEqual(result['verified_tracked_files'],2)
         self.assertEqual(result['source_commit'],commit)
+
+    def test_archive_fixture_uses_git_bytes_with_windows_checkout_conversion(self):
+        commit=self.make_git()
+        subprocess.run(['git','-C',str(self.root),'config','core.autocrlf','true'],check=True)
+        archive=self.root/'windows-checkout.tar.gz'
+        subprocess.run(['git','-C',str(self.root),'archive','--format=tar.gz','--prefix=fixture/','-o',str(archive),commit],check=True)
+        with self.assertRaisesRegex(ValueError,'source bytes differ'):
+            publication.verify_application_archive(archive,self.root,commit)
+        subprocess.run(['git','-C',str(self.root),'-c','core.autocrlf=false','-c','core.eol=lf','archive','--format=tar.gz','--prefix=fixture/','-o',str(archive),commit],check=True)
+        self.assertEqual(publication.verify_application_archive(archive,self.root,commit)['verified_tracked_files'],2)
 
     def test_archive_tampering_missing_extra_duplicate_or_mode_refuses(self):
         commit=self.make_git()
@@ -271,7 +281,9 @@ class FullExportTests(unittest.TestCase):
         if url.endswith('/source-release-assets.json'):
             shutil.copyfile(self.source/export.CLOSURE/'source-release-assets.json',target)
         else:
-            subprocess.run(['git','-C',str(self.source),'archive','--format=tar.gz','--prefix=fixture/','-o',str(target),self.commit],check=True)
+            # GitHub source archives contain repository bytes. Git for Windows
+            # otherwise applies the host's core.autocrlf to a local git archive.
+            subprocess.run(['git','-C',str(self.source),'-c','core.autocrlf=false','-c','core.eol=lf','archive','--format=tar.gz','--prefix=fixture/','-o',str(target),self.commit],check=True)
         return dict(url=url,final_url=url,**msix.file_record(target),verified_at_utc='2026-09-12T08:00:00Z')
 
     def run_export(self):
