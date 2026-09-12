@@ -64,6 +64,40 @@ def test_actual_scanner_labels_and_result_action_shortcuts(controller):
         assert f"'{keys}'" in SCRIPT
 
 
+def test_recent_folder_menu_arrows_enter_open_actual_add_folder_action(controller, monkeypatch):
+    from PyQt6.QtTest import QTest
+
+    directory = controller.directories_dialog
+    observed = []
+    monkeypatch.setattr(QFileDialog, "exec", lambda dialog: observed.append(dialog.windowTitle()) or 0)
+    assert directory.recentFolders.isEmpty()
+    assert directory.addFolderButton.menu() is None
+    directory.addFolderButton.click()
+    assert observed == ["Select a folder to add to the scanning list"]
+    previous = "D:/a/_temp/.twinquay-install-previous/workflow-fixture/input"
+    directory.recentFolders.insertItem(previous)
+    menu = directory.addFolderButton.menu()
+    assert menu is directory.menuRecentFolders
+    assert menu.actions()[0] is directory.actionAddFolder
+    assert menu.actions()[0].text() == "Add Folder..." and menu.actions()[0].isEnabled()
+    assert menu.actions()[-1].text() == "Clear List"
+    history = list(directory.recentFolders._items)
+    starts = [None] + [action for action in menu.actions() if not action.isSeparator()]
+    for initial in starts:
+        menu.popup(QPoint(30, 30))
+        menu.setActiveAction(initial)
+        for _ in range(12):
+            if menu.activeAction() is directory.actionAddFolder:
+                break
+            key = Qt.Key.Key_Up if menu.activeAction() else Qt.Key.Key_Down
+            QTest.keyClick(menu, key)
+        assert menu.activeAction() is directory.actionAddFolder
+        QTest.keyClick(menu, Qt.Key.Key_Return)
+    assert observed == ["Select a folder to add to the scanning list"] * (1 + len(starts))
+    assert directory.recentFolders._items == history
+    assert "Wait-TwinQuayWorkflowAddFolderChooser" in SCRIPT
+
+
 def test_real_plan_widget_saves_exact_reviewed_selection(controller, tmp_path, monkeypatch):
     from qt.cleanup_plan_dialog import CleanupPlanDialog
 

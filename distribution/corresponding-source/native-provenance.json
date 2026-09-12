@@ -1,0 +1,1064 @@
+[
+  {
+    "path": "TwinQuay.exe",
+    "bytes": 3482142,
+    "sha256": "b78cc750cf0c5c9e2742b701a9f3ebc56f96963375da2c3692567c7e03834a6b",
+    "matches": [],
+    "unmatched_reason": "Built from TwinQuay source with the recorded compiler; final executable is modified by PyInstaller"
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/bin/MSVCP140.dll",
+    "bytes": 557728,
+    "sha256": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/bin/msvcp140.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/bin/MSVCP140_1.dll",
+    "bytes": 35952,
+    "sha256": "bfad5aef4c63a669e3c140655cdfdf395b6c979b400a447bd5dcb65ed8826c3d",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/bin/msvcp140_1.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/bin/MSVCP140_2.dll",
+    "bytes": 280200,
+    "sha256": "3ea06f0ee098b4823cb79599df3780e7f23cce52c19aac31d2a0d47efe33a5e9",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/bin/msvcp140_2.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/bin/Qt6Core.dll",
+    "bytes": 10363704,
+    "sha256": "22c113a5644b875b2c85482723cd5d2e6a3a4029169778fcc78adde08ef3b6aa",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/bin/Qt6Core.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/bin/Qt6Gui.dll",
+    "bytes": 9546552,
+    "sha256": "19265a4e76efc12ef5f5bcf59be6c6a5b9b59ec4c89660797738bd2da7f719cc",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/bin/Qt6Gui.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/bin/Qt6Network.dll",
+    "bytes": 1751352,
+    "sha256": "75ff0896a618f4f5b602f391eb4917a55fd738b2e751d2cf18244a0de3619184",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/bin/Qt6Network.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/bin/Qt6Pdf.dll",
+    "bytes": 4620600,
+    "sha256": "c68882fca099e0647455e8612f6e8e28f584badd58977553687ea6b9ebea86bb",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/bin/Qt6Pdf.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/bin/Qt6Svg.dll",
+    "bytes": 609080,
+    "sha256": "1052c17a9df0eb82023e0e4c369bbd0af58e4c5fea3c27a4b5ee83b60c015492",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/bin/Qt6Svg.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/bin/Qt6Widgets.dll",
+    "bytes": 6497080,
+    "sha256": "e6d0b7e2e697de6ad985b97f9ed8b381c1c2172fcae87b6ab08455b3b7330f32",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/bin/Qt6Widgets.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/bin/VCRUNTIME140.dll",
+    "bytes": 124544,
+    "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/bin/vcruntime140.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/bin/VCRUNTIME140_1.dll",
+    "bytes": 49792,
+    "sha256": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/bin/vcruntime140_1.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/bin/opengl32sw.dll",
+    "bytes": 20639888,
+    "sha256": "b04de4541863bc7d8879040a78889c4849c1b1da2784c4630f734c146c2998ce",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/bin/opengl32sw.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/generic/qtuiotouchplugin.dll",
+    "bytes": 101176,
+    "sha256": "a0b971771417d60c6c2dedf66d06f6e99bd3236aa1aa6949c7e4e08d51fb69f9",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/generic/qtuiotouchplugin.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/iconengines/qsvgicon.dll",
+    "bytes": 72504,
+    "sha256": "7879ba1d2f293ad09c515de736add8c1023b0a4e80e2301d1283555efc2e8828",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/iconengines/qsvgicon.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/imageformats/qgif.dll",
+    "bytes": 47928,
+    "sha256": "de1c1ea34cbc4156ce452023470e2145af4855128756d081d56e9a0997d0dda8",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/imageformats/qgif.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/imageformats/qicns.dll",
+    "bytes": 57144,
+    "sha256": "2a5651332d5bc3d47bd171ad68feb5bb9d14471cf9223227cac557706df11771",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/imageformats/qicns.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/imageformats/qico.dll",
+    "bytes": 46904,
+    "sha256": "af98cacb134525fab15cf2146a4e6b90266f14493e72e4d51df89a5caadea157",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/imageformats/qico.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/imageformats/qjpeg.dll",
+    "bytes": 591672,
+    "sha256": "a8854ac38d2bb83e8018bdcbfc93420a876251b3d2a79933e1a3c9a8ed2a24cb",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/imageformats/qjpeg.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/imageformats/qpdf.dll",
+    "bytes": 42296,
+    "sha256": "3983e4dd27ef4cedfec35212eb8e1a28a38f1b909bcadbe040776d15ca836ffc",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/imageformats/qpdf.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/imageformats/qsvg.dll",
+    "bytes": 39736,
+    "sha256": "486b395e23e258d03d54cdba045f129e9b1321f9ff12f99fe58293e0351b8caf",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/imageformats/qsvg.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/imageformats/qtga.dll",
+    "bytes": 38200,
+    "sha256": "a9a4e7031f7dc4b57888dd2a7571c01091fa291ba99dc9344957b84a24c747a2",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/imageformats/qtga.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/imageformats/qtiff.dll",
+    "bytes": 445752,
+    "sha256": "000a6ed1cd0b9f0fea0e2778c1ff42064aa1c68bb6dd40a3bbd6fda8afe3ba77",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/imageformats/qtiff.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/imageformats/qwbmp.dll",
+    "bytes": 36664,
+    "sha256": "b3bfd939b254b6159e04e5043e348d0be3b8d2c8da8301ec5f8cc7276a9ef479",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/imageformats/qwbmp.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/imageformats/qwebp.dll",
+    "bytes": 564536,
+    "sha256": "8f8f6614fa95ed25aee9e7f7cde64716171028f7cd06cce9b1ad5854e13446ed",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/imageformats/qwebp.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/platforms/qminimal.dll",
+    "bytes": 61752,
+    "sha256": "3a41a14b6f168db68fb441621a787f894b275e57f667d0b00e3b1e7fa6952fe9",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/platforms/qminimal.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/platforms/qoffscreen.dll",
+    "bytes": 110904,
+    "sha256": "95391476bba1d0b50cc822b93d7509341024cc7c18cd615f82e471a3e3a61caa",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/platforms/qoffscreen.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/platforms/qwindows.dll",
+    "bytes": 991032,
+    "sha256": "d94c584a18829d11fbf3aefd07e7b1e189e0cf063a0515826960037efa7465df",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/platforms/qwindows.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/Qt6/plugins/styles/qmodernwindowsstyle.dll",
+    "bytes": 240440,
+    "sha256": "f6b88d403d7175f5b830d4958264690e5c8bbaf0148e1ccf42d52704b0480792",
+    "matches": [
+      {
+        "archive": "pyqt6_qt6-6.11.2-py3-none-win_amd64.whl",
+        "member": "PyQt6/Qt6/plugins/styles/qmodernwindowsstyle.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/QtCore.pyd",
+    "bytes": 2666496,
+    "sha256": "91dd5166110b88a4f4d3acda6fe6c10ed699882dd3602328a59e9f656cc766b1",
+    "matches": [
+      {
+        "archive": "pyqt6-6.11.0-cp310-abi3-win_amd64.whl",
+        "member": "PyQt6/QtCore.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/QtGui.pyd",
+    "bytes": 2310144,
+    "sha256": "cf5ae37fd119fb29a53f1f2cea1362fdf036d940191be45d83da0f98ce8752b8",
+    "matches": [
+      {
+        "archive": "pyqt6-6.11.0-cp310-abi3-win_amd64.whl",
+        "member": "PyQt6/QtGui.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/QtWidgets.pyd",
+    "bytes": 5072896,
+    "sha256": "4f81361816e94e1ae05f178085b22d5b9b19e417713b1966dd481a4017aa3b21",
+    "matches": [
+      {
+        "archive": "pyqt6-6.11.0-cp310-abi3-win_amd64.whl",
+        "member": "PyQt6/QtWidgets.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/PyQt6/sip.cp312-win_amd64.pyd",
+    "bytes": 111104,
+    "sha256": "80e3122ad70cc48f71388f18b9094eb655c0950e129463967e33f7d102b78f4c",
+    "matches": [
+      {
+        "archive": "pyqt6_sip-13.12.0-cp312-cp312-win_amd64.whl",
+        "member": "PyQt6/sip.cp312-win_amd64.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/Pythonwin/mfc140u.dll",
+    "bytes": 5664848,
+    "sha256": "643ce7fe6a203c53a96a00f272a1a5b42d5b0c320c84364a6fe866307a19bb65",
+    "matches": [
+      {
+        "archive": "pywin32-311-cp312-cp312-win_amd64.whl",
+        "member": "pythonwin/mfc140u.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/Pythonwin/win32ui.pyd",
+    "bytes": 1051648,
+    "sha256": "5f7b34623a17f357f21cdcaa05b6cdc5cf8cf15d25c6406c3f0c2d9002b72b7f",
+    "matches": [
+      {
+        "archive": "pywin32-311-cp312-cp312-win_amd64.whl",
+        "member": "pythonwin/win32ui.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/VCRUNTIME140.dll",
+    "bytes": 120400,
+    "sha256": "052ad6a20d375957e82aa6a3c441ea548d89be0981516ca7eb306e063d5027f4",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "vcruntime140.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/VCRUNTIME140_1.dll",
+    "bytes": 49776,
+    "sha256": "6a99bc0128e0c7d6cbbf615fcc26909565e17d4ca3451b97f8987f9c6acbc6c8",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "vcruntime140_1.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_bz2.pyd",
+    "bytes": 86896,
+    "sha256": "65f610646d10d5babea080e060d244b546ec52c54012e5e937dc72dcc2e2e7bc",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_bz2.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_ctypes.pyd",
+    "bytes": 127480,
+    "sha256": "0e56107a891100535f2da79d85a5ae65ff1227b4765bd108f8593ac1a1110d81",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_ctypes.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_decimal.pyd",
+    "bytes": 262000,
+    "sha256": "aeacfead2befcc0768063a037bb64bd32109ae09cb144e5f571b04dd7965db9d",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_decimal.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_elementtree.pyd",
+    "bytes": 135160,
+    "sha256": "5009a9a53c03ef8387443b5cf6ce08e5c3a79727466a0b931c5bbca915bf89ca",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_elementtree.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_hashlib.pyd",
+    "bytes": 68976,
+    "sha256": "03d233dbace599168eaffec823de6ed7beec8c2a4ebfe9b8a3d8e042a59af3ba",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_hashlib.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_lzma.pyd",
+    "bytes": 161136,
+    "sha256": "e3deecc1f59a3b811c608861decd84de1e8df8bafd5e2b39188861318c5a38cf",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_lzma.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_multiprocessing.pyd",
+    "bytes": 37368,
+    "sha256": "2c636df7059cb0dd7e978dd735c7c5c8ddb09cf94754cf9e232296b96c5c545a",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_multiprocessing.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_queue.pyd",
+    "bytes": 33784,
+    "sha256": "48e76e0ad63f6932b4a77b5819f41c1e7595636ca8d9e824f0943a14b8bb5035",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_queue.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_socket.pyd",
+    "bytes": 85496,
+    "sha256": "3efa4636cf9e350856f6927d67a4c2564bf9bd2758a00bbf17d3aece5b60016d",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_socket.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_sqlite3.pyd",
+    "bytes": 126184,
+    "sha256": "64b51df2805c58b023a875e8ae3be7ac7f61ef664f32ca6c90f6315da47ef0bc",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_sqlite3.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_ssl.pyd",
+    "bytes": 179432,
+    "sha256": "0bc527d2dbc50009f43b2ed5d5982c4f63f4b647647ffa9eda612dcda80f6040",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_ssl.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_uuid.pyd",
+    "bytes": 27128,
+    "sha256": "acce4f281d7ffb2dec0997527faf25b1df62ad7bd3032c568ddcf65c90edc867",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_uuid.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/_wmi.pyd",
+    "bytes": 40304,
+    "sha256": "a980f1e7a29842bd946863fc2693fbeb555a9dc0f9e1630dfed9a2fcdef3ece2",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "_wmi.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/api-ms-win-core-console-l1-1-0.dll",
+    "bytes": 22072,
+    "sha256": "88ace577a9c51061cb7d1a36babbbefa48212fadc838ffde98fdfff60de18386",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-datetime-l1-1-0.dll",
+    "bytes": 22056,
+    "sha256": "1bd81dfd19204b44662510d9054852fb77c9f25c1088d647881c9b976cc16818",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-debug-l1-1-0.dll",
+    "bytes": 21944,
+    "sha256": "591358eb4d1531e9563ee0813e4301c552ce364c912ce684d16576eabf195dc3",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-errorhandling-l1-1-0.dll",
+    "bytes": 22096,
+    "sha256": "d56ce7b1cd76108ad6c137326ec694a14c99d48c3d7b0ace8c3ff4d9bcee3ce8",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-fibers-l1-1-0.dll",
+    "bytes": 22072,
+    "sha256": "91d249d7bc0e38ef6bcb17158b1fdc6dd8888dc086615c9b8b750b87e52a5fb3",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-fibers-l1-1-1.dll",
+    "bytes": 22072,
+    "sha256": "fc9d86cec621383eab636ebc87ddd3f5c19a3cb2a33d97be112c051d0b275429",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-file-l1-1-0.dll",
+    "bytes": 26152,
+    "sha256": "1ca895aba4e7435563a6b43e85eba67a0f8c74aa6a6a94d0fc48fa35535e2585",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-file-l1-2-0.dll",
+    "bytes": 22056,
+    "sha256": "4cadbc0c39da7c6722206fdcebd670abe5b8d261e7b041dd94f9397a89d1990d",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-file-l2-1-0.dll",
+    "bytes": 21960,
+    "sha256": "93c624b366ba16c643fc8933070a26f03b073ad0cf7f80173266d67536c61989",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-handle-l1-1-0.dll",
+    "bytes": 21944,
+    "sha256": "39095f59c41d76ec81bb2723d646fde4c148e7cc3402f4980d2ade95cb9c84f9",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-heap-l1-1-0.dll",
+    "bytes": 22072,
+    "sha256": "8f105771b236dbcb859de271f0a6822ce1cb79c36988dd42c9e3f6f55c5f7eb9",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-interlocked-l1-1-0.dll",
+    "bytes": 22072,
+    "sha256": "53b25e753ca785bf8b695d89dde5818a318890211dc992a89146f16658f0b606",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-kernel32-legacy-l1-1-1.dll",
+    "bytes": 22080,
+    "sha256": "a9b13a1cd1b8c19b0c6b4afcd5bb0dd29c0e2288231ac9e6db8510094ce68ba6",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-libraryloader-l1-1-0.dll",
+    "bytes": 22056,
+    "sha256": "7f39ba298b41e4963047341288cab36b6a241835ee11ba4ad70f44dacd40906c",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-localization-l1-2-0.dll",
+    "bytes": 22080,
+    "sha256": "6ee44dd0d8510dc024c9f7c79b1b9fa88c987b26b6beb6653ddd11751c34e5dc",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-memory-l1-1-0.dll",
+    "bytes": 22056,
+    "sha256": "0512a35316ec9180437f86696a84c5c06a7e4e82e050055a656e5bf9fca206f9",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-namedpipe-l1-1-0.dll",
+    "bytes": 22096,
+    "sha256": "c05f1fffe3b5a2738ea54ce9485cca026fb9635f982626fba1e1dcc531897273",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-processenvironment-l1-1-0.dll",
+    "bytes": 21968,
+    "sha256": "c4eca98c3c67b6395d5b005b00ac1eb0318b86b23aa71035a44c2b1602befba9",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-processthreads-l1-1-0.dll",
+    "bytes": 22096,
+    "sha256": "5ccb89e93d67bc3288d4e84649c5346e66e15e3d7cd65d989daf3f4cb584be9a",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-processthreads-l1-1-1.dll",
+    "bytes": 22072,
+    "sha256": "4ad565a8ba3ef0ea8ab87221ad11f83ee0bc844ce236607958406663b407333e",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-profile-l1-1-0.dll",
+    "bytes": 22080,
+    "sha256": "7809160932f44e59b021699f5bc68799eb7293ee1fa926d6fcca3c3445302e61",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-rtlsupport-l1-1-0.dll",
+    "bytes": 21960,
+    "sha256": "9dc1e91e71c7c054854bd1487cb4e6946d82c9f463430f1c4e8d1471005172b1",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-string-l1-1-0.dll",
+    "bytes": 22056,
+    "sha256": "60fc31d2a0c634412f529dba76af3b9bf991352877c6dae528186d3935704cfd",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-synch-l1-1-0.dll",
+    "bytes": 22056,
+    "sha256": "3a72b4f29f39a265d32ad12f0ce15dbf60129c840e10d84d427829ede45e78ad",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-synch-l1-2-0.dll",
+    "bytes": 22080,
+    "sha256": "efc1e4460984a73cf47a3def033af1c8f3b1dbc1a56cd27781d3aacf3e3330cb",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-sysinfo-l1-1-0.dll",
+    "bytes": 22072,
+    "sha256": "b203d862ddef1dd62bf623fc866c7f7a9c317c1c2ae30d1f52cb41f955b5698e",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-sysinfo-l1-2-0.dll",
+    "bytes": 22080,
+    "sha256": "2703635d835396afd0f138d7c73751afe7e33a24f4225d08c1690b0a371932c0",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-timezone-l1-1-0.dll",
+    "bytes": 22056,
+    "sha256": "33f4fddc181066fce06b2227bded813f95e94ed1f3d785e982c6b6b56c510c57",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-core-util-l1-1-0.dll",
+    "bytes": 21944,
+    "sha256": "6eda016742a6171205a387a14b3c0b331841567740376f56768f8c151724207d",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-conio-l1-1-0.dll",
+    "bytes": 22056,
+    "sha256": "b762061b688aae679afe788904d2c9970f74a7dac98f3b42463d08f25e483d3f",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-convert-l1-1-0.dll",
+    "bytes": 26056,
+    "sha256": "ebb2ae5535a64f65daeab8235585114fc9dd2cf1a49f5852d446250b998b6ae4",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-environment-l1-1-0.dll",
+    "bytes": 22080,
+    "sha256": "17d63275d00bdd8670422b95bd264c532998e0a1b041079e54fce4b6b7a55819",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-filesystem-l1-1-0.dll",
+    "bytes": 22056,
+    "sha256": "9a9e2a65a281644e368d0f272b95ba5f6b445d1c35910d06056c5ebeb77402db",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-heap-l1-1-0.dll",
+    "bytes": 22096,
+    "sha256": "bab9ac3ec83e380ae51e4295ef3bf2c738627812d3a49d1e713661abbc8dc57a",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-locale-l1-1-0.dll",
+    "bytes": 22080,
+    "sha256": "bd14c67ea28e21d6257ad780a37122c9b5773f69e693f5db6bffaee4d839526e",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-math-l1-1-0.dll",
+    "bytes": 30248,
+    "sha256": "606d66d82db562ea7979179d06486a0f94d079941d26b80a1e2c49d29959df6f",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-multibyte-l1-1-0.dll",
+    "bytes": 30248,
+    "sha256": "95f49efbe8107786733fa7c474025cf3fee0ac632f240367b296c736d06572aa",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-process-l1-1-0.dll",
+    "bytes": 22096,
+    "sha256": "f6156b1020380ec4f0e48577ebedaaef5fb1ab1f337d8b4e72e6a33a7567a9cc",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-runtime-l1-1-0.dll",
+    "bytes": 26152,
+    "sha256": "c5902934d026d7e15fbe9917d474f3322846a41a25e66f4b2b1f758801879f4b",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-stdio-l1-1-0.dll",
+    "bytes": 26168,
+    "sha256": "a9c5a153d8c0286f9b41a2b1c65854ad9e6471b8755b7de87bae4470e60bcab6",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-string-l1-1-0.dll",
+    "bytes": 26176,
+    "sha256": "25b8f83a7767211b11132775a0e27a45aa4ec8ab4e6572599f9c172ae3606b40",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-time-l1-1-0.dll",
+    "bytes": 22096,
+    "sha256": "7c7f6393f06de11750adb09cc5698ae55cd9fb27b2e51e207286feb1b5b2b156",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/api-ms-win-crt-utility-l1-1-0.dll",
+    "bytes": 21952,
+    "sha256": "d8ba5f17b9ffcbf3aeaf3fa1da226832d2fa90f81acce0cd669464e76ce434ac",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/core/pe/_block.cp312-win_amd64.pyd",
+    "bytes": 13824,
+    "sha256": "e3869da2ba75db5178ca255ee14e2ab9ff1573d817e6823cdd1723c4fb644621",
+    "matches": [],
+    "unmatched_reason": "Built from TwinQuay source with the recorded compiler; final executable is modified by PyInstaller"
+  },
+  {
+    "path": "_internal/core/pe/_cache.cp312-win_amd64.pyd",
+    "bytes": 10752,
+    "sha256": "406085f60a1396e03a6974241f66dcdf8c7a052857910dcc2e887a53819667e1",
+    "matches": [],
+    "unmatched_reason": "Built from TwinQuay source with the recorded compiler; final executable is modified by PyInstaller"
+  },
+  {
+    "path": "_internal/libcrypto-3.dll",
+    "bytes": 5231472,
+    "sha256": "ccfffddcd3defb8d899026298af9af43bc186130f8483d77e97c93233d5f27d7",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "libcrypto-3.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/libffi-8.dll",
+    "bytes": 39696,
+    "sha256": "eff52743773eb550fcc6ce3efc37c85724502233b6b002a35496d828bd7b280a",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "libffi-8.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/libssl-3.dll",
+    "bytes": 794992,
+    "sha256": "007142039f04d04e0ed607bda53de095e5bc6a8a10d26ecedde94ea7d2d7eefe",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "libssl-3.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/pyexpat.pyd",
+    "bytes": 205304,
+    "sha256": "d615e193d1affcdbfe504e90d3621cbdcff94bf72b79d899126534507fd6d27a",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "pyexpat.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/python3.dll",
+    "bytes": 70376,
+    "sha256": "fb975a606e7fbf74f64260e3f60c3490b4f74a183c0926fd6ed1ac4c52ac7b1c",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "python3.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/python312.dll",
+    "bytes": 6945272,
+    "sha256": "9a0e3435aaa680d868150f87ab3e388ad2eebc22f87e036155c7b4eda8cd2120",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "python312.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/pywin32_system32/pythoncom312.dll",
+    "bytes": 690176,
+    "sha256": "97b7258c32a555170e658d843f8e64a24bb0e087cca2183fc521084d35a08f8a",
+    "matches": [
+      {
+        "archive": "pywin32-311-cp312-cp312-win_amd64.whl",
+        "member": "pywin32_system32/pythoncom312.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/pywin32_system32/pywintypes312.dll",
+    "bytes": 136192,
+    "sha256": "b29e4098f9f53f05e3281636d079de58b05a26c03669cea4ec1673e51750fa31",
+    "matches": [
+      {
+        "archive": "pywin32-311-cp312-cp312-win_amd64.whl",
+        "member": "pywin32_system32/pywintypes312.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/qt/pe/_block_qt.cp312-win_amd64.pyd",
+    "bytes": 11776,
+    "sha256": "79fdde5688e3130688eafeea5019d8e779dd9083b160fac2e3fb88a13d1a886f",
+    "matches": [],
+    "unmatched_reason": "Built from TwinQuay source with the recorded compiler; final executable is modified by PyInstaller"
+  },
+  {
+    "path": "_internal/select.pyd",
+    "bytes": 33136,
+    "sha256": "d4d7181b11db0bd22a6cd5cda6f8583d1f5c77615fd0a6ca33350619d6e0438a",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "select.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/sqlite3.dll",
+    "bytes": 1583608,
+    "sha256": "8daa45684bf6688fca28d956b2e8942f2fa98f656675ce68e6d61dd869848a7a",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "sqlite3.dll"
+      }
+    ]
+  },
+  {
+    "path": "_internal/ucrtbase.dll",
+    "bytes": 1361448,
+    "sha256": "2e5fb14b7bf8540278f3614a12f0226e56a7cc9e64b81cbd976c6fcf2f71cbfb",
+    "matches": [],
+    "unmatched_reason": "UCRT/API-set redistributable origin and version not retained in the current artifacts; rights/notice verification remains open"
+  },
+  {
+    "path": "_internal/unicodedata.pyd",
+    "bytes": 1140592,
+    "sha256": "208ee1cd3cbad0828433ca7246b05be2b1ff5569983d27d296c0b38888585488",
+    "matches": [
+      {
+        "archive": "python-3.12.10-embed-amd64.zip",
+        "member": "unicodedata.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/win32/_win32sysloader.pyd",
+    "bytes": 14848,
+    "sha256": "2478402d3eab2a1fc721b0b08c71c0b7612d52c15e01d50896e468a10083d7e2",
+    "matches": [
+      {
+        "archive": "pywin32-311-cp312-cp312-win_amd64.whl",
+        "member": "win32/_win32sysloader.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/win32/win32api.pyd",
+    "bytes": 135168,
+    "sha256": "b54d63d771b4db2a1bf1e724ff2597e970173ec5a9860c2b0dfdff83cd7a160e",
+    "matches": [
+      {
+        "archive": "pywin32-311-cp312-cp312-win_amd64.whl",
+        "member": "win32/win32api.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/win32/win32event.pyd",
+    "bytes": 29184,
+    "sha256": "c64500261bb9bfeffa3ab5ed03af3a57dc52a959022d727a9fec9a0389672013",
+    "matches": [
+      {
+        "archive": "pywin32-311-cp312-cp312-win_amd64.whl",
+        "member": "win32/win32event.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/win32/win32trace.pyd",
+    "bytes": 24064,
+    "sha256": "c8442f4d6d56aa28c3d4643b87c94df7f534a66d92954734cc4e28052af24e31",
+    "matches": [
+      {
+        "archive": "pywin32-311-cp312-cp312-win_amd64.whl",
+        "member": "win32/win32trace.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/win32com/shell/shell.pyd",
+    "bytes": 543232,
+    "sha256": "3878a3cfa4c4661d4dc8f430b765fbf692fa3a70420cc70c0a702609c443649c",
+    "matches": [
+      {
+        "archive": "pywin32-311-cp312-cp312-win_amd64.whl",
+        "member": "win32comext/shell/shell.pyd"
+      }
+    ]
+  },
+  {
+    "path": "_internal/xxhash/_xxhash.cp312-win_amd64.pyd",
+    "bytes": 60416,
+    "sha256": "ecfd7aed80a2e2a2493706eb98f5063549d5aa6fd70e402c619064d6c2fa97b8",
+    "matches": [
+      {
+        "archive": "xxhash-3.8.1-cp312-cp312-win_amd64.whl",
+        "member": "xxhash/_xxhash.cp312-win_amd64.pyd"
+      }
+    ]
+  }
+]

@@ -180,6 +180,7 @@ def package_windows(skip_nsis=False, nsis_path="makensis"):
     finally:
         info_path.unlink(missing_ok=True)
     subprocess.run([sys.executable, "tools/package_inventory.py", "dist/TwinQuay"], check=True)
+    subprocess.run([sys.executable, "tools/collect_build_evidence.py"], check=True)
     if not skip_nsis:
         compiler = shutil.which(nsis_path)
         if compiler is None:

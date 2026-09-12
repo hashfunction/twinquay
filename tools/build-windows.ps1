@@ -9,6 +9,9 @@ if ($LASTEXITCODE -ne 0) { throw 'Python 3.12 venv failed.' }
 Run-Python -m pip install --require-hashes -r tools/python-windows-lock.txt
 Run-Python -c 'import sys, struct; assert sys.version_info[:2] == (3,12); assert struct.calcsize("P") == 8'
 Run-Python tools/msix/test_msix_qualification.py -v
+Run-Python tools/test_collect_build_evidence.py -v
+& (Get-Process -Id $PID).Path -NoLogo -NoProfile -File tools/test_native_metadata.ps1
+if ($LASTEXITCODE -ne 0) { throw 'Native metadata collector fixture failed.' }
 New-Item -ItemType Directory -Force build-evidence | Out-Null
 Run-Python build.py --clean
 Run-Python tools/probe-windows-filesystem.py

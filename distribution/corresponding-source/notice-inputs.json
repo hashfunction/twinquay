@@ -1,0 +1,2015 @@
+{
+  "schema_version": 1,
+  "scope": "Conservative source-license reference collection. Optional/platform/test/tool notices do not assert inclusion in the binary. Final configured PDF attributions, inline source-header copyrights, and Microsoft runtime redistribution review remain required.",
+  "entries": [
+    {
+      "archive": "alabaster-1.0.0.tar.gz",
+      "member": "alabaster-1.0.0/LICENSE.rst",
+      "output": "alabaster-1.0.0.tar.gz/LICENSE.rst",
+      "bytes": 1555,
+      "sha256": "8253f0abaad05a7dee1a08a43705ac2de1f73bd7d44cfe01010ecc104cc42851"
+    },
+    {
+      "archive": "altgraph-0.17.5.tar.gz",
+      "member": "altgraph-0.17.5/LICENSE",
+      "output": "altgraph-0.17.5.tar.gz/LICENSE",
+      "bytes": 1002,
+      "sha256": "6c194d6db0c64d45535d10c95142b9b0cda7b7dcc7f1ddee302b3d536f3dbe46"
+    },
+    {
+      "archive": "altgraph-0.17.5.tar.gz",
+      "member": "altgraph-0.17.5/doc/license.rst",
+      "output": "altgraph-0.17.5.tar.gz/doc/license.rst",
+      "bytes": 1047,
+      "sha256": "c6071929fa693cf77461fdfcba69b98ffc76e2600d264adb09d04abd45c8b2c5"
+    },
+    {
+      "archive": "babel-2.18.0.tar.gz",
+      "member": "babel-2.18.0/LICENSE",
+      "output": "babel-2.18.0.tar.gz/LICENSE",
+      "bytes": 1531,
+      "sha256": "86bad5758c7859ba06251f8f12eee885eca31369923dfb2b87a7c13c3634d870"
+    },
+    {
+      "archive": "babel-2.18.0.tar.gz",
+      "member": "babel-2.18.0/babel/locale-data/LICENSE.unicode",
+      "output": "babel-2.18.0.tar.gz/babel/locale-data/LICENSE.unicode",
+      "bytes": 2033,
+      "sha256": "b4c0ae8ef04f7059f96ce5bbe0467f9fe6f6d81bbe13517701dfeb961fb4d0b6"
+    },
+    {
+      "archive": "babel-2.18.0.tar.gz",
+      "member": "babel-2.18.0/docs/_themes/LICENSE",
+      "output": "babel-2.18.0.tar.gz/docs/_themes/LICENSE",
+      "bytes": 1789,
+      "sha256": "9c1e620a5cf8e74fe81c1fd4c55e9cc0b189fc04e677cfc7ef915de746c3f59e"
+    },
+    {
+      "archive": "babel-2.18.0.tar.gz",
+      "member": "babel-2.18.0/docs/license.rst",
+      "output": "babel-2.18.0.tar.gz/docs/license.rst",
+      "bytes": 1251,
+      "sha256": "8fb672dc293c5f16d3bd7f0fa8cb4ff41c72ee5e9b3e6c4fb3bc6ec05e6ba7fe"
+    },
+    {
+      "archive": "black-26.5.1.tar.gz",
+      "member": "black-26.5.1/docs/license.md",
+      "output": "black-26.5.1.tar.gz/docs/license.md",
+      "bytes": 62,
+      "sha256": "2ff4913ffefc5475c299790a4c54027e2c61e41d97d47797d78ff4420862d34a"
+    },
+    {
+      "archive": "black-26.5.1.tar.gz",
+      "member": "black-26.5.1/src/blib2to3/LICENSE",
+      "output": "black-26.5.1.tar.gz/src/blib2to3/LICENSE",
+      "bytes": 12762,
+      "sha256": "5789881b8aeb9c91f5835f5bb7cabe84a0fecd4bb2be2f54c9e6957a78ec799d"
+    },
+    {
+      "archive": "black-26.5.1.tar.gz",
+      "member": "black-26.5.1/LICENSE",
+      "output": "black-26.5.1.tar.gz/LICENSE",
+      "bytes": 1080,
+      "sha256": "9c0428f0c3b4779850cf5bd96e11aaa8afc72d4a86d4a36223d7aba2e58d6e00"
+    },
+    {
+      "archive": "bzip2-1.0.8-05301997b2f9590f49c672cf3dfd3d3dfa7ad521.tar.gz",
+      "member": "cpython-source-deps-05301997b2f9590f49c672cf3dfd3d3dfa7ad521/LICENSE",
+      "output": "bzip2-1.0.8-05301997b2f9590f49c672cf3dfd3d3dfa7ad521.tar.gz/LICENSE",
+      "bytes": 1896,
+      "sha256": "c6dbbf828498be844a89eaa3b84adbab3199e342eb5cb2ed2f0d4ba7ec0f38a3"
+    },
+    {
+      "archive": "certifi-2026.7.22.tar.gz",
+      "member": "certifi-2026.7.22/LICENSE",
+      "output": "certifi-2026.7.22.tar.gz/LICENSE",
+      "bytes": 989,
+      "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7"
+    },
+    {
+      "archive": "charset_normalizer-3.5.1.tar.gz",
+      "member": "charset_normalizer-3.5.1/LICENSE",
+      "output": "charset_normalizer-3.5.1.tar.gz/LICENSE",
+      "bytes": 1071,
+      "sha256": "6d0d41bfe170ac6c7dc248c9a63e254d0fb45a60d50a8257d0af92c6e249b887"
+    },
+    {
+      "archive": "charset_normalizer-3.5.1.tar.gz",
+      "member": "charset_normalizer-3.5.1/data/NOTICE.md",
+      "output": "charset_normalizer-3.5.1.tar.gz/data/NOTICE.md",
+      "bytes": 490,
+      "sha256": "0cb3efcfd8f7a02a337e98dc3de4b0b57424d7208a332b26e7deb8cb94c13922"
+    },
+    {
+      "archive": "click-8.5.0.tar.gz",
+      "member": "click-8.5.0/LICENSE.txt",
+      "output": "click-8.5.0.tar.gz/LICENSE.txt",
+      "bytes": 1475,
+      "sha256": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d"
+    },
+    {
+      "archive": "click-8.5.0.tar.gz",
+      "member": "click-8.5.0/docs/license.md",
+      "output": "click-8.5.0.tar.gz/docs/license.md",
+      "bytes": 86,
+      "sha256": "b4aa3a8b0dfd4c8cea97ea65b3f19ef54bd280665533478f35c0a5d205a7d341"
+    },
+    {
+      "archive": "colorama-0.4.6.tar.gz",
+      "member": "colorama-0.4.6/LICENSE.txt",
+      "output": "colorama-0.4.6.tar.gz/LICENSE.txt",
+      "bytes": 1491,
+      "sha256": "cac35c02686e5d04a5a7140bfb3b36e73aed496656e891102e428886d7930318"
+    },
+    {
+      "archive": "distro-1.9.0.tar.gz",
+      "member": "distro-1.9.0/LICENSE",
+      "output": "distro-1.9.0.tar.gz/LICENSE",
+      "bytes": 11325,
+      "sha256": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14"
+    },
+    {
+      "archive": "docutils-0.22.4.tar.gz",
+      "member": "docutils-0.22.4/COPYING.rst",
+      "output": "docutils-0.22.4.tar.gz/COPYING.rst",
+      "bytes": 6075,
+      "sha256": "6ab4f27c76c74f96e5e692da5944a6f82968f3bddaac5660a4aa723e70eb5d8f"
+    },
+    {
+      "archive": "flake8-7.3.0.tar.gz",
+      "member": "flake8-7.3.0/LICENSE",
+      "output": "flake8-7.3.0.tar.gz/LICENSE",
+      "bytes": 1172,
+      "sha256": "e46df9e59cebfbe0b14492e5cde341e8ec42d252a99b6a583fc4608863a5dabe"
+    },
+    {
+      "archive": "idna-3.19.tar.gz",
+      "member": "idna-3.19/LICENSE.md",
+      "output": "idna-3.19.tar.gz/LICENSE.md",
+      "bytes": 1541,
+      "sha256": "1a9a4f0e3d479a27240ddd59a9137a66ab4a0f9dfdc8ca6188cc0bfd85187f04"
+    },
+    {
+      "archive": "imagesize-2.0.1.tar.gz",
+      "member": "imagesize-2.0.1/LICENSE.rst",
+      "output": "imagesize-2.0.1.tar.gz/LICENSE.rst",
+      "bytes": 1120,
+      "sha256": "d0659c2767a164c2bf2736ee9f7bb619e0f165c89a962839de53fd5f77f62f4e"
+    },
+    {
+      "archive": "iniconfig-2.3.0.tar.gz",
+      "member": "iniconfig-2.3.0/LICENSE",
+      "output": "iniconfig-2.3.0.tar.gz/LICENSE",
+      "bytes": 1098,
+      "sha256": "3409fa91f7ace557894632676656e32264fe5ef7581535725dc9a23774551bd4"
+    },
+    {
+      "archive": "jinja2-3.1.6.tar.gz",
+      "member": "jinja2-3.1.6/LICENSE.txt",
+      "output": "jinja2-3.1.6.tar.gz/LICENSE.txt",
+      "bytes": 1475,
+      "sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b"
+    },
+    {
+      "archive": "jinja2-3.1.6.tar.gz",
+      "member": "jinja2-3.1.6/docs/license.rst",
+      "output": "jinja2-3.1.6.tar.gz/docs/license.rst",
+      "bytes": 98,
+      "sha256": "1e07e9c25f2618a040560b70e63f42259eab24e558d0f3532e6163d751cb4eea"
+    },
+    {
+      "archive": "libffi-3.4.4-73b247f34ef3ae1859b8c2c34d321d34ebc5db15.tar.gz",
+      "member": "cpython-source-deps-73b247f34ef3ae1859b8c2c34d321d34ebc5db15/LICENSE",
+      "output": "libffi-3.4.4-73b247f34ef3ae1859b8c2c34d321d34ebc5db15.tar.gz/LICENSE",
+      "bytes": 1132,
+      "sha256": "2c9c2acb9743e6b007b91350475308aee44691d96aa20eacef8e199988c8c388"
+    },
+    {
+      "archive": "libffi-3.4.4-73b247f34ef3ae1859b8c2c34d321d34ebc5db15.tar.gz",
+      "member": "cpython-source-deps-73b247f34ef3ae1859b8c2c34d321d34ebc5db15/LICENSE-BUILDTOOLS",
+      "output": "libffi-3.4.4-73b247f34ef3ae1859b8c2c34d321d34ebc5db15.tar.gz/LICENSE-BUILDTOOLS",
+      "bytes": 18698,
+      "sha256": "e67978cd18816c0cb7d29aaaacde7b7447402c2fb321a051698890a8eaedda94"
+    },
+    {
+      "archive": "llvm-3.6.2.src.tar.xz",
+      "member": "llvm-3.6.2.src/LICENSE.TXT",
+      "output": "llvm-3.6.2.src.tar.xz/LICENSE.TXT",
+      "bytes": 3281,
+      "sha256": "e3bc36440fc927c62d5cc24efeefe225a14d4e34ffeb0c92e430625cce9ee444"
+    },
+    {
+      "archive": "llvm-3.6.2.src.tar.xz",
+      "member": "llvm-3.6.2.src/utils/unittest/googletest/LICENSE.TXT",
+      "output": "llvm-3.6.2.src.tar.xz/utils/unittest/googletest/LICENSE.TXT",
+      "bytes": 1475,
+      "sha256": "9702de7e4117a8e2b20dafab11ffda58c198aede066406496bef670d40a22138"
+    },
+    {
+      "archive": "llvm-3.6.2.src.tar.xz",
+      "member": "llvm-3.6.2.src/include/llvm/Support/LICENSE.TXT",
+      "output": "llvm-3.6.2.src.tar.xz/include/llvm/Support/LICENSE.TXT",
+      "bytes": 284,
+      "sha256": "a012d664e4e01df52a65b2eeafdfb8aeb856fec0e6c372265d01b0109c3f5e2a"
+    },
+    {
+      "archive": "llvm-3.6.2.src.tar.xz",
+      "member": "llvm-3.6.2.src/lib/Target/ARM/LICENSE.TXT",
+      "output": "llvm-3.6.2.src.tar.xz/lib/Target/ARM/LICENSE.TXT",
+      "bytes": 2764,
+      "sha256": "28cbd5f6dac844fc3d94e879dba83c3ca87328ece8e0d388284f8cec6a042a97"
+    },
+    {
+      "archive": "llvm-3.6.2.src.tar.xz",
+      "member": "llvm-3.6.2.src/lib/Support/COPYRIGHT.regex",
+      "output": "llvm-3.6.2.src.tar.xz/lib/Support/COPYRIGHT.regex",
+      "bytes": 2718,
+      "sha256": "0424e57d4303164dc59a8509c20dae0518b853692e5c2b0e98b11816fdbc97c7"
+    },
+    {
+      "archive": "llvm-3.6.2.src.tar.xz",
+      "member": "llvm-3.6.2.src/test/YAMLParser/LICENSE.txt",
+      "output": "llvm-3.6.2.src.tar.xz/test/YAMLParser/LICENSE.txt",
+      "bytes": 1058,
+      "sha256": "d0d8b09800a45cd982e9568fc7669d9c1a4c330e275a821bbe24d54366d16fe9"
+    },
+    {
+      "archive": "llvm-3.6.2.src.tar.xz",
+      "member": "llvm-3.6.2.src/autoconf/LICENSE.TXT",
+      "output": "llvm-3.6.2.src.tar.xz/autoconf/LICENSE.TXT",
+      "bytes": 1127,
+      "sha256": "a63ee63574ed21e930765c4418a4fa2fa571b72c47cd023ee588dbf8b21fb4ee"
+    },
+    {
+      "archive": "markupsafe-3.0.3.tar.gz",
+      "member": "markupsafe-3.0.3/LICENSE.txt",
+      "output": "markupsafe-3.0.3.tar.gz/LICENSE.txt",
+      "bytes": 1475,
+      "sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea"
+    },
+    {
+      "archive": "markupsafe-3.0.3.tar.gz",
+      "member": "markupsafe-3.0.3/docs/license.rst",
+      "output": "markupsafe-3.0.3.tar.gz/docs/license.rst",
+      "bytes": 100,
+      "sha256": "6fc7e80b75b5999783a328d90976a2585e0956c4a348c3c888453938ceca742d"
+    },
+    {
+      "archive": "mccabe-0.7.0.tar.gz",
+      "member": "mccabe-0.7.0/LICENSE",
+      "output": "mccabe-0.7.0.tar.gz/LICENSE",
+      "bytes": 1221,
+      "sha256": "10fbc003cbaf8a6b3cf7195b80dac96c86daf390039b2abf6e7b6e735afd7d74"
+    },
+    {
+      "archive": "mesa-11.2.2.tar.xz",
+      "member": "mesa-11.2.2/docs/COPYING",
+      "output": "mesa-11.2.2.tar.xz/docs/COPYING",
+      "bytes": 25493,
+      "sha256": "e8800bd573e8f844a5b87cf43cc4d55767314b4e95a6092cf26ce9c6ed00b877"
+    },
+    {
+      "archive": "mesa-11.2.2.tar.xz",
+      "member": "mesa-11.2.2/docs/license.html",
+      "output": "mesa-11.2.2.tar.xz/docs/license.html",
+      "bytes": 3763,
+      "sha256": "288ddfae338be168ef2492c21de42ee2f5c8ebc5a734b4e58b37007141bc2d6d"
+    },
+    {
+      "archive": "mutagen-1.48.1.tar.gz",
+      "member": "mutagen-1.48.1/COPYING",
+      "output": "mutagen-1.48.1.tar.gz/COPYING",
+      "bytes": 18092,
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+    },
+    {
+      "archive": "mypy_extensions-1.1.0.tar.gz",
+      "member": "mypy_extensions-1.1.0/LICENSE",
+      "output": "mypy_extensions-1.1.0.tar.gz/LICENSE",
+      "bytes": 1204,
+      "sha256": "a50450da1d53cd777b80ced77c58ff96abe0ccd879706bd142c3ec20e245f0b4"
+    },
+    {
+      "archive": "openssl-3.0.16-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2.tar.gz",
+      "member": "cpython-source-deps-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2/LICENSE.txt",
+      "output": "openssl-3.0.16-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2.tar.gz/LICENSE.txt",
+      "bytes": 10175,
+      "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a"
+    },
+    {
+      "archive": "openssl-3.0.16-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2.tar.gz",
+      "member": "cpython-source-deps-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2/external/perl/Text-Template-1.56/LICENSE",
+      "output": "openssl-3.0.16-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2.tar.gz/external/perl/Text-Template-1.56/LICENSE",
+      "bytes": 18412,
+      "sha256": "9837f05336ef3cbacb6a96e1672a0426d81ad01191f214b8d48e22ca62338181"
+    },
+    {
+      "archive": "openssl-3.0.16-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2.tar.gz",
+      "member": "cpython-source-deps-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2/util/perl/OpenSSL/copyright.pm",
+      "output": "openssl-3.0.16-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2.tar.gz/util/perl/OpenSSL/copyright.pm",
+      "bytes": 1145,
+      "sha256": "04213b69dbebc8ba0dd8a6216af1d9422f9b63619c1cf2f1d8aa107b83bbb608"
+    },
+    {
+      "archive": "packaging-26.3.tar.gz",
+      "member": "packaging-26.3/LICENSE",
+      "output": "packaging-26.3.tar.gz/LICENSE",
+      "bytes": 197,
+      "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48"
+    },
+    {
+      "archive": "packaging-26.3.tar.gz",
+      "member": "packaging-26.3/LICENSE.APACHE",
+      "output": "packaging-26.3.tar.gz/LICENSE.APACHE",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "archive": "packaging-26.3.tar.gz",
+      "member": "packaging-26.3/LICENSE.BSD",
+      "output": "packaging-26.3.tar.gz/LICENSE.BSD",
+      "bytes": 1344,
+      "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5"
+    },
+    {
+      "archive": "packaging-26.3.tar.gz",
+      "member": "packaging-26.3/docs/licenses.rst",
+      "output": "packaging-26.3.tar.gz/docs/licenses.rst",
+      "bytes": 346,
+      "sha256": "763abb29c53e906e1e8d839deff7cca19c98d1c6c2bbf576ddc7394baeacf9c3"
+    },
+    {
+      "archive": "pathspec-1.1.1.tar.gz",
+      "member": "pathspec-1.1.1/LICENSE",
+      "output": "pathspec-1.1.1.tar.gz/LICENSE",
+      "bytes": 16726,
+      "sha256": "fab3dd6bdab226f1c08630b1dd917e11fcb4ec5e1e020e2c16f83a0a13863e85"
+    },
+    {
+      "archive": "pefile-2024.8.26.tar.gz",
+      "member": "pefile-2024.8.26/LICENSE",
+      "output": "pefile-2024.8.26.tar.gz/LICENSE",
+      "bytes": 1083,
+      "sha256": "b44409c067c6da52bfb54bb6624fb11a7b52157c3a13ae1400232f8196e86ad3"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/LICENSE.txt",
+      "output": "pip-26.2.1.tar.gz/LICENSE.txt",
+      "bytes": 1093,
+      "sha256": "634300a669d49aeae65b12c6c48c924c51a4cdf3d1ff086dc3456dc8bcaa2104"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/docs/html/copyright.rst",
+      "output": "pip-26.2.1.tar.gz/docs/html/copyright.rst",
+      "bytes": 215,
+      "sha256": "4b6d610ad841d556e2ddf6636d8e2d5bf307e7e83450b12010ee075e2032c939"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/cachecontrol/LICENSE.txt",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/cachecontrol/LICENSE.txt",
+      "bytes": 558,
+      "sha256": "86eeee87be2a43f3ff1f56496f451f69243926f025fedbb033666c304c4c161b"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/certifi/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/certifi/LICENSE",
+      "bytes": 989,
+      "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/distlib/LICENSE.txt",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/distlib/LICENSE.txt",
+      "bytes": 14531,
+      "sha256": "808e10c8a6ab8deb149ff9b3fb19f447a808094606d712a9ca57fead3552599d"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/distro/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/distro/LICENSE",
+      "bytes": 11325,
+      "sha256": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/idna/LICENSE.md",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/idna/LICENSE.md",
+      "bytes": 1541,
+      "sha256": "1a9a4f0e3d479a27240ddd59a9137a66ab4a0f9dfdc8ca6188cc0bfd85187f04"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/msgpack/COPYING",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/msgpack/COPYING",
+      "bytes": 614,
+      "sha256": "492dedba85da5872f78e6091bcd1fea474d660d35acb4dee964b8aab3f007427"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/packaging/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/packaging/LICENSE",
+      "bytes": 197,
+      "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/packaging/LICENSE.APACHE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/packaging/LICENSE.APACHE",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/packaging/LICENSE.BSD",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/packaging/LICENSE.BSD",
+      "bytes": 1344,
+      "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/pkg_resources/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/pkg_resources/LICENSE",
+      "bytes": 1023,
+      "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/platformdirs/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/platformdirs/LICENSE",
+      "bytes": 1089,
+      "sha256": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/pygments/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/pygments/LICENSE",
+      "bytes": 1331,
+      "sha256": "a9d66f1d526df02e29dce73436d34e56e8632f46c275bbdffc70569e882f9f17"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/pyproject_hooks/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/pyproject_hooks/LICENSE",
+      "bytes": 1081,
+      "sha256": "1b22b049b5267d6dfc23a67bf4a84d8ec04b9fdfb1a51d360e42b4342c8b4154"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/requests/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/requests/LICENSE",
+      "bytes": 10142,
+      "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/resolvelib/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/resolvelib/LICENSE",
+      "bytes": 751,
+      "sha256": "f388fd38cad13112c1dc0f669bbe80e7f84541edbafb72f3030d2ca7642c3c9d"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/rich/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/rich/LICENSE",
+      "bytes": 1056,
+      "sha256": "deed7c17a4318158190a3ea239cc879a5a50271cebb98ae7025f48fbe58dca15"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/tomli/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/tomli/LICENSE",
+      "bytes": 1072,
+      "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/tomli_w/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/tomli_w/LICENSE",
+      "bytes": 1072,
+      "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/truststore/LICENSE",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/truststore/LICENSE",
+      "bytes": 1086,
+      "sha256": "33be7b7e8fa4fd19b1760e1a8ed8a668bdab852c91b692dd41424bcb725a9fca"
+    },
+    {
+      "archive": "pip-26.2.1.tar.gz",
+      "member": "pip-26.2.1/src/pip/_vendor/urllib3/LICENSE.txt",
+      "output": "pip-26.2.1.tar.gz/src/pip/_vendor/urllib3/LICENSE.txt",
+      "bytes": 1093,
+      "sha256": "130e3a64d5fdd5d096a752694634a7d9df284469de86e5732100268041e3d686"
+    },
+    {
+      "archive": "platformdirs-4.11.8.tar.gz",
+      "member": "platformdirs-4.11.8/LICENSE",
+      "output": "platformdirs-4.11.8.tar.gz/LICENSE",
+      "bytes": 1089,
+      "sha256": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6"
+    },
+    {
+      "archive": "pluggy-1.6.0.tar.gz",
+      "member": "pluggy-1.6.0/LICENSE",
+      "output": "pluggy-1.6.0.tar.gz/LICENSE",
+      "bytes": 1110,
+      "sha256": "d6b65e6c213a5d0b577911d34d6e5949b9f59d76c238c5071a2f3fc16cfb2606"
+    },
+    {
+      "archive": "polib-1.2.0.tar.gz",
+      "member": "polib-1.2.0/LICENSE",
+      "output": "polib-1.2.0.tar.gz/LICENSE",
+      "bytes": 1066,
+      "sha256": "ec198e4296135923ac95b98cae58b14eb25d41d7a1e412241393802af6bf65fa"
+    },
+    {
+      "archive": "pycodestyle-2.14.0.tar.gz",
+      "member": "pycodestyle-2.14.0/LICENSE",
+      "output": "pycodestyle-2.14.0.tar.gz/LICENSE",
+      "bytes": 1254,
+      "sha256": "f772295e81af3478d34e88e52d076200230ec7dd6a39e123bc5cb35aa66abdae"
+    },
+    {
+      "archive": "pyflakes-3.4.0.tar.gz",
+      "member": "pyflakes-3.4.0/LICENSE",
+      "output": "pyflakes-3.4.0.tar.gz/LICENSE",
+      "bytes": 1093,
+      "sha256": "22c47569cc0aae531b372361366818af01c6fc2e314770584a7866c92b3a0463"
+    },
+    {
+      "archive": "pygments-2.21.0.tar.gz",
+      "member": "pygments-2.21.0/LICENSE",
+      "output": "pygments-2.21.0.tar.gz/LICENSE",
+      "bytes": 1331,
+      "sha256": "a9d66f1d526df02e29dce73436d34e56e8632f46c275bbdffc70569e882f9f17"
+    },
+    {
+      "archive": "pyinstaller-6.22.2.tar.gz",
+      "member": "pyinstaller-6.22.2/bootloader/waflib/LICENSE",
+      "output": "pyinstaller-6.22.2.tar.gz/bootloader/waflib/LICENSE",
+      "bytes": 1338,
+      "sha256": "f1a08e9a6ef535799105fca437e0fb38dc64acb0f224b115ab38fdc458cede53"
+    },
+    {
+      "archive": "pyinstaller-6.22.2.tar.gz",
+      "member": "pyinstaller-6.22.2/bootloader/zlib/LICENSE",
+      "output": "pyinstaller-6.22.2.tar.gz/bootloader/zlib/LICENSE",
+      "bytes": 1002,
+      "sha256": "e32ff4e00d9d94930537635291da39e7e612703334bf6fde8c7f1686fe8a45a2"
+    },
+    {
+      "archive": "pyinstaller-6.22.2.tar.gz",
+      "member": "pyinstaller-6.22.2/doc/license.rst",
+      "output": "pyinstaller-6.22.2.tar.gz/doc/license.rst",
+      "bytes": 1223,
+      "sha256": "98be0224c3df051092249a1b1387ef3f6fd01d6d87eb263266244a2237bb7ce3"
+    },
+    {
+      "archive": "pyinstaller-6.22.2.tar.gz",
+      "member": "pyinstaller-6.22.2/scripts/update-copyright",
+      "output": "pyinstaller-6.22.2.tar.gz/scripts/update-copyright",
+      "bytes": 6286,
+      "sha256": "9515af16992c6143e05e7992c928540570bd4bc5026868ff283637fb11bb08bf"
+    },
+    {
+      "archive": "pyinstaller-6.22.2.tar.gz",
+      "member": "pyinstaller-6.22.2/COPYING.txt",
+      "output": "pyinstaller-6.22.2.tar.gz/COPYING.txt",
+      "bytes": 32138,
+      "sha256": "dcf75fdb959db1e3b41c0f8505069d2ece781b5ec6b3d0a4d30975cfc6580245"
+    },
+    {
+      "archive": "pyinstaller_hooks_contrib-2026.7.tar.gz",
+      "member": "pyinstaller_hooks_contrib-2026.7/LICENSE",
+      "output": "pyinstaller_hooks_contrib-2026.7.tar.gz/LICENSE",
+      "bytes": 27666,
+      "sha256": "91d0baaff00773038e72c0a1fc9d5d2d38706b7a2b9c04f34296608f931b9cd0"
+    },
+    {
+      "archive": "pyqt6-6.11.0.tar.gz",
+      "member": "pyqt6-6.11.0/LICENSE",
+      "output": "pyqt6-6.11.0.tar.gz/LICENSE",
+      "bytes": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    },
+    {
+      "archive": "pyqt6_sip-13.12.0.tar.gz",
+      "member": "pyqt6_sip-13.12.0/LICENSE",
+      "output": "pyqt6_sip-13.12.0.tar.gz/LICENSE",
+      "bytes": 1304,
+      "sha256": "3e6f5b427c36f94ecf86bc01698af7030a1ed6eb3748110d5dbb8d142d804611"
+    },
+    {
+      "archive": "pyqt_builder-1.19.0.tar.gz",
+      "member": "pyqt_builder-1.19.0/LICENSE",
+      "output": "pyqt_builder-1.19.0.tar.gz/LICENSE",
+      "bytes": 1300,
+      "sha256": "84fc1e53af2832382178e0bbc46c256f10b02cb89508b19e3ff8a3c002f8ecea"
+    },
+    {
+      "archive": "pyqt_builder-1.19.0.tar.gz",
+      "member": "pyqt_builder-1.19.0/pyqtbuild/bundle/qt_wheel_distinfo/LICENSE.gpl3",
+      "output": "pyqt_builder-1.19.0.tar.gz/pyqtbuild/bundle/qt_wheel_distinfo/LICENSE.gpl3",
+      "bytes": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    },
+    {
+      "archive": "pyqt_builder-1.19.0.tar.gz",
+      "member": "pyqt_builder-1.19.0/pyqtbuild/bundle/qt_wheel_distinfo/LICENSE.lgpl3",
+      "output": "pyqt_builder-1.19.0.tar.gz/pyqtbuild/bundle/qt_wheel_distinfo/LICENSE.lgpl3",
+      "bytes": 7687,
+      "sha256": "6c671e2912ec69c0832f32066c0313cee5fdc3bbcbce237822e89f3da58edd4e"
+    },
+    {
+      "archive": "pytest-8.4.2.tar.gz",
+      "member": "pytest-8.4.2/LICENSE",
+      "output": "pytest-8.4.2.tar.gz/LICENSE",
+      "bytes": 1091,
+      "sha256": "ca836a5f9ecca3b2f350230faa20a48fb8b145653b5568d784862df864706b9b"
+    },
+    {
+      "archive": "pytest-8.4.2.tar.gz",
+      "member": "pytest-8.4.2/doc/en/license.rst",
+      "output": "pytest-8.4.2.tar.gz/doc/en/license.rst",
+      "bytes": 1372,
+      "sha256": "45b6addd843b2ed89f9f8f363f61092db2e3c2461e3f178c3c3793648c3c4e07"
+    },
+    {
+      "archive": "Python-3.12.10.tar.xz",
+      "member": "Python-3.12.10/Doc/copyright.rst",
+      "output": "Python-3.12.10.tar.xz/Doc/copyright.rst",
+      "bytes": 451,
+      "sha256": "9e5e6634a7f5444dd83da55ccb265bac825abf72ecddccf7e394f284636bd9df"
+    },
+    {
+      "archive": "Python-3.12.10.tar.xz",
+      "member": "Python-3.12.10/Doc/license.rst",
+      "output": "Python-3.12.10.tar.xz/Doc/license.rst",
+      "bytes": 54130,
+      "sha256": "341832873fd316a37927e79385093fbbfd40a467428480835fe435a80cadf4e5"
+    },
+    {
+      "archive": "Python-3.12.10.tar.xz",
+      "member": "Python-3.12.10/LICENSE",
+      "output": "Python-3.12.10.tar.xz/LICENSE",
+      "bytes": 13936,
+      "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
+    },
+    {
+      "archive": "Python-3.12.10.tar.xz",
+      "member": "Python-3.12.10/Mac/BuildScript/resources/License.rtf",
+      "output": "Python-3.12.10.tar.xz/Mac/BuildScript/resources/License.rtf",
+      "bytes": 15068,
+      "sha256": "ab6df6040a4e24babad38f98454eb3263722fa6a1c441bfaa271798efbe55f27"
+    },
+    {
+      "archive": "Python-3.12.10.tar.xz",
+      "member": "Python-3.12.10/Modules/expat/COPYING",
+      "output": "Python-3.12.10.tar.xz/Modules/expat/COPYING",
+      "bytes": 1144,
+      "sha256": "122f2c27000472a201d337b9b31f7eb2b52d091b02857061a8880371612d9534"
+    },
+    {
+      "archive": "Python-3.12.10.tar.xz",
+      "member": "Python-3.12.10/PC/crtlicense.txt",
+      "output": "Python-3.12.10.tar.xz/PC/crtlicense.txt",
+      "bytes": 1738,
+      "sha256": "3c71b3ae243121f6f227374cd1ef7c59ed07b1969b330d0e947f91a3a1b3fd73"
+    },
+    {
+      "archive": "Python-3.12.10.tar.xz",
+      "member": "Python-3.12.10/Tools/msi/bundle/bootstrap/LICENSE.txt",
+      "output": "Python-3.12.10.tar.xz/Tools/msi/bundle/bootstrap/LICENSE.txt",
+      "bytes": 3273,
+      "sha256": "cb95daf98edda8e08a242e1060691b6941f0911692bf468a3f9c5e4b58c09b8f"
+    },
+    {
+      "archive": "pytokens-0.4.1.tar.gz",
+      "member": "pytokens-0.4.1/LICENSE",
+      "output": "pytokens-0.4.1.tar.gz/LICENSE",
+      "bytes": 1072,
+      "sha256": "94bf7ae4ea6833b0853a7cc1f1f28dd8579b34a31c9c162aeb8825dec23ed5dc"
+    },
+    {
+      "archive": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz",
+      "member": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8/Pythonwin/License.txt",
+      "output": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz/Pythonwin/License.txt",
+      "bytes": 1510,
+      "sha256": "fa810629bba5fecc9ffc3acb3e9961dfd86bdc6f9aff4a7c3bbecadc94584a28"
+    },
+    {
+      "archive": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz",
+      "member": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8/Pythonwin/Scintilla/License.txt",
+      "output": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz/Pythonwin/Scintilla/License.txt",
+      "bytes": 854,
+      "sha256": "195e757720836a7d57f0f13dc93bf5140ecb186466845cf42c53fa9cbaf6c280"
+    },
+    {
+      "archive": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz",
+      "member": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8/adodbapi/license.txt",
+      "output": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz/adodbapi/license.txt",
+      "bytes": 26420,
+      "sha256": "bfadf1e499859cd237ce2fd5c1f5390412bd75d83a16edc46a5837e83b703ec6"
+    },
+    {
+      "archive": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz",
+      "member": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8/com/License.txt",
+      "output": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz/com/License.txt",
+      "bytes": 1539,
+      "sha256": "bf2201503ae8854dcf19653abe6c59a0b6dc1d0a8ba3de365baec2adfdb4eaf5"
+    },
+    {
+      "archive": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz",
+      "member": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8/com/win32comext/mapi/src/MAPIStubLibrary/LICENSE",
+      "output": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz/com/win32comext/mapi/src/MAPIStubLibrary/LICENSE",
+      "bytes": 1066,
+      "sha256": "a46919cc8f01eb73f6e4b84af0d41b46b2a33b87c74e864279ef585079f82da4"
+    },
+    {
+      "archive": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz",
+      "member": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8/win32/License.txt",
+      "output": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz/win32/License.txt",
+      "bytes": 1510,
+      "sha256": "fa810629bba5fecc9ffc3acb3e9961dfd86bdc6f9aff4a7c3bbecadc94584a28"
+    },
+    {
+      "archive": "pywin32-ctypes-0.2.3.tar.gz",
+      "member": "pywin32-ctypes-0.2.3/LICENSE.txt",
+      "output": "pywin32-ctypes-0.2.3.tar.gz/LICENSE.txt",
+      "bytes": 1644,
+      "sha256": "dfa83b3e2709adfcdb838d9ad55823ca674abb780e60563d9dd9544ccbf785e9"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/LICENSES/LicenseRef-BSD-3-Clause-with-PCRE2-Binary-Like-Packages-Exception.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/LICENSES/LicenseRef-BSD-3-Clause-with-PCRE2-Binary-Like-Packages-Exception.txt",
+      "bytes": 1852,
+      "sha256": "0526625fcc746a42d3f19a0ab357d3dc8479fdbe3bfd168825498f50215c7a63"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/LICENSES/LicenseRef-ICC-License.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/LICENSES/LicenseRef-ICC-License.txt",
+      "bytes": 463,
+      "sha256": "9e34ff47b3a44814e183342e7e198d127a6740e29d20e8381fba7688dafc79dd"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/LICENSES/LicenseRef-Lcs-Telegraphics.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/LICENSES/LicenseRef-Lcs-Telegraphics.txt",
+      "bytes": 139,
+      "sha256": "c10225ebbd5191bfdd761b0d7752c785f2453ab665d6c454473fb12d254668aa"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/LICENSES/LicenseRef-Qt-Commercial.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/LICENSES/LicenseRef-Qt-Commercial.txt",
+      "bytes": 462,
+      "sha256": "9b1f50aae6267f9d5e0ceb6775ee86450262c25ec7c0573e151fe5d3f18a4700"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/LICENSES/LicenseRef-SHA1-Public-Domain.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/LICENSES/LicenseRef-SHA1-Public-Domain.txt",
+      "bytes": 144,
+      "sha256": "65d86b8ec6b1cd8b8f6e64fd8710274ba00d6a3c520e00dfdcd1c3d2071f3305"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/D3D12MemoryAllocator/LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/D3D12MemoryAllocator/LICENSE.txt",
+      "bytes": 1099,
+      "sha256": "1b3941c52b26d42c510afbdf205a8b96a6d64f5a7b8ebff0287979fd91dfd52f"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/VulkanMemoryAllocator/LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/VulkanMemoryAllocator/LICENSE.txt",
+      "bytes": 1099,
+      "sha256": "846d97c8b74ccaa92b9ad031140a04363b3b3985f318094552f297b8bda1c68e"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/android/LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/android/LICENSE",
+      "bytes": 525,
+      "sha256": "4a51cf7f724f51bedb5fa4f9583a2762f1db8d05e43a577e2487c7aab2fdce18"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/blake2/COPYING",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/blake2/COPYING",
+      "bytes": 17914,
+      "sha256": "4103f471877ed0bae500752c5fcd7ecca409d4a4a8dc2ad40437daba60f1a2bc"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/double-conversion/LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/double-conversion/LICENSE",
+      "bytes": 1527,
+      "sha256": "4af93c12062c58058378de2397dc1c92bbff9ddfb1d583a01c84127557ce97ca"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/easing/LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/easing/LICENSE",
+      "bytes": 1505,
+      "sha256": "92fac99458f1754b73edf50f9c9983e0efaa06ad96e2afd5e538c79f45b4b191"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/forkfd/LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/forkfd/LICENSE",
+      "bytes": 1148,
+      "sha256": "d0d683ae18e78fbef90eb41168fb781920da2d12bf80704490f0882915c18ae0"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/freetype/BDF-LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/freetype/BDF-LICENSE.txt",
+      "bytes": 2305,
+      "sha256": "e4e792f29e66750f2e410fd7b50a567652c180f6ee15e1a4dfa0bb5cde524537"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/freetype/LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/freetype/LICENSE.txt",
+      "bytes": 26234,
+      "sha256": "bf543cdda11864477b8d2ca2aa9afc2aaa8f9133461b4d962ed6ec73646256a1"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/freetype/PCF-LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/freetype/PCF-LICENSE.txt",
+      "bytes": 2218,
+      "sha256": "6938597bfdeca0db191a8f9ede52eaf2482c2c71a0094c084747a1235f9958fe"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/freetype/ZLIB-LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/freetype/ZLIB-LICENSE.txt",
+      "bytes": 962,
+      "sha256": "2b1f5d615382a151af3eb71462ad17d89e2efee8fa7664058d35d3d9237ebb19"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/freetype/docs/FTL.TXT",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/freetype/docs/FTL.TXT",
+      "bytes": 6743,
+      "sha256": "5a5ee54c5001bbad1cdc1a57cc3dd4c42199b2da09d39c7ee41fab002d02967f"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/freetype/docs/GPLv2.TXT",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/freetype/docs/GPLv2.TXT",
+      "bytes": 17994,
+      "sha256": "c4120c6752c910c299e3bd9cb3a46ff262c268303ca2069b61f92f10a5656c18"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/freetype/src/tools/no-copyright",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/freetype/src/tools/no-copyright",
+      "bytes": 1282,
+      "sha256": "3e2c8db4e09e12e9a138ba7ba8c0b762eff36802c6c1273d73ac049d4949a298"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/freetype/src/tools/update-copyright",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/freetype/src/tools/update-copyright",
+      "bytes": 383,
+      "sha256": "ae5b05f1d3f5235eb91ce41518be95022443f68bce5d200b6e1cc1fb57a5017e"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/freetype/src/tools/update-copyright-year",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/freetype/src/tools/update-copyright-year",
+      "bytes": 4272,
+      "sha256": "f3e4b6f122dce96b6ba85c3d600fd19a766ab5e0fd0cbdeee785d0d88f111d3a"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/gradle/LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/gradle/LICENSE",
+      "bytes": 23645,
+      "sha256": "cf234c4188d773406f640bf89be680d9288f40ff96901c70d643fcea96ad46df"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/harfbuzz-ng/COPYING",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/harfbuzz-ng/COPYING",
+      "bytes": 1971,
+      "sha256": "ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/icc/LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/icc/LICENSE.txt",
+      "bytes": 463,
+      "sha256": "9e34ff47b3a44814e183342e7e198d127a6740e29d20e8381fba7688dafc79dd"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/libjpeg/COPYRIGHT.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/libjpeg/COPYRIGHT.txt",
+      "bytes": 606,
+      "sha256": "e5b349c6a98d997a8d0f5fcfe5cc900b1f76bbc32743674c52a70981498748c0"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/libjpeg/LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/libjpeg/LICENSE",
+      "bytes": 6077,
+      "sha256": "ba6bceebcba0fdd35488477c2cca8c4632ce82c74dbfbc87d886ce6fc4433579"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/libjpeg/ijg-license.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/libjpeg/ijg-license.txt",
+      "bytes": 1815,
+      "sha256": "1cb448f5e2e6d3aca60943f4eee1a04675628dc0266a074a42bc1560ebc28d61"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/libpng/LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/libpng/LICENSE",
+      "bytes": 5345,
+      "sha256": "bdb0a645ea18c60507d0368379b1ac5474b92255fcc2d115e07486a7672ba526"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/libpsl/PSL-LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/libpsl/PSL-LICENSE.txt",
+      "bytes": 16726,
+      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/libpsl/src/LICENSE.chromium",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/libpsl/src/LICENSE.chromium",
+      "bytes": 1664,
+      "sha256": "1d7f52747a9169751cdf2641a8299c0098e9ecdf9429296ffd55bdb14c9ed5b3"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/md4c/LICENSE.md",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/md4c/LICENSE.md",
+      "bytes": 1096,
+      "sha256": "d30937367d5413e7eaa218b1640b8946ff76fd34d97152f6979fd96169d5d0fc"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/pcre2/LICENCE.md",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/pcre2/LICENCE.md",
+      "bytes": 4011,
+      "sha256": "197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/pcre2/LICENSE-SLJIT",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/pcre2/LICENSE-SLJIT",
+      "bytes": 1444,
+      "sha256": "5f216505c0f6ea3273caec89e766eef93cdeb7bbb0c429f9360116d7c938feeb"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/pixman/LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/pixman/LICENSE",
+      "bytes": 1092,
+      "sha256": "942c4f2a80394d3f53599b8382e9f27349b95c45d92b69b84f26d404f4dd74a5"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/rfc6234/LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/rfc6234/LICENSE",
+      "bytes": 1568,
+      "sha256": "7ccebd514aaabc86192f957d773cebf06577c12fe9f25ecd419c6cac5da7a14c"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/sha3/BRG_ENDIAN_LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/sha3/BRG_ENDIAN_LICENSE",
+      "bytes": 645,
+      "sha256": "2fed6f252ca4a7e813811de3cd3cd08183edd4138bdee909410ef6eee394e82c"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/sha3/CC0_LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/sha3/CC0_LICENSE",
+      "bytes": 7013,
+      "sha256": "1f2786e2c5befeb4dcba6638db6528bf96ef5d2cf24bc85ab5a81ef00abef59d"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/tinycbor/LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/tinycbor/LICENSE",
+      "bytes": 1074,
+      "sha256": "3c6ba0b5bfa7830505301ffb336a17b0748e0d61c4d34216e9dc98f10e40395e"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/wasm/DEJAVU-LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/wasm/DEJAVU-LICENSE",
+      "bytes": 8816,
+      "sha256": "7a083b136e64d064794c3419751e5c7dd10d2f64c108fe5ba161eae5e5958a93"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/wayland/protocols/MIT_LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/wayland/protocols/MIT_LICENSE.txt",
+      "bytes": 1055,
+      "sha256": "a8341b9c90ef447a77f55d550e6691e370d3ac15d60edb584def356e348ab828"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/wayland/protocols/text-input/v2/HPND_LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/wayland/protocols/text-input/v2/HPND_LICENSE.txt",
+      "bytes": 1095,
+      "sha256": "8172d52f3b7bba7d10af2f9134c63d0f699ba6b20a47e35f5ac45654c500bfd7"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/xcb/LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/xcb/LICENSE",
+      "bytes": 1246,
+      "sha256": "82775191bc05f85b40404d77bb69b1edeaeb4033f48387e9e5eab4dd67f5d6f1"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/3rdparty/zlib/LICENSE",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/3rdparty/zlib/LICENSE",
+      "bytes": 1465,
+      "sha256": "d7e3139972874dc8abdbbfce27ec1e6f942b28279dd7d27453630a8b4610e080"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/corelib/kernel/LICENSE.QEVENTDISPATCHER_CF.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/corelib/kernel/LICENSE.QEVENTDISPATCHER_CF.txt",
+      "bytes": 1501,
+      "sha256": "e9e5b9f66d21c0e88a4179525ab39cd8d7eac9af78a8404f322c32b0874783d5"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/dbus/LICENSE.LIBDBUS-1.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/dbus/LICENSE.LIBDBUS-1.txt",
+      "bytes": 27248,
+      "sha256": "ad90aa08bb1a9b7056aa51e2e215b36630855457cde5dffd36aa0faa7b169f24"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/gui/opengl/LICENSE.KHRONOS.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/gui/opengl/LICENSE.KHRONOS.txt",
+      "bytes": 1084,
+      "sha256": "2e484f3c26ff5008c704a3ca9dd809d43f24a004a1abb6c202660fbff0d19715"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/gui/painting/LICENSE.QIMAGETRANSFORM.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/gui/painting/LICENSE.QIMAGETRANSFORM.txt",
+      "bytes": 3004,
+      "sha256": "46b3cbfa2f2946b93291506351e9be1dd0a28d2a53260f5aa488abd36fbeca9d"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/gui/painting/LICENSE.XCONSORTIUM.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/gui/painting/LICENSE.XCONSORTIUM.txt",
+      "bytes": 2294,
+      "sha256": "a216b01291eb38fc1af93cfccf1fc67b48d9923612e517c2a695e95b3f03c22c"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/gui/rhi/LICENSE.MiniEngine.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/gui/rhi/LICENSE.MiniEngine.txt",
+      "bytes": 1077,
+      "sha256": "cf248820bf1178370bb4f1670a59f8748d46bc96d0f64080cd631511c6046409"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/gui/text/LICENSE.AGLFN.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/gui/text/LICENSE.AGLFN.txt",
+      "bytes": 1425,
+      "sha256": "40818155548ff41c67d3a40edf355e9658992b292c227f4c1147425cedc746c6"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/gui/vulkan/LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/gui/vulkan/LICENSE.txt",
+      "bytes": 11473,
+      "sha256": "5f618873b0cdd1e84c611c5529212c2524bfc887bdfd7d1f3b568bad3c649612"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/gui/vulkan/licenseheader.h.in",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/gui/vulkan/licenseheader.h.in",
+      "bytes": 144,
+      "sha256": "6975a5d3dd6bb9e5fa9058f5d8739b68ca7d635fcfae8bec21949ec4331813ec"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/plugins/platforms/cocoa/LICENSE.COCOA.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/plugins/platforms/cocoa/LICENSE.COCOA.txt",
+      "bytes": 1501,
+      "sha256": "e9e5b9f66d21c0e88a4179525ab39cd8d7eac9af78a8404f322c32b0874783d5"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/testinternal/3rdparty/cmake/Copyright.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/testinternal/3rdparty/cmake/Copyright.txt",
+      "bytes": 5477,
+      "sha256": "0676e30827684487aa0ea8f72f01e9460a6320fa34a2888df0ad1dd3e8a06eb8"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/testlib/3rdparty/catch2/LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/testlib/3rdparty/catch2/LICENSE.txt",
+      "bytes": 1338,
+      "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/testlib/3rdparty/cycle/LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/testlib/3rdparty/cycle/LICENSE.txt",
+      "bytes": 1023,
+      "sha256": "cb5aedb296c5246d1f22e9099f925a65146f9f0d6b4eebba97fd27a6cdbbab2d"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/testlib/3rdparty/linux/LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/testlib/3rdparty/linux/LICENSE.txt",
+      "bytes": 18458,
+      "sha256": "ed71cfca021790f74094e9810f42e31288e7f43cf00c8d9ac8d6f904124bd815"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/testlib/3rdparty/valgrind/LICENSE.txt",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/testlib/3rdparty/valgrind/LICENSE.txt",
+      "bytes": 1667,
+      "sha256": "ec72eebd6326165156787da828caaa18386489387aefaa073c9bd40b8b2a400e"
+    },
+    {
+      "archive": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "member": "qtbase-everywhere-src-6.11.2/src/tools/moc/util/licenseheader.cpp.in",
+      "output": "qtbase-everywhere-src-6.11.2.tar.xz/src/tools/moc/util/licenseheader.cpp.in",
+      "bytes": 138,
+      "sha256": "331466d1e3f460ef7f3fe1fcd926307b0594311a2ed286b24ea649c82cc36cc5"
+    },
+    {
+      "archive": "qtimageformats-everywhere-src-6.11.2.tar.xz",
+      "member": "qtimageformats-everywhere-src-6.11.2/LICENSES/LicenseRef-Qt-Commercial.txt",
+      "output": "qtimageformats-everywhere-src-6.11.2.tar.xz/LICENSES/LicenseRef-Qt-Commercial.txt",
+      "bytes": 462,
+      "sha256": "9b1f50aae6267f9d5e0ceb6775ee86450262c25ec7c0573e151fe5d3f18a4700"
+    },
+    {
+      "archive": "qtimageformats-everywhere-src-6.11.2.tar.xz",
+      "member": "qtimageformats-everywhere-src-6.11.2/src/3rdparty/libtiff/COPYRIGHT",
+      "output": "qtimageformats-everywhere-src-6.11.2.tar.xz/src/3rdparty/libtiff/COPYRIGHT",
+      "bytes": 1146,
+      "sha256": "fbd6fed7938541d2c809c0826225fc85e551fdbfa8732b10f0c87e0847acafd7"
+    },
+    {
+      "archive": "qtimageformats-everywhere-src-6.11.2.tar.xz",
+      "member": "qtimageformats-everywhere-src-6.11.2/src/3rdparty/libwebp/COPYING",
+      "output": "qtimageformats-everywhere-src-6.11.2.tar.xz/src/3rdparty/libwebp/COPYING",
+      "bytes": 1496,
+      "sha256": "5aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf"
+    },
+    {
+      "archive": "qtsvg-everywhere-src-6.11.2.tar.xz",
+      "member": "qtsvg-everywhere-src-6.11.2/LICENSES/LicenseRef-Qt-Commercial.txt",
+      "output": "qtsvg-everywhere-src-6.11.2.tar.xz/LICENSES/LicenseRef-Qt-Commercial.txt",
+      "bytes": 462,
+      "sha256": "9b1f50aae6267f9d5e0ceb6775ee86450262c25ec7c0573e151fe5d3f18a4700"
+    },
+    {
+      "archive": "qtsvg-everywhere-src-6.11.2.tar.xz",
+      "member": "qtsvg-everywhere-src-6.11.2/src/svg/LICENSE.XSVG.txt",
+      "output": "qtsvg-everywhere-src-6.11.2.tar.xz/src/svg/LICENSE.XSVG.txt",
+      "bytes": 1185,
+      "sha256": "3a946598a9f674d44df764279ca0b85b5d6faba08f3bc75d8e0fcf6cd729a9bd"
+    },
+    {
+      "archive": "qttools-everywhere-src-6.11.2.tar.xz",
+      "member": "qttools-everywhere-src-6.11.2/LICENSES/LicenseRef-Qt-Commercial.txt",
+      "output": "qttools-everywhere-src-6.11.2.tar.xz/LICENSES/LicenseRef-Qt-Commercial.txt",
+      "bytes": 462,
+      "sha256": "9b1f50aae6267f9d5e0ceb6775ee86450262c25ec7c0573e151fe5d3f18a4700"
+    },
+    {
+      "archive": "qttranslations-everywhere-src-6.11.2.tar.xz",
+      "member": "qttranslations-everywhere-src-6.11.2/LICENSES/LicenseRef-Qt-Commercial.txt",
+      "output": "qttranslations-everywhere-src-6.11.2.tar.xz/LICENSES/LicenseRef-Qt-Commercial.txt",
+      "bytes": 462,
+      "sha256": "9b1f50aae6267f9d5e0ceb6775ee86450262c25ec7c0573e151fe5d3f18a4700"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/LICENSES/LicenseRef-Qt-Commercial.txt",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/LICENSES/LicenseRef-Qt-Commercial.txt",
+      "bytes": 462,
+      "sha256": "9b1f50aae6267f9d5e0ceb6775ee86450262c25ec7c0573e151fe5d3f18a4700"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/LICENSES/LicenseRef-Tango-Icons-Public-Domain.txt",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/LICENSES/LicenseRef-Tango-Icons-Public-Domain.txt",
+      "bytes": 75,
+      "sha256": "4f740497cf8ad0e564de90d3416a06c3d6b1d69d6883fe539925e3353d68a466"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/LICENSE",
+      "bytes": 1536,
+      "sha256": "368cca1106be99d39ecd32a38d8305585d802a475effb66380b91ffc9bcf709b"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/abseil-cpp/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/abseil-cpp/LICENSE",
+      "bytes": 11361,
+      "sha256": "c79a7fea0e3cac04cd43f20e7b648e5a0ff8fa5344e644b0ee09ca1162b62747"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/fast_float/src/LICENSE-APACHE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/fast_float/src/LICENSE-APACHE",
+      "bytes": 10767,
+      "sha256": "097a889aa954d04e088b790b10a4014d6189561d0a6013935a73ce3d4ddaaf06"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/fast_float/src/LICENSE-BOOST",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/fast_float/src/LICENSE-BOOST",
+      "bytes": 1337,
+      "sha256": "8d8291caf1cee26d23acf3eb67c9f9a2d58f1c681b16a4fbe8cbfb9e3c0b5a9b"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/fast_float/src/LICENSE-MIT",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/fast_float/src/LICENSE-MIT",
+      "bytes": 1079,
+      "sha256": "e562f3f974ced7e69dd1db77b820b36bcf8f30377f1aa105723fba449c53c4e6"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/freetype/src/LICENSE.TXT",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/freetype/src/LICENSE.TXT",
+      "bytes": 2149,
+      "sha256": "bd36c8b474855fa294c2ec5c184544478ef3720aad37d65a6296a4f264fd2d3b"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/freetype/src/docs/FTL.TXT",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/freetype/src/docs/FTL.TXT",
+      "bytes": 6743,
+      "sha256": "5a5ee54c5001bbad1cdc1a57cc3dd4c42199b2da09d39c7ee41fab002d02967f"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/freetype/src/docs/GPLv2.TXT",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/freetype/src/docs/GPLv2.TXT",
+      "bytes": 17994,
+      "sha256": "c4120c6752c910c299e3bd9cb3a46ff262c268303ca2069b61f92f10a5656c18"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/freetype/src/src/tools/no-copyright",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/freetype/src/src/tools/no-copyright",
+      "bytes": 1282,
+      "sha256": "3e2c8db4e09e12e9a138ba7ba8c0b762eff36802c6c1273d73ac049d4949a298"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/freetype/src/src/tools/update-copyright",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/freetype/src/src/tools/update-copyright",
+      "bytes": 383,
+      "sha256": "ae5b05f1d3f5235eb91ce41518be95022443f68bce5d200b6e1cc1fb57a5017e"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/freetype/src/src/tools/update-copyright-year",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/freetype/src/src/tools/update-copyright-year",
+      "bytes": 4272,
+      "sha256": "1043ab2f00dc9b79e90f913f3cc8c9e45759f12b4676d8188a6be81a578612c1"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/icu/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/icu/LICENSE",
+      "bytes": 25185,
+      "sha256": "17510cf7a58b4879b887ec05a45d72cf1b73544dd9ec7e72f20110ed104229ee"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/icu/license.html",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/icu/license.html",
+      "bytes": 622,
+      "sha256": "c62d7697c03979f5056d28b338fafc7a1152820f7b379adf4a9d88cd37160f96"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/icu/scripts/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/icu/scripts/LICENSE",
+      "bytes": 1559,
+      "sha256": "845022e0c1db1abb41a6ba4cd3c4b674ec290f3359d9d3c78ae558d4c0ed9308"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/libjpeg_turbo/LICENSE.md",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/libjpeg_turbo/LICENSE.md",
+      "bytes": 5620,
+      "sha256": "96f5b328adbb78eeaaec6980d73fd558cb1e4d62560ed615646bc3cf5e532430"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/libpng/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/libpng/LICENSE",
+      "bytes": 5345,
+      "sha256": "bdb0a645ea18c60507d0368379b1ac5474b92255fcc2d115e07486a7672ba526"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/pdfium/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/pdfium/LICENSE",
+      "bytes": 12896,
+      "sha256": "1fe9dea718fbd75cf149adaf4d8a22a4335604d964ddb76d1b45383dec8668c9"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/pdfium/third_party/NotoSansCJK/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/pdfium/third_party/NotoSansCJK/LICENSE",
+      "bytes": 4361,
+      "sha256": "d6639d6624144ef0611b03172e085251c29d4c929b3c11e891e72db6a5b5c2e1"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/pdfium/third_party/agg23/copying",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/pdfium/third_party/agg23/copying",
+      "bytes": 443,
+      "sha256": "0e16f9c2285583269242e94c6f502de0c9910dfcbbc7b386e236cdf29ecd4333"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/pdfium/third_party/bigint/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/pdfium/third_party/bigint/LICENSE",
+      "bytes": 3367,
+      "sha256": "32759d1397d8f7b9e15ece146e4038b22b90e93b4935b5a840bcef4d2ba5ea55"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/pdfium/third_party/fp16/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/pdfium/third_party/fp16/LICENSE",
+      "bytes": 1158,
+      "sha256": "c91377adafa2f498211a4fe017788e20c38892124673860f068f2919c289193d"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/pdfium/third_party/freetype/FTL.TXT",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/pdfium/third_party/freetype/FTL.TXT",
+      "bytes": 6741,
+      "sha256": "f4b133e25df1f86ad3ffea453aa0e613f0474f34778dbbb3e437e7b2724937d8"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/pdfium/third_party/highway/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/pdfium/third_party/highway/LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/pdfium/third_party/lcms/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/pdfium/third_party/lcms/LICENSE",
+      "bytes": 1080,
+      "sha256": "6dbd60437f8ef91d8de1f08ad75882547fd4931bfcc3566a0735f28db1484d31"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/pdfium/third_party/libopenjpeg/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/pdfium/third_party/libopenjpeg/LICENSE",
+      "bytes": 2112,
+      "sha256": "a6af136f3e15038a666b61f376612a07d9a4e48cb7c01adbf3e33b3f14ab49b6"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/pdfium/third_party/libtiff/LICENSE.md",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/pdfium/third_party/libtiff/LICENSE.md",
+      "bytes": 1164,
+      "sha256": "0780558a8bfba0af1160ec1ff11ade4f41c0d7deafd6ecfc796b492a788e380d"
+    },
+    {
+      "archive": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/src/3rdparty/chromium/third_party/zlib/LICENSE",
+      "output": "qtwebengine-everywhere-src-6.11.2.tar.xz/src/3rdparty/chromium/third_party/zlib/LICENSE",
+      "bytes": 910,
+      "sha256": "e1cfcc55c325b3f78cf55df9664abaa066e2271dffe8213347d9fccdfbac8f2c"
+    },
+    {
+      "archive": "requests-2.34.2.tar.gz",
+      "member": "requests-2.34.2/LICENSE",
+      "output": "requests-2.34.2.tar.gz/LICENSE",
+      "bytes": 10142,
+      "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b"
+    },
+    {
+      "archive": "requests-2.34.2.tar.gz",
+      "member": "requests-2.34.2/NOTICE",
+      "output": "requests-2.34.2.tar.gz/NOTICE",
+      "bytes": 38,
+      "sha256": "f5110972dedad2b4e9d314518daf3b7d72d6e02e499acd802181de6f74571dcc"
+    },
+    {
+      "archive": "roman_numerals-4.1.0.tar.gz",
+      "member": "roman_numerals-4.1.0/LICENCE.rst",
+      "output": "roman_numerals-4.1.0.tar.gz/LICENCE.rst",
+      "bytes": 7505,
+      "sha256": "c744ffc7e120b22e6620b613298dc003a2613c0ae489ee414fb1d473f24f916f"
+    },
+    {
+      "archive": "semantic_version-2.10.0.tar.gz",
+      "member": "semantic_version-2.10.0/LICENSE",
+      "output": "semantic_version-2.10.0.tar.gz/LICENSE",
+      "bytes": 1317,
+      "sha256": "a85e7ef2fbc670d26781ed6844cd31a7e8ada65d21328f75a0b02402faae37ea"
+    },
+    {
+      "archive": "send2trash-2.1.0.tar.gz",
+      "member": "send2trash-2.1.0/LICENSE",
+      "output": "send2trash-2.1.0.tar.gz/LICENSE",
+      "bytes": 1504,
+      "sha256": "cfab49595c96bb2b25854e4e433305f67a8eb09cb885c53401ced9784d5feedf"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/LICENSE",
+      "output": "setuptools-84.0.0.tar.gz/LICENSE",
+      "bytes": 1023,
+      "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/docs/userguide/license_migration.rst",
+      "output": "setuptools-84.0.0.tar.gz/docs/userguide/license_migration.rst",
+      "bytes": 5005,
+      "sha256": "49e725dd64d57ea335ba61af755273ad03dbe39b8a689882c49e1c820b295944"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/autocommand-2.2.2.dist-info/LICENSE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/autocommand-2.2.2.dist-info/LICENSE",
+      "bytes": 7634,
+      "sha256": "ade78d04982d69972d444a8e14a94f87a2334dd3855cc80348ea8e240aa0df2d"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/LICENSE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/LICENSE",
+      "bytes": 1023,
+      "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/licenses/LICENSE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/licenses/LICENSE",
+      "bytes": 10278,
+      "sha256": "458502e12d97bbf64438606a20044aa85eb05fb0a8a807bb35dbec253fd1fc04"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/jaraco.text-4.0.0.dist-info/LICENSE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/jaraco.text-4.0.0.dist-info/LICENSE",
+      "bytes": 1023,
+      "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/jaraco_context-6.1.0.dist-info/licenses/LICENSE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/jaraco_context-6.1.0.dist-info/licenses/LICENSE",
+      "bytes": 1076,
+      "sha256": "9755a18519666e5f0f4cae3daad3d7012bcae48a600b31237d75e9fe134e6683"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/licenses/LICENSE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/licenses/LICENSE",
+      "bytes": 1076,
+      "sha256": "5a57cb4db85e2a2dd88c290628908add57e3451449e0a9a71fdfb38776fd759d"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/more_itertools-10.8.0.dist-info/licenses/LICENSE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/more_itertools-10.8.0.dist-info/licenses/LICENSE",
+      "bytes": 1053,
+      "sha256": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE",
+      "bytes": 197,
+      "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE.APACHE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE.APACHE",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE.BSD",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE.BSD",
+      "bytes": 1344,
+      "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/platformdirs-4.4.0.dist-info/licenses/LICENSE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/platformdirs-4.4.0.dist-info/licenses/LICENSE",
+      "bytes": 1089,
+      "sha256": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/tomli-2.4.0.dist-info/licenses/LICENSE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/tomli-2.4.0.dist-info/licenses/LICENSE",
+      "bytes": 1072,
+      "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/wheel-0.46.3.dist-info/licenses/LICENSE.txt",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/wheel-0.46.3.dist-info/licenses/LICENSE.txt",
+      "bytes": 1107,
+      "sha256": "30c23618679108f3e8ea1d2a658c7ca417bdfc891c98ef1a89fa4ff0c9828654"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/_vendor/zipp-3.23.0.dist-info/licenses/LICENSE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/_vendor/zipp-3.23.0.dist-info/licenses/LICENSE",
+      "bytes": 1076,
+      "sha256": "5a57cb4db85e2a2dd88c290628908add57e3451449e0a9a71fdfb38776fd759d"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/config/NOTICE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/config/NOTICE",
+      "bytes": 493,
+      "sha256": "2dddf08818297a3b89d43d95ff659d8da85741108c9136dfa3a4d856c0623bd8"
+    },
+    {
+      "archive": "setuptools-84.0.0.tar.gz",
+      "member": "setuptools-84.0.0/setuptools/config/_validate_pyproject/NOTICE",
+      "output": "setuptools-84.0.0.tar.gz/setuptools/config/_validate_pyproject/NOTICE",
+      "bytes": 18737,
+      "sha256": "09c9bcea95ca086f8bc5bed174e40bc835b297d40fb5f86bbbb570fe0a5581a7"
+    },
+    {
+      "archive": "setuptools_scm-8.3.1.tar.gz",
+      "member": "setuptools_scm-8.3.1/LICENSE",
+      "output": "setuptools_scm-8.3.1.tar.gz/LICENSE",
+      "bytes": 1023,
+      "sha256": "89807acf2309bd285f033404ee78581602f3cd9b819a16ac2f0e5f60ff4a473e"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/LICENSE",
+      "output": "sip-6.15.0.tar.gz/LICENSE",
+      "bytes": 1300,
+      "sha256": "84fc1e53af2832382178e0bbc46c256f10b02cb89508b19e3ff8a3c002f8ecea"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/10/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/10/LICENSE",
+      "bytes": 2766,
+      "sha256": "2c93b5d4af4cfdfe8d7551b2bfe971e39deb37a8ae2d40765f3fd63846418c63"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/10/LICENSE-GPL2",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/10/LICENSE-GPL2",
+      "bytes": 18161,
+      "sha256": "7ebb61006e46b9e9340dd135d5f4afbbcb1d1d6c6709f74473b35929007b9aeb"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/10/LICENSE-GPL3",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/10/LICENSE-GPL3",
+      "bytes": 35297,
+      "sha256": "63cb5f5c1ea39b732c495f354f971e40f6db84c567ca5573a68bb65af07741f8"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/11/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/11/LICENSE",
+      "bytes": 2766,
+      "sha256": "2c93b5d4af4cfdfe8d7551b2bfe971e39deb37a8ae2d40765f3fd63846418c63"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/11/LICENSE-GPL2",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/11/LICENSE-GPL2",
+      "bytes": 18161,
+      "sha256": "7ebb61006e46b9e9340dd135d5f4afbbcb1d1d6c6709f74473b35929007b9aeb"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/11/LICENSE-GPL3",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/11/LICENSE-GPL3",
+      "bytes": 35297,
+      "sha256": "63cb5f5c1ea39b732c495f354f971e40f6db84c567ca5573a68bb65af07741f8"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/12/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/12/LICENSE",
+      "bytes": 2766,
+      "sha256": "2c93b5d4af4cfdfe8d7551b2bfe971e39deb37a8ae2d40765f3fd63846418c63"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/12/LICENSE-GPL2",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/12/LICENSE-GPL2",
+      "bytes": 18161,
+      "sha256": "7ebb61006e46b9e9340dd135d5f4afbbcb1d1d6c6709f74473b35929007b9aeb"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/12/LICENSE-GPL3",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/12/LICENSE-GPL3",
+      "bytes": 35297,
+      "sha256": "63cb5f5c1ea39b732c495f354f971e40f6db84c567ca5573a68bb65af07741f8"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/13/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/13/LICENSE",
+      "bytes": 2766,
+      "sha256": "2c93b5d4af4cfdfe8d7551b2bfe971e39deb37a8ae2d40765f3fd63846418c63"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/13/LICENSE-GPL2",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/13/LICENSE-GPL2",
+      "bytes": 18161,
+      "sha256": "7ebb61006e46b9e9340dd135d5f4afbbcb1d1d6c6709f74473b35929007b9aeb"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/13/LICENSE-GPL3",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/13/LICENSE-GPL3",
+      "bytes": 35297,
+      "sha256": "63cb5f5c1ea39b732c495f354f971e40f6db84c567ca5573a68bb65af07741f8"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/14/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/14/LICENSE",
+      "bytes": 1300,
+      "sha256": "3859cfca971e429d6b79bdfeb1dc9e43aa9592f7295bf28fdd62824097909383"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/15/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/15/LICENSE",
+      "bytes": 1300,
+      "sha256": "3859cfca971e429d6b79bdfeb1dc9e43aa9592f7295bf28fdd62824097909383"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/16/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/16/LICENSE",
+      "bytes": 1300,
+      "sha256": "3859cfca971e429d6b79bdfeb1dc9e43aa9592f7295bf28fdd62824097909383"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/17/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/17/LICENSE",
+      "bytes": 1304,
+      "sha256": "3e6f5b427c36f94ecf86bc01698af7030a1ed6eb3748110d5dbb8d142d804611"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/18/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/18/LICENSE",
+      "bytes": 1304,
+      "sha256": "3e6f5b427c36f94ecf86bc01698af7030a1ed6eb3748110d5dbb8d142d804611"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/9/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/9/LICENSE",
+      "bytes": 2766,
+      "sha256": "2c93b5d4af4cfdfe8d7551b2bfe971e39deb37a8ae2d40765f3fd63846418c63"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/9/LICENSE-GPL2",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/9/LICENSE-GPL2",
+      "bytes": 18161,
+      "sha256": "7ebb61006e46b9e9340dd135d5f4afbbcb1d1d6c6709f74473b35929007b9aeb"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/12/9/LICENSE-GPL3",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/12/9/LICENSE-GPL3",
+      "bytes": 35297,
+      "sha256": "63cb5f5c1ea39b732c495f354f971e40f6db84c567ca5573a68bb65af07741f8"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/1/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/1/LICENSE",
+      "bytes": 2766,
+      "sha256": "2c93b5d4af4cfdfe8d7551b2bfe971e39deb37a8ae2d40765f3fd63846418c63"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/1/LICENSE-GPL2",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/1/LICENSE-GPL2",
+      "bytes": 18161,
+      "sha256": "7ebb61006e46b9e9340dd135d5f4afbbcb1d1d6c6709f74473b35929007b9aeb"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/1/LICENSE-GPL3",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/1/LICENSE-GPL3",
+      "bytes": 35297,
+      "sha256": "63cb5f5c1ea39b732c495f354f971e40f6db84c567ca5573a68bb65af07741f8"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/10/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/10/LICENSE",
+      "bytes": 1304,
+      "sha256": "3e6f5b427c36f94ecf86bc01698af7030a1ed6eb3748110d5dbb8d142d804611"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/11/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/11/LICENSE",
+      "bytes": 1304,
+      "sha256": "3e6f5b427c36f94ecf86bc01698af7030a1ed6eb3748110d5dbb8d142d804611"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/2/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/2/LICENSE",
+      "bytes": 2766,
+      "sha256": "2c93b5d4af4cfdfe8d7551b2bfe971e39deb37a8ae2d40765f3fd63846418c63"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/2/LICENSE-GPL2",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/2/LICENSE-GPL2",
+      "bytes": 18161,
+      "sha256": "7ebb61006e46b9e9340dd135d5f4afbbcb1d1d6c6709f74473b35929007b9aeb"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/2/LICENSE-GPL3",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/2/LICENSE-GPL3",
+      "bytes": 35297,
+      "sha256": "63cb5f5c1ea39b732c495f354f971e40f6db84c567ca5573a68bb65af07741f8"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/3/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/3/LICENSE",
+      "bytes": 2766,
+      "sha256": "2c93b5d4af4cfdfe8d7551b2bfe971e39deb37a8ae2d40765f3fd63846418c63"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/3/LICENSE-GPL2",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/3/LICENSE-GPL2",
+      "bytes": 18161,
+      "sha256": "7ebb61006e46b9e9340dd135d5f4afbbcb1d1d6c6709f74473b35929007b9aeb"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/3/LICENSE-GPL3",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/3/LICENSE-GPL3",
+      "bytes": 35297,
+      "sha256": "63cb5f5c1ea39b732c495f354f971e40f6db84c567ca5573a68bb65af07741f8"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/4/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/4/LICENSE",
+      "bytes": 2766,
+      "sha256": "2c93b5d4af4cfdfe8d7551b2bfe971e39deb37a8ae2d40765f3fd63846418c63"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/4/LICENSE-GPL2",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/4/LICENSE-GPL2",
+      "bytes": 18161,
+      "sha256": "7ebb61006e46b9e9340dd135d5f4afbbcb1d1d6c6709f74473b35929007b9aeb"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/4/LICENSE-GPL3",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/4/LICENSE-GPL3",
+      "bytes": 35297,
+      "sha256": "63cb5f5c1ea39b732c495f354f971e40f6db84c567ca5573a68bb65af07741f8"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/5/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/5/LICENSE",
+      "bytes": 2766,
+      "sha256": "2c93b5d4af4cfdfe8d7551b2bfe971e39deb37a8ae2d40765f3fd63846418c63"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/5/LICENSE-GPL2",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/5/LICENSE-GPL2",
+      "bytes": 18161,
+      "sha256": "7ebb61006e46b9e9340dd135d5f4afbbcb1d1d6c6709f74473b35929007b9aeb"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/5/LICENSE-GPL3",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/5/LICENSE-GPL3",
+      "bytes": 35297,
+      "sha256": "63cb5f5c1ea39b732c495f354f971e40f6db84c567ca5573a68bb65af07741f8"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/6/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/6/LICENSE",
+      "bytes": 2766,
+      "sha256": "2c93b5d4af4cfdfe8d7551b2bfe971e39deb37a8ae2d40765f3fd63846418c63"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/6/LICENSE-GPL2",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/6/LICENSE-GPL2",
+      "bytes": 18161,
+      "sha256": "7ebb61006e46b9e9340dd135d5f4afbbcb1d1d6c6709f74473b35929007b9aeb"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/6/LICENSE-GPL3",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/6/LICENSE-GPL3",
+      "bytes": 35297,
+      "sha256": "63cb5f5c1ea39b732c495f354f971e40f6db84c567ca5573a68bb65af07741f8"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/7/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/7/LICENSE",
+      "bytes": 1300,
+      "sha256": "3859cfca971e429d6b79bdfeb1dc9e43aa9592f7295bf28fdd62824097909383"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/8/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/8/LICENSE",
+      "bytes": 1300,
+      "sha256": "3859cfca971e429d6b79bdfeb1dc9e43aa9592f7295bf28fdd62824097909383"
+    },
+    {
+      "archive": "sip-6.15.0.tar.gz",
+      "member": "sip-6.15.0/sipbuild/module/source/13/9/LICENSE",
+      "output": "sip-6.15.0.tar.gz/sipbuild/module/source/13/9/LICENSE",
+      "bytes": 1300,
+      "sha256": "3859cfca971e429d6b79bdfeb1dc9e43aa9592f7295bf28fdd62824097909383"
+    },
+    {
+      "archive": "snowballstemmer-3.1.1.tar.gz",
+      "member": "snowballstemmer-3.1.1/COPYING",
+      "output": "snowballstemmer-3.1.1.tar.gz/COPYING",
+      "bytes": 1630,
+      "sha256": "880802872ce34f313df826e96131b1b147dcfa09c76fc82129f25503a922a678"
+    },
+    {
+      "archive": "sphinx-9.1.0.tar.gz",
+      "member": "sphinx-9.1.0/LICENSE.rst",
+      "output": "sphinx-9.1.0.tar.gz/LICENSE.rst",
+      "bytes": 1476,
+      "sha256": "64c96919bbaf3a13baa0f10e418cc1fc88768ce1b9c07f5b7bf49f0fb23db106"
+    },
+    {
+      "archive": "sphinxcontrib-jsmath-1.0.1.tar.gz",
+      "member": "sphinxcontrib-jsmath-1.0.1/LICENSE",
+      "output": "sphinxcontrib-jsmath-1.0.1.tar.gz/LICENSE",
+      "bytes": 1435,
+      "sha256": "d8c25e2e8478ccd32b18375eb3a57c584d31048fe0c23c55905c64c8af6774a9"
+    },
+    {
+      "archive": "sphinxcontrib_applehelp-2.0.0.tar.gz",
+      "member": "sphinxcontrib_applehelp-2.0.0/LICENCE.rst",
+      "output": "sphinxcontrib_applehelp-2.0.0.tar.gz/LICENCE.rst",
+      "bytes": 1441,
+      "sha256": "445e28ceb62ff34619a7031148aea9fce3560dc55fd8e15a719614b1fb8b956a"
+    },
+    {
+      "archive": "sphinxcontrib_devhelp-2.0.0.tar.gz",
+      "member": "sphinxcontrib_devhelp-2.0.0/LICENCE.rst",
+      "output": "sphinxcontrib_devhelp-2.0.0.tar.gz/LICENCE.rst",
+      "bytes": 1437,
+      "sha256": "c166b04a478c94b74910f162c63867359671d2cedd766e9a873c4db8eb40f64c"
+    },
+    {
+      "archive": "sphinxcontrib_htmlhelp-2.1.0.tar.gz",
+      "member": "sphinxcontrib_htmlhelp-2.1.0/LICENCE.rst",
+      "output": "sphinxcontrib_htmlhelp-2.1.0.tar.gz/LICENCE.rst",
+      "bytes": 1439,
+      "sha256": "dccf210bbbdda1b97caff8333a45bd8a7621f32b6f8b1d13a748f24a4e5d99d3"
+    },
+    {
+      "archive": "sphinxcontrib_qthelp-2.0.0.tar.gz",
+      "member": "sphinxcontrib_qthelp-2.0.0/LICENCE.rst",
+      "output": "sphinxcontrib_qthelp-2.0.0.tar.gz/LICENCE.rst",
+      "bytes": 1435,
+      "sha256": "27b1953612e4740d49737ff7dfe12c11aa9151da8e7f4a8224b5247d07a37695"
+    },
+    {
+      "archive": "sphinxcontrib_serializinghtml-2.0.0.tar.gz",
+      "member": "sphinxcontrib_serializinghtml-2.0.0/LICENCE.rst",
+      "output": "sphinxcontrib_serializinghtml-2.0.0.tar.gz/LICENCE.rst",
+      "bytes": 1453,
+      "sha256": "3684cbcc712af8e969688e1d63fcf14d97c24422da92cf15f77f25859e15f2f5"
+    },
+    {
+      "archive": "urllib3-2.7.0.tar.gz",
+      "member": "urllib3-2.7.0/LICENSE.txt",
+      "output": "urllib3-2.7.0.tar.gz/LICENSE.txt",
+      "bytes": 1093,
+      "sha256": "130e3a64d5fdd5d096a752694634a7d9df284469de86e5732100268041e3d686"
+    },
+    {
+      "archive": "wheel-0.48.0.tar.gz",
+      "member": "wheel-0.48.0/LICENSE.txt",
+      "output": "wheel-0.48.0.tar.gz/LICENSE.txt",
+      "bytes": 1107,
+      "sha256": "30c23618679108f3e8ea1d2a658c7ca417bdfc891c98ef1a89fa4ff0c9828654"
+    },
+    {
+      "archive": "xxhash-3.8.1.tar.gz",
+      "member": "xxhash-3.8.1/LICENSE",
+      "output": "xxhash-3.8.1.tar.gz/LICENSE",
+      "bytes": 1313,
+      "sha256": "b3c620adc9a8812cc0c3c7fc09567fa9a9930d3546de955dfb955b168cf989ac"
+    },
+    {
+      "archive": "xxhash-3.8.1.tar.gz",
+      "member": "xxhash-3.8.1/deps/xxhash/LICENSE",
+      "output": "xxhash-3.8.1.tar.gz/deps/xxhash/LICENSE",
+      "bytes": 1389,
+      "sha256": "6ffedbc0f7878612d2b23589f1ff2ab15633e1df7963a5d9fc750ec5500c7e7a"
+    },
+    {
+      "archive": "xz-5.2.5-c6bc0c612605622aaef101a33a751f9de2ecc193.tar.gz",
+      "member": "cpython-source-deps-c6bc0c612605622aaef101a33a751f9de2ecc193/COPYING",
+      "output": "xz-5.2.5-c6bc0c612605622aaef101a33a751f9de2ecc193.tar.gz/COPYING",
+      "bytes": 2775,
+      "sha256": "bcb02973ef6e87ea73d331b3a80df7748407f17efdb784b61b47e0e610d3bb5c"
+    },
+    {
+      "archive": "xz-5.2.5-c6bc0c612605622aaef101a33a751f9de2ecc193.tar.gz",
+      "member": "cpython-source-deps-c6bc0c612605622aaef101a33a751f9de2ecc193/COPYING.GPLv2",
+      "output": "xz-5.2.5-c6bc0c612605622aaef101a33a751f9de2ecc193.tar.gz/COPYING.GPLv2",
+      "bytes": 18092,
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+    },
+    {
+      "archive": "xz-5.2.5-c6bc0c612605622aaef101a33a751f9de2ecc193.tar.gz",
+      "member": "cpython-source-deps-c6bc0c612605622aaef101a33a751f9de2ecc193/COPYING.GPLv3",
+      "output": "xz-5.2.5-c6bc0c612605622aaef101a33a751f9de2ecc193.tar.gz/COPYING.GPLv3",
+      "bytes": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    },
+    {
+      "archive": "xz-5.2.5-c6bc0c612605622aaef101a33a751f9de2ecc193.tar.gz",
+      "member": "cpython-source-deps-c6bc0c612605622aaef101a33a751f9de2ecc193/COPYING.LGPLv2.1",
+      "output": "xz-5.2.5-c6bc0c612605622aaef101a33a751f9de2ecc193.tar.gz/COPYING.LGPLv2.1",
+      "bytes": 26530,
+      "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551"
+    },
+    {
+      "archive": "zlib-1.3.1-4dc98e1909830e2bdc2a9cc2236e3c5d5037335b.tar.gz",
+      "member": "cpython-source-deps-4dc98e1909830e2bdc2a9cc2236e3c5d5037335b/LICENSE",
+      "output": "zlib-1.3.1-4dc98e1909830e2bdc2a9cc2236e3c5d5037335b.tar.gz/LICENSE",
+      "bytes": 1002,
+      "sha256": "845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243"
+    },
+    {
+      "archive": "zlib-1.3.1-4dc98e1909830e2bdc2a9cc2236e3c5d5037335b.tar.gz",
+      "member": "cpython-source-deps-4dc98e1909830e2bdc2a9cc2236e3c5d5037335b/contrib/dotzlib/LICENSE_1_0.txt",
+      "output": "zlib-1.3.1-4dc98e1909830e2bdc2a9cc2236e3c5d5037335b.tar.gz/contrib/dotzlib/LICENSE_1_0.txt",
+      "bytes": 1359,
+      "sha256": "36266a8fd073568394cb81cdb2b124f7fdae2c64c1a7ed09db34b4d22efa2951"
+    }
+  ]
+}

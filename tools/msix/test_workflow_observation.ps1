@@ -115,3 +115,101 @@ foreach ($action in @('capture','input')) {
         $script:saved -eq 1 -and $script:pressed -eq $expectedPresses) 'Capture/input failure was retried as an observation failure.'
 }
 Write-Output 'PASS: exact completion ownership/disclosure/visibility/uniqueness gates remain required; capture and input failures are never retried.'
+
+# Replay run 34673149420's owned recent-folder popup through the production
+# classifier/tree reader/navigation. Only UIA/native/input endpoints are adapters.
+$script:state=@{process=[pscustomobject]@{Id=9224}}
+function Reset-RecentMenu([int]$Focus=-1) {
+    $script:menuMode='valid';$script:menuEntered=$false;$script:menuKeys=[Collections.Generic.List[string]]::new()
+    $script:root.Current=[pscustomobject]@{Name='TwinQuay';ProcessId=9224;IsEnabled=$true;IsOffscreen=$false;
+        NativeWindowHandle=852364;ControlType=[pscustomobject]@{ProgrammaticName='ControlType.Window'}}
+    $script:menuItems=@($script:root)
+    foreach($pair in @(
+        @('Add Folder...','MenuItem'),@('','Separator'),
+        @('D:/a/_temp/.twinquay-install-950c7331ddbe49fc9c6a986318e3a34c/workflow-fixture/input','MenuItem'),
+        @('','Separator'),@('Clear List','MenuItem'))) {
+        $item=New-Element -Name $pair[0] -Owner 9224 -ControlType ([pscustomobject]@{ProgrammaticName=('ControlType.'+$pair[1])})
+        $item.Current.IsEnabled=$pair[1] -ceq 'MenuItem'
+        $item.Current|Add-Member NoteProperty HasKeyboardFocus $false
+        $script:menuItems+= $item
+    }
+    $script:menuActions=@($script:menuItems | Where-Object {$_.Current.ControlType.ProgrammaticName -ceq 'ControlType.MenuItem'})
+    if($Focus -ge 0){$script:menuActions[$Focus].Current.HasKeyboardFocus=$true}
+    Reset-Observation (, $script:menuItems)
+}
+function Get-TwinQuayWorkflowWindows($State) {
+    Assert ([object]::ReferenceEquals($State,$script:state)) 'Menu changed its ownership state.'
+    if($script:menuEntered) {
+        return [pscustomobject]@{Current=[pscustomobject]@{Name='Select a folder to add to the scanning list';ProcessId=9224;
+            IsEnabled=$true;IsOffscreen=$false;NativeWindowHandle=200}}
+    }
+    if($script:menuMode -ceq 'absent'){return @()}
+    if($script:menuMode -ceq 'duplicate-window'){return @($script:root,$script:root)}
+    return $script:root
+}
+function Get-TwinQuayWorkflowNativeWindow([IntPtr]$Handle) {
+    $native=[pscustomobject]@{handle=$Handle;root=$Handle;process_id=9224;visible=$true;enabled=$true;
+        title='TwinQuay';class_name='Qt6112QWindowPopupDropShadowSaveBits'}
+    if($Handle -eq [IntPtr]200){$native.title='Select a folder to add to the scanning list';$native.class_name='#32770'}
+    switch($script:menuMode) {
+        'foreign-native' {$native.process_id=9999}
+        'child-window' {$native.root=[IntPtr]123}
+        'hidden-native' {$native.visible=$false}
+        'disabled-native' {$native.enabled=$false}
+        'wrong-class' {$native.class_name='Qt6112QWindowPopup'}
+        'wrong-title' {$native.title='Other'}
+    }
+    return $native
+}
+function Send-TwinQuayWorkflowKeys($State,$Root,[string]$Keys,$ExpectedFocusedMenuItem=$null) {
+    Assert ([object]::ReferenceEquals($State,$script:state) -and [object]::ReferenceEquals($Root,$script:root)) 'Menu input changed owned target.'
+    $script:menuKeys.Add($Keys)
+    if($script:menuMode -ceq 'input-failure'){throw [Runtime.InteropServices.COMException]::new('Menu input failed.',-2147220991)}
+    $focused=@($script:menuActions|Where-Object {$_.Current.HasKeyboardFocus})
+    if($Keys -ceq '{ENTER}') {
+        Assert ($focused.Count -eq 1 -and $focused[0].Current.Name -ceq 'Add Folder...') 'Enter reached another menu action.'
+        Assert ([object]::ReferenceEquals($ExpectedFocusedMenuItem,$focused[0])) 'Input boundary did not receive exact menu item for its final focus check.'
+        $script:menuEntered=$true;return
+    }
+    if($script:menuMode -ceq 'stuck-focus'){return}
+    $index=0
+    if($Keys -ceq '{UP}') {
+        Assert ($focused.Count -eq 1) 'Up sent without observed focus.'
+        $index=[Math]::Max(0,[array]::IndexOf($script:menuActions,$focused[0])-1)
+    } else {Assert ($Keys -ceq '{DOWN}' -and $focused.Count -eq 0) 'Unexpected menu navigation input.'}
+    foreach($item in $script:menuActions){$item.Current.HasKeyboardFocus=$false}
+    $script:menuActions[$index].Current.HasKeyboardFocus=$true
+    if($script:menuMode -ceq 'changed-menu'){$script:menuActions[1].Current.Name='changed recent folder'}
+}
+foreach($focus in @(-1,0,1,2)) {
+    Reset-RecentMenu $focus
+    $chooser=Wait-TwinQuayWorkflowAddFolderChooser $script:state -Seconds 3
+    Assert ($chooser.Current.NativeWindowHandle -eq 200 -and $script:menuKeys[-1] -ceq '{ENTER}' -and
+        $script:menuKeys.Count -le 3) "Menu route failed from focus position $focus."
+}
+Reset-RecentMenu;$script:menuEntered=$true
+$chooser=Wait-TwinQuayWorkflowAddFolderChooser $script:state -Seconds 0
+Assert ($chooser.Current.NativeWindowHandle -eq 200 -and $script:menuKeys.Count -eq 0) 'Fresh-profile chooser caused menu input.'
+foreach($case in @('foreign-native','child-window','hidden-native','disabled-native','wrong-class','wrong-title',
+    'duplicate-window','foreign-control','disabled-add','offscreen-add','duplicate-add','wrong-order','missing-clear','ambiguous-focus','absent')) {
+    Reset-RecentMenu 0;$script:menuMode=$case
+    switch($case) {
+        'foreign-control' {$script:menuActions[1].Current.ProcessId=9999}
+        'disabled-add' {$script:menuActions[0].Current.IsEnabled=$false}
+        'offscreen-add' {$script:menuActions[0].Current.IsOffscreen=$true}
+        'duplicate-add' {$script:menuActions[1].Current.Name='Add Folder...'}
+        'wrong-order' {$script:menuActions[0].Current.Name='recent';$script:menuActions[1].Current.Name='Add Folder...'}
+        'missing-clear' {$script:menuActions[-1].Current.Name='Other'}
+        'ambiguous-focus' {$script:menuActions[1].Current.HasKeyboardFocus=$true}
+    }
+    $failure=$null;try{Wait-TwinQuayWorkflowAddFolderChooser $script:state -Seconds 0|Out-Null}catch{$failure=$_.Exception.Message}
+    Assert ($failure -and $script:menuKeys.Count -eq 0) "Unsafe $case menu accepted or received input."
+}
+foreach($case in @('changed-menu','stuck-focus','input-failure')) {
+    Reset-RecentMenu 2;$script:menuMode=$case
+    $failure=$null;try{Wait-TwinQuayWorkflowAddFolderChooser $script:state -Seconds 3|Out-Null}catch{$failure=$_.Exception.Message}
+    $expected=switch($case){'changed-menu'{'popup changed'}'stuck-focus'{'bounded menu navigation'}'input-failure'{'Menu input failed'}}
+    $maxKeys=if($case -ceq 'stuck-focus'){3}else{1}
+    Assert ($failure -match $expected -and $script:menuKeys.Count -eq $maxKeys -and -not $script:menuEntered) "Unsafe $case navigation was retried or activated."
+}
+'PASS: observed owned recent-folder popup, all initial focus positions and fresh chooser; 18 negative/action variants, bounded navigation and no history selection.'

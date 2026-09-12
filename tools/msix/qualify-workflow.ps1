@@ -242,6 +242,77 @@ function Wait-TwinQuayWorkflowWindow($State,[string]$Title,[int]$Seconds=30) {
     throw "Timed out awaiting exact owned workflow window: $Title"
 }
 
+function Wait-TwinQuayWorkflowAddFolderChooser($State,[int]$Seconds=30) {
+    # A prior normal shutdown preserves recentFolders. The same '+' button then
+    # opens a QMenu instead of the chooser. Use only the observed owned menu,
+    # retaining history and entering the existing native chooser through input.
+    $deadline=[DateTime]::UtcNow.AddSeconds($Seconds)
+    $signature=$null;$arrows=0;$entered=$false
+    do {
+        $target=$null;$keys=$null
+        try {
+            $candidates=[Collections.Generic.List[object]]::new()
+            foreach ($window in @(Get-TwinQuayWorkflowWindows $State)) {
+                $current=$window.Current
+                $handle=ConvertTo-TwinQuayWorkflowHandle $current.NativeWindowHandle 'window-enumeration'
+                $native=Get-TwinQuayWorkflowNativeWindow $handle
+                if ($current.Name -ceq 'TwinQuay' -and $native.title -ceq 'TwinQuay' -and
+                    $native.class_name -ceq 'Qt6112QWindowIcon') { continue }
+                if ($current.ProcessId -ne $State.process.Id -or $handle -eq [IntPtr]::Zero -or
+                    $current.IsOffscreen -or -not $current.IsEnabled -or $native.handle -ne $handle -or
+                    $native.process_id -ne $State.process.Id -or $native.root -ne $handle -or
+                    -not $native.visible -or -not $native.enabled) { throw 'Unowned or unavailable Add Folder surface.' }
+                if ($current.Name -ceq 'Select a folder to add to the scanning list' -and
+                    $native.title -ceq $current.Name -and $native.class_name -ceq '#32770') {
+                    $candidates.Add([pscustomobject]@{window=$window;kind='chooser'})
+                } elseif ($current.Name -ceq 'TwinQuay' -and $native.title -ceq 'TwinQuay' -and
+                    $native.class_name -ceq 'Qt6112QWindowPopupDropShadowSaveBits') {
+                    $candidates.Add([pscustomobject]@{window=$window;kind='recent'})
+                } else { throw 'Unexpected owned window while opening Add Folder.' }
+            }
+            if ($candidates.Count -gt 1) { throw 'Ambiguous Add Folder surface.' }
+            if ($candidates.Count -eq 1) {
+                $target=$candidates[0].window
+                if ($candidates[0].kind -ceq 'chooser') { return $target }
+                $items=@(Get-TwinQuayWorkflowElements $target)
+                $menus=@($items | Where-Object { $_.control_type -ceq 'ControlType.MenuItem' })
+                $adds=@($menus | Where-Object { $_.name -ceq 'Add Folder...' })
+                if ($items.Count -lt 6 -or $items.Count -gt 15 -or $menus.Count -lt 3 -or $menus.Count -gt 12 -or
+                    $items[0].control_type -cne 'ControlType.Window' -or $items[0].name -cne 'TwinQuay' -or
+                    @($items | Where-Object { $_.process_id -ne $State.process.Id -or $_.offscreen }).Count -or
+                    @($items | Select-Object -Skip 1 | Where-Object { $_.control_type -cnotin @('ControlType.MenuItem','ControlType.Separator') }).Count -or
+                    $adds.Count -ne 1 -or -not $adds[0].enabled -or $menus[0].name -cne 'Add Folder...' -or
+                    $menus[-1].name -cne 'Clear List' -or @($menus | Where-Object { $_.name -ceq 'Clear List' }).Count -ne 1) {
+                    throw 'Exact owned recent-folder menu with one enabled Add Folder action was not observed.'
+                }
+                $observed=(@($target.Current.NativeWindowHandle,@($items | Select-Object name,control_type,process_id,enabled,offscreen)) | ConvertTo-Json -Depth 5 -Compress)
+                if ($null -eq $signature) { $signature=$observed }
+                elseif ($signature -cne $observed) { throw 'Recent-folder popup changed during keyboard navigation.' }
+                $focused=@($menus | Where-Object { $_.element.Current.HasKeyboardFocus })
+                if ($focused.Count -gt 1 -or ($focused.Count -eq 1 -and -not $focused[0].enabled)) { throw 'Ambiguous or disabled recent-folder menu focus.' }
+                if (-not $entered) {
+                    if ($focused.Count -eq 1 -and $focused[0].name -ceq 'Add Folder...') { $keys='{ENTER}' }
+                    elseif ($arrows -ge $menus.Count) { throw 'Add Folder focus did not follow bounded menu navigation.' }
+                    elseif ($focused.Count -eq 0) { $keys='{DOWN}' }
+                    else { $keys='{UP}' }
+                }
+            }
+        } catch {
+            if (-not (Test-TwinQuayTransientUiaError $_.Exception)) { throw }
+            $target=$null;$keys=$null
+        }
+        # Never retry a failed input operation as a transient UIA observation.
+        if ($keys) {
+            if ($keys -ceq '{ENTER}') {
+                Send-TwinQuayWorkflowKeys $State $target $keys -ExpectedFocusedMenuItem $focused[0].element
+            } else { Send-TwinQuayWorkflowKeys $State $target $keys }
+            if ($keys -ceq '{ENTER}') { $entered=$true } else { $arrows++ }
+        }
+        Start-Sleep -Milliseconds 150
+    } while ([DateTime]::UtcNow -lt $deadline)
+    throw 'Timed out awaiting exact owned Add Folder chooser or focused recent-folder action.'
+}
+
 function Wait-TwinQuayWorkflowScanResult($State,[int]$Seconds=45) {
     $deadline=[DateTime]::UtcNow.AddSeconds($Seconds)
     $lastTransient=$null
@@ -273,7 +344,7 @@ function Find-TwinQuayWorkflowControl($State,$Root,[string]$Name,[string[]]$Type
     return (Select-TwinQuayWorkflowControl @(Get-TwinQuayWorkflowElements $Root) $State.process.Id $Name $Types).element
 }
 
-function Send-TwinQuayWorkflowKeys($State,$Root,[string]$Keys,$Control=$null,[IntPtr]$ExpectedFocusHandle=[IntPtr]::Zero) {
+function Send-TwinQuayWorkflowKeys($State,$Root,[string]$Keys,$Control=$null,[IntPtr]$ExpectedFocusHandle=[IntPtr]::Zero,$ExpectedFocusedMenuItem=$null) {
     Assert-TwinQuayWorkflowProcess $State
     $handle=ConvertTo-TwinQuayWorkflowHandle $Root.Current.NativeWindowHandle 'input-root'
     if ($Root.Current.ProcessId -ne $State.process.Id -or $handle -eq [IntPtr]::Zero) { throw 'Cannot focus an unowned workflow window.' }
@@ -292,6 +363,12 @@ function Send-TwinQuayWorkflowKeys($State,$Root,[string]$Keys,$Control=$null,[In
     if ($foreground -ne $handle -or $foregroundPid -ne $State.process.Id) { throw 'Refusing keyboard input: exact owned dialog is not foreground.' }
     if ($ExpectedFocusHandle -ne [IntPtr]::Zero -and [TwinQuayQualification.NativePackageProbe]::GetFocusedWindow($handle) -ne $ExpectedFocusHandle) {
         throw 'Refusing keyboard input: exact native control no longer has focus.'
+    }
+    if ($ExpectedFocusedMenuItem) {
+        $item=$ExpectedFocusedMenuItem.Current
+        if ($Keys -cne '{ENTER}' -or $item.ProcessId -ne $State.process.Id -or $item.Name -cne 'Add Folder...' -or
+            $item.ControlType.ProgrammaticName -cne 'ControlType.MenuItem' -or -not $item.IsEnabled -or
+            $item.IsOffscreen -or -not $item.HasKeyboardFocus) { throw 'Refusing Enter: exact owned Add Folder menu item no longer has focus.' }
     }
     if ($Keys.Length) { [Windows.Forms.SendKeys]::SendWait($Keys) }
 }
@@ -482,6 +559,7 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
         # QAccessibleComboBox has Value, not Selection, in Qt 6.11.2's UIA provider.
         if ($combo.GetCurrentPattern([Windows.Automation.ValuePattern]::Pattern).Current.Value -cne 'Contents') { throw 'Actual Contents scan mode was not selected.' }
         Press-TwinQuayWorkflowButton $State $main ''
+        Wait-TwinQuayWorkflowAddFolderChooser $State | Out-Null
         Set-TwinQuayWorkflowFolder $State 'Select a folder to add to the scanning list' $context.facts.prepare.input
         $main=Wait-TwinQuayWorkflowWindow $State 'TwinQuay'
         Save-TwinQuayWorkflowSurface $State $context '01-scan-folder' $main
