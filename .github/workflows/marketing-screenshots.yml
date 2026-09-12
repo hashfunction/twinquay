@@ -1,0 +1,55 @@
+name: DupliSift real product screenshots
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  capture-existing-store-package:
+    runs-on: windows-2025
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: 73f3842a2cc81aa3c69a5873a262517eae35b6f4
+          path: qualified-source
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12.10'
+          architecture: x64
+      - name: Verify capture-only input, window and cleanup boundaries
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          python -m unittest discover -s tools/marketing -p 'test_*.py' -v
+          if ($LASTEXITCODE -ne 0) { throw 'Capture Python boundary tests failed.' }
+          $pwsh=(Get-Process -Id $PID).Path
+          foreach ($fixture in @('test_capture_helpers.ps1','test_display_modes.ps1')) {
+            & $pwsh -NoProfile -File (Join-Path 'tools/marketing' $fixture)
+            if ($LASTEXITCODE -ne 0) { throw "Capture native helper fixture failed: $fixture" }
+          }
+          & $pwsh -NoProfile -File tools/marketing/test_capture_adapter.ps1 -Python (Get-Command python).Source
+          if ($LASTEXITCODE -ne 0) { throw 'Original workflow capture adapter fixture failed.' }
+      - name: Fetch and verify exact already-qualified package and metadata
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python tools/marketing/prepare_capture.py --output "$env:RUNNER_TEMP/duplisift-capture-inputs" --qualified-source qualified-source
+          if ($LASTEXITCODE -ne 0) { throw 'Pinned existing DupliSift capture inputs did not verify.' }
+      - name: Capture actual duplicate results, reviewed plan and restored receipt
+        shell: pwsh
+        run: ./tools/marketing/capture.ps1 -Inputs "$env:RUNNER_TEMP/duplisift-capture-inputs" -QualifiedSource qualified-source -CaptureOutput build-evidence/marketing
+      - name: Retain real screenshots and capture receipts only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: DupliSift-real-product-screenshots
+          path: |
+            build-evidence/marketing/*.png
+            build-evidence/marketing/*.json
+            build-evidence/marketing/workflow/*.json
+            build-evidence/marketing/workflow/*.png
+          retention-days: 14
+          if-no-files-found: warn
