@@ -134,6 +134,66 @@ function Get-VerifiedDefenderModuleEvidence([string]$Path, [string]$PlatformRoot
         signer_common_name=$commonNames[0]; signer_organization=$organizations[0] }
 }
 
+function Get-TwinQuayWindowsTextInputPath {
+    $commonFiles=[Environment]::GetFolderPath('CommonProgramFiles')
+    if (-not [Environment]::Is64BitProcess -or -not [IO.Path]::IsPathFullyQualified($commonFiles)) {
+        throw 'Native CommonProgramFiles is unavailable for Windows text input verification.'
+    }
+    return Get-CanonicalPath (Join-Path $commonFiles 'microsoft shared/ink/tiptsf.dll')
+}
+
+function Read-TwinQuayModuleVersionInfo([string]$Path) {
+    return [Diagnostics.FileVersionInfo]::GetVersionInfo($Path)
+}
+
+function Get-VerifiedWindowsTextInputModuleEvidence([string]$Path) {
+    # Run 34669549040 loaded this one Windows TSF module after native input.
+    # CommonProgramFiles is not a generally trusted module tree.
+    $path=Get-CanonicalPath $Path
+    if (-not $path.Equals((Get-TwinQuayWindowsTextInputPath),[StringComparison]::OrdinalIgnoreCase)) {
+        throw 'Module is not at the exact Windows text input path.'
+    }
+    Assert-NoReparsePath $path
+    $item=Get-Item -LiteralPath $path -Force
+    if ($item.PSIsContainer -or $item.LinkType) { throw 'Windows text input module is not a regular non-link file.' }
+    $bytes=$item.Length
+    $hash=(Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
+    $signature=Get-AuthenticodeSignature -LiteralPath $path
+    $certificate=$signature.SignerCertificate
+    if ([string]$signature.Status -cne 'Valid' -or -not $certificate) {
+        throw 'Windows text input module lacks a valid Microsoft Authenticode signature.'
+    }
+    $commonNames=[Collections.Generic.List[string]]::new()
+    $organizations=[Collections.Generic.List[string]]::new()
+    foreach ($rdn in $certificate.SubjectName.EnumerateRelativeDistinguishedNames()) {
+        if ($rdn.HasMultipleElements) { throw 'Ambiguous multi-valued Microsoft signer RDN.' }
+        switch ($rdn.GetSingleElementType().Value) {
+            '2.5.4.3' { $commonNames.Add($rdn.GetSingleElementValue()) }
+            '2.5.4.10' { $organizations.Add($rdn.GetSingleElementValue()) }
+        }
+    }
+    if ($commonNames.Count -ne 1 -or $organizations.Count -ne 1 -or
+        $commonNames[0] -cnotin @('Microsoft Windows Publisher','Microsoft Corporation','Microsoft Windows') -or
+        $organizations[0] -cne 'Microsoft Corporation') { throw 'Windows text input signature does not identify the required Microsoft signer.' }
+    $version=Read-TwinQuayModuleVersionInfo $path
+    if (-not [string]::Equals($version.OriginalFilename,'tiptsf.dll',[StringComparison]::OrdinalIgnoreCase) -or
+        $version.CompanyName -cne 'Microsoft Corporation') { throw 'Windows text input module version identity differs.' }
+    foreach ($field in @('OriginalFilename','CompanyName','ProductName','FileDescription','FileVersion')) {
+        if (([string]$version.$field).Length -gt 1024) { throw 'Windows text input module exceeds its metadata bound.' }
+    }
+    Assert-NoReparsePath $path
+    $after=Get-Item -LiteralPath $path -Force
+    if ($after.PSIsContainer -or $after.LinkType -or $after.Length -ne $bytes -or
+        (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant() -cne $hash) {
+        throw 'Windows text input module changed during provenance verification.'
+    }
+    return [ordered]@{sha256=$hash;bytes=$bytes;signature_status=[string]$signature.Status;
+        signer_subject=$certificate.Subject;signer_issuer=$certificate.Issuer;signer_thumbprint=$certificate.Thumbprint;
+        signer_common_name=$commonNames[0];signer_organization=$organizations[0];
+        original_filename=$version.OriginalFilename;company_name=$version.CompanyName;
+        product_name=$version.ProductName;file_description=$version.FileDescription;file_version=$version.FileVersion}
+}
+
 function Assert-FileMatchesRecord([string]$Path, [object]$Expected, [string]$Label) {
     Assert-NoReparsePath $Path
     $item = Get-Item -LiteralPath $Path -Force
@@ -373,13 +433,19 @@ function Get-TwinQuayInstalledModuleEvidence($State) {
         } else {
             $defenderRoot = Join-Path ([Environment]::GetFolderPath('CommonApplicationData')) 'Microsoft/Windows Defender/Platform'
             try {
-                $platformSignature = Get-VerifiedDefenderModuleEvidence -Path $path -PlatformRoot $defenderRoot
+                if ([IO.Path]::GetFileName($path) -ieq 'tiptsf.dll' -and
+                    $path.Equals((Get-TwinQuayWindowsTextInputPath),[StringComparison]::OrdinalIgnoreCase)) {
+                    $platformSignature = Get-VerifiedWindowsTextInputModuleEvidence -Path $path
+                    $origin = 'microsoft_windows_text_input_signed_platform'
+                } else {
+                    $platformSignature = Get-VerifiedDefenderModuleEvidence -Path $path -PlatformRoot $defenderRoot
+                    $origin = 'microsoft_defender_signed_platform'
+                }
             } catch {
                 throw "Loaded module '$path' failed the external-platform policy: $($_.Exception.Message)"
             }
             $relative = $null
             $hash = $platformSignature.sha256
-            $origin = 'microsoft_defender_signed_platform'
         }
         $modules.Add([ordered]@{ name=$module.ModuleName; path=$path; origin=$origin; relative_path=$relative; sha256=$hash; platform_signature=$platformSignature })
     }
