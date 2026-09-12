@@ -21,6 +21,7 @@ namespace Windows.Automation {
         public bool IsEnabled=true; public object NativeWindowHandle; public Kind ControlType=new Kind();
     }
     public class AutomationElement {
+        public static readonly object NotSupported=new object();
         public static AutomationElement RootElement; public static object ProcessIdProperty=new object();
         public Info Current=new Info(); public List<AutomationElement> Children=new List<AutomationElement>();
         public AutomationElement(string name,int pid,int hwnd) { Current.Name=name;Current.ProcessId=pid;Current.NativeWindowHandle=hwnd; }

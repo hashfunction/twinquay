@@ -190,7 +190,15 @@ function Get-TwinQuayWorkflowElements($Root) {
     if ($elements.Count -gt 1500) { throw 'Owned workflow UI tree exceeds its evidence bound.' }
     foreach ($element in $elements) {
         $current=$element.Current
-        $items.Add([pscustomobject]@{name=$current.Name;control_type=$current.ControlType.ProgrammaticName;
+        $controlType=$current.ControlType
+        if ($null -eq $controlType -or [object]::ReferenceEquals($controlType,[Windows.Automation.AutomationElement]::NotSupported)) {
+            # Qt can replace a provider child while its subtree is read. Reject
+            # the entire observation; skipping the child could accept partial UI.
+            $unavailable=[InvalidOperationException]::new('Owned workflow UI control type is unavailable; the complete subtree must be reacquired.')
+            $unavailable.Data['TwinQuay.IncompleteUiaObservation']='ControlType'
+            throw $unavailable
+        }
+        $items.Add([pscustomobject]@{name=$current.Name;control_type=$controlType.ProgrammaticName;
             process_id=$current.ProcessId;enabled=$current.IsEnabled;offscreen=$current.IsOffscreen;element=$element})
     }
     return @($items)
@@ -202,6 +210,8 @@ function Test-TwinQuayTransientUiaError($Exception) {
         # destroyed between enumeration and access. PowerShell wraps this COM
         # error in MethodInvocationException for AutomationElement.FindAll.
         if ($Exception.HResult -eq -2147220991) { return $true }
+        if ($Exception -is [InvalidOperationException] -and
+            $Exception.Data['TwinQuay.IncompleteUiaObservation'] -ceq 'ControlType') { return $true }
         $Exception=$Exception.InnerException
     }
     return $false
@@ -228,7 +238,7 @@ function Wait-TwinQuayWorkflowWindow($State,[string]$Title,[int]$Seconds=30) {
         Start-Sleep -Milliseconds 150
     } while ([DateTime]::UtcNow -lt $deadline)
     if ($matches.Count -gt 1) { throw "Ambiguous owned workflow window at deadline: $Title" }
-    if ($lastTransient) { throw "Timed out awaiting exact owned workflow window after UIA_E_ELEMENTNOTAVAILABLE: $Title; $lastTransient" }
+    if ($lastTransient) { throw "Timed out awaiting exact owned workflow window after transient UIA observation failure: $Title; $lastTransient" }
     throw "Timed out awaiting exact owned workflow window: $Title"
 }
 
@@ -254,7 +264,7 @@ function Wait-TwinQuayWorkflowScanResult($State,[int]$Seconds=45) {
         }
         Start-Sleep -Milliseconds 200
     } while ([DateTime]::UtcNow -lt $deadline)
-    if ($lastTransient) { throw "Actual scan result remained unavailable after UIA_E_ELEMENTNOTAVAILABLE: $lastTransient" }
+    if ($lastTransient) { throw "Actual scan result remained unavailable after transient UIA observation failure: $lastTransient" }
     throw 'Actual generated original/duplicate scan result was not rendered.'
 }
 
@@ -393,21 +403,33 @@ function Set-TwinQuayWorkflowFolder($State,[string]$Title,[string]$Folder) {
     Press-TwinQuayNativeDialogButton $State $dialog 'Select Folder'
 }
 
-function Wait-TwinQuayWorkflowCompletion($State,$Context,[string]$Status,[string]$Capture) {
+function Wait-TwinQuayWorkflowCompletion($State,$Context,[string]$Status,[string]$Capture,[int]$Seconds=30) {
     $expected="1 $Status`nReceipt: $($Context.facts.plan.receipt_path)`nUse Quarantine Receipts to inspect or restore. Rescan after restore."
-    $deadline=[DateTime]::UtcNow.AddSeconds(30)
+    $deadline=[DateTime]::UtcNow.AddSeconds($Seconds)
+    $lastTransient=$null
     do {
-        foreach ($window in @(Get-TwinQuayWorkflowWindows $State)) {
-            $items=@(Get-TwinQuayWorkflowElements $window)
-            $message=@($items | Where-Object { $_.process_id -eq $State.process.Id -and $_.name.Replace("`r`n","`n") -ceq $expected -and -not $_.offscreen })
-            if ($message.Count -eq 1) {
-                Save-TwinQuayWorkflowSurface $State $Context $Capture $window
-                Press-TwinQuayWorkflowButton $State $window 'OK'
-                return
+        $completion=$null
+        try {
+            foreach ($window in @(Get-TwinQuayWorkflowWindows $State)) {
+                $items=@(Get-TwinQuayWorkflowElements $window)
+                $message=@($items | Where-Object { $_.process_id -eq $State.process.Id -and $_.name.Replace("`r`n","`n") -ceq $expected -and -not $_.offscreen })
+                if ($message.Count -eq 1) { $completion=$window; break }
             }
+        } catch {
+            if (-not (Test-TwinQuayTransientUiaError $_.Exception)) { throw }
+            $lastTransient=$_.Exception.Message
+            $completion=$null
+        }
+        # Only read-only observation is retried. Evidence/input still perform
+        # their exact live ownership checks, and failures cannot repeat input.
+        if ($null -ne $completion) {
+            Save-TwinQuayWorkflowSurface $State $Context $Capture $completion
+            Press-TwinQuayWorkflowButton $State $completion 'OK'
+            return
         }
         Start-Sleep -Milliseconds 150
     } while ([DateTime]::UtcNow -lt $deadline)
+    if ($lastTransient) { throw "Expected actual completion disclosure not observed: $Status; last transient UIA observation: $lastTransient" }
     throw "Expected actual completion disclosure not observed: $Status"
 }
 
