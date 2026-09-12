@@ -21,7 +21,7 @@ def main():
     selected = []
     app = QApplication([])
     window = QMainWindow()
-    window.setWindowTitle("TwinQuay native chooser fixture")
+    window.setWindowTitle("DupliSift native chooser fixture")
     window.resize(640, 480)
     window.app = SimpleNamespace(
         prefs=SimpleNamespace(use_native_dialogs=True),

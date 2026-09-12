@@ -1,5 +1,7 @@
 # Qt 6 runtime qualification
 
+Historical qualification record. Current DupliSift naming, compatibility and screenshot fixtures are documented in [the rename review](duplisift-rename-review.md). Old run titles, package paths and source commits below remain unchanged.
+
 Checked 2026-09-11 against primary publisher documentation. The runtime is now
 PyQt6 6.11.0, PyQt6-Qt6 6.11.2 and PyQt6-sip 13.12.0, pinned in requirements,
 package metadata and the hash-locked Windows dependency file. Qt's

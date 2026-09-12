@@ -26,8 +26,8 @@ foreach ($bad in @(@($one,$one),@($one | Select-Object * -ExcludeProperty proces
 # window temporarily shares the main title on Windows (run34642776050).
 $originalWindows=${function:Get-TwinQuayWorkflowWindows}
 $script:polls=0;$script:windowMode='transient'
-$script:mainWindow=[pscustomobject]@{Current=[pscustomobject]@{Name='TwinQuay'}}
-$script:progressWindow=[pscustomobject]@{Current=[pscustomobject]@{Name='TwinQuay'}}
+$script:mainWindow=[pscustomobject]@{Current=[pscustomobject]@{Name='DupliSift'}}
+$script:progressWindow=[pscustomobject]@{Current=[pscustomobject]@{Name='DupliSift'}}
 function Get-TwinQuayWorkflowWindows($State) {
     $script:polls++
     if($script:windowMode -eq 'transient-uia' -and $script:polls -eq 1){[TwinQuayTransientUiaFixture]::FindAll(-2147220991)}
@@ -38,17 +38,17 @@ function Get-TwinQuayWorkflowWindows($State) {
     return @($script:mainWindow)
 }
 try {
-    $found=Wait-TwinQuayWorkflowWindow @{} 'TwinQuay' 2
+    $found=Wait-TwinQuayWorkflowWindow @{} 'DupliSift' 2
     Assert ($script:polls -eq 2 -and [object]::ReferenceEquals($found,$script:mainWindow)) 'Transient scan window was selected or rejected instead of awaited.'
     $script:windowMode='transient-uia';$script:polls=0
-    $found=Wait-TwinQuayWorkflowWindow @{} 'TwinQuay' 2
+    $found=Wait-TwinQuayWorkflowWindow @{} 'DupliSift' 2
     Assert ($script:polls -eq 2 -and [object]::ReferenceEquals($found,$script:mainWindow)) 'UIA_E_ELEMENTNOTAVAILABLE was not retried within the owned bounded wait.'
     $script:windowMode='other-uia';$script:polls=0;$failure=$null
-    try{Wait-TwinQuayWorkflowWindow @{} 'TwinQuay' 2|Out-Null}catch{$failure=$_.Exception.Message}
+    try{Wait-TwinQuayWorkflowWindow @{} 'DupliSift' 2|Out-Null}catch{$failure=$_.Exception.Message}
     Assert ($failure -match 'Unrecognized error' -and $script:polls -eq 1) 'A different UI Automation HRESULT was retried or concealed.'
     foreach($script:windowMode in @('persistent','absent','error')){
         $script:polls=0;$failure=$null
-        try{Wait-TwinQuayWorkflowWindow @{} 'TwinQuay' 0|Out-Null}catch{$failure=$_.Exception.Message}
+        try{Wait-TwinQuayWorkflowWindow @{} 'DupliSift' 0|Out-Null}catch{$failure=$_.Exception.Message}
         $expected=@{persistent='Ambiguous';absent='Timed out';error='Owned application error'}[$script:windowMode]
         Assert ($failure -match $expected -and $script:polls -eq 1) "Window polling accepted or misreported $script:windowMode"
     }
@@ -57,13 +57,13 @@ Write-Output 'PASS: bounded wait tolerates transient same-title scan progress an
 $originalWait=${function:Wait-TwinQuayWorkflowWindow}
 $originalElements=${function:Get-TwinQuayWorkflowElements}
 $script:scanPolls=0
-$script:scanWindow=[pscustomobject]@{Current=[pscustomobject]@{Name='TwinQuay'}}
+$script:scanWindow=[pscustomobject]@{Current=[pscustomobject]@{Name='DupliSift'}}
 $script:scanElement=[pscustomobject]@{identity='exact rendered row'}
 function Wait-TwinQuayWorkflowWindow($State,[string]$Title,[int]$Seconds=30) { return $script:scanWindow }
 function Get-TwinQuayWorkflowElements($Root) {
     $script:scanPolls++
     if($script:scanPolls -eq 1){[TwinQuayTransientUiaFixture]::FindAll(-2147220991)}
-    return [pscustomobject]@{name='keep-original.bin';process_id=42;offscreen=$false;element=$script:scanElement}
+    return [pscustomobject]@{name='Cedar House Brief.txt';process_id=42;offscreen=$false;element=$script:scanElement}
 }
 try {
     $scan=Wait-TwinQuayWorkflowScanResult @{process=[pscustomobject]@{Id=42}} 2

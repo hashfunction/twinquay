@@ -32,10 +32,10 @@ VSVersionInfo(
         [StringStruct(u'CompanyName', u'Trieflow LLC'),
         StringStruct(u'FileDescription', u'Duplicate discovery with reviewable cleanup and recovery.'),
         StringStruct(u'FileVersion', u'{0}.{1}.{2}.0'),
-        StringStruct(u'InternalName', u'TwinQuay'),
+        StringStruct(u'InternalName', u'DupliSift'),
         StringStruct(u'LegalCopyright', u'© Trieflow LLC; includes GPLv3 dupeGuru authorship'),
-        StringStruct(u'OriginalFilename', u'TwinQuay.exe'),
-        StringStruct(u'ProductName', u'TwinQuay'),
+        StringStruct(u'OriginalFilename', u'DupliSift.exe'),
+        StringStruct(u'ProductName', u'DupliSift'),
         StringStruct(u'ProductVersion', u'{0}.{1}.{2}.0')])
       ]), 
     VarFileInfo([VarStruct(u'Translation', [1033, 1200])])

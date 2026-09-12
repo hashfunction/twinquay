@@ -12,9 +12,62 @@ from pathlib import Path
 import stat
 from uuid import UUID, uuid5
 
-PAIR_BYTES = b"TwinQuay installed duplicate qualification\n" + bytes(range(256)) * 128
-CONTROL_BYTES = b"TwinQuay unique control: preserve this distinct original.\n" * 313
-COLLISION_BYTES = b"TwinQuay owned restore collision: preserve while handle is held.\n"
+# Original fictional project documents, authored for this application's real workflow.
+PAIR_BYTES = b"""Cedar House renovation
+Project brief | September 2026
+
+Goal
+Create a calm, practical workspace in the garden room while retaining the oak
+floor and existing window frames. Keep the hallway clear during construction.
+
+Scope
+- Repair and repaint the garden room walls in warm white.
+- Add adjustable shelving on the north wall for books and project materials.
+- Install task lighting above the desk and a dimmable light near the reading chair.
+- Reuse the oak table as a shared work surface.
+
+Review before ordering
+Confirm shelf dimensions on site. Compare two lighting samples in daylight.
+Keep the approved project brief in the project folder; the emailed attachment
+contains the same brief and can be reviewed as a duplicate.
+
+Next visit
+Measure the north wall, photograph existing joinery, and record socket locations.
+"""
+CONTROL_BYTES = b"""Cedar House renovation
+Site visit notes | September 2026
+
+The garden room faces east and receives direct light in the morning.
+The oak floor is sound; retain it and protect it while the walls are repainted.
+Check the window latch before specifying any replacement hardware.
+The north wall needs a second measurement before shelves are ordered.
+
+These notes are a separate original document and must remain in the project.
+"""
+ROOMS = (
+    "Garden room", "Entrance hall", "Kitchen", "Dining room", "Living room", "Study",
+    "Main bedroom", "Guest bedroom", "Bathroom", "Laundry room", "Stair landing", "Covered porch",
+)
+SURVEY_TASKS = (
+    "Measure each finished wall and note any irregular corners before drawing the final furniture layout.",
+    "Record the location and height of every socket so the electrician can review access behind furniture.",
+    "Check the window frames, latches and seals; retain existing joinery wherever it remains serviceable.",
+    "Photograph the floor finish in daylight and identify areas needing protection during repainting work.",
+    "Compare warm-white paint samples on two walls and review their appearance in morning and evening light.",
+    "List furniture to retain, with width and depth, and check clear walking routes before placing new orders.",
+    "Review task and ambient lighting separately; label each proposed fitting and confirm its dimmer support.",
+    "Measure storage needs and shelf spacing with the household; keep frequently used items easy to reach.",
+    "Identify surfaces that need repair, record the proposed treatment, and seek approval before removal.",
+    "Confirm the installation sequence, protect retained materials, and leave a clear access route each day.",
+)
+SURVEY_BYTES = ("\nRoom survey checklist for the next site visit\n" + "".join(
+    f"{room} / {number:02d}: {task}\n"
+    for room in ROOMS for number, task in enumerate(SURVEY_TASKS, 1)
+)).encode("utf-8")
+PAIR_BYTES += SURVEY_BYTES
+CONTROL_BYTES += b"\nChecklist reference for the survey team\n" + SURVEY_BYTES
+COLLISION_BYTES = b"DupliSift owned restore collision: preserve while handle is held.\n"
+
 
 
 def safe(path):
@@ -104,25 +157,26 @@ def prepare(root):
     root = safe(root)
     if not root.is_dir() or any(root.iterdir()):
         raise ValueError("Workflow fixture root must be an exclusive empty directory")
-    (root / "input").mkdir()
-    (root / "quarantine").mkdir()
+    (root / "Project Documents").mkdir()
+    (root / "Review Copies").mkdir()
     files = []
     for name, content in (
-        ("keep-original.bin", PAIR_BYTES),
-        ("duplicate-copy.bin", PAIR_BYTES),
-        ("unique-control.bin", CONTROL_BYTES),
+        ("Cedar House Brief.txt", PAIR_BYTES),
+        ("Cedar House Brief - emailed.txt", PAIR_BYTES),
+        ("Cedar House Site Notes.txt", CONTROL_BYTES),
     ):
-        path = root / "input" / name
+        path = root / "Project Documents" / name
         with path.open("xb") as stream:
             stream.write(content)
             stream.flush()
             os.fsync(stream.fileno())
         files.append(check_bytes(path, content))
     return {
+        "sample_provenance": "Original fictional Cedar House project documents, copyright 2026 Trieflow LLC; no customer files.",
         "root": str(root),
-        "input": str(root / "input"),
-        "quarantine": str(root / "quarantine"),
-        "plan_path": str(root / "selected-plan.json"),
+        "input": str(root / "Project Documents"),
+        "quarantine": str(root / "Review Copies"),
+        "plan_path": str(root / "Cedar House - Cleanup Plan.json"),
         "files": files,
         "collision": {"bytes": len(COLLISION_BYTES), "sha256": hashlib.sha256(COLLISION_BYTES).hexdigest()},
     }
@@ -130,7 +184,7 @@ def prepare(root):
 
 def plan_data(root):
     safe(root)
-    plan = load_json(root / "selected-plan.json")
+    plan = load_json(root / "Cedar House - Cleanup Plan.json")
     if type(plan.get("version")) is not int or plan["version"] != 1:
         raise ValueError("Unexpected plan version")
     if str(UUID(plan["plan_id"])) != plan["plan_id"] or not isinstance(plan["created_at"], str):
@@ -140,8 +194,8 @@ def plan_data(root):
         raise ValueError("Expected exactly one selected duplicate")
     candidate = candidates[0]
     if (
-        candidate.get("path") != str(root / "input/duplicate-copy.bin")
-        or candidate.get("reference_path") != str(root / "input/keep-original.bin")
+        candidate.get("path") != str(root / "Project Documents/Cedar House Brief - emailed.txt")
+        or candidate.get("reference_path") != str(root / "Project Documents/Cedar House Brief.txt")
         or candidate.get("evidence") != "exact_content"
     ):
         raise ValueError("Selected plan does not keep the intended exact-content reference")
@@ -162,18 +216,18 @@ def plan_data(root):
 
 
 def inputs(root, duplicate_bytes):
-    expected = {"keep-original.bin", "unique-control.bin"}
+    expected = {"Cedar House Brief.txt", "Cedar House Site Notes.txt"}
     if duplicate_bytes is not None:
-        expected.add("duplicate-copy.bin")
-    directory = safe(root / "input")
+        expected.add("Cedar House Brief - emailed.txt")
+    directory = safe(root / "Project Documents")
     if {p.name for p in directory.iterdir()} != expected:
         raise ValueError("Unexpected input file set")
     facts = [
-        check_bytes(directory / "keep-original.bin", PAIR_BYTES),
-        check_bytes(directory / "unique-control.bin", CONTROL_BYTES),
+        check_bytes(directory / "Cedar House Brief.txt", PAIR_BYTES),
+        check_bytes(directory / "Cedar House Site Notes.txt", CONTROL_BYTES),
     ]
     if duplicate_bytes is not None:
-        facts.append(check_bytes(directory / "duplicate-copy.bin", duplicate_bytes))
+        facts.append(check_bytes(directory / "Cedar House Brief - emailed.txt", duplicate_bytes))
     return facts
 
 
@@ -181,17 +235,17 @@ def verify_plan(root):
     root = Path(os.path.abspath(root))
     plan = plan_data(root)
     facts = inputs(root, PAIR_BYTES)
-    for key, name in (("candidate_identity", "duplicate-copy.bin"), ("reference_identity", "keep-original.bin")):
-        identity = read(root / "input" / name)[1]
+    for key, name in (("candidate_identity", "Cedar House Brief - emailed.txt"), ("reference_identity", "Cedar House Brief.txt")):
+        identity = read(root / "Project Documents" / name)[1]
         if list(identity) != plan["candidates"][0][key]:
             raise ValueError("Selected plan identity no longer matches its actual open file")
-    if any(safe(root / "quarantine").iterdir()):
+    if any(safe(root / "Review Copies").iterdir()):
         raise ValueError("Quarantine must still be empty before execution")
     return {
         "candidate_count": 1,
         "plan": plan,
         "files": facts,
-        "receipt_path": str(root / "quarantine" / plan["plan_id"] / "receipt.json"),
+        "receipt_path": str(root / "Review Copies" / plan["plan_id"] / "receipt.json"),
     }
 
 
@@ -200,7 +254,7 @@ def verify_receipt(root, status):
         raise ValueError("Not a terminal expected workflow status")
     root = Path(os.path.abspath(root))
     plan = plan_data(root)
-    quarantine = safe(root / "quarantine")
+    quarantine = safe(root / "Review Copies")
     if {p.name for p in quarantine.iterdir()} != {plan["plan_id"]}:
         raise ValueError("Unexpected quarantine run set")
     run = safe(quarantine / plan["plan_id"])
@@ -212,7 +266,7 @@ def verify_receipt(root, status):
     if not isinstance(items, list) or len(items) != 1:
         raise ValueError("Receipt must contain exactly the selected duplicate")
     item = items[0]
-    duplicate = root / "input/duplicate-copy.bin"
+    duplicate = root / "Project Documents/Cedar House Brief - emailed.txt"
     item_id = str(uuid5(UUID(plan["plan_id"]), os.path.normcase(os.path.abspath(duplicate))))
     if (
         item.get("item_id") != item_id
@@ -228,7 +282,7 @@ def verify_receipt(root, status):
         raise ValueError("Receipt does not disclose the occupied destination")
     payload = run / "payload" / item_id / duplicate.name
     files = inputs(root, {"quarantined": None, "restore_collision": COLLISION_BYTES, "restored": PAIR_BYTES}[status])
-    if list(read(root / "input/keep-original.bin")[1]) != plan["candidates"][0]["reference_identity"]:
+    if list(read(root / "Project Documents/Cedar House Brief.txt")[1]) != plan["candidates"][0]["reference_identity"]:
         raise ValueError("The retained original no longer has its reviewed filesystem identity")
     if load_json(run / "plan.json") != plan:
         raise ValueError("Immutable quarantine plan differs from the reviewed saved plan")

@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "scope": "Original configured Qt PDF 6.11.2 attribution pages and Microsoft runtime use terms. Source notices are separately retained; publication and final package acceptance are not asserted.",
+  "artifacts": [
+    {
+      "filename": "original-qtpdf-6.11.2-msvc2022.7z",
+      "url": "https://download.qt.io/online/qtsdkrepository/windows_x86/extensions/qtpdf/6112/msvc2022_64/extensions.qtpdf.6112.win64_msvc2022_64/6.11.2-0-202608131017qtpdf-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z",
+      "kind": "private-original-build-comparison",
+      "bytes": 5495688,
+      "sha256": "83306fe90cdbb2a365bdea1188be9352772ad8f1aea94ef327758f1635c86908"
+    },
+    {
+      "filename": "original-qtpdf-6.11.2-documentation.zip",
+      "url": "https://download.qt.io/online/qtsdkrepository/windows_x86/extensions/qtpdf/6112/src_doc_examples/extensions.qtpdf.6112.doc/6.11.2-0-202608131017qtpdf-documentation.zip",
+      "kind": "generated-documentation",
+      "bytes": 1289325,
+      "sha256": "b92e15edec88a8ece58d424e5cf21382e123c0a6f1a62a856374821696364a71"
+    },
+    {
+      "filename": "ms-crt.docx",
+      "url": "https://visualstudio.microsoft.com/wp-content/uploads/2021/09/Visual-C-Runtime-2015-2022-License-1.docx",
+      "kind": "license-document",
+      "bytes": 39644,
+      "sha256": "f1e3d56ceb2ad68aae0711b910375009e651ac5530fa0760f0dea6e81e54fae1"
+    },
+    {
+      "filename": "ms-community.docx",
+      "url": "https://visualstudio.microsoft.com/wp-content/uploads/2021/11/Visual-Studio-2022-Community-License-EN.docx",
+      "kind": "license-evidence",
+      "bytes": 62859,
+      "sha256": "41a207b10c8ab91d0d2f10a854715f73dca54509581692d2fe179aa3ffcb8540"
+    },
+    {
+      "filename": "ms-buildtools.docx",
+      "url": "https://visualstudio.microsoft.com/wp-content/uploads/2024/03/Visual-Studio-2022-Diagnostic-Build-Tools-Agent-License_Update-March-2024_EN.docx",
+      "kind": "license-evidence",
+      "bytes": 34395,
+      "sha256": "2f66b86a00e8d9833789897ce23d05a4a2dbea370cf39c8c1098dbc17d0e7bdc"
+    }
+  ],
+  "entries": [
+    {
+      "output": "QtPdf/qtpdf-3rdparty-abseil.html",
+      "artifact": "original-qtpdf-6.11.2-documentation.zip",
+      "member": "qtpdf/qtpdf-3rdparty-abseil.html",
+      "bytes": 13889,
+      "sha256": "165337eaba3cddfa56c070d0574702974c87d1cd2d76c373feaed4e589f0ff48"
+    },
+    {
+      "output": "QtPdf/qtpdf-3rdparty-fast-float.html",
+      "artifact": "original-qtpdf-6.11.2-documentation.zip",
+      "member": "qtpdf/qtpdf-3rdparty-fast-float.html",
+      "bytes": 3653,
+      "sha256": "8953221618555a8b484e93c48a27d3bd0422fc8107b1e33eec64615956cf7ac0"
+    },
+    {
+      "output": "QtPdf/qtpdf-3rdparty-freetype.html",
+      "artifact": "original-qtpdf-6.11.2-documentation.zip",
+      "member": "qtpdf/qtpdf-3rdparty-freetype.html",
+      "bytes": 9638,
+      "sha256": "2aff3c37129afcc1e311a96e30a769becd06efea6ae343109d36e6fecf69b916"
+    },
+    {
+      "output": "QtPdf/qtpdf-3rdparty-icu.html",
+      "artifact": "original-qtpdf-6.11.2-documentation.zip",
+      "member": "qtpdf/qtpdf-3rdparty-icu.html",
+      "bytes": 28457,
+      "sha256": "a5afeb429db45cf08df57fbbbf54d31a01d624f950ae12cd3cacd02ea1a1a61a"
+    },
+    {
+      "output": "QtPdf/qtpdf-3rdparty-libjpeg-turbo.html",
+      "artifact": "original-qtpdf-6.11.2-documentation.zip",
+      "member": "qtpdf/qtpdf-3rdparty-libjpeg-turbo.html",
+      "bytes": 8304,
+      "sha256": "f0f9bdce57b845ee1cc52c9261197b8546e4f9aa82bc31511fd326e66dfb6678"
+    },
+    {
+      "output": "QtPdf/qtpdf-3rdparty-libpng.html",
+      "artifact": "original-qtpdf-6.11.2-documentation.zip",
+      "member": "qtpdf/qtpdf-3rdparty-libpng.html",
+      "bytes": 8030,
+      "sha256": "c0dcacfcc46fb743c9012b7b5d35c07820baae62962274fa5cfe016f31cd18ee"
+    },
+    {
+      "output": "QtPdf/qtpdf-3rdparty-pdfium.html",
+      "artifact": "original-qtpdf-6.11.2-documentation.zip",
+      "member": "qtpdf/qtpdf-3rdparty-pdfium.html",
+      "bytes": 15974,
+      "sha256": "4f8554a9fcac8d5ff7dcd8096ccf3eb69d51422a5a3da40bcc62c3ccdc1b1c0d"
+    },
+    {
+      "output": "QtPdf/qtpdf-3rdparty-the-chromium-project.html",
+      "artifact": "original-qtpdf-6.11.2-documentation.zip",
+      "member": "qtpdf/qtpdf-3rdparty-the-chromium-project.html",
+      "bytes": 4203,
+      "sha256": "967fd0c8d4c8ce99f2eca59782703666236d49ce37d77784375b96f1dc0a2824"
+    },
+    {
+      "output": "QtPdf/qtpdf-3rdparty-zlib.html",
+      "artifact": "original-qtpdf-6.11.2-documentation.zip",
+      "member": "qtpdf/qtpdf-3rdparty-zlib.html",
+      "bytes": 3406,
+      "sha256": "e79ac33321fdc74cf258c52068c9765c451139001be3e2be8b9b9198dd0db4d8"
+    },
+    {
+      "output": "QtPdf/qtpdf-licensing.html",
+      "artifact": "original-qtpdf-6.11.2-documentation.zip",
+      "member": "qtpdf/qtpdf-licensing.html",
+      "bytes": 4872,
+      "sha256": "c9460c5a549a8e56c560d30afb33e1ee4c56df571aa9863c0c8664e68ca840c9"
+    },
+    {
+      "output": "Microsoft/Visual-C-Runtime-2015-2022-License-1.docx",
+      "artifact": "ms-crt.docx",
+      "member": null,
+      "bytes": 39644,
+      "sha256": "f1e3d56ceb2ad68aae0711b910375009e651ac5530fa0760f0dea6e81e54fae1"
+    },
+    {
+      "source": "distribution/corresponding-source/MICROSOFT-RUNTIME-TERMS.txt",
+      "output": "MICROSOFT-RUNTIME-TERMS.txt",
+      "bytes": 2256,
+      "sha256": "abaff4b01fdae327c22d015c2edcf8736947abd99dfcce49170c6daad2787399"
+    },
+    {
+      "source": "distribution/corresponding-source/RELEASE-NOTICES-README.txt",
+      "output": "README.txt",
+      "bytes": 1656,
+      "sha256": "bba70ba88a07036b56ecaea872f572c6a6cab10881748a13818924f385951c66"
+    },
+    {
+      "artifact": "ms-community.docx",
+      "member": null,
+      "output": "Microsoft/Visual-Studio-2022-Community-License-EN.docx",
+      "bytes": 62859,
+      "sha256": "41a207b10c8ab91d0d2f10a854715f73dca54509581692d2fe179aa3ffcb8540"
+    },
+    {
+      "output": "Microsoft/Visual-C-Runtime-2015-2022-License-1.txt",
+      "source": "distribution/corresponding-source/original-build-records/Visual-C-Runtime-2015-2022-License-1.txt",
+      "derived_from": "Original Runtime DOCX word/document.xml, w:p paragraph order and w:t text; original DOCX also retained.",
+      "bytes": 6590,
+      "sha256": "ed875263593823eb4b685cd543eda0ab075a6f57a76f7718908f2237466c442f"
+    }
+  ]
+}

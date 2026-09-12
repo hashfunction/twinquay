@@ -1,0 +1,489 @@
+{
+  "schema_version": 1,
+  "basis_run": "34675033643",
+  "native_build_provenance": {
+    "bytes": 512205,
+    "sha256": "7be5471e5d4340e1041b0c748f0f220d8cf1959a3a0563f616b165a6877b3bba"
+  },
+  "scope": "Original-build/configuration and notice evidence for the exact recorded PDF and Microsoft binaries. Not a new installed test or source-publication receipt.",
+  "pdf": {
+    "official_package": "extensions.qtpdf.6112.win64_msvc2022_64",
+    "build_version": "6.11.2-0-202608131017",
+    "artifact": "original-qtpdf-6.11.2-msvc2022.7z",
+    "binary_matches": [
+      {
+        "staged_path": "_internal/PyQt6/Qt6/bin/Qt6Pdf.dll",
+        "bytes": 4620600,
+        "sha256": "c68882fca099e0647455e8612f6e8e28f584badd58977553687ea6b9ebea86bb",
+        "official_member": "bin/Qt6Pdf.dll"
+      },
+      {
+        "staged_path": "_internal/PyQt6/Qt6/plugins/imageformats/qpdf.dll",
+        "bytes": 42296,
+        "sha256": "3983e4dd27ef4cedfec35212eb8e1a28a38f1b909bcadbe040776d15ca836ffc",
+        "official_member": "plugins/imageformats/qpdf.dll"
+      }
+    ],
+    "source_archive": {
+      "filename": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "bytes": 580351104,
+      "sha256": "6101c1aa00ff933d1b65ee5d167f76e8d71b9ac5b378b0111277723ebda7c163"
+    },
+    "source_tag": "a33fa2a897e5ee58e385b3f88dc247d99fca56db",
+    "source_comparison": {
+      "exact": 126,
+      "windows_checkout_line_endings": 1625,
+      "different_metadata": [
+        ".tag"
+      ],
+      "omitted_repository_metadata": [
+        ".gitattributes",
+        ".gitignore"
+      ],
+      "scope": "All 1751 compared non-metadata entries match. The SPDX source scan does not enumerate the complete Chromium/PDFium subtree; that subtree is in the exact matching QtWebEngine source archive."
+    },
+    "features_disabled": [
+      "pdf_v8",
+      "pdf_xfa",
+      "pdf_xfa_bmp",
+      "pdf_xfa_gif",
+      "pdf_xfa_png",
+      "pdf_xfa_tiff",
+      "pdf_bitcode",
+      "pdf_static_runtime"
+    ],
+    "third_party_attribution_names": [
+      "Abseil",
+      "FreeType",
+      "PDFium",
+      "The Chromium Project",
+      "fast_float",
+      "icu",
+      "libjpeg-turbo",
+      "libpng",
+      "zlib"
+    ],
+    "sbom_scope": "Original binary SBOM explicitly has incomplete third-party coverage; the matching generated documentation provides the configured attribution pages.",
+    "chromium_version_record": {
+      "based_on": "140.0.7339.264",
+      "security_patches_through": "151.0.7922.71",
+      "internal_chrome_VERSION": "140.0.7339.225"
+    }
+  },
+  "microsoft": {
+    "files": [
+      {
+        "staged_path": "_internal/PyQt6/Qt6/bin/MSVCP140.dll",
+        "bytes": 557728,
+        "sha256": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "original_path": "D:\\a\\twinquay\\twinquay\\.venv\\Lib\\site-packages\\PyQt6\\Qt6\\bin\\MSVCP140.dll",
+        "version": {
+          "file_version": "14.44.35211.0",
+          "product_version": "14.44.35211.0",
+          "original_filename": "msvcp140.dll",
+          "internal_name": "msvcp140.dll",
+          "company_name": "Microsoft Corporation",
+          "product_name": "Microsoft\u00ae Visual Studio\u00ae",
+          "file_description": "Microsoft\u00ae C Runtime Library",
+          "legal_copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+          "legal_trademarks": "",
+          "language": "English (United States)"
+        },
+        "authenticode": {
+          "status": "Valid",
+          "status_message": "Signature verified.",
+          "signature_type": "Authenticode",
+          "is_os_binary": false,
+          "signer_certificate": {
+            "subject": "CN=Microsoft Windows Software Compatibility Publisher, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Windows Third Party Component CA 2013, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "330000010CD7495B8B1CBC5EEA00000000010C",
+            "thumbprint": "81915C173D7FFCBF49EAA8CF7594696B29A035E1",
+            "not_before_utc": "2025-05-15T18:26:06.0000000Z",
+            "not_after_utc": "2026-05-15T18:26:06.0000000Z"
+          },
+          "timestamp_certificate": {
+            "subject": "CN=Microsoft Time-Stamp Service, OU=nShield TSS ESN:6F1A-05E0-D947, OU=Microsoft Ireland Operations Limited, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Time-Stamp PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "33000001FC18A0AFCC695A873A0001000001FC",
+            "thumbprint": "4E412925739AA88DB07EA06CC3834B570A98AAAA",
+            "not_before_utc": "2024-07-25T18:31:14.0000000Z",
+            "not_after_utc": "2025-10-22T18:31:14.0000000Z"
+          }
+        }
+      },
+      {
+        "staged_path": "_internal/PyQt6/Qt6/bin/MSVCP140_1.dll",
+        "bytes": 35952,
+        "sha256": "bfad5aef4c63a669e3c140655cdfdf395b6c979b400a447bd5dcb65ed8826c3d",
+        "original_path": "D:\\a\\twinquay\\twinquay\\.venv\\Lib\\site-packages\\PyQt6\\Qt6\\bin\\MSVCP140_1.dll",
+        "version": {
+          "file_version": "14.44.35211.0",
+          "product_version": "14.44.35211.0",
+          "original_filename": "msvcp140_1.dll",
+          "internal_name": "msvcp140_1.dll",
+          "company_name": "Microsoft Corporation",
+          "product_name": "Microsoft\u00ae Visual Studio\u00ae",
+          "file_description": "Microsoft\u00ae C Runtime Library _1",
+          "legal_copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+          "legal_trademarks": "",
+          "language": "English (United States)"
+        },
+        "authenticode": {
+          "status": "Valid",
+          "status_message": "Signature verified.",
+          "signature_type": "Authenticode",
+          "is_os_binary": false,
+          "signer_certificate": {
+            "subject": "CN=Microsoft Windows Software Compatibility Publisher, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Windows Third Party Component CA 2013, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "330000010CD7495B8B1CBC5EEA00000000010C",
+            "thumbprint": "81915C173D7FFCBF49EAA8CF7594696B29A035E1",
+            "not_before_utc": "2025-05-15T18:26:06.0000000Z",
+            "not_after_utc": "2026-05-15T18:26:06.0000000Z"
+          },
+          "timestamp_certificate": {
+            "subject": "CN=Microsoft Time-Stamp Service, OU=nShield TSS ESN:A935-03E0-D947, OU=Microsoft America Operations, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Time-Stamp PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "330000020CB964E3359CECF4AE00010000020C",
+            "thumbprint": "EFBBC86484432DE59F0B75E7E5B3BCF52D553CA6",
+            "not_before_utc": "2025-01-30T19:43:00.0000000Z",
+            "not_after_utc": "2026-04-22T19:43:00.0000000Z"
+          }
+        }
+      },
+      {
+        "staged_path": "_internal/PyQt6/Qt6/bin/MSVCP140_2.dll",
+        "bytes": 280200,
+        "sha256": "3ea06f0ee098b4823cb79599df3780e7f23cce52c19aac31d2a0d47efe33a5e9",
+        "original_path": "D:\\a\\twinquay\\twinquay\\.venv\\Lib\\site-packages\\PyQt6\\Qt6\\bin\\MSVCP140_2.dll",
+        "version": {
+          "file_version": "14.44.35211.0",
+          "product_version": "14.44.35211.0",
+          "original_filename": "msvcp140_2.dll",
+          "internal_name": "msvcp140_2.dll",
+          "company_name": "Microsoft Corporation",
+          "product_name": "Microsoft\u00ae Visual Studio\u00ae",
+          "file_description": "Microsoft\u00ae C Runtime Library _2",
+          "legal_copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+          "legal_trademarks": "",
+          "language": "English (United States)"
+        },
+        "authenticode": {
+          "status": "Valid",
+          "status_message": "Signature verified.",
+          "signature_type": "Authenticode",
+          "is_os_binary": false,
+          "signer_certificate": {
+            "subject": "CN=Microsoft Windows Software Compatibility Publisher, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Windows Third Party Component CA 2013, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "330000010DC4E7BBF4AFF8F09000000000010D",
+            "thumbprint": "EC5F0D7EE2327688384B4FDF5D7633553A0D055F",
+            "not_before_utc": "2025-05-15T18:26:07.0000000Z",
+            "not_after_utc": "2026-05-15T18:26:07.0000000Z"
+          },
+          "timestamp_certificate": {
+            "subject": "CN=Microsoft Time-Stamp Service, OU=nShield TSS ESN:431A-05E0-D947, OU=Microsoft Ireland Operations Limited, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Time-Stamp PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "33000001FAFB3B44D37733C6D30001000001FA",
+            "thumbprint": "F7867E6D4267FA72B006F208EAC834372EDA3C36",
+            "not_before_utc": "2024-07-25T18:31:11.0000000Z",
+            "not_after_utc": "2025-10-22T18:31:11.0000000Z"
+          }
+        }
+      },
+      {
+        "staged_path": "_internal/PyQt6/Qt6/bin/VCRUNTIME140.dll",
+        "bytes": 124544,
+        "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "original_path": "D:\\a\\twinquay\\twinquay\\.venv\\Lib\\site-packages\\PyQt6\\Qt6\\bin\\VCRUNTIME140.dll",
+        "version": {
+          "file_version": "14.44.35211.0",
+          "product_version": "14.44.35211.0",
+          "original_filename": "vcruntime140.dll",
+          "internal_name": "vcruntime140.dll",
+          "company_name": "Microsoft Corporation",
+          "product_name": "Microsoft\u00ae Visual Studio\u00ae",
+          "file_description": "Microsoft\u00ae C Runtime Library",
+          "legal_copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+          "legal_trademarks": "",
+          "language": "English (United States)"
+        },
+        "authenticode": {
+          "status": "Valid",
+          "status_message": "Signature verified.",
+          "signature_type": "Authenticode",
+          "is_os_binary": false,
+          "signer_certificate": {
+            "subject": "CN=Microsoft Windows Software Compatibility Publisher, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Windows Third Party Component CA 2013, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "330000010DC4E7BBF4AFF8F09000000000010D",
+            "thumbprint": "EC5F0D7EE2327688384B4FDF5D7633553A0D055F",
+            "not_before_utc": "2025-05-15T18:26:07.0000000Z",
+            "not_after_utc": "2026-05-15T18:26:07.0000000Z"
+          },
+          "timestamp_certificate": {
+            "subject": "CN=Microsoft Time-Stamp Service, OU=nShield TSS ESN:6F1A-05E0-D947, OU=Microsoft Ireland Operations Limited, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Time-Stamp PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "33000001FC18A0AFCC695A873A0001000001FC",
+            "thumbprint": "4E412925739AA88DB07EA06CC3834B570A98AAAA",
+            "not_before_utc": "2024-07-25T18:31:14.0000000Z",
+            "not_after_utc": "2025-10-22T18:31:14.0000000Z"
+          }
+        }
+      },
+      {
+        "staged_path": "_internal/PyQt6/Qt6/bin/VCRUNTIME140_1.dll",
+        "bytes": 49792,
+        "sha256": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+        "original_path": "D:\\a\\twinquay\\twinquay\\.venv\\Lib\\site-packages\\PyQt6\\Qt6\\bin\\VCRUNTIME140_1.dll",
+        "version": {
+          "file_version": "14.44.35211.0",
+          "product_version": "14.44.35211.0",
+          "original_filename": "vcruntime140_1.dll",
+          "internal_name": "vcruntime140_1.dll",
+          "company_name": "Microsoft Corporation",
+          "product_name": "Microsoft\u00ae Visual Studio\u00ae",
+          "file_description": "Microsoft\u00ae C Runtime Library",
+          "legal_copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+          "legal_trademarks": "",
+          "language": "English (United States)"
+        },
+        "authenticode": {
+          "status": "Valid",
+          "status_message": "Signature verified.",
+          "signature_type": "Authenticode",
+          "is_os_binary": false,
+          "signer_certificate": {
+            "subject": "CN=Microsoft Windows Software Compatibility Publisher, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Windows Third Party Component CA 2013, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "330000010DC4E7BBF4AFF8F09000000000010D",
+            "thumbprint": "EC5F0D7EE2327688384B4FDF5D7633553A0D055F",
+            "not_before_utc": "2025-05-15T18:26:07.0000000Z",
+            "not_after_utc": "2026-05-15T18:26:07.0000000Z"
+          },
+          "timestamp_certificate": {
+            "subject": "CN=Microsoft Time-Stamp Service, OU=nShield TSS ESN:401A-05E0-D947, OU=Microsoft Ireland Operations Limited, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Time-Stamp PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "33000001FED0A8C27B34210B010001000001FE",
+            "thumbprint": "8463470FF6BB4346D02D6546F49B86C602D15EC7",
+            "not_before_utc": "2024-07-25T18:31:18.0000000Z",
+            "not_after_utc": "2025-10-22T18:31:18.0000000Z"
+          }
+        }
+      },
+      {
+        "staged_path": "_internal/Pythonwin/mfc140u.dll",
+        "bytes": 5664848,
+        "sha256": "643ce7fe6a203c53a96a00f272a1a5b42d5b0c320c84364a6fe866307a19bb65",
+        "original_path": "D:\\a\\twinquay\\twinquay\\.venv\\Lib\\site-packages\\Pythonwin\\mfc140u.dll",
+        "version": {
+          "file_version": "14.44.35211.0",
+          "product_version": "14.44.35211.0",
+          "original_filename": "MFC140U.DLL",
+          "internal_name": "MFC140U.DLL",
+          "company_name": "Microsoft Corporation",
+          "product_name": "Microsoft\u00ae Visual Studio\u00ae",
+          "file_description": "MFCDLL Shared Library - Retail Version",
+          "legal_copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+          "legal_trademarks": "",
+          "language": "English (United States)"
+        },
+        "authenticode": {
+          "status": "Valid",
+          "status_message": "Signature verified.",
+          "signature_type": "Authenticode",
+          "is_os_binary": false,
+          "signer_certificate": {
+            "subject": "CN=Microsoft Windows Software Compatibility Publisher, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Windows Third Party Component CA 2013, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "330000010DC4E7BBF4AFF8F09000000000010D",
+            "thumbprint": "EC5F0D7EE2327688384B4FDF5D7633553A0D055F",
+            "not_before_utc": "2025-05-15T18:26:07.0000000Z",
+            "not_after_utc": "2026-05-15T18:26:07.0000000Z"
+          },
+          "timestamp_certificate": {
+            "subject": "CN=Microsoft Time-Stamp Service, OU=nShield TSS ESN:E002-05E0-D947, OU=Microsoft America Operations, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Time-Stamp PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "330000020B119D562992F9BF8500010000020B",
+            "thumbprint": "A842775424DDCFA6ADB187C461B6C477E4D099C1",
+            "not_before_utc": "2025-01-30T19:42:58.0000000Z",
+            "not_after_utc": "2026-04-22T19:42:58.0000000Z"
+          }
+        }
+      },
+      {
+        "staged_path": "_internal/VCRUNTIME140.dll",
+        "bytes": 120400,
+        "sha256": "052ad6a20d375957e82aa6a3c441ea548d89be0981516ca7eb306e063d5027f4",
+        "original_path": "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\VCRUNTIME140.dll",
+        "version": {
+          "file_version": "14.42.34438.0",
+          "product_version": "14.42.34438.0",
+          "original_filename": "vcruntime140.dll",
+          "internal_name": "vcruntime140.dll",
+          "company_name": "Microsoft Corporation",
+          "product_name": "Microsoft\u00ae Visual Studio\u00ae",
+          "file_description": "Microsoft\u00ae C Runtime Library",
+          "legal_copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+          "legal_trademarks": "",
+          "language": "English (United States)"
+        },
+        "authenticode": {
+          "status": "Valid",
+          "status_message": "Signature verified.",
+          "signature_type": "Authenticode",
+          "is_os_binary": false,
+          "signer_certificate": {
+            "subject": "CN=Microsoft Windows Software Compatibility Publisher, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Windows Third Party Component CA 2013, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "3300000100216809B90AF655F3000000000100",
+            "thumbprint": "6C6D5882B6227B929967D1E389201A7BB5EBBD35",
+            "not_before_utc": "2024-08-22T19:59:27.0000000Z",
+            "not_after_utc": "2025-08-20T19:59:27.0000000Z"
+          },
+          "timestamp_certificate": {
+            "subject": "CN=Microsoft Time-Stamp Service, OU=nShield TSS ESN:F002-05E0-D947, OU=Microsoft America Operations, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Time-Stamp PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "33000001F23E32D764AC7091940001000001F2",
+            "thumbprint": "6B8BDE377052C7D937D011F074E522C80A0EF808",
+            "not_before_utc": "2023-12-06T18:45:58.0000000Z",
+            "not_after_utc": "2025-03-05T18:45:58.0000000Z"
+          }
+        }
+      },
+      {
+        "staged_path": "_internal/VCRUNTIME140_1.dll",
+        "bytes": 49776,
+        "sha256": "6a99bc0128e0c7d6cbbf615fcc26909565e17d4ca3451b97f8987f9c6acbc6c8",
+        "original_path": "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\VCRUNTIME140_1.dll",
+        "version": {
+          "file_version": "14.42.34438.0",
+          "product_version": "14.42.34438.0",
+          "original_filename": "vcruntime140_1.dll",
+          "internal_name": "vcruntime140_1.dll",
+          "company_name": "Microsoft Corporation",
+          "product_name": "Microsoft\u00ae Visual Studio\u00ae",
+          "file_description": "Microsoft\u00ae C Runtime Library",
+          "legal_copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+          "legal_trademarks": "",
+          "language": "English (United States)"
+        },
+        "authenticode": {
+          "status": "Valid",
+          "status_message": "Signature verified.",
+          "signature_type": "Authenticode",
+          "is_os_binary": false,
+          "signer_certificate": {
+            "subject": "CN=Microsoft Windows Software Compatibility Publisher, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Windows Third Party Component CA 2013, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "33000000FFED627B87D0660DFA0000000000FF",
+            "thumbprint": "1865C35307C0B7C8C5FE1EE98DF4CF6A0C081C30",
+            "not_before_utc": "2024-08-22T19:59:26.0000000Z",
+            "not_after_utc": "2025-08-20T19:59:26.0000000Z"
+          },
+          "timestamp_certificate": {
+            "subject": "CN=Microsoft Time-Stamp Service, OU=nShield TSS ESN:8900-05E0-D947, OU=Microsoft America Operations, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "issuer": "CN=Microsoft Time-Stamp PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+            "serial_number": "33000001EDE15FCBD5F7A55D730001000001ED",
+            "thumbprint": "EE1DAC8A4C2698B18C4987EA164F1EAE54F170F9",
+            "not_before_utc": "2023-12-06T18:45:41.0000000Z",
+            "not_after_utc": "2025-03-05T18:45:41.0000000Z"
+          }
+        }
+      }
+    ],
+    "distribution_reference": "Visual Studio 2022 Community section 4; licensed upstream application distributor route",
+    "runtime_terms": "Cpp_2015-2022_ENU.1033",
+    "scope": "Microsoft terms apply only to Microsoft Distributable Code; a Runtime use license is not a standalone redistribution grant."
+  },
+  "records": {
+    "original-build-records/Visual-C-Runtime-2015-2022-License-1.docx": {
+      "bytes": 39644,
+      "sha256": "f1e3d56ceb2ad68aae0711b910375009e651ac5530fa0760f0dea6e81e54fae1",
+      "artifact": "ms-crt.docx"
+    },
+    "original-build-records/Visual-Studio-2022-Community-License-EN.docx": {
+      "bytes": 62859,
+      "sha256": "41a207b10c8ab91d0d2f10a854715f73dca54509581692d2fe179aa3ffcb8540",
+      "artifact": "ms-community.docx"
+    },
+    "original-build-records/Visual-Studio-2022-Diagnostic-Build-Tools-Agent-License_Update-March-2024_EN.docx": {
+      "bytes": 34395,
+      "sha256": "2f66b86a00e8d9833789897ce23d05a4a2dbea370cf39c8c1098dbc17d0e7bdc",
+      "artifact": "ms-buildtools.docx"
+    },
+    "original-build-records/include--QtPdf--6.11.2--QtPdf--private--qtpdf-config_p.h": {
+      "bytes": 457,
+      "sha256": "03d31ecdceb76a52a7ef9f234093ee81ef471cf3268526dc186b06ba47b03f6b",
+      "artifact": "original-qtpdf-6.11.2-msvc2022.7z",
+      "member": "include/QtPdf/6.11.2/QtPdf/private/qtpdf-config_p.h"
+    },
+    "original-build-records/include--QtPdf--qtpdf-config.h": {
+      "bytes": 156,
+      "sha256": "820b4d7b659d245338b25b725a6364298ed215835247a487cc2cda4859b138b2",
+      "artifact": "original-qtpdf-6.11.2-msvc2022.7z",
+      "member": "include/QtPdf/qtpdf-config.h"
+    },
+    "original-build-records/mkspecs--modules--qt_lib_pdf_private.pri": {
+      "bytes": 542,
+      "sha256": "4cd122dc79d701fe0ba7bd8d41cdc87889814a4b54dc7e6f61f995d578805688",
+      "artifact": "original-qtpdf-6.11.2-msvc2022.7z",
+      "member": "mkspecs/modules/qt_lib_pdf_private.pri"
+    },
+    "original-build-records/qt-pdf-docs-Updates.xml": {
+      "bytes": 1685,
+      "sha256": "d10c9d2ae946a99ec3b3de39b9fe9556e866294e64ac7733493028c9bac19e0b",
+      "url": "https://download.qt.io/online/qtsdkrepository/windows_x86/extensions/qtpdf/6112/src_doc_examples/Updates.xml"
+    },
+    "original-build-records/qt-pdf-original-Updates.xml": {
+      "bytes": 1121,
+      "sha256": "1da596efb057f29a823a4c599013644c54ab39d10e6859fd742d354cabffdabc",
+      "url": "https://download.qt.io/online/qtsdkrepository/windows_x86/extensions/qtpdf/6112/msvc2022_64/Updates.xml"
+    },
+    "original-build-records/sbom--qtpdf-6.11.2.cdx.json": {
+      "bytes": 22921,
+      "sha256": "1939529c79582063ec5a0e81a0a6707190a5676631c807948a0709f55515e8d1",
+      "artifact": "original-qtpdf-6.11.2-msvc2022.7z",
+      "member": "sbom/qtpdf-6.11.2.cdx.json"
+    },
+    "original-build-records/sbom--qtpdf-6.11.2.source.spdx": {
+      "bytes": 813282,
+      "sha256": "9b34c73fb5a91cc05f24749d2462c31fbdea40b8c747bb3cdf2da747851981df",
+      "artifact": "original-qtpdf-6.11.2-msvc2022.7z",
+      "member": "sbom/qtpdf-6.11.2.source.spdx"
+    },
+    "original-build-records/sbom--qtpdf-6.11.2.spdx.json": {
+      "bytes": 140255,
+      "sha256": "121186d379d2ba9a14eae8689457402e3ad72a045ea95e0079e39f5a3fa93f97",
+      "artifact": "original-qtpdf-6.11.2-msvc2022.7z",
+      "member": "sbom/qtpdf-6.11.2.spdx.json"
+    },
+    "original-build-records/source-comparison.json": {
+      "bytes": 356655,
+      "sha256": "ab1edb9a503cbd446390d5c40915d854a760156febb6ef0631c1c634f44f8300",
+      "derivation": "Compare original source SPDX SHA1 values against the exact source archive, also checking Windows CRLF checkout bytes; see ORIGINAL-BUILD-EVIDENCE.md."
+    },
+    "original-build-records/Visual-C-Runtime-2015-2022-License-1.txt": {
+      "bytes": 6590,
+      "sha256": "ed875263593823eb4b685cd543eda0ab075a6f57a76f7718908f2237466c442f",
+      "derivation": "Original Runtime DOCX word/document.xml, w:p paragraph order and w:t text; original DOCX also retained."
+    },
+    "original-build-records/qtwebengine-CHROMIUM_VERSION": {
+      "bytes": 157,
+      "sha256": "4032b467d870b0de439eda19dee7ef8b5e8126d9555b0dda1418563874bd7995",
+      "artifact": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/CHROMIUM_VERSION"
+    },
+    "original-build-records/qtwebengine-source-tag.txt": {
+      "bytes": 41,
+      "sha256": "ae0d22216502fc6ad3050b2c4c86b90e1be420631c5a276b58d1cc33caf158ca",
+      "artifact": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "member": "qtwebengine-everywhere-src-6.11.2/.tag"
+    }
+  },
+  "source_publication_verified": false,
+  "modified_library_execution_verified": false,
+  "final_release_ready": false,
+  "observed_date_utc": "2026-09-11"
+}

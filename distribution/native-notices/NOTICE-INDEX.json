@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source_closure_claimed": false,
-  "scope": "Supplemental exact source notice texts and Qt source copyright declarations. Includes conservative optional/platform/build reference notices; does not assert all references are compiled into TwinQuay. Configured Qt PDF attributions and Microsoft VC/MFC distribution clearance remain required.",
+  "scope": "Supplemental exact source notice texts and Qt source copyright declarations for DupliSift. Includes conservative optional/platform/build reference notices; does not assert all references are compiled into the application. Configured Qt PDF attributions and scoped Microsoft runtime terms are separately retained in release-notices; source publication and final package acceptance are not asserted.",
   "files": 206,
   "entries": [
     {

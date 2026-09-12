@@ -38,14 +38,14 @@ class CollectionTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name).resolve()
-        self.work = self.root / "build/TwinQuay"
+        self.work = self.root / "build/DupliSift"
         self.work.mkdir(parents=True)
-        self.stage = self.root / "dist/TwinQuay"
+        self.stage = self.root / "dist/DupliSift"
         (self.stage / "_internal/notices").mkdir(parents=True)
         self.original = self.root / "native-input.dll"
         self.original.write_bytes(pe_bytes())
         (self.stage / "_internal/vendor-runtime.dll").write_bytes(pe_bytes())
-        (self.stage / "TwinQuay.exe").write_bytes(pe_bytes())
+        (self.stage / "DupliSift.exe").write_bytes(pe_bytes())
         self.notices = self.root / "build/notices/dependency-inventory.json"
         self.notices.parent.mkdir()
         self.notices.write_text('[{"name":"Python","version":"3.12.10","notices":[]}]\n')
@@ -53,7 +53,7 @@ class CollectionTests(unittest.TestCase):
         self.analysis = ([], [], [], [], {}, [], [], False, {}, 0, [], [], "3.12.10", [],
                          [("qt.app", str(self.root / "qt/app.py"), "PYMODULE")],
                          [("vendor-runtime.dll", str(self.original), "BINARY")], [], [], [], [])
-        self.collected = [("TwinQuay.exe", str(self.original), "EXECUTABLE"),
+        self.collected = [("DupliSift.exe", str(self.original), "EXECUTABLE"),
                           ("vendor-runtime.dll", str(self.original), "BINARY")]
         self.write_tocs()
         self.inventory = self.root / "package-inventory.json"
@@ -99,7 +99,7 @@ class CollectionTests(unittest.TestCase):
                 self.write_tocs()
                 with self.assertRaises(ValueError):
                     self.collect()
-        self.collected = [("TwinQuay.exe", str(self.original), "EXECUTABLE")]
+        self.collected = [("DupliSift.exe", str(self.original), "EXECUTABLE")]
         self.write_tocs()
         with self.assertRaisesRegex(ValueError, "COLLECT native paths"):
             self.collect()
@@ -141,7 +141,7 @@ class CollectionTests(unittest.TestCase):
 
     def test_missing_original_and_invalid_pe_fail(self):
         self.original.write_bytes(b"not PE")
-        for path in (self.stage / "TwinQuay.exe", self.stage / "_internal/vendor-runtime.dll"):
+        for path in (self.stage / "DupliSift.exe", self.stage / "_internal/vendor-runtime.dll"):
             path.write_bytes(b"not PE")
         self.refresh_inventory()
         with self.assertRaisesRegex(ValueError, "PE"):

@@ -1,4 +1,4 @@
-name: TwinQuay Windows build qualification
+name: DupliSift Windows build qualification
 on:
   workflow_dispatch:
   push:
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: TwinQuay-windows-qualification
+          name: DupliSift-windows-qualification
           retention-days: 14
           if-no-files-found: error
           path: |

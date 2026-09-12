@@ -1,2 +1,2 @@
-__version__ = "1.0.0"
-__appname__ = "TwinQuay"
+__version__ = "1.0.1"
+__appname__ = "DupliSift"

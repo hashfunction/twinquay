@@ -25,7 +25,7 @@ Four locally generated native binaries and the 44 excluded JDK binaries were not
 
 ## Implementation and fresh-run gates
 
-`TwinQuay.spec` retains the original Analysis TOC, filters only the reviewed exact root binary names, and writes their original paths/hashes/lengths to `windows-system-exclusions.json` before constructing COLLECT. A duplicate, nested alias, unexpected type/source filename or different minimum Windows version fails the policy. Unknown library names are retained for review, not automatically omitted. Package resources, windowed mode and the two installed identity modes stay the same.
+`DupliSift.spec` retains the original Analysis TOC, filters only the reviewed exact root binary names, and writes their original paths/hashes/lengths to `windows-system-exclusions.json` before constructing COLLECT. A duplicate, nested alias, unexpected type/source filename or different minimum Windows version fails the policy. Unknown library names are retained for review, not automatically omitted. Package resources, windowed mode and the two installed identity modes stay the same.
 
 `collect_build_evidence.py` independently rederives the exclusion record from the saved Analysis and current original bytes. It rejects any selected OS library remaining anywhere in the stage. It continues to require exact COLLECT/native inventory equality and original/staged byte equality. Every retained and excluded native original now has its normal/delay imports recorded, alongside PE headers, version and Authenticode metadata. The spec, helper, package script, identity/minimum source and lock are hashed in the build evidence.
 

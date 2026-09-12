@@ -3,7 +3,7 @@ $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest
 . (Join-Path $PSScriptRoot 'qualify-msix-install.ps1') -LibraryOnly
 $temporaryBase=if ($IsMacOS) { '/private/tmp' } else { [IO.Path]::GetTempPath() }
-$fixtureRoot=Join-Path $temporaryBase ('twinquay-defender-'+[guid]::NewGuid().ToString('N'))
+$fixtureRoot=Join-Path $temporaryBase ('duplisift-defender-'+[guid]::NewGuid().ToString('N'))
 $platform=Join-Path $fixtureRoot 'Microsoft/Windows Defender/Platform'
 $version=Join-Path $platform '4.18.26080.3-0'
 New-Item -ItemType Directory -Path $version -Force | Out-Null

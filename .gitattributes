@@ -1,2 +1,8 @@
 # Preserve original upstream bytes used by the native-notice hash manifest.
 distribution/native-notices/** -text
+# Original documents retain upstream CRLF/trailing whitespace as well as bytes.
+distribution/release-notices/** -text -whitespace
+distribution/corresponding-source/original-build-records/** -text -whitespace
+distribution/corresponding-source/*.json -text
+distribution/corresponding-source/MICROSOFT-RUNTIME-TERMS.txt -text
+distribution/corresponding-source/RELEASE-NOTICES-README.txt -text

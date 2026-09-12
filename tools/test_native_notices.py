@@ -12,24 +12,55 @@ import sys
 import tempfile
 import unittest
 sys.path.insert(0, str(Path(__file__).parent))
-from native_notices import stage_native_notices, source_notice_fallbacks
+from native_notices import stage_native_notices, stage_release_notices, source_notice_fallbacks
 
 class NativeNoticeTests(unittest.TestCase):
+    def test_original_release_notices_validate_before_staging(self):
+        source=Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name).resolve()
+            shutil.copytree(source/'distribution/release-notices',root/'distribution/release-notices')
+            mapping=root/'distribution/corresponding-source';mapping.mkdir()
+            shutil.copyfile(source/'distribution/corresponding-source/release-notice-inputs.json',mapping/'release-notice-inputs.json')
+            output=root/'output'
+            record=stage_release_notices(root,output)
+            self.assertIn('release-notices/QtPdf/qtpdf-3rdparty-pdfium.html',record['notices'])
+            self.assertIn('release-notices/Microsoft/Visual-C-Runtime-2015-2022-License-1.docx',record['notices'])
+            shutil.rmtree(output)
+            notice=root/'distribution/release-notices/QtPdf/qtpdf-3rdparty-pdfium.html'
+            notice.write_bytes(notice.read_bytes()+b'changed')
+            with self.assertRaisesRegex(ValueError,'missing, changed'):
+                stage_release_notices(root,output)
+            self.assertFalse(output.exists())
+
     def test_real_git_checkout_preserves_source_notice_bytes_with_windows_line_endings(self):
         source=Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory(prefix='twin-notice-checkout-') as name:
             repo=Path(name)
-            shutil.copytree(source/'distribution/native-notices',repo/'distribution/native-notices')
+            for directory in ('native-notices','release-notices'):
+                shutil.copytree(source/'distribution'/directory,repo/'distribution'/directory)
+            shutil.copytree(source/'distribution/corresponding-source',repo/'distribution/corresponding-source')
             attributes=source/'.gitattributes'
             if attributes.exists():shutil.copyfile(attributes,repo/'.gitattributes')
             subprocess.run(['git','init','-q',str(repo)],check=True)
             subprocess.run(['git','-c','core.autocrlf=false','add','.'],cwd=repo,check=True)
             checked=repo/'checkout'
             subprocess.run(['git','-c','core.autocrlf=true','-c','core.eol=crlf','checkout-index','--all','--prefix='+checked.as_posix()+'/'],cwd=repo,check=True)
-            index=json.loads((source/'distribution/native-notices/NOTICE-INDEX.json').read_text())
-            for row in index['entries']:
-                actual=(checked/'distribution/native-notices'/row['output']).read_bytes()
-                self.assertEqual((len(actual),hashlib.sha256(actual).hexdigest()),(row['bytes'],row['sha256']),row['output'])
+            for directory in ('native-notices','release-notices'):
+                index=json.loads((source/'distribution'/directory/'NOTICE-INDEX.json').read_text())
+                for row in index['entries']:
+                    actual=(checked/'distribution'/directory/row['output']).read_bytes()
+                    self.assertEqual((len(actual),hashlib.sha256(actual).hexdigest()),(row['bytes'],row['sha256']),row['output'])
+            # Reproduction templates and original-build evidence are also hash-bound.
+            inputs=json.loads((source/'distribution/corresponding-source/release-notice-inputs.json').read_text())
+            for row in inputs['entries']:
+                if 'source' in row:
+                    actual=(checked/row['source']).read_bytes()
+                    self.assertEqual((len(actual),hashlib.sha256(actual).hexdigest()),(row['bytes'],row['sha256']))
+            evidence=json.loads((source/'distribution/corresponding-source/original-build-evidence.json').read_text())
+            for path,row in evidence['records'].items():
+                actual=(checked/'distribution/corresponding-source'/path).read_bytes()
+                self.assertEqual((len(actual),hashlib.sha256(actual).hexdigest()),(row['bytes'],row['sha256']),path)
 
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
@@ -87,7 +118,7 @@ class NativeNoticeTests(unittest.TestCase):
             self.assertIn('sphinxcontrib_applehelp-2.0.0.tar.gz/LICENCE.rst',by_name['sphinxcontrib-applehelp']['notices'][0])
             self.assertEqual(by_name['sphinxcontrib-qthelp']['notices'],[])
             self.assertEqual(by_name['sphinxcontrib-qthelp']['review'],'required')
-            self.assertIn('review required',by_name['TwinQuay native source notices']['review'])
+            self.assertIn('review required',by_name['DupliSift native source notices']['review'])
         finally:
             os.chdir(previous)
 

@@ -28,14 +28,14 @@ class CleanupPlanDialog(QDialog):
         super().__init__(parent)
         self.app = app
         self.review = CleanupPlanReview(plan)
-        self.setWindowTitle("Review Cleanup Plan — TwinQuay")
+        self.setWindowTitle("Review Cleanup Plan — DupliSift")
         self.resize(1120, 590)
         layout = QVBoxLayout(self)
         title = QLabel("Review before moving files")
         title.setStyleSheet("font-size: 22px; font-weight: 600;")
         layout.addWidget(title)
         note = QLabel(
-            "Only Contents scan candidates can be selected. TwinQuay reads both files again byte-for-byte before moving each duplicate. Keep the reference files and quarantine folder until you finish reviewing."
+            "Only Contents scan candidates can be selected. DupliSift reads both files again byte-for-byte before moving each duplicate. Keep the reference files and quarantine folder until you finish reviewing."
         )
         note.setWordWrap(True)
         layout.addWidget(note)

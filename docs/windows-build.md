@@ -21,7 +21,7 @@ The prerequisite investigation reproduced:
 Current local authoring evidence: Python 3.12.7, macOS ARM64 Clang, PyQt 6.11.0,
 Qt runtime 6.11.2 (`QT_VERSION_STR` binding compile version 6.11.0), PyInstaller
 6.22.2. All three C extensions compiled and imported locally. `build.py --clean`
-builds extensions, translations, validates original images and copies TwinQuay's
+builds extensions, translations, validates original images and copies DupliSift's
 maintained local help. The upstream Sphinx documentation remains in source.
 See [runtime migration and primary references](qt6-runtime-migration.md) and
 [Windows filesystem repair](windows-file-identity-repair.md). Real Windows runs
@@ -51,10 +51,10 @@ Windows commands (fresh checkout; script deliberately refuses an existing venv):
 .venv/Scripts/python.exe package.py --nsis-path 'C:\Program Files (x86)\NSIS\makensis.exe'
 ```
 
-Expected outputs: `dist/TwinQuay/TwinQuay.exe`, PyInstaller `_internal` directory,
+Expected outputs: `dist/DupliSift/DupliSift.exe`, PyInstaller `_internal` directory,
 Qt platform/imageformats DLLs, GPL and collected notices; `build-evidence` test
 XML, freeze and exact SHA-256 package inventory. `package_inventory.py` fails
-if TwinQuay.exe or qwindows.dll is absent. Missing docs, resource build, compiler,
+if DupliSift.exe or qwindows.dll is absent. Missing docs, resource build, compiler,
 PyInstaller or NSIS commands fail explicitly. No hardcoded upstream account,
 signing service, Store package identity or publisher ID is used.
 

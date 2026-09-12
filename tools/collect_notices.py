@@ -6,7 +6,7 @@ from pathlib import Path
 import shutil
 import sys
 
-from native_notices import stage_native_notices, source_notice_fallbacks
+from native_notices import stage_native_notices, stage_release_notices, source_notice_fallbacks
 
 root = Path("build/notices")
 if root.exists():
@@ -24,7 +24,7 @@ for notice in python_notices:
         python_copied.append(target.name)
 native_record = stage_native_notices(Path(__file__).resolve().parents[1], root)
 fallbacks = source_notice_fallbacks(Path(__file__).resolve().parents[1], native_record)
-records = [native_record,
+records = [native_record,stage_release_notices(Path(__file__).resolve().parents[1],root),
     dict(
         name="Python",
         version=sys.version,

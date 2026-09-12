@@ -40,6 +40,31 @@ def controller(tmp_path, monkeypatch):
         widget.close()
 
 
+def test_default_contents_scan_finds_the_original_sample_pair(controller, tmp_path, monkeypatch):
+    from core.scanner import ScanType
+    from hscommon.jobprogress import job
+
+    root = tmp_path / "Cedar House Review"
+    root.mkdir()
+    fixture = prepare(root)
+    controller.directories_dialog.scanTypeComboBox.setCurrentIndex(1)
+    controller._update_options()
+    assert controller.model.options["scan_type"] == ScanType.CONTENTS
+    assert controller.model.options["size_threshold"] == 10 * 1024
+    controller.model.add_directory(fixture["input"])
+    # Only scheduling is synchronous; production options, enumeration and content
+    # matching run unchanged against the exact native workflow fixture.
+    monkeypatch.setattr(controller.model, "_start_job", lambda job_id, work: work(job.nulljob))
+    controller.model.start_scanning()
+    scan_type, groups, discarded = controller.model._pending_scan_result
+    assert scan_type == ScanType.CONTENTS and discarded == 0
+    assert len(groups) == 1
+    assert {item.path for item in groups[0]} == {
+        root / "Project Documents/Cedar House Brief.txt",
+        root / "Project Documents/Cedar House Brief - emailed.txt",
+    }
+
+
 def test_actual_scanner_labels_and_result_action_shortcuts(controller):
     directory = controller.directories_dialog
     combo = directory.scanTypeComboBox
@@ -74,7 +99,7 @@ def test_recent_folder_menu_arrows_enter_open_actual_add_folder_action(controlle
     assert directory.addFolderButton.menu() is None
     directory.addFolderButton.click()
     assert observed == ["Select a folder to add to the scanning list"]
-    previous = "D:/a/_temp/.twinquay-install-previous/workflow-fixture/input"
+    previous = "D:/a/_temp/.duplisift-install-previous/Cedar House Review/Project Documents"
     directory.recentFolders.insertItem(previous)
     menu = directory.addFolderButton.menu()
     assert menu is directory.menuRecentFolders
@@ -107,7 +132,7 @@ def test_real_plan_widget_saves_exact_reviewed_selection(controller, tmp_path, m
     plan = CleanupPlan.create(
         [
             CleanupCandidate.capture(
-                root / "input/duplicate-copy.bin", root / "input/keep-original.bin", EvidenceKind.EXACT_CONTENT
+                root / "Project Documents/Cedar House Brief - emailed.txt", root / "Project Documents/Cedar House Brief.txt", EvidenceKind.EXACT_CONTENT
             )
         ]
     )
@@ -115,8 +140,8 @@ def test_real_plan_widget_saves_exact_reviewed_selection(controller, tmp_path, m
     assert dialog.windowTitle() in SCRIPT
     assert dialog.table.rowCount() == 1 and dialog.table.columnCount() == 7
     assert dialog.table.item(0, 0).checkState() == Qt.CheckState.Checked
-    assert dialog.table.item(0, 1).text() == str(root / "input/duplicate-copy.bin")
-    assert dialog.table.item(0, 2).text() == str(root / "input/keep-original.bin")
+    assert dialog.table.item(0, 1).text() == str(root / "Project Documents/Cedar House Brief - emailed.txt")
+    assert dialog.table.item(0, 2).text() == str(root / "Project Documents/Cedar House Brief.txt")
     assert dialog.table.item(0, 3).text() == "Contents"
     assert dialog.folder.accessibleName() in SCRIPT
     for button in dialog.findChildren(QPushButton):
@@ -126,13 +151,13 @@ def test_real_plan_widget_saves_exact_reviewed_selection(controller, tmp_path, m
 
     def filename(parent, title, *args):
         titles.append(title)
-        return str(root / "selected-plan.json"), "JSON plan (*.json)"
+        return str(root / "Cedar House - Cleanup Plan.json"), "JSON plan (*.json)"
 
     monkeypatch.setattr(QFileDialog, "getSaveFileName", filename)
     dialog.save_plan()
     assert titles == ["Save selected cleanup plan"] and titles[0] in SCRIPT
     assert verify_plan(root)["candidate_count"] == 1
-    assert json.loads((root / "selected-plan.json").read_text()) == json.loads(json.dumps(plan.to_dict()))
+    assert json.loads((root / "Cedar House - Cleanup Plan.json").read_text()) == json.loads(json.dumps(plan.to_dict()))
     dialog.close()
 
 
@@ -160,8 +185,8 @@ def test_review_dialog_fits_1024_desktop_with_native_frame(controller, tmp_path,
     plan = CleanupPlan.create(
         [
             CleanupCandidate.capture(
-                root / "input/duplicate-copy.bin",
-                root / "input/keep-original.bin",
+                root / "Project Documents/Cedar House Brief - emailed.txt",
+                root / "Project Documents/Cedar House Brief.txt",
                 EvidenceKind.EXACT_CONTENT,
             )
         ]
@@ -195,11 +220,11 @@ def test_actual_receipt_table_checkbox_and_restore_command(controller, tmp_path,
     plan = CleanupPlan.create(
         [
             CleanupCandidate.capture(
-                root / "input/duplicate-copy.bin", root / "input/keep-original.bin", EvidenceKind.EXACT_CONTENT
+                root / "Project Documents/Cedar House Brief - emailed.txt", root / "Project Documents/Cedar House Brief.txt", EvidenceKind.EXACT_CONTENT
             )
         ]
     )
-    receipt = execute_plan(plan, root / "quarantine")
+    receipt = execute_plan(plan, root / "Review Copies")
     controller.model.last_cleanup_receipt = receipt
     dialog = QuarantineDialog(controller.resultWindow, controller)
     assert dialog.windowTitle() in SCRIPT
@@ -246,13 +271,13 @@ def test_receipt_dialog_fits_1024_desktop_with_native_frame(controller, tmp_path
     plan = CleanupPlan.create(
         [
             CleanupCandidate.capture(
-                root / "input/duplicate-copy.bin",
-                root / "input/keep-original.bin",
+                root / "Project Documents/Cedar House Brief - emailed.txt",
+                root / "Project Documents/Cedar House Brief.txt",
                 EvidenceKind.EXACT_CONTENT,
             )
         ]
     )
-    controller.model.last_cleanup_receipt = execute_plan(plan, root / "quarantine")
+    controller.model.last_cleanup_receipt = execute_plan(plan, root / "Review Copies")
     dialog = FourPixelFrameReceipt(controller.resultWindow, controller)
     dialog.resize(1024, 530)
     dialog.move(0, 86)

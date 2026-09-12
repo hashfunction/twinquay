@@ -4,7 +4,7 @@ $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest
 . (Join-Path $PSScriptRoot 'qualify-msix-install.ps1') -LibraryOnly
 $script:ActualCore=${function:Invoke-TwinQuayQualificationCore}
-$script:probeRoot=Join-Path ([IO.Path]::GetTempPath()) ('twinquay-temporary-test-'+[guid]::NewGuid().ToString('N'))
+$script:probeRoot=Join-Path ([IO.Path]::GetTempPath()) ('duplisift-temporary-test-'+[guid]::NewGuid().ToString('N'))
 [IO.Directory]::CreateDirectory($script:probeRoot) | Out-Null
 $script:collision=$null
 $previousRunnerTemp=$env:RUNNER_TEMP

@@ -354,7 +354,7 @@ use the modifier key to drag the floating window around")
             QMessageBox.information(
                 self,
                 "",
-                tr("TwinQuay has to restart for language changes to take effect."),
+                tr("DupliSift has to restart for language changes to take effect."),
             )
         self.app.prefs.language = lang_code
         self._save(prefs, ischecked)

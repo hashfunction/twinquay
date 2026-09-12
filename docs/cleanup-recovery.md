@@ -5,7 +5,7 @@ mtime, ctime and file identity. The scan mode is captured when results are
 created, not taken from mutable preferences later. Loaded upstream result XML
 has unknown evidence and cannot authorize cleanup. The former UI delete/move
 entrypoints open plan preview. Legacy private upstream low-level operations
-remain in source for existing unit coverage, but active TwinQuay cleanup does
+remain in source for existing unit coverage, but active DupliSift cleanup does
 not call them. Copy/review/scan behavior remains available.
 
 Plan rows are sorted by normalized path. Item IDs are deterministic UUIDs from
@@ -53,7 +53,7 @@ Inspect these states without deleting anything:
 | moving / copying / restoring | Interrupted intent; inspect both recorded paths and `.staging`. Restore verifies before acting. |
 | source_retained | Verified payload and original remain. Resolve the reported error manually. |
 | recovery_required | A staged/payload file remains after failure. Inspect before retrying restore. |
-| restore_collision | Original is occupied; TwinQuay never overwrites it. |
+| restore_collision | Original is occupied; DupliSift never overwrites it. |
 | payload_changed / missing_payload / restore_failed | No successful verified restore. Keep all remaining files. |
 | restored | The original path has been restored; rescan to refresh results. |
 

@@ -332,7 +332,7 @@ class DirectoriesDialog(QMainWindow):
 
     def loadResultsTriggered(self):
         title = tr("Select a results file to load")
-        files = ";;".join([tr("TwinQuay / dupeGuru Results (*.twinquay *.dupeguru)"), tr("All Files (*.*)")])
+        files = ";;".join([tr("DupliSift / dupeGuru Results (*.duplisift *.twinquay *.dupeguru)"), tr("All Files (*.*)")])
         destination = QFileDialog.getOpenFileName(self, title, "", files)[0]
         if destination:
             self.app.model.load_from(destination)
@@ -341,7 +341,7 @@ class DirectoriesDialog(QMainWindow):
     def loadDirectoriesTriggered(self):
         title = tr("Select a directories file to load")
         files = ";;".join(
-            [tr("TwinQuay / dupeGuru Directories (*.twinquaydirs *.dupegurudirs)"), tr("All Files (*.*)")]
+            [tr("DupliSift / dupeGuru Directories (*.duplisiftdirs *.twinquaydirs *.dupegurudirs)"), tr("All Files (*.*)")]
         )
         destination = QFileDialog.getOpenFileName(self, title, "", files)[0]
         if destination:
@@ -352,11 +352,11 @@ class DirectoriesDialog(QMainWindow):
 
     def saveDirectoriesTriggered(self):
         title = tr("Select a file to save your directories to")
-        files = tr("TwinQuay / dupeGuru Directories (*.twinquaydirs *.dupegurudirs)")
+        files = tr("DupliSift / dupeGuru Directories (*.duplisiftdirs *.twinquaydirs *.dupegurudirs)")
         destination, chosen_filter = QFileDialog.getSaveFileName(self, title, "", files)
         if destination:
-            if not destination.endswith(".twinquaydirs"):
-                destination = f"{destination}.twinquaydirs"
+            if not destination.endswith((".duplisiftdirs", ".twinquaydirs", ".dupegurudirs")):
+                destination = f"{destination}.duplisiftdirs"
             self.app.model.save_directories_as(destination)
 
     def scanButtonClicked(self):

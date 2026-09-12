@@ -1,15 +1,16 @@
-TwinQuay 1.0.0 — Trieflow LLC
-https://twinquay.trieflow.com
-Support: https://twinquay.trieflow.com/support
-Privacy: https://twinquay.trieflow.com/privacy
+DupliSift 1.0.1 — Trieflow LLC
+https://duplisift.trieflow.com
+Support: https://duplisift.trieflow.com/support
+Privacy: https://duplisift.trieflow.com/privacy
+Corresponding source and build instructions: https://duplisift.trieflow.com/source
 
-TwinQuay is a modified version of dupeGuru 4.3.1, upstream commit
+DupliSift is a modified version of dupeGuru 4.3.1, upstream commit
 1f1dfa88dc5f6ffe13f4de514c884ab9c83bd7ce from
 https://github.com/arsenetar/dupeguru. Original code and documentation
 copyright Virgil Dupras, Hardcoded Software, Andrew Senetar, and contributors.
 Original file-level notices and the upstream history remain intact.
 
-TwinQuay modifications copyright 2026 Trieflow LLC. Distributed under GNU GPL
+DupliSift modifications copyright 2026 Trieflow LLC. Distributed under GNU GPL
 version 3, including corresponding modified source and build scripts. See
 LICENSE. Recipients retain GPL rights to use, study, modify and redistribute.
 There is no warranty. Store purchase does not restrict these rights. Do not
@@ -20,12 +21,12 @@ Hardcoded Software 2014 BSD-3-Clause text. Both are retained. The Qt native
 helper qt/pe/modules/block.c carries a Hardcoded Software 2014 BSD notice.
 The build collects the full BSD text from hscommon/LICENSE as well as GPLv3.
 Historical Hardcoded Software license URLs remain source attribution, not
-TwinQuay support/update services. Review exact file-level licensing in release.
+DupliSift support/update services. Review exact file-level licensing in release.
 
 Runtime components (exact resolved versions/hashes: tools/python-windows-lock.txt):
 - Python 3.12: Python Software Foundation License, including bundled notices.
 - PyQt6 6.11.0: GPLv3 (Riverbank Computing Limited); commercial licensing is
-  separate and is not assumed. TwinQuay uses the GPL distribution.
+  separate and is not assumed. DupliSift uses the GPL distribution.
 - Qt 6.11.2 wheel: Qt Company and contributors, LGPL/GPL/component
   licenses. Exact packaged DLL/plugin/source/license inventory and fulfillment
   of corresponding-source/relinking obligations must be reviewed before release.
@@ -44,8 +45,9 @@ Windows operating-system components:
 The Windows package requires Windows 10 build 19041 or later. Its reviewed
 freezer recipe uses the operating system's Universal CRT and 43 enumerated
 API-set contracts instead of redistributing incidental SDK/JDK copies.
-VC/MFC libraries remain separate redistributable inputs; their applicable
-Microsoft terms and original provenance still require release review.
+VC/MFC libraries remain separate redistributable inputs. Original runtime
+terms and a scoped distributor reference are in notices/release-notices;
+Microsoft conditions apply only to Microsoft Distributable Code.
 See distribution/corresponding-source/WINDOWS-SYSTEM-LIBRARIES.md in source.
 
 Supplemental notices:
@@ -54,10 +56,12 @@ for native components, including Qt, PDFium, Mesa/LLVM, bundled xxHash, Python
 externals and PyInstaller. NOTICE-INDEX.json records the original archive and
 member hashes. It also includes conservative optional/platform/build notices;
 these references do not mean every component is compiled into this package.
-Qt PDF configured attribution completeness and VC/MFC redistribution terms
-remain explicit review items. Python's Windows Microsoft conditions apply only
+notices/release-notices also contains the matching original Qt PDF 6.11.2
+generated attribution pages and Microsoft runtime/distributor terms. Exact
+official PDF DLL matches and original build configuration are retained in the
+corresponding source. Python's Windows Microsoft conditions apply only
 to the Microsoft Distributable Code described in its PC/crtlicense.txt, not to
-Python or TwinQuay's GPL source. No Microsoft endorsement is claimed.
+Python or DupliSift's GPL source. No Microsoft endorsement is claimed.
 
 Build/documentation/test tooling and transitive versions are locked. The
 collect_notices.py build helper copies each installed distribution's included
@@ -67,10 +71,10 @@ credits. The distributed package inventory must be reviewed, especially Qt
 plugins and their bundled third-party libraries (image codecs, fonts, TLS, etc.).
 
 Artwork:
-images/twinquay/* and tools/create_brand_assets.py are original 2026 Trieflow LLC
+images/duplisift/* and tools/create_brand_assets.py are original 2026 Trieflow LLC
 artwork/source, distributed under GPLv3 with this project. All active Qt
 icons and the Windows executable icon use these originals. Historical upstream
 images/* are retained in corresponding source for provenance; they are excluded
-from TwinQuay's active image asset set and Windows package. No upstream logo
-is presented as TwinQuay branding. Asset-specific upstream permissions remain
+from DupliSift's active image asset set and Windows package. No upstream logo
+is presented as DupliSift branding. Asset-specific upstream permissions remain
 an audit item for any future use outside the preserved source history.

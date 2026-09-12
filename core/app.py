@@ -131,7 +131,7 @@ class DupeGuru(Broadcaster):
     # select_dest_folder(prompt: str) --> str
     # select_dest_file(prompt: str, ext: str) --> str
 
-    NAME = PROMPT_NAME = "TwinQuay"
+    NAME = PROMPT_NAME = "DupliSift"
 
     PICTURE_CACHE_TYPE = "sqlite"  # set to 'shelve' for a ShelveCache
 

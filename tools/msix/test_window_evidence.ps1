@@ -2,14 +2,14 @@
 $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest
 . (Join-Path $PSScriptRoot 'qualify-msix-install.ps1') -LibraryOnly
-$good=[ordered]@{ title='TwinQuay'; process_id=123; visible=$true; width=800; height=600;
+$good=[ordered]@{ title='DupliSift'; process_id=123; visible=$true; width=800; height=600;
     screenshot_captured=$true; screenshot_sha256=('a'*64); sampled_colors=50;
     controls=@([ordered]@{name='More Options';control_type='ControlType.Button';enabled=$true;offscreen=$false;process_id=123}) }
 Assert-TwinQuayWindowEvidence $good
 foreach ($case in @('title','splash','foreign-control','disabled','hidden','no-screenshot','blank-screenshot','small-window')) {
     $probe=$good | ConvertTo-Json -Depth 8 | ConvertFrom-Json -AsHashtable
     switch ($case) {
-        title {$probe.title='TwinQuay fatal error'}
+        title {$probe.title='DupliSift fatal error'}
         splash {$probe.controls=@()}
         foreign-control {$probe.controls[0].process_id=456}
         disabled {$probe.controls[0].enabled=$false}

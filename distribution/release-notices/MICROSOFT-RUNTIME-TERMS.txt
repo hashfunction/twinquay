@@ -1,0 +1,38 @@
+Microsoft runtime components supplied with this application
+Copyright Microsoft Corporation. All rights reserved.
+
+The application includes unmodified release versions of Microsoft Visual C++
+and MFC runtime DLLs supplied with Python, Qt and pywin32. The original Microsoft
+Visual C++ 2015-2022 Runtime license is provided beside this notice. Those terms
+apply to the Microsoft runtime components, not to the application's GPL code,
+Qt's LGPL code, Python, or other separately licensed open-source components.
+
+The application's open-source licenses continue to permit modification,
+redistribution, and debugging of modified libraries. No Microsoft runtime file
+is relicensed under the GPL or LGPL. No Microsoft endorsement is claimed.
+
+For downstream distributors of this application:
+Microsoft's Visual Studio 2022 Distributable Code terms expressly permit an
+application developer to authorize distributors to copy Distributable Code as
+part of that application. Retain Microsoft's notices and applicable terms,
+distribute the runtime files unmodified with the application's substantial
+functionality, and require further distributors and external end users to
+agree to terms protecting the Microsoft components at least as much as the
+applicable Microsoft agreement. Do not distribute preview/debug-only files,
+represent the application as endorsed by Microsoft, or subject Microsoft's
+Distributable Code to a license requiring disclosure of its source or rights
+to modify it. Applicable law and the original agreements remain controlling.
+
+The accompanying Visual Studio 2022 Community license is a distributor's
+reference to section 4 and the referenced redistribution list. It does not
+require application end users to install Visual Studio or purchase a license.
+The Runtime license's installation/use permission is not, by itself, a grant
+to redistribute runtime files as a standalone product.
+
+Primary references:
+https://visualstudio.microsoft.com/license-terms/vs2022-ga-community/
+https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution
+https://visualstudio.microsoft.com/license-terms/vs2022-cruntime/
+
+Python's separate Windows-binary conditions are retained at
+../source-notices/Python-3.12.10.tar.xz/PC/crtlicense.txt.

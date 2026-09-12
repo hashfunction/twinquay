@@ -1,4 +1,4 @@
-"""Render original TwinQuay vector artwork; no upstream product marks are reused."""
+"""Render original DupliSift vector artwork; no upstream product marks are reused."""
 
 from pathlib import Path
 import struct
@@ -6,7 +6,7 @@ from PyQt6.QtCore import QByteArray, Qt
 from PyQt6.QtGui import QImage, QPainter
 from PyQt6.QtSvg import QSvgRenderer
 
-root = Path(__file__).resolve().parents[1] / "images" / "twinquay"
+root = Path(__file__).resolve().parents[1] / "images" / "duplisift"
 root.mkdir(exist_ok=True)
 logo = """<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><rect width="256" height="256" rx="54" fill="#143642"/><path d="M48 178V78a30 30 0 0 1 60 0v100H88V78a10 10 0 0 0-20 0v100z" fill="#ffffff"/><path d="M148 178V78a30 30 0 0 1 60 0v100h-20V78a10 10 0 0 0-20 0v100z" fill="#67ddc2"/><path d="M40 196h176" stroke="#67ddc2" stroke-width="12" stroke-linecap="round"/></svg>"""
 (root / "logo.svg").write_text(logo)

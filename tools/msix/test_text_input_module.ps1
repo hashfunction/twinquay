@@ -9,7 +9,7 @@ function Reject($Action,[string]$Pattern) {
     Check ($failure -match $Pattern) "Expected $Pattern, observed $failure"
 }
 $temporaryBase=if ($IsMacOS) { '/private/tmp' } else { [IO.Path]::GetTempPath() }
-$fixture=Join-Path $temporaryBase ('twinquay-text-input-'+[guid]::NewGuid().ToString('N'))
+$fixture=Join-Path $temporaryBase ('duplisift-text-input-'+[guid]::NewGuid().ToString('N'))
 $common=Join-Path $fixture 'Common Files'
 $script:expected=Join-Path $common 'microsoft shared/ink/tiptsf.dll'
 $script:status='Valid';$script:subject='CN=Microsoft Windows Publisher, O=Microsoft Corporation, C=US'
@@ -119,11 +119,11 @@ try {
     }
     $package=Join-Path $fixture 'package';$env:SystemRoot=Join-Path $fixture 'Windows'
     New-Item -ItemType Directory -Path $package,$env:SystemRoot | Out-Null
-    $exe=Join-Path $package 'TwinQuay.exe';[IO.File]::WriteAllText($exe,'owned exe')
+    $exe=Join-Path $package 'DupliSift.exe';[IO.File]::WriteAllText($exe,'owned exe')
     $os=Join-Path $env:SystemRoot 'kernel32.dll';[IO.File]::WriteAllText($os,'Windows fixture')
     $defender=Join-Path $fixture 'MpOav.dll';[IO.File]::WriteAllText($defender,'Defender fixture')
     $state=@{installed=@{InstallLocation=$package};record=[pscustomobject]@{
-        runtime=[pscustomobject]@{exe='TwinQuay.exe'};payload=[pscustomobject]@{'TwinQuay.exe'=@{bytes=(Get-Item $exe).Length;sha256=(Get-FileHash $exe).Hash.ToLowerInvariant()}}};
+        runtime=[pscustomobject]@{exe='DupliSift.exe'};payload=[pscustomobject]@{'DupliSift.exe'=@{bytes=(Get-Item $exe).Length;sha256=(Get-FileHash $exe).Hash.ToLowerInvariant()}}};
         process=[pscustomobject]@{Modules=@($exe,$os,$defender,$script:expected | ForEach-Object { [pscustomobject]@{FileName=$_;ModuleName=[IO.Path]::GetFileName($_)} })}}
     $modules=@(Get-TwinQuayInstalledModuleEvidence $state)
     Check ($modules.Count -eq 4 -and $modules[3].origin -ceq 'microsoft_windows_text_input_signed_platform' -and

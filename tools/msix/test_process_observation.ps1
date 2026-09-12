@@ -48,7 +48,7 @@ function Invoke-TwinQuayQualificationCore([Collections.IDictionary]$Operations) 
     return [pscustomobject]@{installation_qualification_passed=$false;primary_error='controlled test';cleanup_errors=@()}
 }
 foreach ($owned in @($false,$true)) {
-    $directory=Join-Path ([IO.Path]::GetTempPath()) ('twinquay-process-ownership-'+[guid]::NewGuid().ToString('N'))
+    $directory=Join-Path ([IO.Path]::GetTempPath()) ('duplisift-process-ownership-'+[guid]::NewGuid().ToString('N'))
     New-Item -ItemType Directory $directory | Out-Null
     $start=[Diagnostics.ProcessStartInfo]::new((Get-Process -Id $PID).Path)
     $start.UseShellExecute=$false;$start.RedirectStandardOutput=$true

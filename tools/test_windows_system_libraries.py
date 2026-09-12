@@ -148,7 +148,7 @@ class SystemLibraryTests(unittest.TestCase):
             self.assertTrue(kwargs['exclude_binaries']); self.assertFalse(kwargs['console']); return 'exe'
         source = Path(__file__).resolve().parents[1]
         with patch('windows_system_libraries.file_record', return_value={'bytes':7,'sha256':'a'*64}):
-            runpy.run_path(str(source/'TwinQuay.spec'), init_globals={
+            runpy.run_path(str(source/'DupliSift.spec'), init_globals={
                 'SPECPATH': str(source), 'workpath': str(self.root), 'Analysis': Analysis,
                 'PYZ': lambda x: 'pyz', 'EXE': exe, 'COLLECT': collect})
         self.assertEqual(calls[-1][1], [('VCRUNTIME140.dll','/vc.dll','BINARY')])

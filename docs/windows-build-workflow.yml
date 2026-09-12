@@ -1,5 +1,5 @@
 # Draft only: root owns CI publication and immutable action pinning.
-name: TwinQuay Windows build qualification
+name: DupliSift Windows build qualification
 on: workflow_dispatch
 permissions:
   contents: read
@@ -18,7 +18,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: TwinQuay-windows-qualification
+          name: DupliSift-windows-qualification
           path: |
             build-evidence/
-            dist/TwinQuay/
+            dist/DupliSift/

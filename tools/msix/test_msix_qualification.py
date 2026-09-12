@@ -26,16 +26,16 @@ def digest(data):
 
 class QualificationTests(unittest.TestCase):
     def setUp(self):
-        self.assertIsNotNone(msix, "TwinQuay MSIX qualification is not implemented")
+        self.assertIsNotNone(msix, "DupliSift MSIX qualification is not implemented")
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name).resolve()
         self.release = self.root / "release"
         self.source = self.root / "source"
-        self.artwork = Path(__file__).resolve().parents[2] / "images/twinquay/logo-256.png"
+        self.artwork = Path(__file__).resolve().parents[2] / "images/duplisift/logo-256.png"
         self.commit = "a" * 40
         files = {
-            "TwinQuay.exe": b"PyInstaller embedded bootloader output",
+            "DupliSift.exe": b"PyInstaller embedded bootloader output",
             "_internal/python312.dll": b"Python 3.12 runtime",
             "_internal/PyQt6/QtCore.pyd": b"PyQt6 binding",
             "_internal/PyQt6/Qt6/bin/Qt6Core.dll": b"Qt6 Core",
@@ -69,12 +69,12 @@ class QualificationTests(unittest.TestCase):
         for name in ("logo-32.png", "logo-256.png", "logo.ico"):
             data = (self.artwork.parent / name).read_bytes()
             for base in (self.source, self.release / "_internal"):
-                path = base / "images/twinquay" / name
+                path = base / "images/duplisift" / name
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_bytes(data)
         for relative, data in [
             ("tools/python-windows-lock.txt", b"locked distributions"),
-            ("qt/app.py", b'NAME = "TwinQuay"'),
+            ("qt/app.py", b'NAME = "DupliSift"'),
         ]:
             path = self.source / relative
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -105,8 +105,8 @@ class QualificationTests(unittest.TestCase):
                 dict(
                     source_commit=self.commit,
                     windows_native_startup=True,
-                    window_title="TwinQuay",
-                    executable_sha256=record["files"]["TwinQuay.exe"]["sha256"],
+                    window_title="DupliSift",
+                    executable_sha256=record["files"]["DupliSift.exe"]["sha256"],
                     package_inventory_sha256=digest(self.inventory.read_bytes())["sha256"],
                     interactive_cleanup_restore_verified=False,
                     native_source_clearance=False,
@@ -126,6 +126,10 @@ class QualificationTests(unittest.TestCase):
         identity = msix.validate_manifest(data, "store")
         self.assertEqual(identity["packageName"], "1659hashfunction.TwinQuay")
         self.assertEqual(identity["publisher"], "CN=B6A2631A-FD32-45CC-AE12-82466975F528")
+        self.assertEqual(identity["applicationId"], "TwinQuay")
+        self.assertEqual(identity["executable"], "DupliSift.exe")
+        self.assertEqual(identity["version"], "1.0.1.0")
+        self.assertIn(b">DupliSift<", data)
         self.assertIn(b">hashfunction<", data)
         self.assertNotIn(b"qualification package", data)
         with self.assertRaises(ValueError):
@@ -134,7 +138,10 @@ class QualificationTests(unittest.TestCase):
             msix.validate_manifest(msix.create_manifest(), "store")
         for before, after in ((b"1659hashfunction.TwinQuay", b"1659hashfunction.Other"),
                               (b">hashfunction<", b">Other publisher<"),
-                              (b"runFullTrust", b"internetClient")):
+                              (b"runFullTrust", b"internetClient"),
+                              (b'Id="TwinQuay"', b'Id="DupliSift"'),
+                              (b"DupliSift.exe", b"TwinQuay.exe"),
+                              (b"1.0.1.0", b"1.0.0.0")):
             with self.subTest(before=before), self.assertRaises(ValueError):
                 msix.validate_manifest(data.replace(before, after), "store")
         with self.assertRaises(ValueError):
@@ -179,7 +186,7 @@ class QualificationTests(unittest.TestCase):
         self.assertEqual(record["payload"], msix.inventory_tree(self.root / "stage"))
         self.assertEqual(record["sourceCommit"], self.commit)
         self.assertEqual(record["startupReceipt"]["sha256"], digest(self.startup.read_bytes())["sha256"])
-        self.assertEqual(record["runtime"]["executable"], "TwinQuay.exe")
+        self.assertEqual(record["runtime"]["executable"], "DupliSift.exe")
         self.assertIn("unresolved-fixture", record["unresolvedNotices"])
         self.assertFalse(record["licenseClearanceClaimed"])
         self.assertFalse(record["publicRelease"])
@@ -208,7 +215,7 @@ class QualificationTests(unittest.TestCase):
         for relative in (
             "_internal/LICENSE",
             "_internal/THIRD-PARTY-NOTICES.txt",
-            "_internal/images/twinquay/logo-32.png",
+            "_internal/images/duplisift/logo-32.png",
         ):
             path = self.release / relative
             original = path.read_bytes()
@@ -282,7 +289,7 @@ class QualificationTests(unittest.TestCase):
             and isinstance(node.value, ast.Constant)
             and any(isinstance(n, ast.Name) and n.id == "NAME" for n in node.targets)
         ]
-        self.assertEqual(values, ["TwinQuay"])
+        self.assertEqual(values, ["DupliSift"])
         tree = ast.parse((source / "qt/directories_dialog.py").read_text())
         button_titles = [
             node.args[0].args[0].value
@@ -304,7 +311,7 @@ class QualificationTests(unittest.TestCase):
             ("executable_sha256", "f" * 64),
             ("package_inventory_sha256", "f" * 64),
             ("windows_native_startup", False),
-            ("window_title", "TwinQuay error"),
+            ("window_title", "DupliSift error"),
         ]:
             receipt = copy.deepcopy(original)
             receipt[key] = value
@@ -440,7 +447,7 @@ class QualificationTests(unittest.TestCase):
         package, record = self.package()
         for before, after in [
             (b"runFullTrust", b"internetClient"),
-            (b"TwinQuay.exe", b"other.exe"),
+            (b"DupliSift.exe", b"other.exe"),
             (b"CN=TwinQuay-CI-Qualification", b"CN=foreign"),
         ]:
             data = (self.root / "stage/AppxManifest.xml").read_bytes().replace(before, after)
@@ -500,10 +507,10 @@ class QualificationTests(unittest.TestCase):
                                  store_output, self.inventory, self.startup, self.source, runner,
                                  identity_mode="store")
         store_record = json.loads((store_output / "package-record.json").read_text())
-        self.assertTrue((store_output / "TwinQuay_1.0.0.0_x64.msix").is_file())
-        self.assertFalse((store_output / "TwinQuay.Qualification_1.0.0.0_x64.msix").exists())
+        self.assertTrue((store_output / "DupliSift_1.0.1.0_x64.msix").is_file())
+        self.assertFalse((store_output / "DupliSift.Qualification_1.0.1.0_x64.msix").exists())
         self.assertEqual(store_record["identity"]["packageName"], "1659hashfunction.TwinQuay")
-        msix.verify_msix(store_output / "TwinQuay_1.0.0.0_x64.msix", store_record["payload"], "store")
+        msix.verify_msix(store_output / "DupliSift_1.0.1.0_x64.msix", store_record["payload"], "store")
 
         with self.assertRaises(ValueError):
             msix._tool_record(tool, "10.0.22621.0")

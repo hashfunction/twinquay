@@ -3,7 +3,7 @@ $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest
 . (Join-Path $PSScriptRoot 'collect-native-metadata.ps1') -LibraryOnly
 function Assert($Value,[string]$Message){if(-not $Value){throw $Message}}
-$temporary=Join-Path ([IO.Path]::GetTempPath()) ('twinquay-metadata-test-'+[guid]::NewGuid().ToString('N'))
+$temporary=Join-Path ([IO.Path]::GetTempPath()) ('duplisift-metadata-test-'+[guid]::NewGuid().ToString('N'))
 [IO.Directory]::CreateDirectory($temporary)|Out-Null
 $path=Join-Path $temporary 'native + [input].dll'
 try {
@@ -49,7 +49,7 @@ try {
     # are tested through actual production serialization with a public cert.
     $key=[Security.Cryptography.RSA]::Create(2048)
     $certificateRequest=[Security.Cryptography.X509Certificates.CertificateRequest]::new(
-        'CN=TwinQuay metadata serialization fixture',$key,[Security.Cryptography.HashAlgorithmName]::SHA256,
+        'CN=DupliSift metadata serialization fixture',$key,[Security.Cryptography.HashAlgorithmName]::SHA256,
         [Security.Cryptography.RSASignaturePadding]::Pkcs1)
     $certificate=$certificateRequest.CreateSelfSigned([DateTimeOffset]::UtcNow.AddDays(-1),[DateTimeOffset]::UtcNow.AddDays(1))
     try {

@@ -36,7 +36,7 @@ def parse_args():
     parser = ArgumentParser()
     setup_package_argparser(parser)
     parser.add_argument("--skip-nsis", action="store_true", help="Stage the PyInstaller directory only")
-    parser.add_argument("--nsis-path", default=os.environ.get("TWINQUAY_NSIS", "makensis"))
+    parser.add_argument("--nsis-path", default=os.environ.get("DUPLISIFT_NSIS", os.environ.get("TWINQUAY_NSIS", "makensis")))
     return parser.parse_args()
 
 
@@ -135,7 +135,7 @@ def package_arch():
 def package_source_txz():
     print("Creating git archive")
     app_version = get_module_version("core")
-    name = "twinquay-src-{}.tar".format(app_version)
+    name = "duplisift-src-{}.tar".format(app_version)
     base_path = os.getcwd()
     build_path = op.join(base_path, "build")
     dest = op.join(build_path, name)
@@ -147,7 +147,7 @@ def package_windows(skip_nsis=False, nsis_path="makensis"):
     if sys.platform != "win32":
         raise RuntimeError("Windows packages must be built on Windows")
     if platform.architecture()[0] != "64bit":
-        raise RuntimeError("TwinQuay requires a 64-bit Python interpreter")
+        raise RuntimeError("DupliSift requires a 64-bit Python interpreter")
     if not check_loc_doc():
         raise RuntimeError("Run build.py --clean before packaging")
     version = get_module_version("core").split(".")
@@ -163,17 +163,17 @@ def package_windows(skip_nsis=False, nsis_path="makensis"):
             [
                 "--clean",
                 "--noconfirm",
-                "TwinQuay.spec",
+                "DupliSift.spec",
             ]
         )
     finally:
         info_path.unlink(missing_ok=True)
-    subprocess.run([sys.executable, "tools/package_inventory.py", "dist/TwinQuay"], check=True)
+    subprocess.run([sys.executable, "tools/package_inventory.py", "dist/DupliSift"], check=True)
     subprocess.run([sys.executable, "tools/collect_build_evidence.py"], check=True)
     if not skip_nsis:
         compiler = shutil.which(nsis_path)
         if compiler is None:
-            raise RuntimeError("NSIS missing: provide --nsis-path or TWINQUAY_NSIS; use --skip-nsis for MSIX staging")
+            raise RuntimeError("NSIS missing: provide --nsis-path or DUPLISIFT_NSIS; use --skip-nsis for MSIX staging")
         subprocess.run(
             [
                 compiler,
@@ -181,7 +181,7 @@ def package_windows(skip_nsis=False, nsis_path="makensis"):
                 f"/DVERSIONMINOR={version[1]}",
                 f"/DVERSIONPATCH={version[2]}",
                 "/DBITS=64",
-                "/DAPPNAME=TwinQuay",
+                "/DAPPNAME=DupliSift",
                 "setup.nsi",
             ],
             check=True,
@@ -214,12 +214,12 @@ def package_macos():
 def main():
     args = parse_args()
     if args.src_pkg:
-        print("Creating source package for TwinQuay")
+        print("Creating source package for DupliSift")
         package_source_txz()
         return
     if sys.platform != "win32":
-        raise SystemExit("TwinQuay packages must be built on Windows; this host supports source and local tests.")
-    print("Packaging TwinQuay with UI qt")
+        raise SystemExit("DupliSift packages must be built on Windows; this host supports source and local tests.")
+    print("Packaging DupliSift with UI qt")
     if sys.platform == "win32":
         package_windows(args.skip_nsis, args.nsis_path)
     elif sys.platform == "darwin":

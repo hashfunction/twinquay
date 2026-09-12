@@ -86,7 +86,7 @@ def test_explicit_legacy_import_copies_scan_preferences_only(application, tmp_pa
     old.setValue("Portable", True)
     old.sync()
     preferences = Preferences()
-    preferences._settings = QSettings(str(tmp_path / "TwinQuay.ini"), QSettings.Format.IniFormat)
+    preferences._settings = QSettings(str(tmp_path / "DupliSift.ini"), QSettings.Format.IniFormat)
     preferences.load()
     assert preferences.import_scan_preferences(old_path) == 1
     assert preferences.filter_hardness == 80

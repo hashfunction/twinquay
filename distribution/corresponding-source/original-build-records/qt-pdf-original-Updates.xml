@@ -1,0 +1,26 @@
+<Updates>
+ <ApplicationName>{AnyApplication}</ApplicationName>
+ <ApplicationVersion>1.0.0</ApplicationVersion>
+ <Checksum>true</Checksum>
+ <PackageUpdate>
+  <Name>extensions.qtpdf.6112.win64_msvc2022_64</Name>
+  <DisplayName>MSVC 2022 x64</DisplayName>
+  <Description>Pre-built Qt PDF MSVC 2022 x64.</Description>
+  <Version>6.11.2-0-202608131017</Version>
+  <ReleaseDate>2026-08-13</ReleaseDate>
+  <Dependencies>extensions.qtpdf.6112</Dependencies>
+  <Default>false</Default>
+  <SortingPriority/>
+  <DownloadableArchives>qtpdf-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z</DownloadableArchives>
+  <UpdateFile CompressedSize="5495728" OS="Any" UncompressedSize="27931828"/>
+  <Operations>
+   <Operation name="Extract">
+    <Argument>@TargetDir@/6.11.2/msvc2022_64</Argument>
+    <Argument>qtpdf-Windows-Windows_11_24H2-MSVC2022-Windows-Windows_11_24H2-X86_64.7z</Argument>
+   </Operation>
+  </Operations>
+  <SHA1>87a1ae1257cfa31caeef0979c922be8f032e5e08</SHA1>
+ </PackageUpdate>
+ <SHA1>87a1ae1257cfa31caeef0979c922be8f032e5e08</SHA1>
+ <MetadataName>2026-08-13-1017_meta.7z</MetadataName>
+</Updates>

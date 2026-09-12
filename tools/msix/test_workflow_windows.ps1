@@ -51,7 +51,7 @@ namespace Windows.Automation {
         return $row
     }
     $desktop=[Windows.Automation.AutomationElement]::new('desktop',0,1)
-    $owner=[Windows.Automation.AutomationElement]::new('TwinQuay',8368,100)
+    $owner=[Windows.Automation.AutomationElement]::new('DupliSift',8368,100)
     $modal=[Windows.Automation.AutomationElement]::new('Select a folder to add to the scanning list',8368,200)
     $owner.Children.Add($modal)
     $owner.Children.Add([Windows.Automation.AutomationElement]::new('',8368,0))
@@ -130,7 +130,7 @@ $pythonPaths=@(& $venvPython -c 'import ctypes; b=ctypes.create_unicode_buffer(3
 if($LASTEXITCODE -ne 0 -or $pythonPaths.Count -ne 1 -or -not [IO.Path]::IsPathFullyQualified($pythonPaths[0])){throw 'Cannot identify the native fixture interpreter image.'}
 $python=(Resolve-Path $pythonPaths[0]).Path
 $sitePackages=(Resolve-Path (Join-Path $PSScriptRoot '../../.venv/Lib/site-packages')).Path
-$temporary=Join-Path ([IO.Path]::GetTempPath()) ('twinquay-native-chooser-'+[guid]::NewGuid().ToString('N'))
+$temporary=Join-Path ([IO.Path]::GetTempPath()) ('duplisift-native-chooser-'+[guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $temporary -ErrorAction Stop|Out-Null
 $process=$null;$handle=$null;$stdout=$null;$stderr=$null;$primary=$null;$exitCode=$null;$processId=$null;$naturalExit=$false
 $cleanup=[Collections.Generic.List[string]]::new();$observed=[Collections.Generic.List[object]]::new()

@@ -121,12 +121,12 @@ Write-Output 'PASS: exact completion ownership/disclosure/visibility/uniqueness 
 $script:state=@{process=[pscustomobject]@{Id=9224}}
 function Reset-RecentMenu([int]$Focus=-1) {
     $script:menuMode='valid';$script:menuEntered=$false;$script:menuKeys=[Collections.Generic.List[string]]::new()
-    $script:root.Current=[pscustomobject]@{Name='TwinQuay';ProcessId=9224;IsEnabled=$true;IsOffscreen=$false;
+    $script:root.Current=[pscustomobject]@{Name='DupliSift';ProcessId=9224;IsEnabled=$true;IsOffscreen=$false;
         NativeWindowHandle=852364;ControlType=[pscustomobject]@{ProgrammaticName='ControlType.Window'}}
     $script:menuItems=@($script:root)
     foreach($pair in @(
         @('Add Folder...','MenuItem'),@('','Separator'),
-        @('D:/a/_temp/.twinquay-install-950c7331ddbe49fc9c6a986318e3a34c/workflow-fixture/input','MenuItem'),
+        @('D:/a/_temp/.duplisift-install-950c7331ddbe49fc9c6a986318e3a34c/Cedar House Review/Project Documents','MenuItem'),
         @('','Separator'),@('Clear List','MenuItem'))) {
         $item=New-Element -Name $pair[0] -Owner 9224 -ControlType ([pscustomobject]@{ProgrammaticName=('ControlType.'+$pair[1])})
         $item.Current.IsEnabled=$pair[1] -ceq 'MenuItem'
@@ -149,7 +149,7 @@ function Get-TwinQuayWorkflowWindows($State) {
 }
 function Get-TwinQuayWorkflowNativeWindow([IntPtr]$Handle) {
     $native=[pscustomobject]@{handle=$Handle;root=$Handle;process_id=9224;visible=$true;enabled=$true;
-        title='TwinQuay';class_name='Qt6112QWindowPopupDropShadowSaveBits'}
+        title='DupliSift';class_name='Qt6112QWindowPopupDropShadowSaveBits'}
     if($Handle -eq [IntPtr]200){$native.title='Select a folder to add to the scanning list';$native.class_name='#32770'}
     switch($script:menuMode) {
         'foreign-native' {$native.process_id=9999}

@@ -60,11 +60,11 @@ function Invoke-TwinQuayQualificationCore([Collections.IDictionary]$Operations) 
     return & $script:ActualCore $Operations
 }
 foreach ($scenario in @('failed-add-race','ambiguous-add','wrong-architecture','observation-failed','observation-empty','owned','owned-with-foreign','remove-failed','normal-owned','normal-with-foreign')) {
-    $temporary=Join-Path ([IO.Path]::GetTempPath()) ('twinquay-registration-test-'+[guid]::NewGuid().ToString('N'))
+    $temporary=Join-Path ([IO.Path]::GetTempPath()) ('duplisift-registration-test-'+[guid]::NewGuid().ToString('N'))
     New-Item -ItemType Directory $temporary | Out-Null
     try {
-        $owned=[pscustomobject]@{Name='Trieflow.TwinQuay.Qualification';Publisher='CN=TwinQuay-CI-Qualification';Version='1.0.0.0';Architecture='X64';PackageFullName='Trieflow.TwinQuay.Qualification_1.0.0.0_x64__fixture';PackageFamilyName='Trieflow.TwinQuay.Qualification_fixture';InstallLocation=$temporary}
-        $foreign=[pscustomobject]@{Name=$owned.Name;Publisher=$owned.Publisher;Version=$owned.Version;Architecture='Arm64';PackageFullName='Trieflow.TwinQuay.Qualification_1.0.0.0_arm64__fixture';PackageFamilyName=$owned.PackageFamilyName;InstallLocation=$temporary}
+        $owned=[pscustomobject]@{Name='Trieflow.TwinQuay.Qualification';Publisher='CN=TwinQuay-CI-Qualification';Version='1.0.1.0';Architecture='X64';PackageFullName='Trieflow.TwinQuay.Qualification_1.0.1.0_x64__fixture';PackageFamilyName='Trieflow.TwinQuay.Qualification_fixture';InstallLocation=$temporary}
+        $foreign=[pscustomobject]@{Name=$owned.Name;Publisher=$owned.Publisher;Version=$owned.Version;Architecture='Arm64';PackageFullName='Trieflow.TwinQuay.Qualification_1.0.1.0_arm64__fixture';PackageFamilyName=$owned.PackageFamilyName;InstallLocation=$temporary}
         # The racing registration has the exact expected x64 full name; a name/
         # architecture match still cannot establish ownership after our Add failed.
         $raced=$owned.PSObject.Copy()

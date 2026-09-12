@@ -217,7 +217,7 @@ def main():
         raise RuntimeError("Actual native build metadata requires Windows")
     source = args.source_root.resolve(strict=True)
     commit = subprocess.run(["git", "-C", str(source), "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
-    evidence, outputs = collect(source / "build/TwinQuay", source / "dist/TwinQuay",
+    evidence, outputs = collect(source / "build/DupliSift", source / "dist/DupliSift",
                                 source / "build/notices/dependency-inventory.json", source / "build-evidence/package-inventory.json",
                                 version("PyInstaller"), commit)
     resolver = WindowsSystemResolver()
@@ -226,7 +226,7 @@ def main():
         observed_windows_version=list(sys.getwindowsversion()[:3]), system_directory=str(resolver.system_directory),
         contracts=resolution, scope="Current Windows host only; no Windows 10 19041 execution claim")
     evidence["build_policy_inputs"] = {name: file_record(source / name) for name in
-        ("package.py", "TwinQuay.spec", "tools/windows_system_libraries.py", "tools/collect_build_evidence.py",
+        ("package.py", "DupliSift.spec", "tools/windows_system_libraries.py", "tools/collect_build_evidence.py",
          "tools/msix/msix_qualification.py", "tools/python-windows-lock.txt")}
     request = metadata_request(evidence)
     existing = {row["path"].casefold() for row in request["files"]}
@@ -234,7 +234,7 @@ def main():
         if path.casefold() not in existing:
             request["files"].append(dict(path=path, sha256=file_record(Path(path))["sha256"]))
             existing.add(path.casefold())
-    with tempfile.TemporaryDirectory(prefix="twinquay-native-metadata-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="duplisift-native-metadata-") as temporary:
         request_path, output_path = Path(temporary) / "request.json", Path(temporary) / "response.json"
         request_path.write_bytes(json_bytes(request))
         subprocess.run(["pwsh", "-NoLogo", "-NoProfile", "-File", str(source / "tools/collect-native-metadata.ps1"),

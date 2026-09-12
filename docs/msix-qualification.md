@@ -1,5 +1,7 @@
 # TwinQuay disposable MSIX qualification handoff
 
+Historical qualification record. Current DupliSift naming, compatibility and screenshot fixtures are documented in [the rename review](duplisift-rename-review.md). Old run titles, package paths and source commits below remain unchanged.
+
 Implemented against reviewed source `e7a7ec85881b0c3e11c8505890a39e55b252da27` on `codex/twinquay`. This extends the approved native PyInstaller/Qt6 build; it does not alter scanning, quarantine/restore, preferences, the Qt6 migration, original artwork, or `tools/python-windows-lock.txt`. The exact commit of each native run is captured by Git, the inventory, startup receipt, package record and installation evidence. The coordinator owns public snapshots, Windows execution, release status and Store submission.
 
 I downloaded and inspected the real metadata from prior Windows run `34578929213`, public snapshot `b05ca832e111adca548013a20d6abeadcb0831bf`. Its 417 staged files confirm every required `_internal/python312.dll`, PyQt6 binding, Qt6 DLL and `qwindows.dll` path used below. Its actual native startup receipt records exact title `TwinQuay` and executable SHA-256 `6CEB033BE5E8A944622CB4B9A4C7777723D3700B2C3E39A162F422EAB51050D1`. Download: `/tmp/twinquay-msix-prior-run/TwinQuay-windows-qualification`. That historical run predates these helpers and is not MSIX evidence.

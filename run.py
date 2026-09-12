@@ -72,7 +72,7 @@ def main():
     app.setWindowIcon(QIcon(QPixmap(asset_path(DupeGuru.LOGO_NAME))))
     global dgapp
     dgapp = DupeGuru()
-    install_excepthook("https://twinquay.trieflow.com/support")
+    install_excepthook("https://duplisift.trieflow.com/support")
     result = app.exec()
     # I was getting weird crashes when quitting under Windows, and manually deleting main app
     # references with gc.collect() in between seems to fix the problem.

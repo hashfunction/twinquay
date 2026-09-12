@@ -7,8 +7,8 @@ if ($LASTEXITCODE -ne 0 -or $sourceCommit -cne $env:GITHUB_SHA) { throw 'Source 
 $inventoryPath = (Resolve-Path 'build-evidence/package-inventory.json').Path
 $inventory = Get-Content $inventoryPath -Raw | ConvertFrom-Json
 if ($inventory.sourceCommit -cne $sourceCommit) { throw 'Stage inventory is not from this source.' }
-$executable = (Resolve-Path 'dist/TwinQuay/TwinQuay.exe').Path
-if ((Get-FileHash $executable -Algorithm SHA256).Hash.ToLowerInvariant() -cne $inventory.files.'TwinQuay.exe'.sha256) { throw 'Stage executable differs from its inventory.' }
+$executable = (Resolve-Path 'dist/DupliSift/DupliSift.exe').Path
+if ((Get-FileHash $executable -Algorithm SHA256).Hash.ToLowerInvariant() -cne $inventory.files.'DupliSift.exe'.sha256) { throw 'Stage executable differs from its inventory.' }
 $env:APPDATA = Join-Path (Get-Location).Path 'build-evidence/runtime-profile'
 $env:LOCALAPPDATA = $env:APPDATA
 New-Item -ItemType Directory -Force $env:APPDATA | Out-Null
@@ -18,14 +18,14 @@ try {
   do {
     Start-Sleep -Milliseconds 500
     $process.Refresh()
-    if ($process.HasExited) { throw "TwinQuay exited during startup: $($process.ExitCode)" }
+    if ($process.HasExited) { throw "DupliSift exited during startup: $($process.ExitCode)" }
   } until ($process.MainWindowHandle -ne 0 -or (Get-Date) -gt $deadline)
-  if ($process.MainWindowHandle -eq 0 -or $process.MainWindowTitle -cne 'TwinQuay') {
-    throw "Expected the native TwinQuay main window, got: $($process.MainWindowTitle)"
+  if ($process.MainWindowHandle -eq 0 -or $process.MainWindowTitle -cne 'DupliSift') {
+    throw "Expected the native DupliSift main window, got: $($process.MainWindowTitle)"
   }
   Start-Sleep -Seconds 3
   $process.Refresh()
-  if ($process.HasExited) { throw 'TwinQuay exited after opening its main window.' }
+  if ($process.HasExited) { throw 'DupliSift exited after opening its main window.' }
   @{ source_commit=$sourceCommit; package_inventory_sha256=(Get-FileHash $inventoryPath -Algorithm SHA256).Hash.ToLowerInvariant(); generated_at_utc=[DateTime]::UtcNow.ToString('o'); windows_native_startup=$true; window_title=$process.MainWindowTitle; executable_sha256=(Get-FileHash $executable -Algorithm SHA256).Hash; interactive_cleanup_restore_verified=$false; native_source_clearance=$false; msix_built=$false; submitted=$false } | ConvertTo-Json | Set-Content build-evidence/windows-startup.json -Encoding utf8NoBOM
 } finally {
   if (-not $process.HasExited) {

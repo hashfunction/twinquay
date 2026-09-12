@@ -38,7 +38,7 @@ def test_all_original_assets_decode_in_source_and_package(application, tmp_path,
 
     for alias in resources.ASSETS:
         assert not QPixmap(resources.asset_path(alias)).isNull(), alias
-    shutil.copytree(Path(platform.BASE_PATH) / "images/twinquay", tmp_path / "images/twinquay")
+    shutil.copytree(Path(platform.BASE_PATH) / "images/duplisift", tmp_path / "images/duplisift")
     monkeypatch.setattr(platform, "BASE_PATH", str(tmp_path))
     for alias in resources.ASSETS:
         assert not QPixmap(resources.asset_path(alias)).isNull(), alias
@@ -57,6 +57,7 @@ def test_scan_review_windows_and_options_construct_in_each_mode(application, tmp
     )
     controller = DupeGuru()
     try:
+        assert controller.main_window.windowTitle() == "DupliSift"
         controller.model.app_mode = {"standard": AppMode.STANDARD, "music": AppMode.MUSIC, "picture": AppMode.PICTURE}[
             mode
         ]

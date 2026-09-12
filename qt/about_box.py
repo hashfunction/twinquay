@@ -52,7 +52,7 @@ class AboutBox(QDialog):
         version_label.setText(tr("Version {}").format(QCoreApplication.instance().applicationVersion()))
         detail_layout.addWidget(version_label)
         self.update_label = QLabel(
-            'Trieflow LLC<br><a href="https://twinquay.trieflow.com/support">Support</a> · <a href="https://twinquay.trieflow.com/privacy">Privacy</a>'
+            'Trieflow LLC<br><a href="https://duplisift.trieflow.com/support">Support</a> · <a href="https://duplisift.trieflow.com/privacy">Privacy</a> · <a href="https://duplisift.trieflow.com/source">Source</a>'
         )
         self.update_label.setTextInteractionFlags(Qt.TextInteractionFlag.TextBrowserInteraction)
         self.update_label.setOpenExternalLinks(True)

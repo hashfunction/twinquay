@@ -10,7 +10,7 @@ from msix.msix_qualification import QUALIFICATION_IDENTITY, STORE_IDENTITY
 if QUALIFICATION_IDENTITY['minVersion'] != STORE_IDENTITY['minVersion']:
     raise ValueError('Both installed modes must share the reviewed Windows minimum')
 a = Analysis(['run.py'], pathex=[], binaries=[], datas=[
-    ('images/twinquay', 'images/twinquay'), ('build/locale', 'locale'),
+    ('images/duplisift', 'images/duplisift'), ('build/locale', 'locale'),
     ('build/help', 'help'), ('LICENSE', '.'), ('THIRD-PARTY-NOTICES.txt', '.'),
     ('build/notices', 'notices'),
 ], hiddenimports=[], hookspath=[], hooksconfig={}, runtime_hooks=[], excludes=[], noarchive=False, optimize=0)
@@ -20,9 +20,9 @@ with (Path(workpath) / 'windows-system-exclusions.json').open('x', encoding='utf
     json.dump(system_exclusions, stream, indent=2)
     stream.write('\n')
 pyz = PYZ(a.pure)
-exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name='TwinQuay', debug=False,
+exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name='DupliSift', debug=False,
           bootloader_ignore_signals=False, strip=False, upx=True, console=False,
           disable_windowed_traceback=False, argv_emulation=False,
           target_arch=None, codesign_identity=None, entitlements_file=None,
-          icon=['images/twinquay/logo.ico'], version='win_version_info.txt')
-coll = COLLECT(exe, a.binaries, a.datas, strip=False, upx=True, upx_exclude=[], name='TwinQuay')
+          icon=['images/duplisift/logo.ico'], version='win_version_info.txt')
+coll = COLLECT(exe, a.binaries, a.datas, strip=False, upx=True, upx_exclude=[], name='DupliSift')

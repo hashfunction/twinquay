@@ -44,7 +44,7 @@ tr = trget("ui")
 
 class DupeGuru(QObject):
     LOGO_NAME = "logo_se"
-    NAME = "TwinQuay"
+    NAME = "DupliSift"
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -144,8 +144,8 @@ class DupeGuru(QObject):
                 tr("Exclusion Filters"),
                 self.excludeListTriggered,
             ),
-            ("actionShowHelp", "F1", "", tr("TwinQuay Help"), self.showHelpTriggered),
-            ("actionAbout", "", "", tr("About TwinQuay"), self.showAboutBoxTriggered),
+            ("actionShowHelp", "F1", "", tr("DupliSift Help"), self.showHelpTriggered),
+            ("actionAbout", "", "", tr("About DupliSift"), self.showAboutBoxTriggered),
             (
                 "actionOpenDebugLog",
                 "",
@@ -343,7 +343,7 @@ class DupeGuru(QObject):
         # Load results on open if passed a .dupeguru file
         if len(sys.argv) > 1:
             results = sys.argv[1]
-            if results.lower().endswith((".twinquay", ".dupeguru")):
+            if results.lower().endswith((".duplisift", ".twinquay", ".dupeguru")):
                 self.model.load_from(results)
                 self.recentResults.insertItem(results)
 
@@ -411,7 +411,7 @@ class DupeGuru(QObject):
         if op.exists(help_path):
             url = QUrl.fromLocalFile(help_path)
         else:
-            url = QUrl("https://twinquay.trieflow.com/support")
+            url = QUrl("https://duplisift.trieflow.com/support")
         QDesktopServices.openUrl(url)
 
     def handleSIGTERM(self):

@@ -18,27 +18,38 @@ from workflow_files import prepare, verify_plan, verify_receipt, COLLISION_BYTES
 
 class WorkflowFilesTest(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix="twinquay-workflow-test-")
+        self.temp = tempfile.TemporaryDirectory(prefix="duplisift-workflow-test-")
         self.root = Path(self.temp.name).resolve()
         self.fixture = prepare(self.root)
-        self.reference = self.root / "input/keep-original.bin"
-        self.duplicate = self.root / "input/duplicate-copy.bin"
+        self.reference = self.root / "Project Documents/Cedar House Brief.txt"
+        self.duplicate = self.root / "Project Documents/Cedar House Brief - emailed.txt"
         self.plan = CleanupPlan(
             1,
             str(uuid4()),
             timestamp(),
             (CleanupCandidate.capture(self.duplicate, self.reference, EvidenceKind.EXACT_CONTENT),),
         )
-        self.plan_path = self.root / "selected-plan.json"
+        self.plan_path = self.root / "Cedar House - Cleanup Plan.json"
         self.plan_path.write_text(json.dumps(self.plan.to_dict()))
 
     def tearDown(self):
         self.temp.cleanup()
 
+    def test_sample_documents_keep_the_native_oracle_contract(self):
+        self.assertEqual(self.fixture["input"], str(self.root / "Project Documents"))
+        self.assertEqual(self.fixture["quarantine"], str(self.root / "Review Copies"))
+        self.assertEqual(self.fixture["plan_path"], str(self.root / "Cedar House - Cleanup Plan.json"))
+        self.assertIn("Original fictional Cedar House", self.fixture["sample_provenance"])
+        self.assertEqual(self.reference.read_bytes(), self.duplicate.read_bytes())
+        self.assertTrue(self.reference.read_text().startswith("Cedar House renovation\nProject brief"))
+        notes = self.root / "Project Documents/Cedar House Site Notes.txt"
+        self.assertNotEqual(notes.read_bytes(), self.reference.read_bytes())
+        self.assertTrue(notes.read_text().startswith("Cedar House renovation\nSite visit notes"))
+
     def test_real_domain_receipts_and_restored_bytes_are_independently_verified(self):
         verified = verify_plan(self.root)
         self.assertEqual(verified["candidate_count"], 1)
-        receipt = execute_plan(self.plan, self.root / "quarantine")
+        receipt = execute_plan(self.plan, self.root / "Review Copies")
         self.assertEqual(verify_receipt(self.root, "quarantined")["status"], "quarantined")
         self.duplicate.write_bytes(COLLISION_BYTES)
         restore_receipt(receipt.receipt_path, [receipt.items[0].item_id])
@@ -50,7 +61,7 @@ class WorkflowFilesTest(unittest.TestCase):
     def test_plan_rejects_wrong_reference_similarity_extra_candidate_and_false_size(self):
         original = self.plan.to_dict()
         for field, value in (
-            ("reference_path", str(self.root / "input/unique-control.bin")),
+            ("reference_path", str(self.root / "Project Documents/Cedar House Site Notes.txt")),
             ("path", str(self.root / "outside.bin")),
             ("evidence", "similarity"),
             ("candidate_size", True),
@@ -67,7 +78,7 @@ class WorkflowFilesTest(unittest.TestCase):
             verify_plan(self.root)
 
     def test_receipt_cannot_claim_success_with_changed_reference_or_payload(self):
-        receipt = execute_plan(self.plan, self.root / "quarantine")
+        receipt = execute_plan(self.plan, self.root / "Review Copies")
         original = self.reference.read_bytes()
         self.reference.write_bytes(b"changed")
         with self.assertRaises(ValueError):
@@ -79,7 +90,7 @@ class WorkflowFilesTest(unittest.TestCase):
             verify_receipt(self.root, "quarantined")
 
     def test_equal_bytes_reference_replacement_is_not_original_preservation(self):
-        execute_plan(self.plan, self.root / "quarantine")
+        execute_plan(self.plan, self.root / "Review Copies")
         previous = self.reference.read_bytes()
         self.reference.rename(self.root / "original-retained-by-test.bin")
         self.reference.write_bytes(previous)
@@ -87,7 +98,7 @@ class WorkflowFilesTest(unittest.TestCase):
             verify_receipt(self.root, "quarantined")
 
     def test_receipt_rejects_other_plan_extra_items_and_premature_status(self):
-        receipt = execute_plan(self.plan, self.root / "quarantine")
+        receipt = execute_plan(self.plan, self.root / "Review Copies")
         original = json.loads(receipt.receipt_path.read_text())
         for mutation in ("plan", "items", "status"):
             changed = copy.deepcopy(original)
@@ -107,7 +118,7 @@ class WorkflowFilesTest(unittest.TestCase):
         self.assertEqual(set(self.fixture["collision"]), {"bytes", "sha256"})
 
     def test_exact_durable_files_required_after_quarantine_conflict_and_restore(self):
-        receipt = execute_plan(self.plan, self.root / "quarantine")
+        receipt = execute_plan(self.plan, self.root / "Review Copies")
         lock = receipt.receipt_path.parent / ".lock"
         extra = receipt.receipt_path.parent / "unexpected.bin"
         for status in ("quarantined", "restore_collision", "restored"):
@@ -143,7 +154,7 @@ class WorkflowFilesTest(unittest.TestCase):
             verify_plan(self.root)
         self.duplicate.unlink()
         self.duplicate.write_bytes(self.reference.read_bytes())
-        (self.root / "input/unexpected.bin").write_bytes(b"unowned")
+        (self.root / "Project Documents/unexpected.bin").write_bytes(b"unowned")
         with self.assertRaises(ValueError):
             verify_plan(self.root)
 

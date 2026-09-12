@@ -20,14 +20,14 @@ if ($LASTEXITCODE -ne 0 -or $sourceCommit -cne $env:GITHUB_SHA) { throw 'Source 
 $sdkVersion='10.0.26100.0'
 $sdkDirectory=Join-Path ${env:ProgramFiles(x86)} "Windows Kits/10/bin/$sdkVersion/x64"
 foreach ($identityMode in @('qualification','store')) {
-    $packageOutput=Join-Path $env:RUNNER_TEMP ('twinquay-msix-'+$identityMode+'-'+[guid]::NewGuid().ToString('N'))
-    Invoke-Checked $python @('tools/msix/msix_qualification.py','--release','dist/TwinQuay',
-        '--artwork','images/twinquay/logo-256.png','--source-root','.','--source-commit',$sourceCommit,
+    $packageOutput=Join-Path $env:RUNNER_TEMP ('duplisift-msix-'+$identityMode+'-'+[guid]::NewGuid().ToString('N'))
+    Invoke-Checked $python @('tools/msix/msix_qualification.py','--release','dist/DupliSift',
+        '--artwork','images/duplisift/logo-256.png','--source-root','.','--source-commit',$sourceCommit,
         '--inventory','build-evidence/package-inventory.json','--startup','build-evidence/windows-startup.json',
         '--makeappx',(Join-Path $sdkDirectory 'makeappx.exe'),'--sdk-version',$sdkVersion,'--output',$packageOutput,
         '--identity-mode',$identityMode)
     $recordName=if ($identityMode -eq 'store') {'msix-store-package-record.json'} else {'msix-package-record.json'}
-    $packageName=if ($identityMode -eq 'store') {'TwinQuay_1.0.0.0_x64.msix'} else {'TwinQuay.Qualification_1.0.0.0_x64.msix'}
+    $packageName=if ($identityMode -eq 'store') {'DupliSift_1.0.1.0_x64.msix'} else {'DupliSift.Qualification_1.0.1.0_x64.msix'}
     $installationOutput=if ($identityMode -eq 'store') {'build-evidence/msix-store-install'} else {'build-evidence/msix-install'}
     # Both identities run the complete consumer lifecycle; source-publication and final retention remain separate gates.
     [IO.File]::Copy((Join-Path $packageOutput 'package-record.json'),(Join-Path (Get-Location) ('build-evidence/'+$recordName)),$false)

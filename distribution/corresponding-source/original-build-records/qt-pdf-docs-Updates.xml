@@ -1,0 +1,43 @@
+<Updates>
+ <ApplicationName>{AnyApplication}</ApplicationName>
+ <ApplicationVersion>1.0.0</ApplicationVersion>
+ <Checksum>true</Checksum>
+ <PackageUpdate>
+  <Name>extensions.qtpdf.6112.doc</Name>
+  <DisplayName>Documentation for Qt PDF</DisplayName>
+  <Description>Documentation for Qt PDF</Description>
+  <Version>6.11.2-0-202608131017</Version>
+  <ReleaseDate>2026-08-13</ReleaseDate>
+  <Virtual>true</Virtual>
+  <SortingPriority>1</SortingPriority>
+  <DownloadableArchives>qtpdf-documentation.zip</DownloadableArchives>
+  <UpdateFile CompressedSize="1289365" OS="Any" UncompressedSize="2476682"/>
+  <Operations>
+   <Operation name="Extract">
+    <Argument>@TargetDir@/Docs/Qt-6.11.2</Argument>
+    <Argument>qtpdf-documentation.zip</Argument>
+   </Operation>
+  </Operations>
+  <SHA1>55935ee1c60c8e641c2ecd78601b32123aece480</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>extensions.qtpdf.6112.examples</Name>
+  <DisplayName>Examples for Qt PDF</DisplayName>
+  <Description>Examples for Qt PDF</Description>
+  <Version>6.11.2-0-202608131017</Version>
+  <ReleaseDate>2026-08-13</ReleaseDate>
+  <Virtual>true</Virtual>
+  <SortingPriority>1</SortingPriority>
+  <DownloadableArchives>qtpdf-examples-6.11.2.7z</DownloadableArchives>
+  <UpdateFile CompressedSize="236860" OS="Any" UncompressedSize="448424"/>
+  <Operations>
+   <Operation name="Extract">
+    <Argument>@TargetDir@/Examples/Qt-6.11.2</Argument>
+    <Argument>qtpdf-examples-6.11.2.7z</Argument>
+   </Operation>
+  </Operations>
+  <SHA1>dd3eb4536c2d82e6fcb3ef332d2bc71903e891f9</SHA1>
+ </PackageUpdate>
+ <SHA1>ffc7299a255b493e8e31bbd4f0a9b9d0fa3adc61</SHA1>
+ <MetadataName>2026-08-13-1017_meta.7z</MetadataName>
+</Updates>

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build and independently verify a disposable TwinQuay qualification MSIX.
+"""Build and independently verify a disposable DupliSift qualification MSIX.
 
 Copyright 2026 Trieflow LLC. MIT licensed. Derived from PixelQuay qualification
 source b7672df853a9e182ed1b081c03ab800dc3dbc778 and ReticleQuay;
@@ -36,10 +36,10 @@ ET.register_namespace("rescap", RESCAP_NS)
 QUALIFICATION_IDENTITY = {
     "packageName": "Trieflow.TwinQuay.Qualification",
     "publisher": "CN=TwinQuay-CI-Qualification",
-    "version": "1.0.0.0",
+    "version": "1.0.1.0",
     "architecture": "x64",
     "applicationId": "TwinQuay",
-    "executable": "TwinQuay.exe",
+    "executable": "DupliSift.exe",
     "deviceFamily": "Windows.Desktop",
     "minVersion": "10.0.19041.0",
     "maxVersionTested": "10.0.26100.0",
@@ -62,11 +62,11 @@ def identity_for_mode(identity_mode):
 
 def _manifest_presentation(identity_mode):
     identity_for_mode(identity_mode)
-    return ("hashfunction", "Find, quarantine and restore duplicate files") if identity_mode == "store" else ("Trieflow LLC", "TwinQuay qualification package")
+    return ("hashfunction", "Find, quarantine and restore duplicate files") if identity_mode == "store" else ("Trieflow LLC", "DupliSift qualification package")
 
 
 REQUIRED_RELEASE_FILES = (
-    "TwinQuay.exe",
+    "DupliSift.exe",
     "_internal/python312.dll",
     "_internal/PyQt6/QtCore.pyd",
     "_internal/PyQt6/Qt6/bin/Qt6Core.dll",
@@ -77,12 +77,12 @@ REQUIRED_RELEASE_FILES = (
     "_internal/THIRD-PARTY-NOTICES.txt",
     "_internal/notices/dependency-inventory.json",
     "_internal/notices/Hardcoded-Software-BSD-3-Clause.txt",
-    "_internal/images/twinquay/logo-32.png",
-    "_internal/images/twinquay/logo-256.png",
-    "_internal/images/twinquay/logo.ico",
+    "_internal/images/duplisift/logo-32.png",
+    "_internal/images/duplisift/logo-256.png",
+    "_internal/images/duplisift/logo.ico",
 )
 RUNTIME = {
-    "executable": "TwinQuay.exe",
+    "executable": "DupliSift.exe",
     "python": "_internal/python312.dll",
     "pyqt": "_internal/PyQt6/QtCore.pyd",
     "qtCore": "_internal/PyQt6/Qt6/bin/Qt6Core.dll",
@@ -219,8 +219,8 @@ def source_inputs(source_root):
         and any(isinstance(target, ast.Name) and target.id == "NAME" for target in node.targets)
         and isinstance(node.value, ast.Constant)
     ]
-    if titles != ["TwinQuay"]:
-        raise ValueError("Actual Qt application title differs from exact TwinQuay qualification title")
+    if titles != ["DupliSift"]:
+        raise ValueError("Actual Qt application title differs from exact DupliSift qualification title")
     result = {
         name: file_record(source_root / name)
         for name in (
@@ -231,8 +231,8 @@ def source_inputs(source_root):
             "qt/app.py",
         )
     }
-    for name, record in inventory_tree(source_root / "images/twinquay").items():
-        result["images/twinquay/" + name] = record
+    for name, record in inventory_tree(source_root / "images/duplisift").items():
+        result["images/duplisift/" + name] = record
     return result
 
 
@@ -309,8 +309,8 @@ def validate_input_evidence(release, inventory, startup, source_root, source_com
     if (
         receipt.get("source_commit") != source_commit
         or receipt.get("windows_native_startup") is not True
-        or receipt.get("window_title") != "TwinQuay"
-        or str(receipt.get("executable_sha256", "")).lower() != measured["files"]["TwinQuay.exe"]["sha256"]
+        or receipt.get("window_title") != "DupliSift"
+        or str(receipt.get("executable_sha256", "")).lower() != measured["files"]["DupliSift.exe"]["sha256"]
         or receipt.get("package_inventory_sha256") != file_record(inventory)["sha256"]
     ):
         raise ValueError("Native startup receipt does not bind this exact source, inventory and executable")
@@ -333,7 +333,7 @@ def create_manifest(identity_mode="qualification"):
     )
     properties = ET.SubElement(package, f"{{{APPX_NS}}}Properties")
     for name, value in (
-        ("DisplayName", "TwinQuay"),
+        ("DisplayName", "DupliSift"),
         ("PublisherDisplayName", publisher_display),
         ("Description", description),
         ("Logo", r"Assets\StoreLogo.png"),
@@ -365,7 +365,7 @@ def create_manifest(identity_mode="qualification"):
         application,
         f"{{{UAP_NS}}}VisualElements",
         {
-            "DisplayName": "TwinQuay",
+            "DisplayName": "DupliSift",
             "Description": description,
             "BackgroundColor": "#142e38",
             "Square150x150Logo": r"Assets\Square150x150Logo.png",
@@ -414,7 +414,7 @@ def validate_manifest(data, identity_mode="qualification"):
         raise ValueError("Unexpected qualification identity")
     properties = _one(root, f"{{{APPX_NS}}}Properties", "properties")
     expected_properties = {
-        "DisplayName": "TwinQuay",
+        "DisplayName": "DupliSift",
         "PublisherDisplayName": publisher_display,
         "Description": description,
         "Logo": r"Assets\StoreLogo.png",
@@ -455,7 +455,7 @@ def validate_manifest(data, identity_mode="qualification"):
         len(application) != 1
         or visual.attrib
         != {
-            "DisplayName": "TwinQuay",
+            "DisplayName": "DupliSift",
             "Description": description,
             "BackgroundColor": "#142e38",
             "Square150x150Logo": r"Assets\Square150x150Logo.png",
@@ -742,7 +742,7 @@ def verify_record_inputs(package, record_path, release, artwork, source_commit, 
     record = _load_json(record_path, "qualification record")
     # Recreate the package boundary from current source/stage/receipt rather than
     # trusting a coherent replacement of the package and its own recorded hashes.
-    with tempfile.TemporaryDirectory(prefix="twinquay-record-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="duplisift-record-") as temporary:
         expected = stage_release(
             release, artwork, Path(temporary).resolve() / "stage", source_commit, inventory, startup, source_root, identity_mode
         )
@@ -789,12 +789,12 @@ def build_qualification(
     if os.path.lexists(output):
         raise ValueError(f"Output already exists and will not be replaced: {output}")
     output.parent.mkdir(parents=True, exist_ok=True)
-    temporary = Path(tempfile.mkdtemp(prefix=".twinquay-msix-", dir=output.parent))
+    temporary = Path(tempfile.mkdtemp(prefix=".duplisift-msix-", dir=output.parent))
     try:
         tool = _tool_record(makeappx, sdk_version)
         stage = temporary / "stage"
         record = stage_release(release, artwork, stage, source_commit, inventory, startup, source_root, identity_mode)
-        package = temporary / ("TwinQuay_1.0.0.0_x64.msix" if identity_mode == "store" else "TwinQuay.Qualification_1.0.0.0_x64.msix")
+        package = temporary / ("DupliSift_1.0.1.0_x64.msix" if identity_mode == "store" else "DupliSift.Qualification_1.0.1.0_x64.msix")
         unpacked = temporary / "unpacked"
         commands = [
             [str(makeappx), "pack", "/d", str(stage), "/p", str(package), "/v", "/h", "SHA256"],

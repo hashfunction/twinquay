@@ -27,7 +27,7 @@ def stat_values(info):
 
 
 payload = {"python": sys.version, "cases": []}
-with tempfile.TemporaryDirectory(prefix="twinquay-qualification-") as temporary:
+with tempfile.TemporaryDirectory(prefix="duplisift-qualification-") as temporary:
     root = Path(temporary)
     for index, name in enumerate(("duplicate.bin", "duplicate-é.bin")):
         left, right = root / name, root / f"reference-{index}.bin"

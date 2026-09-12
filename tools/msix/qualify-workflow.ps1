@@ -136,11 +136,11 @@ function Assert-TwinQuayWorkflowProcess($State) {
     if (-not $State.processOwned -or -not $State.processHandle -or $State.processHandle.IsClosed -or
         $State.processHandle.IsInvalid -or $State.process.HasExited) { throw 'The original owned installed process is no longer live.' }
     $State.process.Refresh()
-    if ((Get-CanonicalPath $State.process.MainModule.FileName) -ine (Get-CanonicalPath (Join-Path $State.installed.InstallLocation 'TwinQuay.exe')) -or
+    if ((Get-CanonicalPath $State.process.MainModule.FileName) -ine (Get-CanonicalPath (Join-Path $State.installed.InstallLocation 'DupliSift.exe')) -or
         [TwinQuayQualification.NativePackageProbe]::GetFullName($State.process.Handle) -cne $State.ownedPackageFullName) {
         throw 'Installed workflow process path/package identity changed.'
     }
-    Assert-FileMatchesRecord $State.process.MainModule.FileName (Get-RecordPayloadEntry $State.record 'TwinQuay.exe') 'Workflow executable' | Out-Null
+    Assert-FileMatchesRecord $State.process.MainModule.FileName (Get-RecordPayloadEntry $State.record 'DupliSift.exe') 'Workflow executable' | Out-Null
 }
 
 function Get-TwinQuayWorkflowWindows($State) {
@@ -256,7 +256,7 @@ function Wait-TwinQuayWorkflowAddFolderChooser($State,[int]$Seconds=30) {
                 $current=$window.Current
                 $handle=ConvertTo-TwinQuayWorkflowHandle $current.NativeWindowHandle 'window-enumeration'
                 $native=Get-TwinQuayWorkflowNativeWindow $handle
-                if ($current.Name -ceq 'TwinQuay' -and $native.title -ceq 'TwinQuay' -and
+                if ($current.Name -ceq 'DupliSift' -and $native.title -ceq 'DupliSift' -and
                     $native.class_name -ceq 'Qt6112QWindowIcon') { continue }
                 if ($current.ProcessId -ne $State.process.Id -or $handle -eq [IntPtr]::Zero -or
                     $current.IsOffscreen -or -not $current.IsEnabled -or $native.handle -ne $handle -or
@@ -265,7 +265,7 @@ function Wait-TwinQuayWorkflowAddFolderChooser($State,[int]$Seconds=30) {
                 if ($current.Name -ceq 'Select a folder to add to the scanning list' -and
                     $native.title -ceq $current.Name -and $native.class_name -ceq '#32770') {
                     $candidates.Add([pscustomobject]@{window=$window;kind='chooser'})
-                } elseif ($current.Name -ceq 'TwinQuay' -and $native.title -ceq 'TwinQuay' -and
+                } elseif ($current.Name -ceq 'DupliSift' -and $native.title -ceq 'DupliSift' -and
                     $native.class_name -ceq 'Qt6112QWindowPopupDropShadowSaveBits') {
                     $candidates.Add([pscustomobject]@{window=$window;kind='recent'})
                 } else { throw 'Unexpected owned window while opening Add Folder.' }
@@ -278,7 +278,7 @@ function Wait-TwinQuayWorkflowAddFolderChooser($State,[int]$Seconds=30) {
                 $menus=@($items | Where-Object { $_.control_type -ceq 'ControlType.MenuItem' })
                 $adds=@($menus | Where-Object { $_.name -ceq 'Add Folder...' })
                 if ($items.Count -lt 6 -or $items.Count -gt 15 -or $menus.Count -lt 3 -or $menus.Count -gt 12 -or
-                    $items[0].control_type -cne 'ControlType.Window' -or $items[0].name -cne 'TwinQuay' -or
+                    $items[0].control_type -cne 'ControlType.Window' -or $items[0].name -cne 'DupliSift' -or
                     @($items | Where-Object { $_.process_id -ne $State.process.Id -or $_.offscreen }).Count -or
                     @($items | Select-Object -Skip 1 | Where-Object { $_.control_type -cnotin @('ControlType.MenuItem','ControlType.Separator') }).Count -or
                     $adds.Count -ne 1 -or -not $adds[0].enabled -or $menus[0].name -cne 'Add Folder...' -or
@@ -320,10 +320,10 @@ function Wait-TwinQuayWorkflowScanResult($State,[int]$Seconds=45) {
         try {
             # Reacquire the owned top-level element on every poll. Qt replaces
             # its scan-progress UIA subtree when the result table is rendered.
-            $main=Wait-TwinQuayWorkflowWindow $State 'TwinQuay'
+            $main=Wait-TwinQuayWorkflowWindow $State 'DupliSift'
             $items=@(Get-TwinQuayWorkflowElements $main)
             $matches=@($items | Where-Object {
-                $_.name -ceq 'keep-original.bin' -and $_.process_id -eq $State.process.Id -and -not $_.offscreen
+                $_.name -ceq 'Cedar House Brief.txt' -and $_.process_id -eq $State.process.Id -and -not $_.offscreen
             })
             if ($matches.Count -gt 1) { throw 'Ambiguous original row in scan results.' }
             if ($matches.Count -eq 1) {
@@ -511,9 +511,9 @@ function Wait-TwinQuayWorkflowCompletion($State,$Context,[string]$Status,[string
 }
 
 function Invoke-TwinQuayWorkflowRestore($State,$Context,[string]$Capture) {
-    $main=Wait-TwinQuayWorkflowWindow $State 'TwinQuay'
+    $main=Wait-TwinQuayWorkflowWindow $State 'DupliSift'
     Send-TwinQuayWorkflowKeys $State $main '^+q'
-    $dialog=Wait-TwinQuayWorkflowWindow $State 'Quarantine Receipts — TwinQuay'
+    $dialog=Wait-TwinQuayWorkflowWindow $State 'Quarantine Receipts — DupliSift'
     $tables=@(Get-TwinQuayWorkflowElements $dialog | Where-Object {
         $_.process_id -eq $State.process.Id -and $_.control_type -cin @('ControlType.Table','ControlType.DataGrid') -and -not $_.offscreen
     })
@@ -540,7 +540,7 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
     $operations=[ordered]@{}
     $operations.Prepare={
         Assert-TwinQuayWorkflowProcess $State
-        $candidate=Join-Path $State.temporary 'workflow-fixture'
+        $candidate=Join-Path $State.temporary 'Cedar House Review'
         New-Item -ItemType Directory -Path $candidate -ErrorAction Stop | Out-Null
         $context.root=$candidate
         $candidate=Join-Path $State.output 'workflow'
@@ -549,7 +549,7 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
         Invoke-TwinQuayFileOracle $context 'prepare' | Out-Null
     }.GetNewClosure()
     $operations.Scan={
-        $main=Wait-TwinQuayWorkflowWindow $State 'TwinQuay'
+        $main=Wait-TwinQuayWorkflowWindow $State 'DupliSift'
         $standard=Find-TwinQuayWorkflowControl $State $main 'Standard' @('ControlType.RadioButton')
         Send-TwinQuayWorkflowKeys $State $main ' ' $standard
         $combo=Find-TwinQuayWorkflowControl $State $main '' @('ControlType.ComboBox')
@@ -561,7 +561,7 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
         Press-TwinQuayWorkflowButton $State $main ''
         Wait-TwinQuayWorkflowAddFolderChooser $State | Out-Null
         Set-TwinQuayWorkflowFolder $State 'Select a folder to add to the scanning list' $context.facts.prepare.input
-        $main=Wait-TwinQuayWorkflowWindow $State 'TwinQuay'
+        $main=Wait-TwinQuayWorkflowWindow $State 'DupliSift'
         Save-TwinQuayWorkflowSurface $State $context '01-scan-folder' $main
         Press-TwinQuayWorkflowButton $State $main 'Scan'
         $scan=Wait-TwinQuayWorkflowScanResult $State
@@ -574,25 +574,25 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
         Save-TwinQuayWorkflowSurface $State $context '02-duplicate-results' $main
     }.GetNewClosure()
     $operations.Review={
-        $main=Wait-TwinQuayWorkflowWindow $State 'TwinQuay'
+        $main=Wait-TwinQuayWorkflowWindow $State 'DupliSift'
         Send-TwinQuayWorkflowKeys $State $main '^d'
-        $dialog=Wait-TwinQuayWorkflowWindow $State 'Review Cleanup Plan — TwinQuay'
+        $dialog=Wait-TwinQuayWorkflowWindow $State 'Review Cleanup Plan — DupliSift'
         Press-TwinQuayWorkflowButton $State $dialog 'Save plan…'
         $save=Wait-TwinQuayWorkflowWindow $State 'Save selected cleanup plan'
         Send-TwinQuayWorkflowKeys $State $save '%n^a'
         Send-TwinQuayWorkflowKeys $State $save ((ConvertTo-TwinQuaySendKeysLiteral $context.facts.prepare.plan_path))
         Press-TwinQuayNativeDialogButton $State $save 'Save'
-        $dialog=Wait-TwinQuayWorkflowWindow $State 'Review Cleanup Plan — TwinQuay'
+        $dialog=Wait-TwinQuayWorkflowWindow $State 'Review Cleanup Plan — DupliSift'
         Invoke-TwinQuayFileOracle $context 'plan' | Out-Null
         Press-TwinQuayWorkflowButton $State $dialog 'Choose folder…'
         Set-TwinQuayWorkflowFolder $State 'Choose quarantine folder' $context.facts.prepare.quarantine
-        $dialog=Wait-TwinQuayWorkflowWindow $State 'Review Cleanup Plan — TwinQuay'
+        $dialog=Wait-TwinQuayWorkflowWindow $State 'Review Cleanup Plan — DupliSift'
         $folder=Find-TwinQuayWorkflowControl $State $dialog 'User-selected quarantine folder' @('ControlType.Edit')
         if ((Get-CanonicalPath $folder.GetCurrentPattern([Windows.Automation.ValuePattern]::Pattern).Current.Value) -ine (Get-CanonicalPath $context.facts.prepare.quarantine)) { throw 'Actual quarantine folder selection differs from the owned fixture.' }
         Save-TwinQuayWorkflowSurface $State $context '03-reviewed-plan' $dialog
     }.GetNewClosure()
     $operations.Quarantine={
-        $dialog=Wait-TwinQuayWorkflowWindow $State 'Review Cleanup Plan — TwinQuay'
+        $dialog=Wait-TwinQuayWorkflowWindow $State 'Review Cleanup Plan — DupliSift'
         Press-TwinQuayWorkflowButton $State $dialog 'Verify and quarantine selected'
         Wait-TwinQuayWorkflowCompletion $State $context 'quarantined' '04-quarantine-complete'
         Invoke-TwinQuayFileOracle $context 'quarantined' | Out-Null
@@ -600,16 +600,16 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
     $operations.Conflict={
         # Fixed generated content stays outside uploaded metadata. Bind its exact
         # bytes to the independent Python oracle before creating the held file.
-        $bytes=[Text.Encoding]::UTF8.GetBytes("TwinQuay owned restore collision: preserve while handle is held.`n")
+        $bytes=[Text.Encoding]::UTF8.GetBytes("DupliSift owned restore collision: preserve while handle is held.`n")
         $hash=[Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($bytes)).ToLowerInvariant()
         if ($bytes.Length -ne $context.facts.prepare.collision.bytes -or $hash -cne $context.facts.prepare.collision.sha256) { throw 'Collision fixture differs from the independent source oracle.' }
-        $context.collision=New-TwinQuayCollision (Join-Path $context.root 'input/duplicate-copy.bin') $bytes
+        $context.collision=New-TwinQuayCollision (Join-Path $context.root 'Project Documents/Cedar House Brief - emailed.txt') $bytes
         Invoke-TwinQuayWorkflowRestore $State $context '05-conflict-receipt'
         Wait-TwinQuayWorkflowCompletion $State $context 'restore_collision' '06-conflict-disclosed'
         Invoke-TwinQuayFileOracle $context 'restore_collision' | Out-Null
         $context.collision.Dispose()
         $context.collision=$null
-        if (Test-Path -LiteralPath (Join-Path $context.root 'input/duplicate-copy.bin')) { throw 'Exact owned collision file did not disappear after handle close.' }
+        if (Test-Path -LiteralPath (Join-Path $context.root 'Project Documents/Cedar House Brief - emailed.txt')) { throw 'Exact owned collision file did not disappear after handle close.' }
     }.GetNewClosure()
     $operations.Restore={
         Invoke-TwinQuayWorkflowRestore $State $context '07-restore-receipt'
@@ -617,7 +617,7 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
         Invoke-TwinQuayFileOracle $context 'restored' | Out-Null
     }.GetNewClosure()
     $operations.Finish={
-        $main=Wait-TwinQuayWorkflowWindow $State 'TwinQuay'
+        $main=Wait-TwinQuayWorkflowWindow $State 'DupliSift'
         Save-TwinQuayWorkflowSurface $State $context '09-restored-main' $main
         Assert-TwinQuayWorkflowProcess $State
     }.GetNewClosure()
@@ -652,7 +652,7 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
 
 function Close-TwinQuayWorkflowWindow($State) {
     Assert-TwinQuayWorkflowProcess $State
-    if (-not $State.process.CloseMainWindow()) { throw 'Activated TwinQuay refused a normal main-window close request.' }
+    if (-not $State.process.CloseMainWindow()) { throw 'Activated DupliSift refused a normal main-window close request.' }
     # Real scan results make the document dirty. Answer only the source-defined
     # exact normal-close question; other dialogs remain failures, never dismissed.
     $deadline=[DateTime]::UtcNow.AddSeconds(10)

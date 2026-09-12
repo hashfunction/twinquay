@@ -122,13 +122,13 @@ def build_pe_modules():
 def build_product_help():
     destination = Path("build/help/en")
     destination.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile("help/twinquay/index.html", destination / "index.html")
+    shutil.copyfile("help/duplisift/index.html", destination / "index.html")
 
 
 def build_normal():
-    print("Building TwinQuay with UI qt")
+    print("Building DupliSift with UI qt")
     add_to_pythonpath(".")
-    print("Building TwinQuay")
+    print("Building DupliSift")
     build_pe_modules()
     print("Building localizations")
     build_localizations()

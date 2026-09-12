@@ -32,8 +32,8 @@ if dirty:
 verify_record_inputs(
     args.package,
     args.record,
-    source / "dist/TwinQuay",
-    source / "images/twinquay/logo-256.png",
+    source / "dist/DupliSift",
+    source / "images/duplisift/logo-256.png",
     actual,
     source / "build-evidence/package-inventory.json",
     source / "build-evidence/windows-startup.json",

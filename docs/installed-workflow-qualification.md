@@ -1,5 +1,7 @@
 # Installed TwinQuay workflow qualification plan
 
+Historical qualification record. Current DupliSift naming, compatibility and screenshot fixtures are documented in [the rename review](duplisift-rename-review.md). Old run titles, package paths and source commits below remain unchanged.
+
 Extend the reviewed temporary-MSIX qualifier at 6344e02a; retain its exact source,
 package/broker identity, native-module confinement, live process ownership,
 normal close and owned uninstall/certificate cleanup. Product code is unchanged.

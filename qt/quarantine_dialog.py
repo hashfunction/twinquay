@@ -24,7 +24,7 @@ class QuarantineDialog(QDialog):
         super().__init__(parent)
         self.app = app
         self.receipt = None
-        self.setWindowTitle("Quarantine Receipts — TwinQuay")
+        self.setWindowTitle("Quarantine Receipts — DupliSift")
         self.resize(1100, 530)
         layout = QVBoxLayout(self)
         self.caption = QLabel(

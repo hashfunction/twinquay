@@ -20,4 +20,4 @@ ASSETS = {
 
 
 def asset_path(alias):
-    return str(Path(platform.BASE_PATH) / "images" / "twinquay" / ASSETS[alias])
+    return str(Path(platform.BASE_PATH) / "images" / "duplisift" / ASSETS[alias])

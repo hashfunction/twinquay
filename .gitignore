@@ -31,7 +31,7 @@ MANIFEST
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
-!/TwinQuay.spec
+!/DupliSift.spec
 
 # Installer logs
 pip-log.txt
@@ -110,7 +110,7 @@ cocoa/autogen
 *.waf*
 .lock-waf*
 /tags
-# TwinQuay local qualification output
+# DupliSift local qualification output
 /build-evidence/
 /*.log
 /tools/lock-resolution.log

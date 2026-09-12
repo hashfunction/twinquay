@@ -147,8 +147,9 @@ def escape_amp(s):
 
 
 def create_qsettings():
-    # Create a QSettings instance with the correct arguments.
-    config_location = op.join(executable_folder(), "TwinQuay.ini")
+    # Prefer existing portable settings so an upgrade never switches profiles.
+    legacy_config = op.join(executable_folder(), "TwinQuay.ini")
+    config_location = legacy_config if op.isfile(legacy_config) else op.join(executable_folder(), "DupliSift.ini")
     if op.isfile(config_location):
         settings = QSettings(config_location, QSettings.Format.IniFormat)
         settings.setValue("Portable", True)

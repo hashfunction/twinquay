@@ -1,4 +1,4 @@
-# Disposable Windows CI installation qualification for TwinQuay.
+# Disposable Windows CI installation qualification for DupliSift.
 # Copyright 2026 Trieflow LLC. MIT licensed.
 # Installation-flow structure adapted from ReticleQuay's MIT helper; the full
 # retained notice is in RETICLEQUAY-MIT.txt.
@@ -300,10 +300,10 @@ namespace TwinQuayQualification {
 }
 
 function Assert-TwinQuayWindowEvidence($Snapshot) {
-    if ($Snapshot.title -cne 'TwinQuay' -or -not $Snapshot.visible -or $Snapshot.process_id -le 0 -or
+    if ($Snapshot.title -cne 'DupliSift' -or -not $Snapshot.visible -or $Snapshot.process_id -le 0 -or
         $Snapshot.width -lt 400 -or $Snapshot.height -lt 300 -or -not $Snapshot.screenshot_captured -or
         $Snapshot.screenshot_sha256 -cnotmatch '^[0-9a-f]{64}$' -or $Snapshot.sampled_colors -lt 16) {
-        throw 'Missing exact rendered TwinQuay window/screenshot evidence.'
+        throw 'Missing exact rendered DupliSift window/screenshot evidence.'
     }
     # This native control is declared by qt/directories_dialog.py. A title alone
     # cannot pass as the real duplicate-scanning configuration window.
@@ -320,7 +320,7 @@ function Get-WindowQualification([Diagnostics.Process]$Process, [string]$OutputD
     $root = [Windows.Automation.AutomationElement]::FromHandle($Process.MainWindowHandle)
     if (-not $root) { throw 'UI Automation could not bind the activated main window.' }
     $rootBounds = $root.Current.BoundingRectangle
-    if ($root.Current.Name -cne 'TwinQuay' -or $root.Current.ProcessId -ne $Process.Id) { throw 'UIA root is not the exact owned TwinQuay window.' }
+    if ($root.Current.Name -cne 'DupliSift' -or $root.Current.ProcessId -ne $Process.Id) { throw 'UIA root is not the exact owned DupliSift window.' }
     if ($root.Current.IsOffscreen -or $rootBounds.Width -le 0 -or $rootBounds.Height -le 0) { throw 'Activated main window is not visibly rendered.' }
     $topLevelWindows = [Collections.Generic.List[object]]::new()
     $processCondition = [Windows.Automation.PropertyCondition]::new([Windows.Automation.AutomationElement]::ProcessIdProperty, $Process.Id)
@@ -469,8 +469,8 @@ function Get-TwinQuayInstalledModuleEvidence($State) {
 
 function Get-TwinQuayExpectedIdentity([ValidateSet('qualification','store')][string]$Mode='qualification') {
     $identity = [ordered]@{
-        packageName='Trieflow.TwinQuay.Qualification'; publisher='CN=TwinQuay-CI-Qualification'; version='1.0.0.0'
-        architecture='x64'; applicationId='TwinQuay'; executable='TwinQuay.exe'
+        packageName='Trieflow.TwinQuay.Qualification'; publisher='CN=TwinQuay-CI-Qualification'; version='1.0.1.0'
+        architecture='x64'; applicationId='TwinQuay'; executable='DupliSift.exe'
         deviceFamily='Windows.Desktop'; minVersion='10.0.19041.0'; maxVersionTested='10.0.26100.0'; capability='runFullTrust'
     }
     if ($Mode -eq 'store') {
@@ -543,21 +543,21 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         }
         $existing = @(Get-AppxPackage -Name $expectedIdentity.packageName -ErrorAction Stop)
         $state.preflightPackageFullNames = @($existing | ForEach-Object { [string]$_.PackageFullName })
-        if ($existing.Count -gt 0) { throw 'A matching TwinQuay qualification package is already installed; refusing to replace or remove it.' }
+        if ($existing.Count -gt 0) { throw 'A matching DupliSift qualification package is already installed; refusing to replace or remove it.' }
     }.GetNewClosure()
 
     $operations.PrepareSignedCopy = {
         $runnerTemp = if ($env:RUNNER_TEMP) { $env:RUNNER_TEMP } else { [IO.Path]::GetTempPath() }
-        $temporaryCandidate = Join-Path $runnerTemp ('.twinquay-install-' + [guid]::NewGuid().ToString('N'))
+        $temporaryCandidate = Join-Path $runnerTemp ('.duplisift-install-' + [guid]::NewGuid().ToString('N'))
         New-Item -ItemType Directory -Path $temporaryCandidate -ErrorAction Stop | Out-Null
         # Cleanup ownership starts only after exclusive creation succeeds.
         $state.temporary = $temporaryCandidate
-        $state.signedCopy = Join-Path $state.temporary 'TwinQuay.Qualification.signed.msix'
+        $state.signedCopy = Join-Path $state.temporary 'DupliSift.Qualification.signed.msix'
         [IO.File]::Copy($state.package, $state.signedCopy, $false)
-        $state.publicCertificate = Join-Path $state.temporary 'TwinQuay.Qualification.public.cer'
+        $state.publicCertificate = Join-Path $state.temporary 'DupliSift.Qualification.public.cer'
         $state.certificate = New-SelfSignedCertificate -Type Custom -KeyUsage DigitalSignature -KeyExportPolicy NonExportable -KeySpec Signature `
             -CertStoreLocation 'Cert:\CurrentUser\My' -TextExtension @('2.5.29.37={text}1.3.6.1.5.5.7.3.3','2.5.29.19={text}') `
-            -Subject $expectedIdentity.publisher -FriendlyName 'TwinQuay ephemeral CI qualification' -NotAfter (Get-Date).AddHours(12)
+            -Subject $expectedIdentity.publisher -FriendlyName 'DupliSift ephemeral CI qualification' -NotAfter (Get-Date).AddHours(12)
         Export-Certificate -Cert $state.certificate -FilePath $state.publicCertificate -Force | Out-Null
         $state.trustAttempted = $true
         $state.trustedCertificate = Import-Certificate -FilePath $state.publicCertificate -CertStoreLocation 'Cert:\LocalMachine\TrustedPeople'
@@ -608,7 +608,7 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
             $relative = $entry.Name
             $expected = Get-RecordPayloadEntry $state.record $relative
             $hash = Assert-FileMatchesRecord (Join-Path $state.installed.InstallLocation ($relative -replace '/', [IO.Path]::DirectorySeparatorChar)) $expected $relative
-            if ($relative -eq 'TwinQuay.exe') { $state.executableSha256 = $hash }
+            if ($relative -eq 'DupliSift.exe') { $state.executableSha256 = $hash }
 
         }
     }.GetNewClosure()
@@ -623,30 +623,30 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         $state.process = [Diagnostics.Process]::GetProcessById([int]$processId)
         $state.processHandle = $state.process.SafeHandle
         if ($state.processHandle.IsInvalid -or $state.processHandle.IsClosed) { throw 'Cannot retain the live broker-activated process handle.' }
-        $expectedExecutable = Get-CanonicalPath (Join-Path $state.installed.InstallLocation 'TwinQuay.exe')
+        $expectedExecutable = Get-CanonicalPath (Join-Path $state.installed.InstallLocation 'DupliSift.exe')
         if ((Get-CanonicalPath $state.process.MainModule.FileName) -ine $expectedExecutable) { throw 'Broker returned an executable outside the owned installed path.' }
         $state.processPackageFullName = [TwinQuayQualification.NativePackageProbe]::GetFullName($state.process.Handle)
         if ($state.processPackageFullName -cne $state.ownedPackageFullName) { throw 'Broker process does not have the exact owned package identity.' }
-        Assert-FileMatchesRecord $expectedExecutable (Get-RecordPayloadEntry $state.record 'TwinQuay.exe') 'Activated executable' | Out-Null
+        Assert-FileMatchesRecord $expectedExecutable (Get-RecordPayloadEntry $state.record 'DupliSift.exe') 'Activated executable' | Out-Null
         $state.processOwned = $true
         $deadline = [DateTime]::UtcNow.AddSeconds(30)
         do {
             Start-Sleep -Milliseconds 250
             $state.process.Refresh()
-            if ($state.process.HasExited) { throw "Activated TwinQuay exited during startup: $($state.process.ExitCode)" }
+            if ($state.process.HasExited) { throw "Activated DupliSift exited during startup: $($state.process.ExitCode)" }
         } until ($state.process.MainWindowHandle -ne 0 -or [DateTime]::UtcNow -ge $deadline)
-        if ($state.process.MainWindowHandle -eq 0) { throw 'Activated TwinQuay did not create a main window.' }
-        if ($state.process.MainWindowTitle -cne 'TwinQuay') { throw "Unexpected activated main-window title: $($state.process.MainWindowTitle)" }
+        if ($state.process.MainWindowHandle -eq 0) { throw 'Activated DupliSift did not create a main window.' }
+        if ($state.process.MainWindowTitle -cne 'DupliSift') { throw "Unexpected activated main-window title: $($state.process.MainWindowTitle)" }
         $state.processPackageFullName = [TwinQuayQualification.NativePackageProbe]::GetFullName($state.process.Handle)
         if ($state.processPackageFullName -cne [string]$state.installed.PackageFullName) { throw 'Activated process does not own the exact installed package full name.' }
         Start-Sleep -Seconds 3
         $state.process.Refresh()
-        if ($state.process.HasExited -or $state.process.MainWindowHandle -eq 0 -or $state.process.MainWindowTitle -cne 'TwinQuay') { throw 'Activated TwinQuay did not survive the stable-window interval.' }
+        if ($state.process.HasExited -or $state.process.MainWindowHandle -eq 0 -or $state.process.MainWindowTitle -cne 'DupliSift') { throw 'Activated DupliSift did not survive the stable-window interval.' }
         $state.modules = @(Get-TwinQuayInstalledModuleEvidence $state)
         Write-NewUtf8Json (Join-Path $state.output 'loaded-modules.json') $state.modules
         $state.window = Get-WindowQualification $state.process $state.output
         $state.process.Refresh()
-        if ($state.process.HasExited -or $state.process.MainWindowHandle -eq 0) { throw 'Activated TwinQuay did not survive the stable-window interval.' }
+        if ($state.process.HasExited -or $state.process.MainWindowHandle -eq 0) { throw 'Activated DupliSift did not survive the stable-window interval.' }
         Invoke-TwinQuayInstalledWorkflow $state
         Assert-TwinQuayWorkflowProcess $state
         $state.modulesAfterWorkflow = @(Get-TwinQuayInstalledModuleEvidence $state)
@@ -659,7 +659,7 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
     $operations.CloseCleanly = {
         Close-TwinQuayWorkflowWindow $state
         $state.processExit = Get-TwinQuayProcessExitEvidence $state.process 15000
-        if (-not $state.processExit.normal_exit) { throw ('Activated TwinQuay normal-close observation failed: ' + ($state.processExit | ConvertTo-Json -Compress)) }
+        if (-not $state.processExit.normal_exit) { throw ('Activated DupliSift normal-close observation failed: ' + ($state.processExit | ConvertTo-Json -Compress)) }
         $state.cleanClose = $true
     }.GetNewClosure()
 
@@ -797,7 +797,7 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         throw "Could not preserve qualification JSON: $($_.Exception.Message). Primary: $($result.primary_error); cleanup: $($result.cleanup_errors -join '; '); evidence: $($evidenceErrors -join '; ')"
     }
     if (-not $qualificationPassed) {
-        throw "TwinQuay installation qualification failed. Primary: $($result.primary_error); cleanup: $($result.cleanup_errors -join '; '); evidence: $($evidenceErrors -join '; ')"
+        throw "DupliSift installation qualification failed. Primary: $($result.primary_error); cleanup: $($result.cleanup_errors -join '; '); evidence: $($evidenceErrors -join '; ')"
     }
     Write-Output 'PASS: broker-activated exact package, verified real scan/quarantine/conflict/restore workflow, owned modules/window/close, uninstall and certificate cleanup.'
 }

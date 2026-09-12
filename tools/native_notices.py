@@ -7,9 +7,21 @@ from msix.msix_qualification import file_record, inventory_tree
 
 
 def stage_native_notices(source, output):
+    return _stage_notices(source,output,'native-notices','native-notice-inputs.json',
+        'source-notices','DupliSift native source notices',
+        'Exact source notices collected; release review required')
+
+
+def stage_release_notices(source, output):
+    return _stage_notices(source,output,'release-notices','release-notice-inputs.json',
+        'release-notices','DupliSift original build and runtime notices',
+        'Configured PDF notices and scoped Microsoft terms collected; release review required')
+
+
+def _stage_notices(source, output, directory, mapping_name, target_name, record_name, review):
     source, output = Path(source), Path(output)
-    prepared = source/'distribution/native-notices'
-    mapping = source/'distribution/corresponding-source/native-notice-inputs.json'
+    prepared = source/'distribution'/directory
+    mapping = source/'distribution/corresponding-source'/mapping_name
     inputs = json.loads(mapping.read_text(encoding='utf-8'))
     index = json.loads((prepared/'NOTICE-INDEX.json').read_text(encoding='utf-8'))
     if (inputs.get('schema_version') != 1 or not inputs.get('entries') or
@@ -24,7 +36,7 @@ def stage_native_notices(source, output):
         expected[row['output']] = {key: row[key] for key in ('bytes','sha256')}
     if actual != expected:
         raise ValueError('Prepared native notices are missing, changed or contain unreviewed files')
-    target = output/'source-notices'
+    target = output/target_name
     if target.exists() or target.is_symlink():
         raise ValueError('Native notice stage must be new')
     # Complete input validation precedes every generated-output mutation.
@@ -35,9 +47,9 @@ def stage_native_notices(source, output):
             shutil.copyfileobj(original,copied)
         if file_record(dest) != record:
             raise ValueError('Native notice source changed during staging')
-    return dict(name='TwinQuay native source notices',version=file_record(mapping)['sha256'],
-                notices=['source-notices/'+name for name in sorted(expected)],
-                review='Exact source notices collected; configured PDF and Microsoft redistribution review required',
+    return dict(name=record_name,version=file_record(mapping)['sha256'],
+                notices=[target_name+'/'+name for name in sorted(expected)],
+                review=review,
                 scope=inputs['scope'])
 
 

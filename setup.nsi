@@ -45,16 +45,16 @@ SetCompressor /SOLID lzma
 
 ; Application Specific Defines
 !ifndef APPNAME
-!define APPNAME "TwinQuay"
+!define APPNAME "DupliSift"
 !endif
 !define COMPANYNAME "Trieflow LLC"
-!define DESCRIPTION "TwinQuay discovers duplicates with reviewable cleanup and recovery."
+!define DESCRIPTION "DupliSift discovers duplicates with reviewable cleanup and recovery."
 !define APPLICENSE "LICENSE"           ; License is not in build directory
-!define APPICON "images\twinquay\logo.ico" ; nor is the icon
+!define APPICON "images\duplisift\logo.ico" ; nor is the icon
 !define DISTDIR "dist"
-!define HELPURL "https://twinquay.trieflow.com/support"
-!define UPDATEURL "https://twinquay.trieflow.com"
-!define ABOUTURL "https://twinquay.trieflow.com"
+!define HELPURL "https://duplisift.trieflow.com/support"
+!define UPDATEURL "https://duplisift.trieflow.com"
+!define ABOUTURL "https://duplisift.trieflow.com"
 
 ; Static Defines
 !define UNINSTALLREGBASE "Software\Microsoft\Windows\CurrentVersion\Uninstall"
@@ -189,12 +189,12 @@ Section "!Application" AppSec
   Pop $R0
 
   ; Set file association
-  ReadRegStr $1 HKCR ".twinquay" ""
+  ReadRegStr $1 HKCR ".duplisift" ""
   StrCmp $1 "" NoBackup  ; is it empty
   StrCmp $1 "${APPNAME}.File" NoBackup  ; is it our own
-  WriteRegStr HKCR ".twinquay" "backup_val" "$1"  ; backup current value
+  WriteRegStr HKCR ".duplisift" "backup_val" "$1"  ; backup current value
 NoBackup:
-  WriteRegStr HKCR ".twinquay" "" "${APPNAME}.File"  ; set our file association
+  WriteRegStr HKCR ".duplisift" "" "${APPNAME}.File"  ; set our file association
 
   ReadRegStr $0 HKCR "${APPNAME}.File" ""
   StrCmp $0 "" 0 Skip
@@ -259,16 +259,16 @@ Section "Uninstall"
   ; Remove Install Folder if empty
   RMDir "$INSTDIR"
 
- ReadRegStr $1 HKCR ".twinquay" ""
+ ReadRegStr $1 HKCR ".duplisift" ""
   StrCmp $1 "${APPNAME}.File" 0 NotOwn ; only do this if we own it
-  ReadRegStr $1 HKCR ".twinquay" "backup_val"
+  ReadRegStr $1 HKCR ".duplisift" "backup_val"
   StrCmp $1 "" 0 Restore ; if backup="" then delete the whole key
-  DeleteRegKey HKCR ".twinquay"
+  DeleteRegKey HKCR ".duplisift"
   Goto NotOwn
 
 Restore:
-  WriteRegStr HKCR ".twinquay" "" $1
-  DeleteRegValue HKCR ".twinquay" "backup_val"
+  WriteRegStr HKCR ".duplisift" "" $1
+  DeleteRegValue HKCR ".duplisift" "backup_val"
 NotOwn:
   DeleteRegKey HKCR "${APPNAME}.File" ;Delete key with association name settings
 

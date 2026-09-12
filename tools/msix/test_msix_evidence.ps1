@@ -5,7 +5,7 @@ Set-StrictMode -Version Latest
 . (Join-Path $PSScriptRoot 'qualify-msix-install.ps1') -LibraryOnly
 foreach ($identityMode in @('qualification','store')) {
 foreach ($scenario in @('missing','changed','changed-after-success','success','no-workflow','write-failure')) {
-    $probeRoot = Join-Path ([IO.Path]::GetTempPath()) ('twinquay-evidence-test-' + [guid]::NewGuid().ToString('N'))
+    $probeRoot = Join-Path ([IO.Path]::GetTempPath()) ('duplisift-evidence-test-' + [guid]::NewGuid().ToString('N'))
     New-Item -ItemType Directory -Path $probeRoot | Out-Null
     try {
         function Invoke-TwinQuayQualificationCore([Collections.IDictionary]$Operations) {
