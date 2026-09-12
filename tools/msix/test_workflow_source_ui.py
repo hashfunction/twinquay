@@ -11,8 +11,8 @@ SOURCE = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(SOURCE))
 sys.path.insert(0, str(Path(__file__).parent))
 os.environ["QT_QPA_PLATFORM"] = "offscreen"
-from PyQt6.QtCore import QSettings, Qt
-from PyQt6.QtGui import QKeySequence
+from PyQt6.QtCore import QPoint, QRect, QSettings, Qt
+from PyQt6.QtGui import QKeySequence, QShowEvent
 from PyQt6.QtWidgets import QApplication, QFileDialog, QPushButton
 from core.cleanup_plan import CleanupCandidate, CleanupPlan, EvidenceKind
 from core.quarantine import execute_plan
@@ -99,6 +99,56 @@ def test_real_plan_widget_saves_exact_reviewed_selection(controller, tmp_path, m
     assert titles == ["Save selected cleanup plan"] and titles[0] in SCRIPT
     assert verify_plan(root)["candidate_count"] == 1
     assert json.loads((root / "selected-plan.json").read_text()) == json.loads(json.dumps(plan.to_dict()))
+    dialog.close()
+
+
+def test_review_dialog_fits_1024_desktop_with_native_frame(controller, tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    from qt import util as qt_util
+    from qt.cleanup_plan_dialog import CleanupPlanDialog
+
+    class FourPixelFrameReview(CleanupPlanDialog):
+        def frameGeometry(self):
+            frame = QRect(self.geometry())
+            frame.setWidth(frame.width() + 4)
+            return frame
+
+    screen = QRect(0, 0, 1024, 768)
+    display = SimpleNamespace(availableGeometry=lambda: QRect(screen))
+    monkeypatch.setattr(
+        qt_util,
+        "QGuiApplication",
+        SimpleNamespace(screenAt=lambda _point: display, screens=lambda: [display]),
+    )
+    root = tmp_path / "geometry-fixture"
+    root.mkdir()
+    prepare(root)
+    plan = CleanupPlan.create(
+        [
+            CleanupCandidate.capture(
+                root / "input/duplicate-copy.bin",
+                root / "input/keep-original.bin",
+                EvidenceKind.EXACT_CONTENT,
+            )
+        ]
+    )
+    dialog = FourPixelFrameReview(controller.resultWindow, controller, plan)
+    dialog.resize(1024, 590)
+    dialog.move(0, 56)
+    assert dialog.frameGeometry().width() == 1028
+
+    dialog.showEvent(QShowEvent())
+    dialog.layout().activate()
+
+    assert dialog.width() == 1020
+    assert dialog.frameGeometry().width() == 1024
+    assert screen.contains(dialog.frameGeometry())
+    assert dialog.table.width() >= 700
+    for text in ("Choose folder…", "Save plan…", "Verify and quarantine selected", "Cancel"):
+        button = next(button for button in dialog.findChildren(QPushButton) if button.text() == text)
+        button_rect = QRect(button.mapTo(dialog, QPoint(0, 0)), button.size())
+        assert button.width() > 0 and button.height() > 0
+        assert dialog.rect().contains(button_rect), text
     dialog.close()
 
 

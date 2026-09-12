@@ -20,6 +20,7 @@ from PyQt6.QtWidgets import (
 )
 from core.gui.cleanup_plan import CleanupPlanReview
 from core.quarantine import candidate_item_id
+from qt.util import move_to_screen_center
 
 
 class CleanupPlanDialog(QDialog):
@@ -103,6 +104,11 @@ class CleanupPlanDialog(QDialog):
         layout.addWidget(buttons)
         self.table.itemChanged.connect(self.update_summary)
         self.update_summary()
+
+    def showEvent(self, event):
+        # Native frame geometry is accurate only after Qt starts showing the dialog.
+        move_to_screen_center(self)
+        super().showEvent(event)
 
     def selected_plan(self):
         indices = {
