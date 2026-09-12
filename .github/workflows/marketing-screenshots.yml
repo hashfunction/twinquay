@@ -29,6 +29,8 @@ jobs:
             & $pwsh -NoProfile -File (Join-Path 'tools/marketing' $fixture)
             if ($LASTEXITCODE -ne 0) { throw "Capture native helper fixture failed: $fixture" }
           }
+          & $pwsh -NoProfile -File tools/marketing/test_capture_loader.ps1 -QualifiedSource qualified-source
+          if ($LASTEXITCODE -ne 0) { throw 'Original qualified-source loader/closure fixture failed.' }
           & $pwsh -NoProfile -File tools/marketing/test_capture_adapter.ps1 -Python (Get-Command python).Source
           if ($LASTEXITCODE -ne 0) { throw 'Original workflow capture adapter fixture failed.' }
       - name: Fetch and verify exact already-qualified package and metadata
@@ -40,7 +42,10 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Pinned existing DupliSift capture inputs did not verify.' }
       - name: Capture actual duplicate results, reviewed plan and restored receipt
         shell: pwsh
-        run: ./tools/marketing/capture.ps1 -Inputs "$env:RUNNER_TEMP/duplisift-capture-inputs" -QualifiedSource qualified-source -CaptureOutput build-evidence/marketing
+        run: |
+          $pwsh=(Get-Process -Id $PID).Path
+          & $pwsh -NoProfile -File ./tools/marketing/capture.ps1 -Inputs "$env:RUNNER_TEMP/duplisift-capture-inputs" -QualifiedSource qualified-source -CaptureOutput build-evidence/marketing
+          if ($LASTEXITCODE -ne 0) { throw 'Native capture host failed.' }
       - name: Retain real screenshots and capture receipts only
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

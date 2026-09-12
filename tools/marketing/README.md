@@ -19,3 +19,5 @@ The three additional images are:
 Each image is native GDI screen capture with no pixel alteration. Its receipt binds before/after window identity, title, PID, foreground HWND, dimensions, display, package and PNG hash. The run is successful only after normal zero-exit close, exact owned uninstall, certificate/key cleanup, marker-owned profile/demo cleanup, display restoration and an unchanged original unsigned package. The artifact includes PNG/JSON only, including original nine-stage evidence. Review `capture-result.json` before using any image from an incomplete run.
 
 Run `.github/workflows/marketing-screenshots.yml` after review/publication. No package/run rebinding remains pending. Actual Windows UIA, native resize, display and visual-quality checks still require this fresh capture run.
+
+Run capture in a fresh `pwsh -NoProfile -File tools/marketing/capture.ps1` host, as the dispatch workflow does. A nested script invocation hides required original functions from `GetNewClosure()` operations. [loader-repair-review.md](loader-repair-review.md) records the actual failure and unchanged-guard regression.

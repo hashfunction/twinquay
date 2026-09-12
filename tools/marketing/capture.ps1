@@ -1,10 +1,7 @@
 # Copyright 2026 Trieflow LLC. MIT. Capture the unchanged, already-qualified Store package.
 param([Parameter(Mandatory)][string]$Inputs,[Parameter(Mandatory)][string]$QualifiedSource,[Parameter(Mandatory)][string]$CaptureOutput)
 $ErrorActionPreference='Stop';Set-StrictMode -Version Latest
-. (Join-Path $QualifiedSource 'tools/msix/qualify-msix-install.ps1') -LibraryOnly
-. (Join-Path $PSScriptRoot 'capture_helpers.ps1')
-. (Join-Path $PSScriptRoot 'capture_adapter.ps1')
-. (Join-Path $PSScriptRoot 'display_modes.ps1')
+. (Join-Path $PSScriptRoot 'capture_library.ps1') -QualifiedSource $QualifiedSource
 if (-not $IsWindows -or $env:CI -cne 'true' -or $env:GITHUB_REPOSITORY -cne 'hashfunction/twinquay') {throw 'Requires isolated DupliSift Windows CI.'}
 Import-Module Appx -UseWindowsPowerShell -ErrorAction Stop
 $inputRoot=(Resolve-Path -LiteralPath $Inputs).Path;$qualified=(Resolve-Path -LiteralPath $QualifiedSource).Path
