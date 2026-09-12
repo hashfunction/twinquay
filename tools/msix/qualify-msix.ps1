@@ -12,21 +12,26 @@ $powerShell=(Get-Process -Id $PID).Path
 Invoke-Checked $python @('tools/msix/test_msix_qualification.py','-v')
 Invoke-Checked $python @('tools/msix/test_workflow_files.py','-v')
 Invoke-Checked $python @('-m','pytest','tools/msix/test_workflow_source_ui.py','-q')
-foreach ($fixture in @('test_qualify_msix_install.ps1','test_msix_evidence.ps1','test_registration_ownership.ps1','test_process_observation.ps1','test_window_evidence.ps1','test_defender_module.ps1','test_text_input_module.ps1','test_temporary_ownership.ps1','test_workflow_helpers.ps1','test_workflow_observation.ps1','test_workflow_sendkeys.ps1','test_workflow_windows.ps1')) {
+foreach ($fixture in @('test_qualify_msix_install.ps1','test_msix_evidence.ps1','test_registration_ownership.ps1','test_process_observation.ps1','test_window_evidence.ps1','test_defender_module.ps1','test_text_input_module.ps1','test_store_identity.ps1','test_temporary_ownership.ps1','test_workflow_helpers.ps1','test_workflow_observation.ps1','test_workflow_sendkeys.ps1','test_workflow_windows.ps1')) {
     Invoke-Checked $powerShell @('-NoLogo','-NoProfile','-File',(Join-Path $PSScriptRoot $fixture))
 }
 $sourceCommit=(git rev-parse HEAD).Trim()
 if ($LASTEXITCODE -ne 0 -or $sourceCommit -cne $env:GITHUB_SHA) { throw 'Source differs from this qualification run.' }
 $sdkVersion='10.0.26100.0'
 $sdkDirectory=Join-Path ${env:ProgramFiles(x86)} "Windows Kits/10/bin/$sdkVersion/x64"
-$packageOutput=Join-Path $env:RUNNER_TEMP ('twinquay-msix-'+[guid]::NewGuid().ToString('N'))
-Invoke-Checked $python @('tools/msix/msix_qualification.py','--release','dist/TwinQuay',
-    '--artwork','images/twinquay/logo-256.png','--source-root','.','--source-commit',$sourceCommit,
-    '--inventory','build-evidence/package-inventory.json','--startup','build-evidence/windows-startup.json',
-    '--makeappx',(Join-Path $sdkDirectory 'makeappx.exe'),'--sdk-version',$sdkVersion,'--output',$packageOutput)
-# Upload only the metadata copy. Unsigned/signed MSIX and certificates never enter artifact globs.
-[IO.File]::Copy((Join-Path $packageOutput 'package-record.json'),(Join-Path (Get-Location) 'build-evidence/msix-package-record.json'),$false)
-Invoke-Checked $powerShell @('-NoLogo','-NoProfile','-File','tools/msix/qualify-msix-install.ps1',
-    '-Package',(Join-Path $packageOutput 'TwinQuay.Qualification_1.0.0.0_x64.msix'),
-    '-PackageRecord',(Join-Path $packageOutput 'package-record.json'),
-    '-SignTool',(Join-Path $sdkDirectory 'signtool.exe'),'-Output','build-evidence/msix-install')
+foreach ($identityMode in @('qualification','store')) {
+    $packageOutput=Join-Path $env:RUNNER_TEMP ('twinquay-msix-'+$identityMode+'-'+[guid]::NewGuid().ToString('N'))
+    Invoke-Checked $python @('tools/msix/msix_qualification.py','--release','dist/TwinQuay',
+        '--artwork','images/twinquay/logo-256.png','--source-root','.','--source-commit',$sourceCommit,
+        '--inventory','build-evidence/package-inventory.json','--startup','build-evidence/windows-startup.json',
+        '--makeappx',(Join-Path $sdkDirectory 'makeappx.exe'),'--sdk-version',$sdkVersion,'--output',$packageOutput,
+        '--identity-mode',$identityMode)
+    $recordName=if ($identityMode -eq 'store') {'msix-store-package-record.json'} else {'msix-package-record.json'}
+    $packageName=if ($identityMode -eq 'store') {'TwinQuay_1.0.0.0_x64.msix'} else {'TwinQuay.Qualification_1.0.0.0_x64.msix'}
+    $installationOutput=if ($identityMode -eq 'store') {'build-evidence/msix-store-install'} else {'build-evidence/msix-install'}
+    # Both identities run the complete consumer lifecycle; source-publication and final retention remain separate gates.
+    [IO.File]::Copy((Join-Path $packageOutput 'package-record.json'),(Join-Path (Get-Location) ('build-evidence/'+$recordName)),$false)
+    Invoke-Checked $powerShell @('-NoLogo','-NoProfile','-File','tools/msix/qualify-msix-install.ps1',
+        '-Package',(Join-Path $packageOutput $packageName),'-PackageRecord',(Join-Path $packageOutput 'package-record.json'),
+        '-SignTool',(Join-Path $sdkDirectory 'signtool.exe'),'-Output',$installationOutput,'-IdentityMode',$identityMode)
+}

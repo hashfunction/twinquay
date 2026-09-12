@@ -3,6 +3,7 @@
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 . (Join-Path $PSScriptRoot 'qualify-msix-install.ps1') -LibraryOnly
+foreach ($identityMode in @('qualification','store')) {
 foreach ($scenario in @('missing','changed','changed-after-success','success','no-workflow','write-failure')) {
     $probeRoot = Join-Path ([IO.Path]::GetTempPath()) ('twinquay-evidence-test-' + [guid]::NewGuid().ToString('N'))
     New-Item -ItemType Directory -Path $probeRoot | Out-Null
@@ -26,7 +27,7 @@ foreach ($scenario in @('missing','changed','changed-after-success','success','n
             return [pscustomobject]@{ installation_qualification_passed=$false; primary_error='original activation failure'; cleanup_errors=@('original uninstall failure') }
         }
         $failure = $null
-        try { Invoke-TwinQuayInstallQualification -PackagePath 'unused' -RecordPath 'unused' -SignToolPath 'unused' -OutputPath $probeRoot | Out-Null }
+        try { Invoke-TwinQuayInstallQualification -PackagePath 'unused' -RecordPath 'unused' -SignToolPath 'unused' -OutputPath $probeRoot -IdentityMode $identityMode | Out-Null }
         catch { $failure = $_.Exception.Message }
         $evidencePath = Join-Path $probeRoot 'installation-qualification.json'
         if (-not (Test-Path -LiteralPath $evidencePath)) { throw "Missing final evidence in $scenario" }
@@ -35,6 +36,7 @@ foreach ($scenario in @('missing','changed','changed-after-success','success','n
             continue
         }
         $evidence = Get-Content -LiteralPath $evidencePath -Raw | ConvertFrom-Json
+        if ($evidence.identity_mode -cne $identityMode -or $evidence.store_identity_used -ne ($identityMode -eq 'store') -or $evidence.qualification_identity_only -ne ($identityMode -eq 'qualification')) {throw 'Reported identity mode differs from caller'}
         if ($scenario -eq 'success') {
             if ($failure -or -not $evidence.installation_qualification_passed -or -not $evidence.unsigned_package_unchanged -or $evidence.evidence_errors.Count) { throw 'Unchanged success control did not pass.' }
         } elseif ($scenario -eq 'no-workflow') {
@@ -45,4 +47,5 @@ foreach ($scenario in @('missing','changed','changed-after-success','success','n
         }
     } finally { Remove-Item -LiteralPath $probeRoot -Recurse -Force }
 }
-Write-Output 'PASS: six real final-hash and exclusive-evidence reporting scenarios.'
+}
+Write-Output 'PASS: six real final-hash and exclusive-evidence reporting scenarios under both fixed identities.'

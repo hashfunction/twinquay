@@ -8,6 +8,7 @@ param(
     [Parameter()][string]$PackageRecord,
     [Parameter()][string]$SignTool,
     [Parameter()][string]$Output,
+    [Parameter()][ValidateSet("qualification","store")][string]$IdentityMode="qualification",
     [Parameter()][switch]$LibraryOnly
 )
 
@@ -466,7 +467,36 @@ function Get-TwinQuayInstalledModuleEvidence($State) {
 
 . (Join-Path $PSScriptRoot 'qualify-workflow.ps1')
 
-function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$RecordPath, [string]$SignToolPath, [string]$OutputPath) {
+function Get-TwinQuayExpectedIdentity([ValidateSet('qualification','store')][string]$Mode='qualification') {
+    $identity = [ordered]@{
+        packageName='Trieflow.TwinQuay.Qualification'; publisher='CN=TwinQuay-CI-Qualification'; version='1.0.0.0'
+        architecture='x64'; applicationId='TwinQuay'; executable='TwinQuay.exe'
+        deviceFamily='Windows.Desktop'; minVersion='10.0.19041.0'; maxVersionTested='10.0.26100.0'; capability='runFullTrust'
+    }
+    if ($Mode -eq 'store') {
+        $identity.packageName='1659hashfunction.TwinQuay'
+        $identity.publisher='CN=B6A2631A-FD32-45CC-AE12-82466975F528'
+    }
+    return $identity
+}
+
+function Assert-TwinQuayIdentityRecord($Record, [ValidateSet('qualification','store')][string]$Mode='qualification') {
+    $expected=Get-TwinQuayExpectedIdentity $Mode
+    if ($Record.schemaVersion -ne 1 -or $Record.identityMode -cne $Mode -or
+        $Record.qualificationIdentityOnly -isnot [bool] -or $Record.qualificationIdentityOnly -ne ($Mode -eq 'qualification') -or
+        $Record.storeIdentityUsed -isnot [bool] -or $Record.storeIdentityUsed -ne ($Mode -eq 'store')) {
+        throw 'Package record has a different fixed identity mode.'
+    }
+    foreach ($flag in @('signed','publicRelease','licenseClearanceClaimed','installationQualificationPassed')) {
+        if ($Record.$flag -isnot [bool] -or $Record.$flag) {throw "Package record has unqualified release claim: $flag"}
+    }
+    if (@($Record.identity.PSObject.Properties).Count -ne $expected.Count) {throw 'Unexpected identity fields'}
+    foreach ($field in $expected.Keys) {
+        if ([string]$Record.identity.$field -cne [string]$expected[$field]) {throw "Fixed identity mismatch: $field"}
+    }
+}
+
+function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$RecordPath, [string]$SignToolPath, [string]$OutputPath, [ValidateSet("qualification","store")][string]$IdentityMode="qualification") {
     $state = [ordered]@{
         package = $null; record = $null; output = $null; temporary = $null; signedCopy = $null
         publicCertificate = $null; certificate = $null; trustedCertificate = $null; trustAttempted = $false
@@ -477,11 +507,7 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         executableSha256 = $null
         cleanClose = $false; uninstallVerified = $false
     }
-    $expectedIdentity = [ordered]@{
-        packageName='Trieflow.TwinQuay.Qualification'; publisher='CN=TwinQuay-CI-Qualification'; version='1.0.0.0'
-        architecture='x64'; applicationId='TwinQuay'; executable='TwinQuay.exe'
-        deviceFamily='Windows.Desktop'; minVersion='10.0.19041.0'; maxVersionTested='10.0.26100.0'; capability='runFullTrust'
-    }
+    $expectedIdentity = Get-TwinQuayExpectedIdentity $IdentityMode
 
     $operations = [ordered]@{}
     $operations.Preflight = {
@@ -500,13 +526,8 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         $state.record = Get-Content -LiteralPath $recordFile -Raw -Encoding utf8 | ConvertFrom-Json
         if ($state.record.sourceCommit -cne $env:GITHUB_SHA) { throw 'Package source differs from this qualification run.' }
         Invoke-CheckedNative (Join-Path $PSScriptRoot '../../.venv/Scripts/python.exe') @(
-            (Join-Path $PSScriptRoot 'verify_record.py'),'--record',$recordFile,'--package',$state.package,'--source-commit',$env:GITHUB_SHA)
-        if ($state.record.schemaVersion -ne 1 -or -not $state.record.qualificationIdentityOnly -or $state.record.signed -or $state.record.publicRelease -or $state.record.licenseClearanceClaimed -or $state.record.installationQualificationPassed) {
-            throw 'Package record is not an unsigned qualification-only record.'
-        }
-        foreach ($field in $expectedIdentity.Keys) {
-            if ([string]$state.record.identity.$field -cne [string]$expectedIdentity[$field]) { throw "Qualification identity mismatch: $field" }
-        }
+            (Join-Path $PSScriptRoot 'verify_record.py'),'--record',$recordFile,'--package',$state.package,'--source-commit',$env:GITHUB_SHA,'--identity-mode',$IdentityMode)
+        Assert-TwinQuayIdentityRecord $state.record $IdentityMode
         $state.unsignedPackageSha256 = (Get-FileHash -LiteralPath $state.package -Algorithm SHA256).Hash.ToLowerInvariant()
         if ($state.unsignedPackageSha256 -ne ([string]$state.record.containerVerification.package.sha256).ToLowerInvariant()) { throw 'Unsigned package hash differs from verified package record.' }
         $sdkVersion = [regex]::Escape([string]$state.record.makeAppx.sdkVersion)
@@ -595,7 +616,7 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
     $operations.ActivateAndVerify = {
         Invoke-CheckedNative (Join-Path $PSScriptRoot '../../.venv/Scripts/python.exe') @(
             (Join-Path $PSScriptRoot 'verify_record.py'),'--record',$RecordPath,'--package',$state.package,
-            '--source-commit',$env:GITHUB_SHA,'--installed-root',$state.installed.InstallLocation)
+            '--source-commit',$env:GITHUB_SHA,'--identity-mode',$IdentityMode,'--installed-root',$state.installed.InstallLocation)
         Add-TwinQuayActivationTypes
         $processId = [TwinQuayQualification.ActivationBroker]::Activate($state.aumid)
         $state.brokerProcessId = [int]$processId
@@ -632,7 +653,7 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         Write-NewUtf8Json (Join-Path $state.output 'loaded-modules-after-workflow.json') $state.modulesAfterWorkflow
         Invoke-CheckedNative (Join-Path $PSScriptRoot '../../.venv/Scripts/python.exe') @(
             (Join-Path $PSScriptRoot 'verify_record.py'),'--record',$RecordPath,'--package',$state.package,
-            '--source-commit',$env:GITHUB_SHA,'--installed-root',$state.installed.InstallLocation)
+            '--source-commit',$env:GITHUB_SHA,'--identity-mode',$IdentityMode,'--installed-root',$state.installed.InstallLocation)
     }.GetNewClosure()
 
     $operations.CloseCleanly = {
@@ -732,7 +753,8 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         schema_version = 1
         generated_at_utc = [DateTime]::UtcNow.ToString('o')
         source_commit = if ($state.record) { [string]$state.record.sourceCommit } else { $null }
-        qualification_identity_only = $true
+        qualification_identity_only = $IdentityMode -eq 'qualification'
+        identity_mode = $IdentityMode
         identity = $expectedIdentity
         aumid = $state.aumid
         package_full_name = if ($state.installed) { [string]$state.installed.PackageFullName } else { $null }
@@ -763,7 +785,7 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         duplicate_scanning_tested = [bool]$workflowPassed
         upgrade_tested = $false
         wack_tested = $false
-        store_identity_used = $false
+        store_identity_used = $IdentityMode -eq 'store'
         public_release = $false
         primary_error = $result.primary_error
         cleanup_errors = @($result.cleanup_errors)
@@ -782,7 +804,7 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
 
 if (-not $LibraryOnly) {
     try {
-        Invoke-TwinQuayInstallQualification -PackagePath $Package -RecordPath $PackageRecord -SignToolPath $SignTool -OutputPath $Output
+        Invoke-TwinQuayInstallQualification -PackagePath $Package -RecordPath $PackageRecord -SignToolPath $SignTool -OutputPath $Output -IdentityMode $IdentityMode
     } catch {
         Write-Error $_
         exit 1

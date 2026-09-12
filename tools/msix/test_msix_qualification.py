@@ -121,6 +121,58 @@ class QualificationTests(unittest.TestCase):
             self.release, self.artwork, self.root / "stage", self.commit, self.inventory, self.startup, self.source
         )
 
+    def test_store_manifest_is_exact_and_modes_cannot_be_confused(self):
+        data = msix.create_manifest("store")
+        identity = msix.validate_manifest(data, "store")
+        self.assertEqual(identity["packageName"], "1659hashfunction.TwinQuay")
+        self.assertEqual(identity["publisher"], "CN=B6A2631A-FD32-45CC-AE12-82466975F528")
+        self.assertIn(b">hashfunction<", data)
+        self.assertNotIn(b"qualification package", data)
+        with self.assertRaises(ValueError):
+            msix.validate_manifest(data)
+        with self.assertRaises(ValueError):
+            msix.validate_manifest(msix.create_manifest(), "store")
+        for before, after in ((b"1659hashfunction.TwinQuay", b"1659hashfunction.Other"),
+                              (b">hashfunction<", b">Other publisher<"),
+                              (b"runFullTrust", b"internetClient")):
+            with self.subTest(before=before), self.assertRaises(ValueError):
+                msix.validate_manifest(data.replace(before, after), "store")
+        with self.assertRaises(ValueError):
+            msix.create_manifest("arbitrary")
+
+    def test_store_record_rederives_payload_and_rejects_cross_mode(self):
+        stage = self.root / "store-stage"
+        record = msix.stage_release(self.release, self.artwork, stage, self.commit,
+                                    self.inventory, self.startup, self.source, "store")
+        self.assertFalse(record["qualificationIdentityOnly"])
+        self.assertTrue(record["storeIdentityUsed"])
+        self.assertFalse(record["publicRelease"])
+        self.assertFalse(record["licenseClearanceClaimed"])
+        package = self.root / "store.msix"
+        with zipfile.ZipFile(package, "w") as z:
+            for f in stage.rglob("*"):
+                if f.is_file():
+                    z.write(f, f.relative_to(stage).as_posix())
+            z.writestr("[Content_Types].xml", "<Types/>")
+            z.writestr("AppxBlockMap.xml", "<BlockMap/>")
+        record["containerVerification"] = msix.verify_msix(package, record["payload"], "store")
+        record["unpackedVerification"] = msix.verify_unpacked(stage, record["payload"], "store")
+        self.assertEqual(msix.verify_installed(stage, record["payload"], "store"),
+                         record["unpackedVerification"])
+        record_file = self.root / "store-record.json"
+        record_file.write_text(json.dumps(record))
+        args = (package, record_file, self.release, self.artwork, self.commit,
+                self.inventory, self.startup, self.source)
+        self.assertTrue(msix.verify_record_inputs(*args, "store"))
+        with self.assertRaises(ValueError):
+            msix.verify_record_inputs(*args)
+        with self.assertRaises(ValueError):
+            msix.verify_msix(package, record["payload"])
+        record["identity"]["packageName"] = "foreign"
+        record_file.write_text(json.dumps(record))
+        with self.assertRaises(ValueError):
+            msix.verify_record_inputs(*args, "store")
+
     def test_complete_stage_source_notices_and_receipt_binding(self):
         record = self.stage()
         self.assertEqual(record["releaseInput"], msix.inventory_tree(self.release))
@@ -443,6 +495,16 @@ class QualificationTests(unittest.TestCase):
         self.assertFalse(record["signed"])
         self.assertFalse(record["installationQualificationPassed"])
         self.assertEqual(record["makeAppx"]["sha256"], digest(tool.read_bytes())["sha256"])
+        store_output = self.root / "store-package-output"
+        msix.build_qualification(self.release, self.artwork, self.commit, tool, "10.0.26100.0",
+                                 store_output, self.inventory, self.startup, self.source, runner,
+                                 identity_mode="store")
+        store_record = json.loads((store_output / "package-record.json").read_text())
+        self.assertTrue((store_output / "TwinQuay_1.0.0.0_x64.msix").is_file())
+        self.assertFalse((store_output / "TwinQuay.Qualification_1.0.0.0_x64.msix").exists())
+        self.assertEqual(store_record["identity"]["packageName"], "1659hashfunction.TwinQuay")
+        msix.verify_msix(store_output / "TwinQuay_1.0.0.0_x64.msix", store_record["payload"], "store")
+
         with self.assertRaises(ValueError):
             msix._tool_record(tool, "10.0.22621.0")
 
