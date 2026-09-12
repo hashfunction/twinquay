@@ -3,6 +3,8 @@ import hashlib
 import json
 import os
 import runpy
+import shutil
+import subprocess
 from types import SimpleNamespace
 from unittest.mock import patch
 from pathlib import Path
@@ -13,6 +15,22 @@ sys.path.insert(0, str(Path(__file__).parent))
 from native_notices import stage_native_notices, source_notice_fallbacks
 
 class NativeNoticeTests(unittest.TestCase):
+    def test_real_git_checkout_preserves_source_notice_bytes_with_windows_line_endings(self):
+        source=Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory(prefix='twin-notice-checkout-') as name:
+            repo=Path(name)
+            shutil.copytree(source/'distribution/native-notices',repo/'distribution/native-notices')
+            attributes=source/'.gitattributes'
+            if attributes.exists():shutil.copyfile(attributes,repo/'.gitattributes')
+            subprocess.run(['git','init','-q',str(repo)],check=True)
+            subprocess.run(['git','-c','core.autocrlf=false','add','.'],cwd=repo,check=True)
+            checked=repo/'checkout'
+            subprocess.run(['git','-c','core.autocrlf=true','-c','core.eol=crlf','checkout-index','--all','--prefix='+checked.as_posix()+'/'],cwd=repo,check=True)
+            index=json.loads((source/'distribution/native-notices/NOTICE-INDEX.json').read_text())
+            for row in index['entries']:
+                actual=(checked/'distribution/native-notices'/row['output']).read_bytes()
+                self.assertEqual((len(actual),hashlib.sha256(actual).hexdigest()),(row['bytes'],row['sha256']),row['output'])
+
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
         self.root=Path(self.temp.name).resolve(); self.prepared=self.root/'distribution/native-notices'

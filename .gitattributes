@@ -1,0 +1,2 @@
+# Preserve original upstream bytes used by the native-notice hash manifest.
+distribution/native-notices/** -text
