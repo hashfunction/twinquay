@@ -188,6 +188,61 @@ def test_actual_receipt_table_checkbox_and_restore_command(controller, tmp_path,
     dialog.close()
 
 
+def test_receipt_dialog_fits_1024_desktop_with_native_frame(controller, tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    from qt import util as qt_util
+    from qt.quarantine_dialog import QuarantineDialog
+
+    class FourPixelFrameReceipt(QuarantineDialog):
+        def frameGeometry(self):
+            frame = QRect(self.geometry())
+            frame.setWidth(frame.width() + 4)
+            return frame
+
+    screen = QRect(0, 0, 1024, 768)
+    display = SimpleNamespace(availableGeometry=lambda: QRect(screen))
+    monkeypatch.setattr(
+        qt_util,
+        "QGuiApplication",
+        SimpleNamespace(screenAt=lambda _point: display, screens=lambda: [display]),
+    )
+    root = tmp_path / "receipt-geometry-fixture"
+    root.mkdir()
+    prepare(root)
+    plan = CleanupPlan.create(
+        [
+            CleanupCandidate.capture(
+                root / "input/duplicate-copy.bin",
+                root / "input/keep-original.bin",
+                EvidenceKind.EXACT_CONTENT,
+            )
+        ]
+    )
+    controller.model.last_cleanup_receipt = execute_plan(plan, root / "quarantine")
+    dialog = FourPixelFrameReceipt(controller.resultWindow, controller)
+    dialog.resize(1024, 530)
+    dialog.move(0, 86)
+    assert dialog.frameGeometry() == QRect(0, 86, 1028, 530)
+
+    dialog.showEvent(QShowEvent())
+    dialog.layout().activate()
+
+    assert dialog.width() == 1020
+    assert dialog.frameGeometry().width() == 1024
+    assert screen.contains(dialog.frameGeometry())
+    assert dialog.table.width() >= 700
+    assert dialog.table.rowCount() == 1
+    assert dialog.table.item(0, 3).text() == "quarantined"
+    assert dialog.table.item(0, 0).checkState() == Qt.CheckState.Unchecked
+    for text in ("Open receipt…", "Restore selected", "Close"):
+        button = next(button for button in dialog.findChildren(QPushButton) if button.text() == text)
+        button_rect = QRect(button.mapTo(dialog, QPoint(0, 0)), button.size())
+        assert button.width() > 0 and button.height() > 0
+        assert dialog.rect().contains(button_rect), text
+    assert dialog.restore.isEnabled()
+    dialog.close()
+
+
 def test_real_close_question_and_job_disclosure_match_ui_observer(controller, monkeypatch, tmp_path):
     from core.app import JobType
     from PyQt6.QtGui import QCloseEvent

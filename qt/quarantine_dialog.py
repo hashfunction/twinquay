@@ -16,6 +16,7 @@ from PyQt6.QtWidgets import (
     QVBoxLayout,
 )
 from core.quarantine import load_receipt, payload_path
+from qt.util import move_to_screen_center
 
 
 class QuarantineDialog(QDialog):
@@ -50,6 +51,11 @@ class QuarantineDialog(QDialog):
         receipt = app.model.last_cleanup_receipt
         if receipt is not None:
             self.read_receipt(receipt.receipt_path)
+
+    def showEvent(self, event):
+        # Native frame geometry is accurate only after Qt starts showing the dialog.
+        move_to_screen_center(self)
+        super().showEvent(event)
 
     def open_receipt(self):
         filename, _ = QFileDialog.getOpenFileName(self, "Open quarantine receipt", "", "Quarantine receipt (*.json)")
