@@ -181,10 +181,14 @@ function Get-VerifiedWindowsTextInputModuleEvidence([string]$Path) {
         $commonNames[0] -cnotin @('Microsoft Windows Publisher','Microsoft Corporation','Microsoft Windows') -or
         $organizations[0] -cne 'Microsoft Corporation') { throw 'Windows text input signature does not identify the required Microsoft signer.' }
     $version=Read-TwinQuayModuleVersionInfo $path
-    if (-not [string]::Equals($version.OriginalFilename,'tiptsf.dll',[StringComparison]::OrdinalIgnoreCase) -or
-        $version.CompanyName -cne 'Microsoft Corporation') { throw 'Windows text input module version identity differs.' }
     foreach ($field in @('OriginalFilename','CompanyName','ProductName','FileDescription','FileVersion')) {
         if (([string]$version.$field).Length -gt 1024) { throw 'Windows text input module exceeds its metadata bound.' }
+    }
+    if (-not [string]::Equals($version.OriginalFilename,'tiptsf.dll',[StringComparison]::OrdinalIgnoreCase) -or
+        $version.CompanyName -cne 'Microsoft Corporation') {
+        $details=[ordered]@{original_filename=$version.OriginalFilename;company_name=$version.CompanyName;
+            file_version=$version.FileVersion;filesystem_link_type=$linkType} | ConvertTo-Json -Compress
+        throw "Windows text input module version identity differs: $details"
     }
     Assert-NoReparsePath $path
     $after=Get-Item -LiteralPath $path -Force
