@@ -1,4 +1,5 @@
-# Copyright 2026 Trieflow LLC. MIT. Disposable package qualification only.
+# Copyright 2026 Trieflow LLC. MIT.
+param([switch]$ExportStore)
 $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest
 if (-not $IsWindows -or $env:CI -ne 'true' -or $PSVersionTable.PSVersion.Major -lt 7) { throw 'Requires disposable Windows CI and PowerShell 7.' }
@@ -10,15 +11,17 @@ function Invoke-Checked([string]$Program,[string[]]$Arguments) {
 $python=(Resolve-Path '.venv/Scripts/python.exe').Path
 $powerShell=(Get-Process -Id $PID).Path
 Invoke-Checked $python @('tools/msix/test_msix_qualification.py','-v')
+Invoke-Checked $python @('tools/msix/test_store_export.py','-v')
 Invoke-Checked $python @('tools/msix/test_workflow_files.py','-v')
 Invoke-Checked $python @('-m','pytest','tools/msix/test_workflow_source_ui.py','-q')
-foreach ($fixture in @('test_qualify_msix_install.ps1','test_msix_evidence.ps1','test_registration_ownership.ps1','test_process_observation.ps1','test_window_evidence.ps1','test_defender_module.ps1','test_text_input_module.ps1','test_store_identity.ps1','test_temporary_ownership.ps1','test_workflow_helpers.ps1','test_workflow_observation.ps1','test_workflow_sendkeys.ps1','test_workflow_windows.ps1')) {
+foreach ($fixture in @('test_store_export_orchestration.ps1','test_qualify_msix_install.ps1','test_msix_evidence.ps1','test_registration_ownership.ps1','test_process_observation.ps1','test_window_evidence.ps1','test_defender_module.ps1','test_text_input_module.ps1','test_store_identity.ps1','test_temporary_ownership.ps1','test_workflow_helpers.ps1','test_workflow_observation.ps1','test_workflow_sendkeys.ps1','test_workflow_windows.ps1')) {
     Invoke-Checked $powerShell @('-NoLogo','-NoProfile','-File',(Join-Path $PSScriptRoot $fixture))
 }
 $sourceCommit=(git rev-parse HEAD).Trim()
 if ($LASTEXITCODE -ne 0 -or $sourceCommit -cne $env:GITHUB_SHA) { throw 'Source differs from this qualification run.' }
 $sdkVersion='10.0.26100.0'
 $sdkDirectory=Join-Path ${env:ProgramFiles(x86)} "Windows Kits/10/bin/$sdkVersion/x64"
+$qualifiedPackages=@{}
 foreach ($identityMode in @('qualification','store')) {
     $packageOutput=Join-Path $env:RUNNER_TEMP ('duplisift-msix-'+$identityMode+'-'+[guid]::NewGuid().ToString('N'))
     Invoke-Checked $python @('tools/msix/msix_qualification.py','--release','dist/DupliSift',
@@ -34,4 +37,10 @@ foreach ($identityMode in @('qualification','store')) {
     Invoke-Checked $powerShell @('-NoLogo','-NoProfile','-File','tools/msix/qualify-msix-install.ps1',
         '-Package',(Join-Path $packageOutput $packageName),'-PackageRecord',(Join-Path $packageOutput 'package-record.json'),
         '-SignTool',(Join-Path $sdkDirectory 'signtool.exe'),'-Output',$installationOutput,'-IdentityMode',$identityMode)
+    $qualifiedPackages[$identityMode]=Join-Path $packageOutput $packageName
+}
+if ($ExportStore) {
+    Invoke-Checked $python @('tools/msix/store_export.py','--source-root','.','--evidence','build-evidence',
+        '--qualification-package',$qualifiedPackages['qualification'],'--store-package',$qualifiedPackages['store'],
+        '--output','build-evidence/store-upload')
 }

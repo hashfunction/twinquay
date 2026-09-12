@@ -624,6 +624,7 @@ function Invoke-TwinQuayInstalledWorkflow($State) {
     $operations.ReleaseCollision={ if ($context.collision) { $context.collision.Dispose(); $context.collision=$null } }.GetNewClosure()
     $result=Invoke-TwinQuayWorkflowCore $operations
     $State.workflow=[ordered]@{schema_version=1;source_commit=$State.record.sourceCommit;process_id=$State.process.Id;
+        workflow_run_id=$env:GITHUB_RUN_ID;workflow_run_attempt=$env:GITHUB_RUN_ATTEMPT;
         package_full_name=$State.ownedPackageFullName;executable_sha256=$State.executableSha256;
         result=$result;files=$context.facts;surfaces=@($context.surfaces);diagnostic_errors=@();source_inputs=[ordered]@{}}
     try {

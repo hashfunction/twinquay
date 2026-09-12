@@ -753,6 +753,8 @@ function Invoke-TwinQuayInstallQualification([string]$PackagePath, [string]$Reco
         schema_version = 1
         generated_at_utc = [DateTime]::UtcNow.ToString('o')
         source_commit = if ($state.record) { [string]$state.record.sourceCommit } else { $null }
+        workflow_run_id = $env:GITHUB_RUN_ID
+        workflow_run_attempt = $env:GITHUB_RUN_ATTEMPT
         qualification_identity_only = $IdentityMode -eq 'qualification'
         identity_mode = $IdentityMode
         identity = $expectedIdentity

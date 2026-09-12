@@ -2,6 +2,9 @@
 # Copyright 2026 Trieflow LLC. MIT licensed.
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
+# These fixtures run in a separate child process; assert the actual reporting boundary.
+$env:GITHUB_RUN_ID='12345'
+$env:GITHUB_RUN_ATTEMPT='3'
 . (Join-Path $PSScriptRoot 'qualify-msix-install.ps1') -LibraryOnly
 foreach ($identityMode in @('qualification','store')) {
 foreach ($scenario in @('missing','changed','changed-after-success','success','no-workflow','write-failure')) {
@@ -36,6 +39,7 @@ foreach ($scenario in @('missing','changed','changed-after-success','success','n
             continue
         }
         $evidence = Get-Content -LiteralPath $evidencePath -Raw | ConvertFrom-Json
+        if ($evidence.workflow_run_id -cne '12345' -or $evidence.workflow_run_attempt -cne '3') {throw 'Actual final evidence lost current CI run/attempt.'}
         if ($evidence.identity_mode -cne $identityMode -or $evidence.store_identity_used -ne ($identityMode -eq 'store') -or $evidence.qualification_identity_only -ne ($identityMode -eq 'qualification')) {throw 'Reported identity mode differs from caller'}
         if ($scenario -eq 'success') {
             if ($failure -or -not $evidence.installation_qualification_passed -or -not $evidence.unsigned_package_unchanged -or $evidence.evidence_errors.Count) { throw 'Unchanged success control did not pass.' }

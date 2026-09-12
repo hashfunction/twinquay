@@ -26,7 +26,7 @@ try {
   Start-Sleep -Seconds 3
   $process.Refresh()
   if ($process.HasExited) { throw 'DupliSift exited after opening its main window.' }
-  @{ source_commit=$sourceCommit; package_inventory_sha256=(Get-FileHash $inventoryPath -Algorithm SHA256).Hash.ToLowerInvariant(); generated_at_utc=[DateTime]::UtcNow.ToString('o'); windows_native_startup=$true; window_title=$process.MainWindowTitle; executable_sha256=(Get-FileHash $executable -Algorithm SHA256).Hash; interactive_cleanup_restore_verified=$false; native_source_clearance=$false; msix_built=$false; submitted=$false } | ConvertTo-Json | Set-Content build-evidence/windows-startup.json -Encoding utf8NoBOM
+  @{ source_commit=$sourceCommit; workflow_run_id=$env:GITHUB_RUN_ID; workflow_run_attempt=$env:GITHUB_RUN_ATTEMPT; package_inventory_sha256=(Get-FileHash $inventoryPath -Algorithm SHA256).Hash.ToLowerInvariant(); generated_at_utc=[DateTime]::UtcNow.ToString('o'); windows_native_startup=$true; window_title=$process.MainWindowTitle; executable_sha256=(Get-FileHash $executable -Algorithm SHA256).Hash; interactive_cleanup_restore_verified=$false; native_source_clearance=$false; msix_built=$false; submitted=$false } | ConvertTo-Json | Set-Content build-evidence/windows-startup.json -Encoding utf8NoBOM
 } finally {
   if (-not $process.HasExited) {
     $process.CloseMainWindow() | Out-Null

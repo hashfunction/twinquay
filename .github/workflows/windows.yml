@@ -24,7 +24,16 @@ jobs:
       - name: Qualify installed scan, quarantine, restore and exact owned cleanup
         timeout-minutes: 10
         shell: pwsh
-        run: ./tools/msix/qualify-msix.ps1
+        run: ./tools/msix/qualify-msix.ps1 -ExportStore
+      - name: Retain qualified unsigned Store upload
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: DupliSift-Store-unsigned
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            build-evidence/store-upload/DupliSift_1.0.1.0_x64.msix
+            build-evidence/store-upload/release-ready.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

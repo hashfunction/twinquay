@@ -1,0 +1,586 @@
+{
+  "schema_version": 1,
+  "product": "DupliSift",
+  "publication_verified": true,
+  "source_page": "https://duplisift.trieflow.com/source",
+  "release_url": "https://github.com/hashfunction/twinquay/releases/tag/native-sources-2026-09-12",
+  "verified_at_utc": "2026-09-12T07:56:35.388257+00:00",
+  "manifest": {
+    "filename": "source-release-assets.json",
+    "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/source-release-assets.json",
+    "bytes": 38006,
+    "sha256": "6ff1d996420954ece873f503794b348520a864575c6aba9772d177ccd726311a",
+    "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/3e72facd-c60a-4a46-9d93-37a4c00d6f7c?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A54%3A14Z&rscd=attachment%3B+filename%3Dsource-release-assets.json&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A53%3A31Z&ske=2026-09-12T08%3A54%3A14Z&sks=b&skv=2018-11-09&sig=iTYD3X6FzttnLQjxWMeDi7WFYwLpEri%2BIKThj4Kyueg%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA2OSwibmJmIjoxNzg5MTk5NzY5LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.-tWP_-g9zfxSrupmSkEt-2J9sZF-t0hZMZkEtXT0e-4&response-content-disposition=attachment%3B%20filename%3Dsource-release-assets.json&response-content-type=application%2Foctet-stream",
+    "verified_at_utc": "2026-09-12T07:56:09.727719+00:00"
+  },
+  "assets": [
+    {
+      "filename": "alabaster-1.0.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/alabaster-1.0.0.tar.gz",
+      "bytes": 24210,
+      "sha256": "c00dca57bca26fa62a6d7d0a9fcce65f3e026e9bfe33e9c538fd3fbb2144fd9e",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/d8cd2804-c082-4ee0-a300-fdfc45859de7?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A49%3A07Z&rscd=attachment%3B+filename%3Dalabaster-1.0.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A48%3A56Z&ske=2026-09-12T08%3A49%3A07Z&sks=b&skv=2018-11-09&sig=QR%2FKJHN6sy2DmJ%2Bs799%2BIugql7rubbynwf8WzYwv97o%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA2OSwibmJmIjoxNzg5MTk5NzY5LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.-tWP_-g9zfxSrupmSkEt-2J9sZF-t0hZMZkEtXT0e-4&response-content-disposition=attachment%3B%20filename%3Dalabaster-1.0.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:09.834334+00:00"
+    },
+    {
+      "filename": "altgraph-0.17.5.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/altgraph-0.17.5.tar.gz",
+      "bytes": 48428,
+      "sha256": "c87b395dd12fabde9c99573a9749d67da8d29ef9de0125c7f536699b4a9bc9e7",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/42babacb-9163-46b2-b9c7-4ba3edb9ef2c?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A34%3A33Z&rscd=attachment%3B+filename%3Daltgraph-0.17.5.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A34%3A07Z&ske=2026-09-12T08%3A34%3A33Z&sks=b&skv=2018-11-09&sig=MVYbCoGMpSIaauGTvnM3q9tT%2BdYSgYPD34rEBLgtpRo%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA2OSwibmJmIjoxNzg5MTk5NzY5LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.-tWP_-g9zfxSrupmSkEt-2J9sZF-t0hZMZkEtXT0e-4&response-content-disposition=attachment%3B%20filename%3Daltgraph-0.17.5.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:09.882215+00:00"
+    },
+    {
+      "filename": "babel-2.18.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/babel-2.18.0.tar.gz",
+      "bytes": 9959554,
+      "sha256": "b80b99a14bd085fcacfa15c9165f651fbb3406e66cc603abf11c5750937c992d",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/b264892c-b69d-444d-afe1-0d4c5352ceb8?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A50%3A43Z&rscd=attachment%3B+filename%3Dbabel-2.18.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A50%3A04Z&ske=2026-09-12T08%3A50%3A43Z&sks=b&skv=2018-11-09&sig=PcQaieAK60S8PmMiAKjQeWY131cwTjfsT6e3dsxwuGE%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA2OSwibmJmIjoxNzg5MTk5NzY5LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.-tWP_-g9zfxSrupmSkEt-2J9sZF-t0hZMZkEtXT0e-4&response-content-disposition=attachment%3B%20filename%3Dbabel-2.18.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.305974+00:00"
+    },
+    {
+      "filename": "black-26.5.1.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/black-26.5.1.tar.gz",
+      "bytes": 679439,
+      "sha256": "dd321f668053961824bcc1be1cc1df748b2d7e4fa28086b08331e577b0100a73",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/dffb932a-13a5-4380-b97f-f2eb3acab050?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A50%3A34Z&rscd=attachment%3B+filename%3Dblack-26.5.1.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A50%3A03Z&ske=2026-09-12T08%3A50%3A34Z&sks=b&skv=2018-11-09&sig=9KQUD0OV%2FUHxdmC41JnSYjUit8PrbiJg90T22KxjAis%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA2OSwibmJmIjoxNzg5MTk5NzY5LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.-tWP_-g9zfxSrupmSkEt-2J9sZF-t0hZMZkEtXT0e-4&response-content-disposition=attachment%3B%20filename%3Dblack-26.5.1.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:09.955938+00:00"
+    },
+    {
+      "filename": "bzip2-1.0.8-05301997b2f9590f49c672cf3dfd3d3dfa7ad521.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/bzip2-1.0.8-05301997b2f9590f49c672cf3dfd3d3dfa7ad521.tar.gz",
+      "bytes": 819016,
+      "sha256": "ab14accac86cdd92021d50465deeb221b476d6675bd1383d3c7fb83751c2e0a3",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/4f7dd8b6-fee5-46da-a643-1b8a34d78303?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A56%3A06Z&rscd=attachment%3B+filename%3Dbzip2-1.0.8-05301997b2f9590f49c672cf3dfd3d3dfa7ad521.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A55%3A23Z&ske=2026-09-12T08%3A56%3A06Z&sks=b&skv=2018-11-09&sig=vnOTHyFnQR1brAY4DnQv%2BD2w%2FeMpe9zwBH0wC%2FWubaU%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA2OSwibmJmIjoxNzg5MTk5NzY5LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.-tWP_-g9zfxSrupmSkEt-2J9sZF-t0hZMZkEtXT0e-4&response-content-disposition=attachment%3B%20filename%3Dbzip2-1.0.8-05301997b2f9590f49c672cf3dfd3d3dfa7ad521.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:09.990665+00:00"
+    },
+    {
+      "filename": "certifi-2026.7.22.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/certifi-2026.7.22.tar.gz",
+      "bytes": 138112,
+      "sha256": "741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/57d21b8a-54ef-49ed-90ac-86b80007c771?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A51%3A38Z&rscd=attachment%3B+filename%3Dcertifi-2026.7.22.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A50%3A40Z&ske=2026-09-12T08%3A51%3A38Z&sks=b&skv=2018-11-09&sig=Pill2CPrqlfVgjB8JafFymUg%2FnXMg3A%2FC%2FHVrv%2BxVKI%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA2OSwibmJmIjoxNzg5MTk5NzY5LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.-tWP_-g9zfxSrupmSkEt-2J9sZF-t0hZMZkEtXT0e-4&response-content-disposition=attachment%3B%20filename%3Dcertifi-2026.7.22.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.162140+00:00"
+    },
+    {
+      "filename": "charset_normalizer-3.5.1.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/charset_normalizer-3.5.1.tar.gz",
+      "bytes": 171764,
+      "sha256": "6117b84ea48435e5356dc737f5121485c30920ba43375fa7b434fd753df0eac3",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/accaf844-022a-4d46-b635-27b075ba36d6?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A47%3A05Z&rscd=attachment%3B+filename%3Dcharset_normalizer-3.5.1.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A59Z&ske=2026-09-12T08%3A47%3A05Z&sks=b&skv=2018-11-09&sig=WfkIGWD3kwTyCjxscPNfTt8xaj4KGGiYQGQlUhMccEQ%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Dcharset_normalizer-3.5.1.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.333721+00:00"
+    },
+    {
+      "filename": "click-8.5.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/click-8.5.0.tar.gz",
+      "bytes": 382235,
+      "sha256": "ba0d2089de75ea0310e2dde03160e6ca10009947fb95a182f9b54021bb272e34",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/64f76b6d-838e-4e9a-95b7-f93cc716a0a1?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A50%3A41Z&rscd=attachment%3B+filename%3Dclick-8.5.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A49%3A45Z&ske=2026-09-12T08%3A50%3A41Z&sks=b&skv=2018-11-09&sig=fBKB9gy4aMbl2gFCNL1A7qxdTTYGpeHAYk%2FClAq79tQ%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Dclick-8.5.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.377643+00:00"
+    },
+    {
+      "filename": "colorama-0.4.6.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/colorama-0.4.6.tar.gz",
+      "bytes": 27697,
+      "sha256": "08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/ecf627d4-a545-457a-84ac-fa2edcf64f54?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A53%3A28Z&rscd=attachment%3B+filename%3Dcolorama-0.4.6.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A52%3A30Z&ske=2026-09-12T08%3A53%3A28Z&sks=b&skv=2018-11-09&sig=kwO2w8skKFk5AemBjVl2Uvsrje8r%2FtIsH90XaIj0hQs%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Dcolorama-0.4.6.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.470533+00:00"
+    },
+    {
+      "filename": "distro-1.9.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/distro-1.9.0.tar.gz",
+      "bytes": 60722,
+      "sha256": "2fa77c6fd8940f116ee1d6b94a2f90b13b5ea8d019b98bc8bafdcabcdd9bdbed",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/20cefe30-c24b-41e3-b48b-86bd40d151e1?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A47%3A51Z&rscd=attachment%3B+filename%3Ddistro-1.9.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A47%3A39Z&ske=2026-09-12T08%3A47%3A51Z&sks=b&skv=2018-11-09&sig=6VgI1icwVOFN7LAiOhzrBQcPJlW2i%2FlSDxaTJ00iUFk%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Ddistro-1.9.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.444722+00:00"
+    },
+    {
+      "filename": "docutils-0.22.4.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/docutils-0.22.4.tar.gz",
+      "bytes": 2291750,
+      "sha256": "4db53b1fde9abecbb74d91230d32ab626d94f6badfc575d6db9194a49df29968",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/2caf100b-9e3b-4b28-ab48-cc94d109cce8?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A46%3A47Z&rscd=attachment%3B+filename%3Ddocutils-0.22.4.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A46Z&ske=2026-09-12T08%3A46%3A47Z&sks=b&skv=2018-11-09&sig=4YEpT7y4OyxYmkRRCZo0vuFZ9YyWXdakzyYlwt19e1Y%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Ddocutils-0.22.4.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.646967+00:00"
+    },
+    {
+      "filename": "flake8-7.3.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/flake8-7.3.0.tar.gz",
+      "bytes": 48326,
+      "sha256": "fe044858146b9fc69b551a4b490d69cf960fcb78ad1edcb84e7fbb1b4a8e3872",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/20c22ec3-8143-4b6a-9c2b-1b23222630f7?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A48%3A22Z&rscd=attachment%3B+filename%3Dflake8-7.3.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A47%3A25Z&ske=2026-09-12T08%3A48%3A22Z&sks=b&skv=2018-11-09&sig=RQ90eZeuJKNQ8lI0v6F7koozcbDTAcu9bsZzjHBHbD0%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Dflake8-7.3.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.674200+00:00"
+    },
+    {
+      "filename": "idna-3.19.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/idna-3.19.tar.gz",
+      "bytes": 215237,
+      "sha256": "5e0811a4383b21dc5838069f801c4fb62113b7447663d2530d2bd6e77b49bf15",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/0d3554ae-0bb5-4b60-bf81-e2cb62985d86?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A47%3A59Z&rscd=attachment%3B+filename%3Didna-3.19.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A47%3A14Z&ske=2026-09-12T08%3A47%3A59Z&sks=b&skv=2018-11-09&sig=O9qJl3nyTKaLloH2b4SpU2%2BZL9yqt3T2iLb%2B2P7ULlo%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Didna-3.19.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.718401+00:00"
+    },
+    {
+      "filename": "imagesize-2.0.1.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/imagesize-2.0.1.tar.gz",
+      "bytes": 1883774,
+      "sha256": "b2ba6a4dea487a7ebcd53248d3476aca449d30db12a2dde5e0c5ca9624fd77e5",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/78dbc64e-bfd7-4889-bea1-274c608e39fa?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A33%3A33Z&rscd=attachment%3B+filename%3Dimagesize-2.0.1.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A32%3A48Z&ske=2026-09-12T08%3A33%3A33Z&sks=b&skv=2018-11-09&sig=fMcUCOyv%2FE57qtzwNIWBHNMplAICkKN8fo1WI7t%2F0bg%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Dimagesize-2.0.1.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.886231+00:00"
+    },
+    {
+      "filename": "iniconfig-2.3.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/iniconfig-2.3.0.tar.gz",
+      "bytes": 20503,
+      "sha256": "c76315c77db068650d49c5b56314774a7804df16fee4402c1f19d6d15d8c4730",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/09252642-bc63-47dc-b842-93eb71feb091?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A47%3A10Z&rscd=attachment%3B+filename%3Diniconfig-2.3.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A39Z&ske=2026-09-12T08%3A47%3A10Z&sks=b&skv=2018-11-09&sig=ycMYG2eIOxIcLE6nb6%2BQnXRF8LKKzK0%2FomszKSLOT2k%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Diniconfig-2.3.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.755454+00:00"
+    },
+    {
+      "filename": "jinja2-3.1.6.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/jinja2-3.1.6.tar.gz",
+      "bytes": 245115,
+      "sha256": "0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/0b4ce794-b4af-4d28-b99d-e8f8130ddb08?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A45%3A00Z&rscd=attachment%3B+filename%3Djinja2-3.1.6.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A44%3A53Z&ske=2026-09-12T08%3A45%3A00Z&sks=b&skv=2018-11-09&sig=v56fyC3ygrtBipW%2BJmSm6jMudg2mCQtkNd6Ku0B3B3U%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Djinja2-3.1.6.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.846241+00:00"
+    },
+    {
+      "filename": "libffi-3.4.4-73b247f34ef3ae1859b8c2c34d321d34ebc5db15.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/libffi-3.4.4-73b247f34ef3ae1859b8c2c34d321d34ebc5db15.tar.gz",
+      "bytes": 1376474,
+      "sha256": "a9b2840c1b99a2b57746c50f1f2ab902420628111690ec420e7293ec1f502d7b",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/1f730253-0144-46ae-98e7-c36815ae189c?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A31%3A33Z&rscd=attachment%3B+filename%3Dlibffi-3.4.4-73b247f34ef3ae1859b8c2c34d321d34ebc5db15.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A31%3A05Z&ske=2026-09-12T08%3A31%3A33Z&sks=b&skv=2018-11-09&sig=N%2Be5zE%2F2Oee8TisRJVZS3lK9yAPpkFLIzkA9%2B3FeBac%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Dlibffi-3.4.4-73b247f34ef3ae1859b8c2c34d321d34ebc5db15.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:11.056237+00:00"
+    },
+    {
+      "filename": "llvm-3.6.2.src.tar.xz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/llvm-3.6.2.src.tar.xz",
+      "bytes": 12802380,
+      "sha256": "f60dc158bfda6822de167e87275848969f0558b3134892ff54fced87e4667b94",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/af35442f-3913-43a1-b75b-8fb19d27c9a9?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A43%3A52Z&rscd=attachment%3B+filename%3Dllvm-3.6.2.src.tar.xz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A43%3A02Z&ske=2026-09-12T08%3A43%3A52Z&sks=b&skv=2018-11-09&sig=a%2B2dk4SPL1lNA%2FjGy%2FyHjYcg69ayC67GXBSOKnHWFM0%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMTU3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.XhFbrEgkCDfBqXEPOCgo7opKA3GCgz0HLW2ZEjD3u0o&response-content-disposition=attachment%3B%20filename%3Dllvm-3.6.2.src.tar.xz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:11.348699+00:00"
+    },
+    {
+      "filename": "markupsafe-3.0.3.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/markupsafe-3.0.3.tar.gz",
+      "bytes": 80313,
+      "sha256": "722695808f4b6457b320fdc131280796bdceb04ab50fe1795cd540799ebe1698",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/4db71422-e696-40e9-be13-f9ae63d29bb0?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A30%3A40Z&rscd=attachment%3B+filename%3Dmarkupsafe-3.0.3.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A30%3A10Z&ske=2026-09-12T08%3A30%3A40Z&sks=b&skv=2018-11-09&sig=Wxr7FpvuAZKRRwbekCGeij7WQ9MBmaANCNO5654pBes%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Dmarkupsafe-3.0.3.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:10.963859+00:00"
+    },
+    {
+      "filename": "mccabe-0.7.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/mccabe-0.7.0.tar.gz",
+      "bytes": 9658,
+      "sha256": "348e0240c33b60bbdf4e523192ef919f28cb2c3d7d5c7794f74009290f236325",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/06bb2bcd-148c-4f8f-8f94-3ca1aa544af4?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A48%3A34Z&rscd=attachment%3B+filename%3Dmccabe-0.7.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A48%3A15Z&ske=2026-09-12T08%3A48%3A34Z&sks=b&skv=2018-11-09&sig=in7AUY1K%2FSTkakntuzjQiDpyA18qqdnyLRtavdYvjm8%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MCwibmJmIjoxNzg5MTk5NzcwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.Eo5bBJV0-kXLHgFYfjTy-rmPHM_7OtMf5AMGUoPckOA&response-content-disposition=attachment%3B%20filename%3Dmccabe-0.7.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:11.070919+00:00"
+    },
+    {
+      "filename": "mesa-11.2.2.tar.xz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/mesa-11.2.2.tar.xz",
+      "bytes": 7860932,
+      "sha256": "40e148812388ec7c6d7b6657d5a16e2e8dabba8b97ddfceea5197947647bdfb4",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/573b5ac9-f7f4-4238-9582-c909bbc225ff?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A37%3A23Z&rscd=attachment%3B+filename%3Dmesa-11.2.2.tar.xz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A36%3A38Z&ske=2026-09-12T08%3A37%3A23Z&sks=b&skv=2018-11-09&sig=QymTr5nnrog9hy2EcNxQolvllE70WQuGQE0T768VV1I%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MSwibmJmIjoxNzg5MTk5NzcxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.f02OTJbI_p3jjxvS8vnlZpPhvgJR8wSC-Tsi40YXGHA&response-content-disposition=attachment%3B%20filename%3Dmesa-11.2.2.tar.xz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:11.627491+00:00"
+    },
+    {
+      "filename": "mutagen-1.48.1.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/mutagen-1.48.1.tar.gz",
+      "bytes": 1276978,
+      "sha256": "8f95637ab9f6f305cec6bd1294e197debe207998e3e068596563c74f86b0a173",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/5c1501f7-01ae-484c-8b3f-8df3017df1d6?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A46%3A56Z&rscd=attachment%3B+filename%3Dmutagen-1.48.1.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A44Z&ske=2026-09-12T08%3A46%3A56Z&sks=b&skv=2018-11-09&sig=RRMnN69pt0nxu9q1hvIgnQdz5fG4uHFUxzbXoai50Ug%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MSwibmJmIjoxNzg5MTk5NzcxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.f02OTJbI_p3jjxvS8vnlZpPhvgJR8wSC-Tsi40YXGHA&response-content-disposition=attachment%3B%20filename%3Dmutagen-1.48.1.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:11.449822+00:00"
+    },
+    {
+      "filename": "mypy_extensions-1.1.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/mypy_extensions-1.1.0.tar.gz",
+      "bytes": 6343,
+      "sha256": "52e68efc3284861e772bbcd66823fde5ae21fd2fdb51c62a211403730b916558",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/973496e8-295b-46b7-b8ac-476c4ad0d839?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A31%3A19Z&rscd=attachment%3B+filename%3Dmypy_extensions-1.1.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A31%3A15Z&ske=2026-09-12T08%3A31%3A19Z&sks=b&skv=2018-11-09&sig=MvutzOxvvuQpShFjqAjTcfQq%2BcJHAD5veNyES%2BxWEG4%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MSwibmJmIjoxNzg5MTk5NzcxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.f02OTJbI_p3jjxvS8vnlZpPhvgJR8wSC-Tsi40YXGHA&response-content-disposition=attachment%3B%20filename%3Dmypy_extensions-1.1.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:11.373593+00:00"
+    },
+    {
+      "filename": "openssl-3.0.16-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/openssl-3.0.16-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2.tar.gz",
+      "bytes": 15490591,
+      "sha256": "76f18f21dbc7e0ba747de571f908a9ac16c0173d0c5c9c2816993e09e85dc5ff",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/61d11e57-4abd-4fda-bf0e-bde3bbab7de2?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A50%3A05Z&rscd=attachment%3B+filename%3Dopenssl-3.0.16-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A49%3A52Z&ske=2026-09-12T08%3A50%3A05Z&sks=b&skv=2018-11-09&sig=MbQYMwZ8pQcExMrDiEnkU6GrS%2Blunk6gUlX86qTw4zI%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMTU3MSwibmJmIjoxNzg5MTk5NzcxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.he-zAMo7O4dEg_WJt5g9tLsAGzemx3ZC8KESy86W9kg&response-content-disposition=attachment%3B%20filename%3Dopenssl-3.0.16-bb01d0a37b909f6fe280b1c2015fa1f6005fb4e2.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:11.986158+00:00"
+    },
+    {
+      "filename": "packaging-26.3.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/packaging-26.3.tar.gz",
+      "bytes": 313412,
+      "sha256": "94edc256424af38762eb31306eed28beb9f0efc50a8837492c9d6fd6004aed79",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/073779ee-0a3e-4d54-9725-6fc297c8a6a5?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A48%3A08Z&rscd=attachment%3B+filename%3Dpackaging-26.3.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A48%3A07Z&ske=2026-09-12T08%3A48%3A08Z&sks=b&skv=2018-11-09&sig=2D0i%2FsuJiroe9D3e5iWk0zRih2NwmRLqcodCOV%2Ft%2BrI%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MSwibmJmIjoxNzg5MTk5NzcxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.f02OTJbI_p3jjxvS8vnlZpPhvgJR8wSC-Tsi40YXGHA&response-content-disposition=attachment%3B%20filename%3Dpackaging-26.3.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:11.493677+00:00"
+    },
+    {
+      "filename": "pathspec-1.1.1.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pathspec-1.1.1.tar.gz",
+      "bytes": 135180,
+      "sha256": "17db5ecd524104a120e173814c90367a96a98d07c45b2e10c2f3919fff91bf5a",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/09fb4e9a-5fc6-4e2e-a6b6-4207aa8ac3c0?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A53%3A28Z&rscd=attachment%3B+filename%3Dpathspec-1.1.1.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A52%3A50Z&ske=2026-09-12T08%3A53%3A28Z&sks=b&skv=2018-11-09&sig=3JmYPWAcvNKnzS0YIns8%2BQcTp7fCHhjTB4OinnHVWB4%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MSwibmJmIjoxNzg5MTk5NzcxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.f02OTJbI_p3jjxvS8vnlZpPhvgJR8wSC-Tsi40YXGHA&response-content-disposition=attachment%3B%20filename%3Dpathspec-1.1.1.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:12.002541+00:00"
+    },
+    {
+      "filename": "pefile-2024.8.26.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pefile-2024.8.26.tar.gz",
+      "bytes": 76008,
+      "sha256": "3ff6c5d8b43e8c37bb6e6dd5085658d658a7a0bdcd20b6a07b1fcfc1c4e9d632",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/9e48babd-6d45-4bf3-bd47-772f54e767ae?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A36%3A53Z&rscd=attachment%3B+filename%3Dpefile-2024.8.26.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A36%3A29Z&ske=2026-09-12T08%3A36%3A53Z&sks=b&skv=2018-11-09&sig=kyTHCpRioRU2sVj59xoFtTA%2BDD2OBdBE3H2ooDsuGXk%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MSwibmJmIjoxNzg5MTk5NzcxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.f02OTJbI_p3jjxvS8vnlZpPhvgJR8wSC-Tsi40YXGHA&response-content-disposition=attachment%3B%20filename%3Dpefile-2024.8.26.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:11.948772+00:00"
+    },
+    {
+      "filename": "pip-26.2.1.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pip-26.2.1.tar.gz",
+      "bytes": 1848877,
+      "sha256": "f6ad667e89a1fe78046c8f13232b247200f5258d7828f3f7883d660878e0813f",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/96483ae2-421f-476c-a728-494817f8751e?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A47%3A10Z&rscd=attachment%3B+filename%3Dpip-26.2.1.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A17Z&ske=2026-09-12T08%3A47%3A10Z&sks=b&skv=2018-11-09&sig=EKQn%2FLAknXhxUJ%2B4fA9hyMHVAHdliFjqeragM7mGXoA%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MSwibmJmIjoxNzg5MTk5NzcxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.f02OTJbI_p3jjxvS8vnlZpPhvgJR8wSC-Tsi40YXGHA&response-content-disposition=attachment%3B%20filename%3Dpip-26.2.1.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:12.198603+00:00"
+    },
+    {
+      "filename": "platformdirs-4.11.8.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/platformdirs-4.11.8.tar.gz",
+      "bytes": 37182,
+      "sha256": "f23abafea7dd4276d1f29104b83598d7dcc567cafd07c9c951e66665645437fc",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/22d9a72a-8437-4c7a-9f88-c2254ade28d8?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A48%3A27Z&rscd=attachment%3B+filename%3Dplatformdirs-4.11.8.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A47%3A40Z&ske=2026-09-12T08%3A48%3A27Z&sks=b&skv=2018-11-09&sig=AEHPAdTcL1se50P5mmz%2Bj72Jks6AN999aaWCGytG0hw%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MSwibmJmIjoxNzg5MTk5NzcxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.f02OTJbI_p3jjxvS8vnlZpPhvgJR8wSC-Tsi40YXGHA&response-content-disposition=attachment%3B%20filename%3Dplatformdirs-4.11.8.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:12.109583+00:00"
+    },
+    {
+      "filename": "pluggy-1.6.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pluggy-1.6.0.tar.gz",
+      "bytes": 69412,
+      "sha256": "7dcc130b76258d33b90f61b658791dede3486c3e6bfb003ee5c9bfb396dd22f3",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/c5cd90d7-b697-48ba-a09b-081bb16ea4b0?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A56%3A12Z&rscd=attachment%3B+filename%3Dpluggy-1.6.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A56%3A05Z&ske=2026-09-12T08%3A56%3A12Z&sks=b&skv=2018-11-09&sig=Sd%2BFhiF4yaEGyZMl3RyajezKpCCQ%2BFcBj%2B%2BGa%2BqF5RQ%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MSwibmJmIjoxNzg5MTk5NzcxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.f02OTJbI_p3jjxvS8vnlZpPhvgJR8wSC-Tsi40YXGHA&response-content-disposition=attachment%3B%20filename%3Dpluggy-1.6.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:12.114832+00:00"
+    },
+    {
+      "filename": "polib-1.2.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/polib-1.2.0.tar.gz",
+      "bytes": 161658,
+      "sha256": "f3ef94aefed6e183e342a8a269ae1fc4742ba193186ad76f175938621dbfc26b",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/ffd4270e-d085-46c4-a7f4-e40ffca3b95e?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A45%3A10Z&rscd=attachment%3B+filename%3Dpolib-1.2.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A45%3A04Z&ske=2026-09-12T08%3A45%3A10Z&sks=b&skv=2018-11-09&sig=JBjeU7iJihT3Eqou6bnKaSX9YLKBhO8alAKakM2%2Bkw4%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpolib-1.2.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:12.678699+00:00"
+    },
+    {
+      "filename": "pycodestyle-2.14.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pycodestyle-2.14.0.tar.gz",
+      "bytes": 39472,
+      "sha256": "c4b5b517d278089ff9d0abdec919cd97262a3367449ea1c8b49b91529167b783",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/afa576a0-10bd-4316-be82-aa4d287683c3?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A46%3A48Z&rscd=attachment%3B+filename%3Dpycodestyle-2.14.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A47Z&ske=2026-09-12T08%3A46%3A48Z&sks=b&skv=2018-11-09&sig=bKKfLp52wf7XBnc%2Bb%2BkLjB%2F9XscYf43zMrnIgW1q5N8%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpycodestyle-2.14.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:12.326824+00:00"
+    },
+    {
+      "filename": "pyflakes-3.4.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pyflakes-3.4.0.tar.gz",
+      "bytes": 64669,
+      "sha256": "b24f96fafb7d2ab0ec5075b7350b3d2d2218eab42003821c06344973d3ea2f58",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/8e3525d6-e0ff-4b54-bde0-4b59f7c7b816?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A51%3A03Z&rscd=attachment%3B+filename%3Dpyflakes-3.4.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A50%3A04Z&ske=2026-09-12T08%3A51%3A03Z&sks=b&skv=2018-11-09&sig=1HDOodl6NihUbEVA3IRsYB5kTZ6fS6tIL6FPnLl86yY%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpyflakes-3.4.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:12.360579+00:00"
+    },
+    {
+      "filename": "pygments-2.21.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pygments-2.21.0.tar.gz",
+      "bytes": 5005329,
+      "sha256": "610ca751c9bc2492b38eb9a38a7fbc93edbbb2d7182edaf34e66ae493dee5c8c",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/ed17c664-51de-4b71-b15e-fc2402369b54?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A52%3A39Z&rscd=attachment%3B+filename%3Dpygments-2.21.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A51%3A44Z&ske=2026-09-12T08%3A52%3A39Z&sks=b&skv=2018-11-09&sig=kYW%2BsA%2Bo9mz6U7y98l4eimC3eZVQMSB3g3cpJcPa0Qw%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpygments-2.21.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:12.736046+00:00"
+    },
+    {
+      "filename": "pyinstaller-6.22.2.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pyinstaller-6.22.2.tar.gz",
+      "bytes": 4092631,
+      "sha256": "89b65a3ad07d9dd5832253e37bc45f31872d10d7f9d5c9fd0fdd6088a83829dd",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/da93a8c6-1258-4c20-9f5b-8364d3eda09d?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A49%3A07Z&rscd=attachment%3B+filename%3Dpyinstaller-6.22.2.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A48%3A56Z&ske=2026-09-12T08%3A49%3A07Z&sks=b&skv=2018-11-09&sig=7X%2FK6DF0wUC8NX%2B4PAdyPnCEXj%2FGQ4bJXxDnMVIXeTk%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpyinstaller-6.22.2.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:12.615164+00:00"
+    },
+    {
+      "filename": "pyinstaller_hooks_contrib-2026.7.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pyinstaller_hooks_contrib-2026.7.tar.gz",
+      "bytes": 175992,
+      "sha256": "5fbcaacb22c4f4aac869a127dce283f67a4b4cfcc37d496f2446603e6d68aefa",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/179c2db0-cda3-41f4-b3d7-668b5e45fbaf?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A48%3A22Z&rscd=attachment%3B+filename%3Dpyinstaller_hooks_contrib-2026.7.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A47%3A57Z&ske=2026-09-12T08%3A48%3A22Z&sks=b&skv=2018-11-09&sig=ZRgMlyruk2bL9nyTCH8pP9H3pAmQJ0OV1ZB%2BZ%2B1wTPM%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpyinstaller_hooks_contrib-2026.7.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:12.629213+00:00"
+    },
+    {
+      "filename": "pyqt6-6.11.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pyqt6-6.11.0.tar.gz",
+      "bytes": 1087430,
+      "sha256": "45dd60aa69976de1918b5ced6b4e7b6a25abd2a919ecef5fd5826ecc76718889",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/bbb644b5-e2fc-4566-a1fb-1edd4b018cff?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A50%3A04Z&rscd=attachment%3B+filename%3Dpyqt6-6.11.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A49%3A33Z&ske=2026-09-12T08%3A50%3A04Z&sks=b&skv=2018-11-09&sig=PGZTEtOUnA4RkqJEDapKVQSaQlz4ChrRQKLxGF2cFkg%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpyqt6-6.11.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:12.813247+00:00"
+    },
+    {
+      "filename": "pyqt6_sip-13.12.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pyqt6_sip-13.12.0.tar.gz",
+      "bytes": 93979,
+      "sha256": "a7ad45c1e3cec3a2473d37ea9870b6c3baeccc560298623c8eb59265714c06e2",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/edb85654-67cb-4c35-ae27-29deada84621?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A43%3A44Z&rscd=attachment%3B+filename%3Dpyqt6_sip-13.12.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A43%3A18Z&ske=2026-09-12T08%3A43%3A44Z&sks=b&skv=2018-11-09&sig=RQIaCTJ4zbjbm6jxYkUUvIcJwCjuUsPKKr%2F7obrcmww%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpyqt6_sip-13.12.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:12.823688+00:00"
+    },
+    {
+      "filename": "pyqt_builder-1.19.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pyqt_builder-1.19.0.tar.gz",
+      "bytes": 3672333,
+      "sha256": "79540e001c476bc050180db00fffcb1e9fa74544d95c148e48ad6117e49d6ea2",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/aa2fd543-5d6e-49b2-99c1-16c18262f441?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A50%3A06Z&rscd=attachment%3B+filename%3Dpyqt_builder-1.19.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A50%3A05Z&ske=2026-09-12T08%3A50%3A06Z&sks=b&skv=2018-11-09&sig=OYZpIJOQpF8IXomDn6c%2BvE4zAtsWgWbr2ISGNYlHOhQ%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpyqt_builder-1.19.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:13.146981+00:00"
+    },
+    {
+      "filename": "pytest-8.4.2.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pytest-8.4.2.tar.gz",
+      "bytes": 1519618,
+      "sha256": "86c0d0b93306b961d58d62a4db4879f27fe25513d4b969df351abdddb3c30e01",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/cfa6ea9a-b10b-4e92-91b7-e83ff13e0a29?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A51%3A55Z&rscd=attachment%3B+filename%3Dpytest-8.4.2.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A51%3A31Z&ske=2026-09-12T08%3A51%3A55Z&sks=b&skv=2018-11-09&sig=ZrDak2bKXiZBksxLcCKsFAMa7pIvlukBenJlnbpHq98%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpytest-8.4.2.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:13.204745+00:00"
+    },
+    {
+      "filename": "Python-3.12.10.tar.xz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/Python-3.12.10.tar.xz",
+      "bytes": 20520960,
+      "sha256": "07ab697474595e06f06647417d3c7fa97ded07afc1a7e4454c5639919b46eaea",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/b37f93e5-c941-481a-96c5-4b841900cc24?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A47%3A56Z&rscd=attachment%3B+filename%3DPython-3.12.10.tar.xz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A47%3A22Z&ske=2026-09-12T08%3A47%3A56Z&sks=b&skv=2018-11-09&sig=LLkC0sDLwnTA5rZVzYyEuG0S%2Bj0Km0z3jxTSRlIpZ7I%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMTU3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.s51VrkRxEjTQXF8n9RBtdeup8qXYn7NbMEVKyWctwbU&response-content-disposition=attachment%3B%20filename%3DPython-3.12.10.tar.xz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:13.785861+00:00"
+    },
+    {
+      "filename": "pytokens-0.4.1.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pytokens-0.4.1.tar.gz",
+      "bytes": 23015,
+      "sha256": "292052fe80923aae2260c073f822ceba21f3872ced9a68bb7953b348e561179a",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/e80a7b74-05c1-4f84-883e-3a2fa64dee74?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A51%3A25Z&rscd=attachment%3B+filename%3Dpytokens-0.4.1.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A51%3A10Z&ske=2026-09-12T08%3A51%3A25Z&sks=b&skv=2018-11-09&sig=9N0%2BDpVnzKj4wdWm9f8rORiCk9OGeGFC1zw6u6mA6ng%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpytokens-0.4.1.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:13.065042+00:00"
+    },
+    {
+      "filename": "pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz",
+      "bytes": 4756337,
+      "sha256": "0e6dfb82f37d80e67c26ef0e8effe4a6a032db98e9430587f9b78f604e7326e2",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/51eafa2a-8792-4742-af93-84dfc691ae2a?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A51%3A25Z&rscd=attachment%3B+filename%3Dpywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A51%3A10Z&ske=2026-09-12T08%3A51%3A25Z&sks=b&skv=2018-11-09&sig=f%2BXJXhOlJx3d3JuflGBlssBtMi7xBkv7YAsCOnXp4aY%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpywin32-8b328dffac71b7afaf2d72f47c4048f27a32f6c8.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:13.546446+00:00"
+    },
+    {
+      "filename": "pywin32-ctypes-0.2.3.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/pywin32-ctypes-0.2.3.tar.gz",
+      "bytes": 29471,
+      "sha256": "d162dc04946d704503b2edc4d55f3dba5c1d539ead017afa00142c38b9885755",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/5190616d-cbd4-45bf-b4f6-c66f1a8e3c05?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A34%3A29Z&rscd=attachment%3B+filename%3Dpywin32-ctypes-0.2.3.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A33%3A53Z&ske=2026-09-12T08%3A34%3A29Z&sks=b&skv=2018-11-09&sig=GtnMLu%2FgXRgsz6fW5oLzZp64KsoiFu%2FX6cm1A3OkHjs%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MiwibmJmIjoxNzg5MTk5NzcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mwmLhi_p0MTsPCsF_N6Cx_5FwLCJwYxHhR43qyiLeqA&response-content-disposition=attachment%3B%20filename%3Dpywin32-ctypes-0.2.3.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:13.156964+00:00"
+    },
+    {
+      "filename": "qtbase-everywhere-src-6.11.2.tar.xz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/qtbase-everywhere-src-6.11.2.tar.xz",
+      "bytes": 50582668,
+      "sha256": "5b2e00eccaf5a4d8c14134ffa0ea8dfd0a35ae1ffc7f8d87fa4305a1ed23cf22",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/5c4c5ff5-6f16-467a-b893-86804e9cfd0a?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A46%3A57Z&rscd=attachment%3B+filename%3Dqtbase-everywhere-src-6.11.2.tar.xz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A32Z&ske=2026-09-12T08%3A46%3A57Z&sks=b&skv=2018-11-09&sig=2pNIjsqEa01K%2Ft0aenHDs3d9gGu9QUWAB9EyndclZX0%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMTU3MywibmJmIjoxNzg5MTk5NzczLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.tgH-LNpooQdA8sQjiV0Z5iTbPuZO66fi9bxPDRixQF0&response-content-disposition=attachment%3B%20filename%3Dqtbase-everywhere-src-6.11.2.tar.xz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:16.652869+00:00"
+    },
+    {
+      "filename": "qtimageformats-everywhere-src-6.11.2.tar.xz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/qtimageformats-everywhere-src-6.11.2.tar.xz",
+      "bytes": 2050424,
+      "sha256": "cecd8900f34b6550076309bc94f62f828008b633a4239e0a08c86788f41001f8",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/427caed9-8b8f-482f-afb6-41d064fba29e?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A47%3A57Z&rscd=attachment%3B+filename%3Dqtimageformats-everywhere-src-6.11.2.tar.xz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A47%3A15Z&ske=2026-09-12T08%3A47%3A57Z&sks=b&skv=2018-11-09&sig=e4iOwh8kZKALeuJx12a01miB2eNCFxH8qalxgNBXXQE%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MywibmJmIjoxNzg5MTk5NzczLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.3R3rmyLx91k7_z1Xwi_BMOlYegOFLwGkO-EKi_lcVAU&response-content-disposition=attachment%3B%20filename%3Dqtimageformats-everywhere-src-6.11.2.tar.xz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:14.000656+00:00"
+    },
+    {
+      "filename": "qtsvg-everywhere-src-6.11.2.tar.xz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/qtsvg-everywhere-src-6.11.2.tar.xz",
+      "bytes": 2341860,
+      "sha256": "d594337feca84c26fb67fe87b85e6a5c12fda404b611d905f9d138210c311876",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/365d1867-7ddd-4d29-9d69-4d2991a79e7d?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A46%3A43Z&rscd=attachment%3B+filename%3Dqtsvg-everywhere-src-6.11.2.tar.xz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A33Z&ske=2026-09-12T08%3A46%3A43Z&sks=b&skv=2018-11-09&sig=t3s%2BIu3lgizGQxT5WpOo6L0ID%2Fzhqnt%2FbrKay2fwF9Q%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MywibmJmIjoxNzg5MTk5NzczLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.3R3rmyLx91k7_z1Xwi_BMOlYegOFLwGkO-EKi_lcVAU&response-content-disposition=attachment%3B%20filename%3Dqtsvg-everywhere-src-6.11.2.tar.xz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:14.222545+00:00"
+    },
+    {
+      "filename": "qttools-everywhere-src-6.11.2.tar.xz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/qttools-everywhere-src-6.11.2.tar.xz",
+      "bytes": 10226452,
+      "sha256": "9ea75af35c512f7e09e61c8c3af3997f13b4d43bb099cf43fcec470126b4041e",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/bb2902b6-66d3-4c54-acf4-2ad687162548?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A44%3A38Z&rscd=attachment%3B+filename%3Dqttools-everywhere-src-6.11.2.tar.xz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A44%3A34Z&ske=2026-09-12T08%3A44%3A38Z&sks=b&skv=2018-11-09&sig=3aUYnVPXwEmZjM58KhAGb4hypfB9uVdQuODj7TkSbL0%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MywibmJmIjoxNzg5MTk5NzczLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.3R3rmyLx91k7_z1Xwi_BMOlYegOFLwGkO-EKi_lcVAU&response-content-disposition=attachment%3B%20filename%3Dqttools-everywhere-src-6.11.2.tar.xz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:14.405923+00:00"
+    },
+    {
+      "filename": "qttranslations-everywhere-src-6.11.2.tar.xz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/qttranslations-everywhere-src-6.11.2.tar.xz",
+      "bytes": 1691056,
+      "sha256": "021684c1a7937a9fabc3b056a6698ad5978794caf9ac190fd6cc11399e67c014",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/43fc8de6-b0e9-4633-a190-efeb210235e1?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A34%3A49Z&rscd=attachment%3B+filename%3Dqttranslations-everywhere-src-6.11.2.tar.xz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A34%3A38Z&ske=2026-09-12T08%3A34%3A49Z&sks=b&skv=2018-11-09&sig=hAw%2FROmGbEbZHfUX4%2FTzjZkc%2FL5aBbz745fc9fHatFE%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3MywibmJmIjoxNzg5MTk5NzczLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.3R3rmyLx91k7_z1Xwi_BMOlYegOFLwGkO-EKi_lcVAU&response-content-disposition=attachment%3B%20filename%3Dqttranslations-everywhere-src-6.11.2.tar.xz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:14.576869+00:00"
+    },
+    {
+      "filename": "qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/qtwebengine-everywhere-src-6.11.2.tar.xz",
+      "bytes": 580351104,
+      "sha256": "6101c1aa00ff933d1b65ee5d167f76e8d71b9ac5b378b0111277723ebda7c163",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/ab2812c4-9916-4c80-b01a-49d23b446f05?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A33%3A53Z&rscd=attachment%3B+filename%3Dqtwebengine-everywhere-src-6.11.2.tar.xz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A33%3A27Z&ske=2026-09-12T08%3A33%3A53Z&sks=b&skv=2018-11-09&sig=M%2BE7IsMhvd6w5%2ByQwSX3aZyviyt6Ka%2BpUkQM6616Fow%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMzM3MywibmJmIjoxNzg5MTk5NzczLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.alfjNgN1wp55AfVMjzpN_ry6BDNZhPaZLkIuMq0tA3U&response-content-disposition=attachment%3B%20filename%3Dqtwebengine-everywhere-src-6.11.2.tar.xz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:35.388030+00:00"
+    },
+    {
+      "filename": "requests-2.34.2.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/requests-2.34.2.tar.gz",
+      "bytes": 142856,
+      "sha256": "f288924cae4e29463698d6d60bc6a4da69c89185ad1e0bcc4104f584e960b9ed",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/5b3d960d-db28-4cdb-b66c-b5cf0d8dccd9?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A46%3A25Z&rscd=attachment%3B+filename%3Drequests-2.34.2.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A24Z&ske=2026-09-12T08%3A46%3A25Z&sks=b&skv=2018-11-09&sig=uiHN1JJJUUH2wHL%2BnzWzLz8mzW7cvGtfpMMse0WAJK0%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NCwibmJmIjoxNzg5MTk5Nzc0LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.-SfAnmSTmy77DQgk4Ram0efYyYOzr6TGkzRPgCPPFM8&response-content-disposition=attachment%3B%20filename%3Drequests-2.34.2.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:14.714501+00:00"
+    },
+    {
+      "filename": "roman_numerals-4.1.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/roman_numerals-4.1.0.tar.gz",
+      "bytes": 9077,
+      "sha256": "1af8b147eb1405d5839e78aeb93131690495fe9da5c91856cb33ad55a7f1e5b2",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/ad1ec9d1-d93c-4262-acd4-9eb9a44557b5?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A36%3A51Z&rscd=attachment%3B+filename%3Droman_numerals-4.1.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A36%3A08Z&ske=2026-09-12T08%3A36%3A51Z&sks=b&skv=2018-11-09&sig=Q4CazHRL%2FPRsCSKhoJ3SENHHqVpdkHTT8zcw86%2B5YBQ%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NCwibmJmIjoxNzg5MTk5Nzc0LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.-SfAnmSTmy77DQgk4Ram0efYyYOzr6TGkzRPgCPPFM8&response-content-disposition=attachment%3B%20filename%3Droman_numerals-4.1.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:14.849755+00:00"
+    },
+    {
+      "filename": "semantic_version-2.10.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/semantic_version-2.10.0.tar.gz",
+      "bytes": 52289,
+      "sha256": "bdabb6d336998cbb378d4b9db3a4b56a1e3235701dc05ea2690d9a997ed5041c",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/45cfe560-6b95-42d3-acec-4c43ccb7c31a?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A47%3A10Z&rscd=attachment%3B+filename%3Dsemantic_version-2.10.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A17Z&ske=2026-09-12T08%3A47%3A10Z&sks=b&skv=2018-11-09&sig=c%2FmC%2BrYp%2FNJSwWXATF5EdltrsjGiVWdc0JjJ%2FTv1pxE%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NCwibmJmIjoxNzg5MTk5Nzc0LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.-SfAnmSTmy77DQgk4Ram0efYyYOzr6TGkzRPgCPPFM8&response-content-disposition=attachment%3B%20filename%3Dsemantic_version-2.10.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:15.100101+00:00"
+    },
+    {
+      "filename": "send2trash-2.1.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/send2trash-2.1.0.tar.gz",
+      "bytes": 17255,
+      "sha256": "1c72b39f09457db3c05ce1d19158c2cbef4c32b8bedd02c155e49282b7ea7459",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/4057a4be-908c-423d-9ed1-93680feeb73b?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A50%3A42Z&rscd=attachment%3B+filename%3Dsend2trash-2.1.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A49%3A58Z&ske=2026-09-12T08%3A50%3A42Z&sks=b&skv=2018-11-09&sig=u%2Bnt5amxxXCJh6Qff3%2FMJWMb9BEMmxdp38tfqKOZJSo%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NCwibmJmIjoxNzg5MTk5Nzc0LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.-SfAnmSTmy77DQgk4Ram0efYyYOzr6TGkzRPgCPPFM8&response-content-disposition=attachment%3B%20filename%3Dsend2trash-2.1.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:15.276060+00:00"
+    },
+    {
+      "filename": "setuptools-84.0.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/setuptools-84.0.0.tar.gz",
+      "bytes": 1168449,
+      "sha256": "f4695c21257f0d9b537ec2692c941d02ee143b7cc1276941349a546573b2ef73",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/551cb9e0-8270-45f5-9c7f-ba69ae100077?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A48%3A24Z&rscd=attachment%3B+filename%3Dsetuptools-84.0.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A47%3A43Z&ske=2026-09-12T08%3A48%3A24Z&sks=b&skv=2018-11-09&sig=r2q96Co3UrKBViz%2FRVg%2BMmAGDedZOVGmMVct9lVfJF0%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NSwibmJmIjoxNzg5MTk5Nzc1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.xkhBVw5ySBzEqR_7CwPTAvivxKZ8jN-_qbDJWXsCviI&response-content-disposition=attachment%3B%20filename%3Dsetuptools-84.0.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:15.855059+00:00"
+    },
+    {
+      "filename": "setuptools_scm-8.3.1.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/setuptools_scm-8.3.1.tar.gz",
+      "bytes": 78088,
+      "sha256": "3d555e92b75dacd037d32bafdf94f97af51ea29ae8c7b234cf94b7a5bd242a63",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/048e4bfc-59ac-439d-81d2-3020d21617e6?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A45%3A57Z&rscd=attachment%3B+filename%3Dsetuptools_scm-8.3.1.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A45%3A31Z&ske=2026-09-12T08%3A45%3A57Z&sks=b&skv=2018-11-09&sig=s970gMRVi7OrhCY2NFTmYhTC2oyf8sllhkvEdKhGe9Y%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NSwibmJmIjoxNzg5MTk5Nzc1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.xkhBVw5ySBzEqR_7CwPTAvivxKZ8jN-_qbDJWXsCviI&response-content-disposition=attachment%3B%20filename%3Dsetuptools_scm-8.3.1.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:15.771481+00:00"
+    },
+    {
+      "filename": "sip-6.15.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/sip-6.15.0.tar.gz",
+      "bytes": 2563129,
+      "sha256": "3920f26515456ee21114a1f8282144f8c156b1aabc3b44424155d5f81396025f",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/c3ed68b0-7f57-4a29-9d0e-591df4cb12f0?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A36%3A00Z&rscd=attachment%3B+filename%3Dsip-6.15.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A35%3A44Z&ske=2026-09-12T08%3A36%3A00Z&sks=b&skv=2018-11-09&sig=QaJHtWz4l5XZxyJad0piRrJZ2vRASB6QSxQQ%2ByQndEk%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NSwibmJmIjoxNzg5MTk5Nzc1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.xkhBVw5ySBzEqR_7CwPTAvivxKZ8jN-_qbDJWXsCviI&response-content-disposition=attachment%3B%20filename%3Dsip-6.15.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:16.519865+00:00"
+    },
+    {
+      "filename": "snowballstemmer-3.1.1.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/snowballstemmer-3.1.1.tar.gz",
+      "bytes": 123314,
+      "sha256": "e07bbc54a0d798fe6010a12398422e62a8bfbba95c394fd0956ef58cb4d3e260",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/f7c831bb-a1b3-4e89-81e9-09506678c0c3?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A47%3A02Z&rscd=attachment%3B+filename%3Dsnowballstemmer-3.1.1.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A36Z&ske=2026-09-12T08%3A47%3A02Z&sks=b&skv=2018-11-09&sig=ees1ZRUfDwpASxged8XyRY29n8t0hmskJ81DtFx222A%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NSwibmJmIjoxNzg5MTk5Nzc1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.xkhBVw5ySBzEqR_7CwPTAvivxKZ8jN-_qbDJWXsCviI&response-content-disposition=attachment%3B%20filename%3Dsnowballstemmer-3.1.1.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:16.144330+00:00"
+    },
+    {
+      "filename": "sphinx-9.1.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/sphinx-9.1.0.tar.gz",
+      "bytes": 8718324,
+      "sha256": "7741722357dd75f8190766926071fed3bdc211c74dd2d7d4df5404da95930ddb",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/0abd1553-42f6-404c-941d-6e907c77beda?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A43%3A28Z&rscd=attachment%3B+filename%3Dsphinx-9.1.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A43%3A02Z&ske=2026-09-12T08%3A43%3A28Z&sks=b&skv=2018-11-09&sig=nrARGPb9e87yKUnPkObaSfmF9t1oCVkSbO%2FbceDaPMQ%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NiwibmJmIjoxNzg5MTk5Nzc2LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.R00j8x-PPPQUqQpsyB65tSAAsIvPCM5PmpEOYzTZ5nU&response-content-disposition=attachment%3B%20filename%3Dsphinx-9.1.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:17.132398+00:00"
+    },
+    {
+      "filename": "sphinxcontrib-jsmath-1.0.1.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/sphinxcontrib-jsmath-1.0.1.tar.gz",
+      "bytes": 5787,
+      "sha256": "a9925e4a4587247ed2191a22df5f6970656cb8ca2bd6284309578f2153e0c4b8",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/65de8981-ea08-4df4-8526-87147f0f941c?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A53%3A46Z&rscd=attachment%3B+filename%3Dsphinxcontrib-jsmath-1.0.1.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A53%3A29Z&ske=2026-09-12T08%3A53%3A46Z&sks=b&skv=2018-11-09&sig=iTaUB698IEeBKqK237TUxjLJp0IkC5DwujIhdswneQs%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NiwibmJmIjoxNzg5MTk5Nzc2LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.R00j8x-PPPQUqQpsyB65tSAAsIvPCM5PmpEOYzTZ5nU&response-content-disposition=attachment%3B%20filename%3Dsphinxcontrib-jsmath-1.0.1.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:16.605714+00:00"
+    },
+    {
+      "filename": "sphinxcontrib_applehelp-2.0.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/sphinxcontrib_applehelp-2.0.0.tar.gz",
+      "bytes": 20053,
+      "sha256": "2f29ef331735ce958efa4734873f084941970894c6090408b079c61b2e1c06d1",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/35742adf-b7f1-4a61-8446-ff85bcd1d4f5?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A37%3A29Z&rscd=attachment%3B+filename%3Dsphinxcontrib_applehelp-2.0.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A37%3A22Z&ske=2026-09-12T08%3A37%3A29Z&sks=b&skv=2018-11-09&sig=VcPzHzIYXXgPiGgRzwfxi4OwIcxS5ZdCpRjAzFqYoLQ%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NiwibmJmIjoxNzg5MTk5Nzc2LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.R00j8x-PPPQUqQpsyB65tSAAsIvPCM5PmpEOYzTZ5nU&response-content-disposition=attachment%3B%20filename%3Dsphinxcontrib_applehelp-2.0.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:16.795489+00:00"
+    },
+    {
+      "filename": "sphinxcontrib_devhelp-2.0.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/sphinxcontrib_devhelp-2.0.0.tar.gz",
+      "bytes": 12967,
+      "sha256": "411f5d96d445d1d73bb5d52133377b4248ec79db5c793ce7dbe59e074b4dd1ad",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/40a1e5e3-d00d-4221-9939-95be719ba9f0?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A46%3A58Z&rscd=attachment%3B+filename%3Dsphinxcontrib_devhelp-2.0.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A25Z&ske=2026-09-12T08%3A46%3A58Z&sks=b&skv=2018-11-09&sig=Q%2BLXexRoU7AQ6aehrG97epN9sU7Vz3C2nBgslZ0KPts%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NiwibmJmIjoxNzg5MTk5Nzc2LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.R00j8x-PPPQUqQpsyB65tSAAsIvPCM5PmpEOYzTZ5nU&response-content-disposition=attachment%3B%20filename%3Dsphinxcontrib_devhelp-2.0.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:17.151375+00:00"
+    },
+    {
+      "filename": "sphinxcontrib_htmlhelp-2.1.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/sphinxcontrib_htmlhelp-2.1.0.tar.gz",
+      "bytes": 22617,
+      "sha256": "c9e2916ace8aad64cc13a0d233ee22317f2b9025b9cf3295249fa985cc7082e9",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/43508ff4-d572-46cd-9727-33fe943a021b?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A51%3A27Z&rscd=attachment%3B+filename%3Dsphinxcontrib_htmlhelp-2.1.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A50%3A51Z&ske=2026-09-12T08%3A51%3A27Z&sks=b&skv=2018-11-09&sig=L5lCiO4PKpmIMqjoMpoZB1hkdYKhO9YJjp%2FUF4JC81A%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NiwibmJmIjoxNzg5MTk5Nzc2LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.R00j8x-PPPQUqQpsyB65tSAAsIvPCM5PmpEOYzTZ5nU&response-content-disposition=attachment%3B%20filename%3Dsphinxcontrib_htmlhelp-2.1.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:17.161716+00:00"
+    },
+    {
+      "filename": "sphinxcontrib_qthelp-2.0.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/sphinxcontrib_qthelp-2.0.0.tar.gz",
+      "bytes": 17165,
+      "sha256": "4fe7d0ac8fc171045be623aba3e2a8f613f8682731f9153bb2e40ece16b9bbab",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/dc39802b-8f3e-4bc8-9cfd-01ab791ddfa7?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A46%3A48Z&rscd=attachment%3B+filename%3Dsphinxcontrib_qthelp-2.0.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A45Z&ske=2026-09-12T08%3A46%3A48Z&sks=b&skv=2018-11-09&sig=RNxfubBtAyGW6oovbTH6MIfYsFXgy2sxkdSoDf5Y1i8%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NiwibmJmIjoxNzg5MTk5Nzc2LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.R00j8x-PPPQUqQpsyB65tSAAsIvPCM5PmpEOYzTZ5nU&response-content-disposition=attachment%3B%20filename%3Dsphinxcontrib_qthelp-2.0.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:17.194626+00:00"
+    },
+    {
+      "filename": "sphinxcontrib_serializinghtml-2.0.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/sphinxcontrib_serializinghtml-2.0.0.tar.gz",
+      "bytes": 16080,
+      "sha256": "e9d912827f872c029017a53f0ef2180b327c3f7fd23c87229f7a8e8b70031d4d",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/b860d46d-bc32-469e-a701-0c2b3fcdebbc?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A40%3A34Z&rscd=attachment%3B+filename%3Dsphinxcontrib_serializinghtml-2.0.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A39%3A49Z&ske=2026-09-12T08%3A40%3A34Z&sks=b&skv=2018-11-09&sig=NCLG0kxNkH%2BXerDwR3FcsvKcNLZVMa6d3W%2F387PODJw%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NywibmJmIjoxNzg5MTk5Nzc3LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.NEE3cV_Q9nvqfF4a_peAdp8D0LHddNXyPnfVEXG9yrM&response-content-disposition=attachment%3B%20filename%3Dsphinxcontrib_serializinghtml-2.0.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:17.297064+00:00"
+    },
+    {
+      "filename": "sqlite-3.49.1.0-cb7a3997059739fe9c63b2819aeda7c6907510ef.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/sqlite-3.49.1.0-cb7a3997059739fe9c63b2819aeda7c6907510ef.tar.gz",
+      "bytes": 2825637,
+      "sha256": "4d736ec7a2bba870512db2edaa7364ed0e3cec0bf9aaf3a584c9fbb27f83c5f7",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/1adbb662-3792-41e7-9dbf-8bdd77425920?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A46%3A52Z&rscd=attachment%3B+filename%3Dsqlite-3.49.1.0-cb7a3997059739fe9c63b2819aeda7c6907510ef.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A46%3A24Z&ske=2026-09-12T08%3A46%3A52Z&sks=b&skv=2018-11-09&sig=89lqkybLUsuLBVFnOOlLOTHf%2BvwRjoVGsUgqFFGw55U%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NywibmJmIjoxNzg5MTk5Nzc3LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.NEE3cV_Q9nvqfF4a_peAdp8D0LHddNXyPnfVEXG9yrM&response-content-disposition=attachment%3B%20filename%3Dsqlite-3.49.1.0-cb7a3997059739fe9c63b2819aeda7c6907510ef.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:17.762587+00:00"
+    },
+    {
+      "filename": "urllib3-2.7.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/urllib3-2.7.0.tar.gz",
+      "bytes": 433602,
+      "sha256": "231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/90ca37f9-c095-4d5d-b622-df32903c677e?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A50%3A26Z&rscd=attachment%3B+filename%3Durllib3-2.7.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A49%3A53Z&ske=2026-09-12T08%3A50%3A26Z&sks=b&skv=2018-11-09&sig=C5Hx7wDVGPhpgFuoN0arorLm2znTBeIWbiKJfjECcJc%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NywibmJmIjoxNzg5MTk5Nzc3LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.NEE3cV_Q9nvqfF4a_peAdp8D0LHddNXyPnfVEXG9yrM&response-content-disposition=attachment%3B%20filename%3Durllib3-2.7.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:17.609144+00:00"
+    },
+    {
+      "filename": "wheel-0.48.0.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/wheel-0.48.0.tar.gz",
+      "bytes": 66471,
+      "sha256": "94800765601e9171bf5d58d066e640662842bcedcbab982b2c90787a2c987322",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/46c490b3-374f-49db-8d4d-c1859270db1a?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A50%3A45Z&rscd=attachment%3B+filename%3Dwheel-0.48.0.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A50%3A05Z&ske=2026-09-12T08%3A50%3A45Z&sks=b&skv=2018-11-09&sig=a8e7WWIUcEEfLsWvSYPUXva%2Fm7IAd14xd5%2B4sXTYJLc%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NywibmJmIjoxNzg5MTk5Nzc3LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.NEE3cV_Q9nvqfF4a_peAdp8D0LHddNXyPnfVEXG9yrM&response-content-disposition=attachment%3B%20filename%3Dwheel-0.48.0.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:17.544089+00:00"
+    },
+    {
+      "filename": "xxhash-3.8.1.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/xxhash-3.8.1.tar.gz",
+      "bytes": 86223,
+      "sha256": "b0de4bf3aa66363552d52c6a89003c479911f12098cd48a53d44a0f7a25f7c46",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/377fd995-32ea-45eb-aec1-3159764dfdbf?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A48%3A25Z&rscd=attachment%3B+filename%3Dxxhash-3.8.1.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A47%3A56Z&ske=2026-09-12T08%3A48%3A25Z&sks=b&skv=2018-11-09&sig=gEZG5EfrcRRDZUhx7Ox6Nd8Z5I4gN9DqzQVkmG%2BCmQc%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NywibmJmIjoxNzg5MTk5Nzc3LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.NEE3cV_Q9nvqfF4a_peAdp8D0LHddNXyPnfVEXG9yrM&response-content-disposition=attachment%3B%20filename%3Dxxhash-3.8.1.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:17.608994+00:00"
+    },
+    {
+      "filename": "xz-5.2.5-c6bc0c612605622aaef101a33a751f9de2ecc193.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/xz-5.2.5-c6bc0c612605622aaef101a33a751f9de2ecc193.tar.gz",
+      "bytes": 1745919,
+      "sha256": "115433c946ee069e857fd04cf41b38a4a74ed45d868a3b2e08ccd4a1f04f39d0",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/64f0c829-bd5d-4cde-b5e4-22d7c35b13cc?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A52%3A24Z&rscd=attachment%3B+filename%3Dxz-5.2.5-c6bc0c612605622aaef101a33a751f9de2ecc193.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A51%3A29Z&ske=2026-09-12T08%3A52%3A24Z&sks=b&skv=2018-11-09&sig=0RVZG7QATfxQu37SRUgDmV%2F%2B5QFY%2Fa1ekq5NyiV099A%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NywibmJmIjoxNzg5MTk5Nzc3LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.NEE3cV_Q9nvqfF4a_peAdp8D0LHddNXyPnfVEXG9yrM&response-content-disposition=attachment%3B%20filename%3Dxz-5.2.5-c6bc0c612605622aaef101a33a751f9de2ecc193.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:17.904067+00:00"
+    },
+    {
+      "filename": "zlib-1.3.1-4dc98e1909830e2bdc2a9cc2236e3c5d5037335b.tar.gz",
+      "url": "https://github.com/hashfunction/twinquay/releases/download/native-sources-2026-09-12/zlib-1.3.1-4dc98e1909830e2bdc2a9cc2236e3c5d5037335b.tar.gz",
+      "bytes": 1572582,
+      "sha256": "1fe30e919eb560f495de9ee4bd7ba5216ce13f454affb4ccc32e15efa3878f5e",
+      "final_url": "https://release-assets.githubusercontent.com/github-production-release-asset/1365565781/cbd5235d-2f89-4b57-9794-2de71f461a4e?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-12T08%3A34%3A53Z&rscd=attachment%3B+filename%3Dzlib-1.3.1-4dc98e1909830e2bdc2a9cc2236e3c5d5037335b.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-12T07%3A34%3A24Z&ske=2026-09-12T08%3A34%3A53Z&sks=b&skv=2018-11-09&sig=yJsWC6awLod4%2FRqeUkLDdHCD4XBlziNUS3MAzmOiKuk%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4OTIwMDA3NywibmJmIjoxNzg5MTk5Nzc3LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.NEE3cV_Q9nvqfF4a_peAdp8D0LHddNXyPnfVEXG9yrM&response-content-disposition=attachment%3B%20filename%3Dzlib-1.3.1-4dc98e1909830e2bdc2a9cc2236e3c5d5037335b.tar.gz&response-content-type=application%2Foctet-stream",
+      "verified_at_utc": "2026-09-12T07:56:18.077258+00:00"
+    }
+  ]
+}
