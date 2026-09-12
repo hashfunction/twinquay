@@ -155,7 +155,12 @@ function Get-VerifiedWindowsTextInputModuleEvidence([string]$Path) {
     }
     Assert-NoReparsePath $path
     $item=Get-Item -LiteralPath $path -Force
-    if ($item.PSIsContainer -or $item.LinkType) { throw 'Windows text input module is not a regular non-link file.' }
+    $linkType=[string]$item.LinkType
+    # NTFS component-store hard links are regular files, not reparse points.
+    # This exception applies only to the exact signed platform DLL above.
+    if ($item.PSIsContainer -or $linkType -cnotin @('','HardLink')) {
+        throw "Windows text input module is not a regular non-reparse file (link type: $linkType)."
+    }
     $bytes=$item.Length
     $hash=(Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
     $signature=Get-AuthenticodeSignature -LiteralPath $path
@@ -183,11 +188,11 @@ function Get-VerifiedWindowsTextInputModuleEvidence([string]$Path) {
     }
     Assert-NoReparsePath $path
     $after=Get-Item -LiteralPath $path -Force
-    if ($after.PSIsContainer -or $after.LinkType -or $after.Length -ne $bytes -or
+    if ($after.PSIsContainer -or [string]$after.LinkType -cne $linkType -or $after.Length -ne $bytes -or
         (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant() -cne $hash) {
         throw 'Windows text input module changed during provenance verification.'
     }
-    return [ordered]@{sha256=$hash;bytes=$bytes;signature_status=[string]$signature.Status;
+    return [ordered]@{sha256=$hash;bytes=$bytes;filesystem_link_type=$linkType;signature_status=[string]$signature.Status;
         signer_subject=$certificate.Subject;signer_issuer=$certificate.Issuer;signer_thumbprint=$certificate.Thumbprint;
         signer_common_name=$commonNames[0];signer_organization=$organizations[0];
         original_filename=$version.OriginalFilename;company_name=$version.CompanyName;

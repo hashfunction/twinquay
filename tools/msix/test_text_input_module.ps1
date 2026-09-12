@@ -73,6 +73,16 @@ try {
         [IO.File]::WriteAllText($path,'other DLL')
         Reject { Get-VerifiedWindowsTextInputModuleEvidence $path } 'exact Windows text input path'
     }
+    # Windows component-store files can have multiple hard-link names while
+    # remaining regular files. The exact allowed path and byte checks still apply.
+    $hardLink=Join-Path $fixture 'component-store-alias.dll'
+    New-Item -ItemType HardLink -Path $hardLink -Target $script:expected | Out-Null
+    Check ((Get-Item -LiteralPath $script:expected).LinkType -ceq 'HardLink') 'Fixture did not create a real hard link.'
+    $linked=Get-VerifiedWindowsTextInputModuleEvidence $script:expected
+    Check ($linked.filesystem_link_type -ceq 'HardLink' -and
+        $linked.sha256 -ceq (Get-FileHash $hardLink).Hash.ToLowerInvariant()) 'Regular hard-linked platform bytes lost provenance.'
+    Reject { Get-VerifiedWindowsTextInputModuleEvidence $hardLink } 'exact Windows text input path'
+    Remove-Item -LiteralPath $hardLink
     $script:mutation='bytes'
     Reject { Get-VerifiedWindowsTextInputModuleEvidence $script:expected } 'changed during'
     $script:mutation=''
@@ -85,7 +95,7 @@ try {
     $savedFile=Join-Path $fixture 'saved-module'
     Move-Item $script:expected $savedFile
     New-Item -ItemType Directory $script:expected | Out-Null
-    Reject { Get-VerifiedWindowsTextInputModuleEvidence $script:expected } 'regular non-link file'
+    Reject { Get-VerifiedWindowsTextInputModuleEvidence $script:expected } 'regular non-reparse file'
     Remove-Item -LiteralPath $script:expected
     Move-Item $savedFile $script:expected
     $real=Join-Path $fixture 'real'
